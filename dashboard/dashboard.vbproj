@@ -87,10 +87,23 @@
       <DependentUpon>dashboard.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmDeceasedReg.Designer.vb">
+      <DependentUpon>frmDeceasedReg.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmDeceasedReg.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmForms.Designer.vb">
+      <DependentUpon>frmForms.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmForms.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="My Project\Resources.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -106,6 +119,12 @@
   <ItemGroup>
     <EmbeddedResource Include="dashboard.resx">
       <DependentUpon>dashboard.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDeceasedReg.resx">
+      <DependentUpon>frmDeceasedReg.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmForms.resx">
+      <DependentUpon>frmForms.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -143,6 +162,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\registry.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\signout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\signout1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
