@@ -97,4 +97,8 @@ Public Class frmViewDeceased
         LblDod.Text = deathdate
         LblPlot.Text = location
     End Sub
+
+    Private Sub frmViewDeceased_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    End Sub
 End Class

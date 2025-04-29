@@ -15,7 +15,7 @@ Public Class frmWebMap
         AddHandler WebView21.CoreWebView2.WebMessageReceived, AddressOf HandleWebMessage
 
         ' Navigate to the map page
-        WebView21.CoreWebView2.Navigate("http://map.test/")
+        WebView21.CoreWebView2.Navigate("http://libingan.test/")
     End Function
 
     Private Sub HandleWebMessage(sender As Object, e As Microsoft.Web.WebView2.Core.CoreWebView2WebMessageReceivedEventArgs)
@@ -33,5 +33,9 @@ Public Class frmWebMap
         If WebView21.CoreWebView2 IsNot Nothing Then
             WebView21.CoreWebView2.Reload()
         End If
+    End Sub
+
+    Private Sub WebView21_Click(sender As Object, e As EventArgs) Handles WebView21.Click
+
     End Sub
 End Class

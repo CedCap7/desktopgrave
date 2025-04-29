@@ -40,8 +40,9 @@ Partial Class frmWebMap
         Me.WebView21.DefaultBackgroundColor = System.Drawing.Color.White
         Me.WebView21.Dock = System.Windows.Forms.DockStyle.Fill
         Me.WebView21.Location = New System.Drawing.Point(0, 0)
+        Me.WebView21.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.WebView21.Name = "WebView21"
-        Me.WebView21.Size = New System.Drawing.Size(660, 397)
+        Me.WebView21.Size = New System.Drawing.Size(880, 489)
         Me.WebView21.TabIndex = 60
         Me.WebView21.ZoomFactor = 1.0R
         '
@@ -63,21 +64,23 @@ Partial Class frmWebMap
         Me.btnRefreshMap.HoverState.ForeColor = System.Drawing.SystemColors.Control
         Me.btnRefreshMap.HoverState.Image = Global.dashboard.My.Resources.Resources.refresh
         Me.btnRefreshMap.Image = Global.dashboard.My.Resources.Resources.refreshhover
-        Me.btnRefreshMap.Location = New System.Drawing.Point(541, 12)
+        Me.btnRefreshMap.Location = New System.Drawing.Point(721, 15)
+        Me.btnRefreshMap.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.btnRefreshMap.Name = "btnRefreshMap"
-        Me.btnRefreshMap.Size = New System.Drawing.Size(107, 35)
+        Me.btnRefreshMap.Size = New System.Drawing.Size(143, 43)
         Me.btnRefreshMap.TabIndex = 61
         Me.btnRefreshMap.Text = "Refresh"
         '
         'frmWebMap
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(14, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(90, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(660, 397)
+        Me.ClientSize = New System.Drawing.Size(880, 489)
         Me.Controls.Add(Me.btnRefreshMap)
         Me.Controls.Add(Me.WebView21)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "frmWebMap"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen

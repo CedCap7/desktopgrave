@@ -477,4 +477,8 @@ Public Class frmDeceasedReg
             MessageBox.Show("Please select a record to delete.")
         End If
     End Sub
+
+    Private Sub Guna2Panel2_Paint(sender As Object, e As PaintEventArgs) Handles Guna2Panel2.Paint
+
+    End Sub
 End Class
