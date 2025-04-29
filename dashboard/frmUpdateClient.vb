@@ -23,6 +23,9 @@ Public Class frmUpdateClient
                 txtFirstName.Text = dr("FirstName").ToString()
                 txtLastName.Text = dr("LastName").ToString()
                 txtMiddleName.Text = dr("MiddleName").ToString()
+                txtMobile.Text = dr("Mobile").ToString()
+                txtAddress.Text = dr("Address").ToString()
+                txtEmail.Text = dr("Email").ToString()
                 txtExt.Text = dr("Ext").ToString()
                 If dr("Gender").ToString() = "Male" Then
                     chkMale.Checked = True
@@ -83,11 +86,11 @@ Public Class frmUpdateClient
         Me.Close()
     End Sub
 
-    Private Sub chkMale_CheckedChanged(sender As Object, e As EventArgs) Handles chkMale.CheckedChanged
+    Private Sub chkMale_CheckedChanged(sender As Object, e As EventArgs)
         If chkMale.Checked Then chkFemale.Checked = False
     End Sub
 
-    Private Sub chkFemale_CheckedChanged(sender As Object, e As EventArgs) Handles chkFemale.CheckedChanged
+    Private Sub chkFemale_CheckedChanged(sender As Object, e As EventArgs)
         If chkFemale.Checked Then chkMale.Checked = False
     End Sub
 End Class
