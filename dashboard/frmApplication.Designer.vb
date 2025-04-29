@@ -151,7 +151,7 @@ Partial Class frmApplication
         Me.txtAddress.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtAddress.ForeColor = System.Drawing.Color.Black
         Me.txtAddress.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtAddress.Location = New System.Drawing.Point(496, 124)
+        Me.txtAddress.Location = New System.Drawing.Point(496, 126)
         Me.txtAddress.Margin = New System.Windows.Forms.Padding(5)
         Me.txtAddress.Name = "txtAddress"
         Me.txtAddress.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
@@ -216,7 +216,7 @@ Partial Class frmApplication
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Roboto", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.ForeColor = System.Drawing.Color.White
-        Me.Label4.Location = New System.Drawing.Point(504, 101)
+        Me.Label4.Location = New System.Drawing.Point(505, 101)
         Me.Label4.Margin = New System.Windows.Forms.Padding(2, 10, 2, 0)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(69, 20)
