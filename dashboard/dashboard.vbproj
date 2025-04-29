@@ -14,6 +14,9 @@
     <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -48,18 +51,41 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BouncyCastle.Cryptography, Version=2.0.0.0, Culture=neutral, PublicKeyToken=072edcf4a5328938, processorArchitecture=MSIL">
+      <HintPath>..\packages\BouncyCastle.Cryptography.2.4.0\lib\net461\BouncyCastle.Cryptography.dll</HintPath>
+    </Reference>
     <Reference Include="Guna.UI">
       <HintPath>..\..\..\..\Downloads\GunaUI2-Cracked-2020-2021-main\Guna.UI WinForms\4.0\Guna.UI.dll</HintPath>
     </Reference>
-    <Reference Include="Guna.UI2">
-      <HintPath>..\..\..\..\Downloads\Guna_UI_Framework_Ultimate_v2.0.0.1\Guna.UI-Framework-Lib-master\Guna.UI2 WinForms\.net 4.0\Guna.UI2.dll</HintPath>
+    <Reference Include="Guna.UI2, Version=2.0.4.6, Culture=neutral, PublicKeyToken=8b9d14aa5142e261, processorArchitecture=MSIL">
+      <HintPath>..\packages\Guna.UI2.WinForms.2.0.4.6\lib\net48\Guna.UI2.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.13.4, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13.4\lib\net461\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebView2.Core, Version=1.0.2903.40, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.2903.40\lib\net462\Microsoft.Web.WebView2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebView2.WinForms, Version=1.0.2903.40, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.2903.40\lib\net462\Microsoft.Web.WebView2.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebView2.Wpf, Version=1.0.2903.40, Culture=neutral, PublicKeyToken=2a8ab48044d2601e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.WebView2.1.0.2903.40\lib\net462\Microsoft.Web.WebView2.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=8.0.32.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Management" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -87,6 +113,90 @@
       <DependentUpon>dashboard.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmAccApproval.Designer.vb">
+      <DependentUpon>frmAccApproval.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmAccApproval.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmApproval.Designer.vb">
+      <DependentUpon>frmApproval.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmApproval.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDashboard.Designer.vb">
+      <DependentUpon>frmDashboard.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmDashboard.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPaymentReg.Designer.vb">
+      <DependentUpon>frmPaymentReg.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmPaymentReg.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPlotReservation.Designer.vb">
+      <DependentUpon>frmPlotReservation.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmPlotReservation.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPlotSelection.Designer.vb">
+      <DependentUpon>frmPlotSelection.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmPlotSelection.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReservAssign.Designer.vb">
+      <DependentUpon>frmReservAssign.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmReservAssign.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReservationsReg.Designer.vb">
+      <DependentUpon>frmReservationsReg.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmReservationsReg.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUpdateClient.Designer.vb">
+      <DependentUpon>frmUpdateClient.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmUpdateClient.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUpdateDeceased.Designer.vb">
+      <DependentUpon>frmUpdateDeceased.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmUpdateDeceased.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmClientReg.Designer.vb">
+      <DependentUpon>frmClientReg.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmClientReg.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPlotPurchAndAssign.Designer.vb">
+      <DependentUpon>frmPlotPurchAndAssign.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmPlotPurchAndAssign.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmApplication.Designer.vb">
+      <DependentUpon>frmApplication.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmApplication.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDeceased.Designer.vb">
+      <DependentUpon>frmDeceased.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmDeceased.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmDeceasedReg.Designer.vb">
       <DependentUpon>frmDeceasedReg.vb</DependentUpon>
     </Compile>
@@ -99,6 +209,43 @@
     <Compile Include="frmForms.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmLogin.Designer.vb">
+      <DependentUpon>frmLogin.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmLogin.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUpdatePayment.Designer.vb">
+      <DependentUpon>frmUpdatePayment.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmUpdatePayment.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmViewClient.Designer.vb">
+      <DependentUpon>frmViewClient.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmViewClient.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmViewDeceased.Designer.vb">
+      <DependentUpon>frmViewDeceased.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmViewDeceased.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmViewPayment.Designer.vb">
+      <DependentUpon>frmViewPayment.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmViewPayment.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmWebMap.Designer.vb">
+      <DependentUpon>frmWebMap.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmWebMap.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Module1.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -120,11 +267,71 @@
     <EmbeddedResource Include="dashboard.resx">
       <DependentUpon>dashboard.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmAccApproval.resx">
+      <DependentUpon>frmAccApproval.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmApproval.resx">
+      <DependentUpon>frmApproval.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmClientReg.resx">
+      <DependentUpon>frmClientReg.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDashboard.resx">
+      <DependentUpon>frmDashboard.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPaymentReg.resx">
+      <DependentUpon>frmPaymentReg.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPlotPurchAndAssign.resx">
+      <DependentUpon>frmPlotPurchAndAssign.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmApplication.resx">
+      <DependentUpon>frmApplication.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDeceased.resx">
+      <DependentUpon>frmDeceased.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmDeceasedReg.resx">
       <DependentUpon>frmDeceasedReg.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmForms.resx">
       <DependentUpon>frmForms.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLogin.resx">
+      <DependentUpon>frmLogin.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPlotReservation.resx">
+      <DependentUpon>frmPlotReservation.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPlotSelection.resx">
+      <DependentUpon>frmPlotSelection.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReservAssign.resx">
+      <DependentUpon>frmReservAssign.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReservationsReg.resx">
+      <DependentUpon>frmReservationsReg.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUpdateClient.resx">
+      <DependentUpon>frmUpdateClient.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUpdateDeceased.resx">
+      <DependentUpon>frmUpdateDeceased.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUpdatePayment.resx">
+      <DependentUpon>frmUpdatePayment.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmViewClient.resx">
+      <DependentUpon>frmViewClient.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmViewDeceased.resx">
+      <DependentUpon>frmViewDeceased.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmViewPayment.resx">
+      <DependentUpon>frmViewPayment.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmWebMap.resx">
+      <DependentUpon>frmWebMap.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -146,6 +353,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
     <None Include="Resources\forms.png" />
   </ItemGroup>
   <ItemGroup>
@@ -169,5 +377,86 @@
   <ItemGroup>
     <None Include="Resources\signout1.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\client.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DC CEMETERY MAP.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\client1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\home1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LOGO.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\refreshhover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pdf.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\profile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reservation2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reservation3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Excel Icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>9</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <Import Project="..\packages\Microsoft.Web.WebView2.1.0.2903.40\build\Microsoft.Web.WebView2.targets" Condition="Exists('..\packages\Microsoft.Web.WebView2.1.0.2903.40\build\Microsoft.Web.WebView2.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Web.WebView2.1.0.2903.40\build\Microsoft.Web.WebView2.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Web.WebView2.1.0.2903.40\build\Microsoft.Web.WebView2.targets'))" />
+  </Target>
 </Project>
