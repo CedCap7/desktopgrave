@@ -156,7 +156,7 @@ Public Class frmUpdateDeceased
             ' Query to fetch deceased data, excluding client info initially
             sql = "SELECT d.Deceased_ID, d.Client_ID, " &
               "d.FirstName AS DeceasedFirstName, d.MiddleName AS DeceasedMiddleName, " &
-              "d.LastName AS DeceasedLastName, d.DateOfBirth, d.DateOfDeath, d.Interment, d.Gender, d.Ext, " &
+              "d.LastName AS DeceasedLastName, d.DateOfBirth, d.DateOfDeath, d.Interment, d.Gender, d.Ext, d.Religion, " &
               "b1.FullName AS Beneficiary1FullName, b1.Contact AS Beneficiary1Contact, " &
               "b2.FullName AS Beneficiary2FullName, b2.Contact AS Beneficiary2Contact " &
               "FROM deceased d " &
@@ -175,11 +175,15 @@ Public Class frmUpdateDeceased
             If reader.HasRows Then
                 reader.Read()  ' Move to the first row
 
+                ' Store Client_ID for later use
+                Dim storedClientId As Object = reader("Client_ID")
+
                 ' Populate the form with deceased data
                 txtDeceasedFirstName.Text = If(IsDBNull(reader("DeceasedFirstName")), "", reader("DeceasedFirstName").ToString())
                 txtDeceasedMiddleName.Text = If(IsDBNull(reader("DeceasedMiddleName")), "", reader("DeceasedMiddleName").ToString())
                 txtDeceasedLastName.Text = If(IsDBNull(reader("DeceasedLastName")), "", reader("DeceasedLastName").ToString())
                 txtDeceasedExt.Text = If(IsDBNull(reader("Ext")), "", reader("Ext").ToString())
+                txtReligion.Text = If(IsDBNull(reader("Religion")), "", reader("Religion").ToString())
 
                 ' Handle Date of Birth
                 If Not IsDBNull(reader("DateOfBirth")) Then
@@ -214,30 +218,27 @@ Public Class frmUpdateDeceased
                     chkMaleDeceased.Checked = False
                 End If
 
-                ' Handle Beneficiaries - Proper Null Checks
-                txtBeneficiary1.Text = If(IsDBNull(reader("Beneficiary1FullName")), "", reader("Beneficiary1FullName").ToString()) &
-                                   " (" & If(IsDBNull(reader("Beneficiary1Contact")), "N/A", reader("Beneficiary1Contact").ToString()) & ")"
-                txtBeneficiary2.Text = If(IsDBNull(reader("Beneficiary2FullName")), "", reader("Beneficiary2FullName").ToString()) &
-                                   " (" & If(IsDBNull(reader("Beneficiary2Contact")), "N/A", reader("Beneficiary2Contact").ToString()) & ")"
+                ' Handle Beneficiaries - Store separately
+                txtBeneficiary1.Text = If(IsDBNull(reader("Beneficiary1FullName")), "", reader("Beneficiary1FullName").ToString())
+                txtBeneficiaryContact1.Text = If(IsDBNull(reader("Beneficiary1Contact")), "", reader("Beneficiary1Contact").ToString())
 
-                ' Close the reader after fetching deceased data
+                txtBeneficiary2.Text = If(IsDBNull(reader("Beneficiary2FullName")), "", reader("Beneficiary2FullName").ToString())
+                txtBeneficiaryContact2.Text = If(IsDBNull(reader("Beneficiary2Contact")), "", reader("Beneficiary2Contact").ToString())
+
+                ' Close the reader before making another query
                 reader.Close()
 
-                ' Retrieve the Client information (FullName) using ExecuteScalar
-                If Not IsDBNull(reader("Client_ID")) AndAlso reader("Client_ID") <> DBNull.Value Then
+                ' Now handle the client information
+                If Not IsDBNull(storedClientId) AndAlso storedClientId IsNot Nothing Then
                     ' Use ExecuteScalar to fetch the client's full name
                     Dim clientCmd As New MySqlCommand("SELECT CONCAT(IFNULL(FirstName, ''), ' ', IFNULL(LEFT(MiddleName,1), ''), '. ', IFNULL(LastName, '')) AS FullName FROM client WHERE Client_ID = @ClientID", cn)
-                    clientCmd.Parameters.AddWithValue("@ClientID", reader("Client_ID"))
+                    clientCmd.Parameters.AddWithValue("@ClientID", storedClientId)
 
                     ' Execute the query for client data
                     Dim clientFullName As Object = clientCmd.ExecuteScalar()
 
                     ' If clientFullName is not null, set the text; otherwise, set to "Unknown Client"
-                    If clientFullName IsNot Nothing Then
-                        txtClientSearch.Text = clientFullName.ToString()
-                    Else
-                        txtClientSearch.Text = "Unknown Client"
-                    End If
+                    txtClientSearch.Text = If(clientFullName IsNot Nothing AndAlso Not IsDBNull(clientFullName), clientFullName.ToString(), "Unknown Client")
                 Else
                     txtClientSearch.Text = "Unknown Client"
                 End If
@@ -284,7 +285,7 @@ Public Class frmUpdateDeceased
     End Function
 
 
-    Private Sub ValidateDates()
+    Private Function ValidateDates() As Boolean
         Dim birthDate As Date
         Dim deathDate As Date
         Dim intermentDate As Date
@@ -292,31 +293,35 @@ Public Class frmUpdateDeceased
         ' Date of Birth must be valid
         If Not TryGetDateFromCombo(cmbBirthMonth, cmbBirthDay, cmbBirthYear, birthDate) Then
             MessageBox.Show("Please select a valid Date of Birth.", "Invalid Date", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            Exit Sub
+            Return False
         End If
 
         ' Date of Death (if selected)
         If TryGetDateFromCombo(cmbDeathMonth, cmbDeathDay, cmbDeathYear, deathDate) Then
             If deathDate < birthDate Then
                 MessageBox.Show("Date of Death cannot be before Date of Birth.", "Invalid Date", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                Exit Sub
+                Return False
             End If
 
             ' Interment Date (if selected)
             If TryGetDateFromCombo(cmbIntermentMonth, cmbIntermentDay, cmbIntermentYear, intermentDate) Then
                 If intermentDate < deathDate Then
                     MessageBox.Show("Interment date cannot be before Date of Death.", "Invalid Date", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                    Exit Sub
+                    Return False
                 End If
             End If
         End If
-    End Sub
+
+        Return True
+    End Function
 
 
     ' --- BUTTON: UPDATE DECEASED ---
     Private Sub btnUpdateDeceased_Click(sender As Object, e As EventArgs) Handles btnUpdateDeceased.Click
         ' Validate the input fields before proceeding
-        ValidateDates()
+        If Not ValidateDates() Then
+            Return
+        End If
 
         If String.IsNullOrWhiteSpace(txtDeceasedFirstName.Text.Trim()) Then
             MessageBox.Show("Please enter First Name.", "Required Field", MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -347,6 +352,8 @@ Public Class frmUpdateDeceased
         ' Optional: Interment date
         Dim hasIntermentDate As Boolean = TryGetDateFromCombo(cmbIntermentMonth, cmbIntermentDay, cmbIntermentYear, intermentDate)
 
+        Dim transaction As MySqlTransaction = Nothing
+
         Try
             ' Prepare the values to update the database
             Dim FirstName As String = txtDeceasedFirstName.Text.Trim()
@@ -363,80 +370,112 @@ Public Class frmUpdateDeceased
 
             dbconn()
             cn.Open()
+            transaction = cn.BeginTransaction()
 
-            ' Begin transaction for updating the deceased and beneficiaries
-            Using transaction As MySqlTransaction = cn.BeginTransaction()
+            ' Update the Deceased record
+            sql = "UPDATE deceased SET " &
+                  "FirstName = @FirstName, " &
+                  "MiddleName = @MiddleName, " &
+                  "LastName = @LastName, " &
+                  "Ext = @Ext, " &
+                  "DateOfBirth = @DateOfBirth, " &
+                  "DateOfDeath = @DateOfDeath, " &
+                  "Gender = @Gender, " &
+                  "Religion = @Religion, " &
+                  "Interment = @Interment, " &
+                  "Client_ID = @ClientID " &
+                  "WHERE Deceased_ID = @ID"
 
-                ' Update the Deceased record
-                sql = "UPDATE deceased SET " &
-                      "FirstName = @FirstName, " &
-                      "MiddleName = @MiddleName, " &
-                      "LastName = @LastName, " &
-                      "Ext = @Ext, " &
-                      "DateOfBirth = @DateOfBirth, " &
-                      "DateOfDeath = @DateOfDeath, " &
-                      "Gender = @Gender, " &
-                      "Religion = @Religion, " &
-                      "Interment = @Interment, " &
-                      "Beneficiary1 = @Beneficiary1, " &
-                      "Beneficiary2 = @Beneficiary2, " &
-                      "Relationship = @Relationship " &
-                      "WHERE Deceased_ID = @ID"
+            Using cmd As New MySqlCommand(sql, cn, transaction)
+                cmd.Parameters.AddWithValue("@ID", deceasedID)
+                cmd.Parameters.AddWithValue("@FirstName", FirstName)
+                cmd.Parameters.AddWithValue("@MiddleName", If(String.IsNullOrWhiteSpace(MiddleName), DBNull.Value, MiddleName))
+                cmd.Parameters.AddWithValue("@LastName", LastName)
+                cmd.Parameters.AddWithValue("@Ext", If(String.IsNullOrWhiteSpace(Ext), DBNull.Value, Ext))
+                cmd.Parameters.AddWithValue("@DateOfBirth", birthDate)
+                cmd.Parameters.AddWithValue("@DateOfDeath", deathDate)
+                cmd.Parameters.AddWithValue("@Gender", Gender)
+                cmd.Parameters.AddWithValue("@Religion", If(String.IsNullOrWhiteSpace(Religion), DBNull.Value, Religion))
+                cmd.Parameters.AddWithValue("@Interment", If(hasIntermentDate, intermentDate, DBNull.Value))
+                cmd.Parameters.AddWithValue("@ClientID", If(selectedClientId = -1, DBNull.Value, selectedClientId))
 
-                Using cmd As New MySqlCommand(sql, cn, transaction)
-                    cmd.Parameters.AddWithValue("@ID", deceasedID)
-                    cmd.Parameters.AddWithValue("@FirstName", FirstName)
-                    cmd.Parameters.AddWithValue("@MiddleName", MiddleName)
-                    cmd.Parameters.AddWithValue("@LastName", LastName)
-                    cmd.Parameters.AddWithValue("@Ext", Ext)
-                    cmd.Parameters.AddWithValue("@DateOfBirth", birthDate)
-                    cmd.Parameters.AddWithValue("@DateOfDeath", deathDate)
-                    cmd.Parameters.AddWithValue("@Gender", Gender)
-                    cmd.Parameters.AddWithValue("@Religion", Religion)
-                    cmd.Parameters.AddWithValue("@Interment", If(hasIntermentDate, intermentDate, DBNull.Value))
-                    cmd.Parameters.AddWithValue("@Beneficiary1", If(String.IsNullOrWhiteSpace(Beneficiary1), DBNull.Value, Beneficiary1))
-                    cmd.Parameters.AddWithValue("@Beneficiary2", If(String.IsNullOrWhiteSpace(Beneficiary2), DBNull.Value, Beneficiary2))
-                    cmd.Parameters.AddWithValue("@Relationship", If(String.IsNullOrWhiteSpace(Relationship), DBNull.Value, Relationship))
-
-                    cmd.ExecuteNonQuery()
-                End Using
-
-                ' Update Beneficiaries if any changes
-                If Not String.IsNullOrWhiteSpace(Beneficiary1) Then
-                    UpdateBeneficiary(deceasedID, Beneficiary1, Contact1, 1, transaction)
-                End If
-
-                If Not String.IsNullOrWhiteSpace(Beneficiary2) Then
-                    UpdateBeneficiary(deceasedID, Beneficiary2, Contact2, 2, transaction)
-                End If
-
-                transaction.Commit()
-
-                MessageBox.Show("Deceased record updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
-
-                ' Clear the form or close it
-                Me.Close()
-
+                cmd.ExecuteNonQuery()
             End Using
 
+            ' Update Beneficiaries if any changes
+            If Not String.IsNullOrWhiteSpace(Beneficiary1) Then
+                UpdateBeneficiary(deceasedID, Beneficiary1, Contact1, 1, transaction)
+            End If
+
+            If Not String.IsNullOrWhiteSpace(Beneficiary2) Then
+                UpdateBeneficiary(deceasedID, Beneficiary2, Contact2, 2, transaction)
+            End If
+
+            transaction.Commit()
+            MessageBox.Show("Deceased record updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+            ' Close the form
+            Me.Close()
+
         Catch ex As Exception
+            If transaction IsNot Nothing Then
+                Try
+                    transaction.Rollback()
+                Catch rollbackEx As Exception
+                    MessageBox.Show("Rollback Error: " & rollbackEx.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                End Try
+            End If
             MessageBox.Show("Error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
-            cn.Close()
+            If cn.State = ConnectionState.Open Then
+                cn.Close()
+            End If
         End Try
     End Sub
 
     ' --- UPDATE BENEFICIARY FUNCTION ---
     Private Sub UpdateBeneficiary(deceasedID As Integer, fullName As String, contact As String, order As Integer, transaction As MySqlTransaction)
-        sql = "UPDATE beneficiaries SET FullName = @FullName, Contact = @Contact WHERE Deceased_ID = @DeceasedID AND `Order` = @Order"
+        ' First check if the beneficiary exists
+        sql = "SELECT id FROM beneficiaries WHERE Deceased_ID = @DeceasedID AND `Order` = @Order"
 
-        Using cmd As New MySqlCommand(sql, cn, transaction)
-            cmd.Parameters.AddWithValue("@DeceasedID", deceasedID)
-            cmd.Parameters.AddWithValue("@FullName", fullName)
-            cmd.Parameters.AddWithValue("@Contact", If(String.IsNullOrWhiteSpace(contact), DBNull.Value, contact))
-            cmd.Parameters.AddWithValue("@Order", order)
+        Using checkCmd As New MySqlCommand(sql, cn, transaction)
+            checkCmd.Parameters.AddWithValue("@DeceasedID", deceasedID)
+            checkCmd.Parameters.AddWithValue("@Order", order)
 
-            cmd.ExecuteNonQuery()
+            Dim existingId As Object = checkCmd.ExecuteScalar()
+
+            If existingId IsNot Nothing AndAlso Not IsDBNull(existingId) Then
+                ' Update existing record
+                sql = "UPDATE beneficiaries SET " &
+                     "FullName = @FullName, " &
+                     "Contact = @Contact, " &
+                     "Client_ID = @ClientID, " &
+                     "status = 1 " &
+                     "WHERE id = @ID"
+
+                Using cmd As New MySqlCommand(sql, cn, transaction)
+                    cmd.Parameters.AddWithValue("@ID", existingId)
+                    cmd.Parameters.AddWithValue("@FullName", fullName)
+                    cmd.Parameters.AddWithValue("@Contact", If(String.IsNullOrWhiteSpace(contact), DBNull.Value, contact))
+                    cmd.Parameters.AddWithValue("@ClientID", If(selectedClientId = -1, DBNull.Value, selectedClientId))
+                    cmd.ExecuteNonQuery()
+                End Using
+            Else
+                ' Insert new record
+                sql = "INSERT INTO beneficiaries (" &
+                      "Deceased_ID, Client_ID, FullName, date_created, `Order`, Contact, status" &
+                      ") VALUES (" &
+                      "@DeceasedID, @ClientID, @FullName, NOW(), @Order, @Contact, 1)"
+
+                Using cmd As New MySqlCommand(sql, cn, transaction)
+                    cmd.Parameters.AddWithValue("@DeceasedID", deceasedID)
+                    cmd.Parameters.AddWithValue("@ClientID", If(selectedClientId = -1, DBNull.Value, selectedClientId))
+                    cmd.Parameters.AddWithValue("@FullName", fullName)
+                    cmd.Parameters.AddWithValue("@Order", order)
+                    cmd.Parameters.AddWithValue("@Contact", If(String.IsNullOrWhiteSpace(contact), DBNull.Value, contact))
+                    cmd.ExecuteNonQuery()
+                End Using
+            End If
         End Using
     End Sub
 
