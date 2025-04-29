@@ -5,17 +5,17 @@ Imports System.IO
 
 Public Class frmReservationsReg
     Private Sub frmReservationList_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        DateTimePicker1 = New DateTimePicker()
-        DateTimePicker1.Format = DateTimePickerFormat.Custom
-        DateTimePicker1.CustomFormat = "MMMM dd, yyyy" ' Set custom format
-        DateTimePicker1.Location = New Point(50, 50)
-        Me.Controls.Add(DateTimePicker1)
 
         KeyPreview = True
         LoadReservations()
     End Sub
 
-    Sub LoadReservations()
+    Private Sub txtSearch_TextChanged(sender As Object, e As EventArgs) Handles txtSearch.TextChanged
+        ' Call the LoadReservations method with the current search text.
+        LoadReservations(txtSearch.Text.Trim())
+    End Sub
+
+    Sub LoadReservations(Optional searchText As String = "")
         Dim tempConnection As MySqlConnection = Nothing
         Try
             ' Create a new connection for this operation
@@ -24,22 +24,23 @@ Public Class frmReservationsReg
 
             Dim reservationData As New List(Of Dictionary(Of String, Object))
 
+            ' Modify the SQL query to include a WHERE clause for the search text
             sql = "SELECT r.Reservation_ID, r.Client_ID, " &
               "CONCAT(COALESCE(c.FirstName, ''), ' ', " &
-              "COALESCE(LEFT(c.MiddleName, 1), ''), '. ', " &
+              "COALESCE(LEFT(c.MiddleName, 1), ''), IF(COALESCE(c.MiddleName, '') <> '', '. ', ''), " &
               "COALESCE(c.LastName, '')) AS FullName, " &
               "l.block, l.section, l.row, l.plot, " &
-              "pr.Plot_ID, pr.Level, " &  ' Include Plot_ID and Level from plot_reservation table
+              "pr.Plot_ID, pr.Level, " &
               "r.Reservation_Date, " &
-              "r.Quantity, " &  ' Move Quantity before Status
-              "CASE r.Status " &  ' Convert Status from integer to string
+              "r.Quantity, " &
+              "CASE r.Status " &
               "    WHEN 0 THEN 'Available' " &
               "    WHEN 1 THEN 'Used' " &
-              "    ELSE 'Unknown' " &  ' Fallback for unexpected values
-              "END AS Status, " &  ' Determine reservation status
-              "p.total_Amount, p.total_Paid, " &  ' Include total amount and total paid
-              "CASE WHEN p.total_Paid >= p.total_Amount THEN 'Fully Paid' ELSE 'Partial' END AS Payment_Status, " &  ' Determine payment status
-              "CASE l.type " &  ' Determine plot type
+              "    ELSE 'Unknown' " &
+              "END AS Status, " &
+              "p.total_Amount, p.total_Paid, " &
+              "CASE WHEN p.total_Paid >= p.total_Amount THEN 'Fully Paid' ELSE 'Partial' END AS Payment_Status, " &
+              "CASE l.type " &
               "    WHEN 1 THEN 'Apartment' " &
               "    WHEN 2 THEN 'Family Lawn Lots' " &
               "    WHEN 3 THEN 'Bone Niche' " &
@@ -47,13 +48,15 @@ Public Class frmReservationsReg
               "END AS TypeName " &
               "FROM Reservation r " &
               "LEFT JOIN Client c ON r.Client_ID = c.Client_ID " &
-              "JOIN plot_reservation pr ON r.Reservation_ID = pr.reservation_id " &  ' Join with plot_reservation table
-              "JOIN payment p ON r.Reservation_ID = p.Reservation_ID " &  ' Join with payment table
-              "JOIN location l ON pr.Plot_ID = l.id " &  ' Join with location to get plot details from plot_reservation
+              "JOIN plot_reservation pr ON r.Reservation_ID = pr.reservation_id " &
+              "JOIN payment p ON r.Reservation_ID = p.Reservation_ID " &
+              "JOIN location l ON pr.Plot_ID = l.id " &
+              "WHERE CONCAT(COALESCE(c.FirstName, ''), ' ', COALESCE(LEFT(c.MiddleName, 1), ''), IF(COALESCE(c.MiddleName, '') <> '', '. ', ''), COALESCE(c.LastName, '')) LIKE @search " &
               "ORDER BY r.Reservation_Date DESC, r.Reservation_ID DESC"
 
-            ' First get all the data
+            ' Add the search text parameter to the command
             Using cmd As New MySqlCommand(sql, tempConnection)
+                cmd.Parameters.AddWithValue("@search", "%" & searchText & "%")
                 Using dr As MySqlDataReader = cmd.ExecuteReader()
                     While dr.Read()
                         Dim row As New Dictionary(Of String, Object)
@@ -71,7 +74,7 @@ Public Class frmReservationsReg
             For Each reservation In reservationData
                 Dim newLine = ReservationList.Items.Add(reservation("Reservation_ID").ToString())  ' Display Reservation_ID
                 newLine.Tag = reservation("Reservation_ID")
-                newLine.SubItems.Add(reservation("FullName").ToString())  ' Client Name
+                newLine.SubItems.Add(reservation("FullName").ToString())  ' Full Name
 
                 ' Include plot type and level in the plot location
                 Dim plotLocation As String = String.Format("{0} - Block {1}, Section {2}, Row {3}, Plot {4}, Plot ID {5}, Level {6}",
@@ -84,21 +87,25 @@ Public Class frmReservationsReg
                 If(reservation("Level") Is DBNull.Value, "N/A", reservation("Level").ToString()))  ' Level
                 newLine.SubItems.Add(plotLocation)  ' Reserved Plot
 
+                ' Ensure Reservation_Date is not null
                 Dim reservationDate As String = If(reservation("Reservation_Date") IsNot DBNull.Value,
                 Convert.ToDateTime(reservation("Reservation_Date")).ToString("MMMM dd, yyyy"), "N/A")
                 newLine.SubItems.Add(reservationDate)  ' Reservation Date
 
-                newLine.SubItems.Add(reservation("Quantity").ToString())  ' Quantity
-                newLine.SubItems.Add(reservation("Status").ToString())  ' Reservation Status
+                ' Handle Quantity
+                newLine.SubItems.Add(If(reservation("Quantity") Is DBNull.Value, "N/A", reservation("Quantity").ToString()))  ' Quantity
+
+                ' Handle Status
+                newLine.SubItems.Add(If(reservation("Status") Is DBNull.Value, "Unknown", reservation("Status").ToString()))  ' Reservation Status
 
                 ' Payment Status
-                Dim paymentStatus As String = reservation("Payment_Status").ToString()  ' Payment Status
+                Dim paymentStatus As String = If(reservation("Payment_Status") Is DBNull.Value, "N/A", reservation("Payment_Status").ToString())  ' Payment Status
                 newLine.SubItems.Add(paymentStatus)
             Next
 
         Catch ex As Exception
             MessageBox.Show("Error loading reservations: " & ex.Message & vbCrLf & "Stack Trace: " & ex.StackTrace,
-            "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
             If tempConnection IsNot Nothing Then
                 If tempConnection.State = ConnectionState.Open Then
@@ -190,195 +197,6 @@ Public Class frmReservationsReg
             MessageBox.Show("Please select a reservation to delete.", "Warning",
                        MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
-    End Sub
-
-    Private Sub txtSearch_TextChanged(sender As Object, e As EventArgs) Handles txtSearch.TextChanged
-        LoadReservationsBySearchAndDate()
-    End Sub
-
-    Private Sub LoadReservationsBySearchAndDate()
-        Try
-            dbconn()
-            If cn.State = ConnectionState.Open Then
-                cn.Close()
-            End If
-            cn.Open()
-
-            Dim selectedDate As String = DateTimePicker1.Value.ToString("yyyy-MM-dd")
-            Dim reservationData As New List(Of Dictionary(Of String, Object))
-
-            sql = "SELECT r.Reservation_ID, r.Client_ID, " &
-              "CONCAT(COALESCE(c.FirstName, ''), ' ', " &
-              "COALESCE(LEFT(c.MiddleName, 1), ''), '. ', " &
-              "COALESCE(c.LastName, '')) AS FullName, " &
-              "p.total_Amount, p.total_Paid, " &
-              "r.Reservation_Date, r.Status, r.Quantity, " &
-              "CASE l.type " &
-              "    WHEN 1 THEN 'Apartment' " &
-              "    WHEN 2 THEN 'Family Lawn Lots' " &
-              "    WHEN 3 THEN 'Bone Niche' " &
-              "    WHEN 4 THEN 'Private' " &
-              "END AS TypeName, " &
-              "l.block, l.section, l.row, l.plot, " &
-              "pr.Plot_ID, pr.Level, " &
-              "(SELECT COUNT(*) FROM deceased d WHERE d.Plot_ID = pr.Plot_ID) as deceased_count " &
-              "FROM Reservation r " &
-              "LEFT JOIN Client c ON r.Client_ID = c.Client_ID " &
-              "JOIN plot_reservation pr ON r.Reservation_ID = pr.reservation_id " &
-              "JOIN payment p ON r.Reservation_ID = p.Reservation_ID " &
-              "JOIN location l ON pr.Plot_ID = l.id " &
-              "WHERE CONCAT(c.FirstName, ' ', LEFT(c.MiddleName, 1), '. ', c.LastName) LIKE @search " &
-              "AND DATE(r.Reservation_Date) = @selectedDate " &
-              "ORDER BY r.Reservation_Date DESC, r.Reservation_ID DESC"
-
-            Using cmd As New MySqlCommand(sql, cn)
-                cmd.Parameters.AddWithValue("@search", "%" & txtSearch.Text & "%")
-                cmd.Parameters.AddWithValue("@selectedDate", selectedDate)
-                Using dr As MySqlDataReader = cmd.ExecuteReader()
-                    While dr.Read()
-                        Dim row As New Dictionary(Of String, Object)
-                        For i As Integer = 0 To dr.FieldCount - 1
-                            row.Add(dr.GetName(i), dr.GetValue(i))
-                        Next
-                        reservationData.Add(row)
-                    End While
-                End Using
-            End Using
-
-            ReservationList.Items.Clear()
-            For Each reservation In reservationData
-                Dim newLine = ReservationList.Items.Add(reservation("Client_ID").ToString())
-                newLine.Tag = reservation("Reservation_ID")  ' Store Reservation_ID in Tag
-                newLine.SubItems.Add(reservation("FullName").ToString())
-
-                Dim plotLocation As String = String.Format("{0}, Block {1}, Section {2}, Row {3}, Plot {4}, Plot ID {5}, Level {6}",
-            reservation("TypeName"),
-            reservation("block"),
-            reservation("section"),
-            reservation("row"),
-            reservation("plot"),
-            If(reservation("Plot_ID") Is DBNull.Value, "N/A", reservation("Plot_ID").ToString()),  ' Plot ID
-            If(reservation("Level") Is DBNull.Value, "N/A", reservation("Level").ToString()))  ' Level
-                newLine.SubItems.Add(plotLocation)
-
-                Dim totalPaid As Decimal = If(reservation("total_Paid") Is DBNull.Value, 0D, Convert.ToDecimal(reservation("total_Paid")))
-                newLine.SubItems.Add(Format(totalPaid, "#,##0.00"))
-
-                Dim totalAmount As Decimal = Convert.ToDecimal(reservation("total_Amount"))
-                newLine.SubItems.Add(Format(totalAmount, "#,##0.00"))
-
-                Dim reservationDate As String = If(reservation("Reservation_Date") IsNot DBNull.Value,
-            Convert.ToDateTime(reservation("Reservation_Date")).ToString("MMMM dd, yyyy"), "N/A")
-                newLine.SubItems.Add(reservationDate)
-
-                newLine.SubItems.Add(reservation("Quantity").ToString())
-
-                Dim deceasedCount As Integer = Convert.ToInt32(reservation("deceased_count"))
-                Dim usageStatus As String = If(deceasedCount > 0, "Used", "Available")
-                newLine.SubItems.Add(usageStatus)
-
-                Dim paymentStatus As String = If(totalPaid >= totalAmount, "Paid", "Partial")
-                newLine.SubItems.Add(paymentStatus)
-            Next
-
-        Catch ex As Exception
-            MessageBox.Show("Error searching reservations: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        Finally
-            If cn.State = ConnectionState.Open Then
-                cn.Close()
-            End If
-        End Try
-    End Sub
-
-    Private Sub DateTimePicker1_ValueChanged(sender As Object, e As EventArgs) Handles DateTimePicker1.ValueChanged
-        LoadReservationsBySearchAndDate()
-    End Sub
-    Sub LoadReservationsByDate()
-        Try
-            dbconn()
-            If cn.State = ConnectionState.Open Then
-                cn.Close()
-            End If
-            cn.Open()
-
-            Dim selectedDate As String = DateTimePicker1.Value.ToString("yyyy-MM-dd")
-            Dim reservationData As New List(Of Dictionary(Of String, Object))
-
-            sql = "SELECT r.Reservation_ID, r.Client_ID, " &
-              "CONCAT(COALESCE(c.FirstName, ''), ' ', " &
-              "COALESCE(LEFT(c.MiddleName, 1), ''), '. ', " &
-              "COALESCE(c.LastName, '')) AS FullName, " &
-              "p.total_Amount, p.total_Paid, " &  ' Changed from r. to p.
-              "r.Reservation_Date, r.Status, r.Quantity, " &
-              "CASE l.type " &
-              "    WHEN 1 THEN 'Apartment' " &
-              "    WHEN 2 THEN 'Family Lawn Lots' " &
-              "    WHEN 3 THEN 'Bone Niche' " &
-              "    WHEN 4 THEN 'Private' " &
-              "END AS TypeName, " &
-              "l.block, l.section, l.row, l.plot, " &
-              "(SELECT COUNT(*) FROM deceased d WHERE d.Plot_ID = p.Plot_ID) as deceased_count " &  ' Use p.Plot_ID here
-              "FROM Reservation r " &
-              "LEFT JOIN Client c ON r.Client_ID = c.Client_ID " &
-              "JOIN location l ON p.Plot_ID = l.id " &  ' Use p.Plot_ID here
-              "JOIN payment p ON r.Reservation_ID = p.Reservation_ID " &  ' Added JOIN with payment table
-              "WHERE DATE(r.Reservation_Date) = @selectedDate " &
-              "ORDER BY r.Reservation_Date DESC, r.Reservation_ID DESC"
-
-            Using cmd As New MySqlCommand(sql, cn)
-                cmd.Parameters.AddWithValue("@selectedDate", selectedDate)
-                Using dr As MySqlDataReader = cmd.ExecuteReader()
-                    While dr.Read()
-                        Dim row As New Dictionary(Of String, Object)
-                        For i As Integer = 0 To dr.FieldCount - 1
-                            row.Add(dr.GetName(i), dr.GetValue(i))
-                        Next
-                        reservationData.Add(row)
-                    End While
-                End Using
-            End Using
-
-            ReservationList.Items.Clear()
-            For Each reservation In reservationData
-                Dim newLine = ReservationList.Items.Add(reservation("Client_ID").ToString())
-                newLine.Tag = reservation("Reservation_ID")  ' Store Reservation_ID in Tag
-                newLine.SubItems.Add(reservation("FullName").ToString())
-
-                Dim plotLocation As String = String.Format("{0}, Block {1}, Section {2}, Row {3}, Plot {4}",
-                reservation("TypeName"),
-                reservation("block"),
-                reservation("section"),
-                reservation("row"),
-                reservation("plot"))
-                newLine.SubItems.Add(plotLocation)
-
-                Dim totalPaid As Decimal = If(reservation("total_Paid") Is DBNull.Value, 0D, Convert.ToDecimal(reservation("total_Paid")))
-                newLine.SubItems.Add(Format(totalPaid, "#,##0.00"))
-
-                Dim totalAmount As Decimal = Convert.ToDecimal(reservation("total_Amount"))
-                newLine.SubItems.Add(Format(totalAmount, "#,##0.00"))
-
-                Dim reservationDate As String = If(reservation("Reservation_Date") IsNot DBNull.Value,
-                Convert.ToDateTime(reservation("Reservation_Date")).ToString("MMMM dd, yyyy"), "N/A")
-                newLine.SubItems.Add(reservationDate)
-
-                newLine.SubItems.Add(reservation("Quantity").ToString())
-
-                Dim deceasedCount As Integer = Convert.ToInt32(reservation("deceased_count"))
-                Dim usageStatus As String = If(deceasedCount > 0, "Used", "Available")
-                newLine.SubItems.Add(usageStatus)
-
-                Dim paymentStatus As String = If(totalPaid >= totalAmount, "Paid", "Partial")
-                newLine.SubItems.Add(paymentStatus)
-            Next
-
-        Catch ex As Exception
-            MessageBox.Show("Error loading reservations by date: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        Finally
-            If cn.State = ConnectionState.Open Then
-                cn.Close()
-            End If
-        End Try
     End Sub
 
     Private Sub btnShowAll_Click(sender As Object, e As EventArgs) Handles btnShowAll.Click
