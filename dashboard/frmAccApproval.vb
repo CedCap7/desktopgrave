@@ -43,14 +43,12 @@ Public Class frmAccApproval
                 ' Get and display status
                 Dim statusValue As Integer = Convert.ToInt32(dr("Status"))
                 Dim statusText As String = "Pending"
-                Dim rowColor As Color = Color.Black
+                Dim rowColor As Color = Color.White
 
                 If statusValue = 1 Then
                     statusText = "Approved"
-                    rowColor = Color.Green
                 ElseIf statusValue = 2 Then
                     statusText = "Rejected"
-                    rowColor = Color.Red
                 End If
 
                 newLine.SubItems.Add(statusText)
@@ -107,11 +105,13 @@ Public Class frmAccApproval
 
                     If result = DialogResult.Yes Then
                         ' Insert into client table and set status to 1
-                        Dim insertSQL As String = "INSERT INTO client (FirstName, MiddleName, LastName, Gender, Mobile, Address, Email, status) " &
-                                              "SELECT FirstName, MiddleName, LastName, Gender, Mobile, Address, Email, 1 " &
-                                              "FROM application WHERE Client_ID = @ClientID"
+                        Dim insertSQL As String = "INSERT INTO client (FirstName, MiddleName, LastName, Gender, Mobile, Address, Email, status, Date_Registered) " &
+                          "SELECT FirstName, MiddleName, LastName, Gender, Mobile, Address, Email, 1, @DateRegistered " &
+                          "FROM application WHERE Client_ID = @ClientID"
+                        ' Insert into client table and set status to 1
                         cmd = New MySqlCommand(insertSQL, cn)
                         cmd.Parameters.AddWithValue("@ClientID", clientID)
+                        cmd.Parameters.AddWithValue("@DateRegistered", DateTime.Now) ' Add Date_Registered with current date and time
                         cmd.ExecuteNonQuery()
 
                         ' Update application status to approved
