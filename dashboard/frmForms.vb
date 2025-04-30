@@ -105,14 +105,6 @@
         Guna2Panel6.FillColor = Color.FromArgb(51, 153, 204) ' Change to a lighter shade
     End Sub
 
-    Private Sub Guna2Panel5_MouseLeave(sender As Object, e As EventArgs) Handles Guna2Panel5.MouseLeave
-        Guna2Panel5.FillColor = Color.FromArgb(40, 171, 189) ' Original teal color
-    End Sub
-
-    Private Sub Guna2Panel5_MouseEnter(sender As Object, e As EventArgs) Handles Guna2Panel5.MouseEnter
-        Guna2Panel5.FillColor = Color.FromArgb(51, 153, 204) ' Change to a lighter shade
-    End Sub
-
 
 
 End Class

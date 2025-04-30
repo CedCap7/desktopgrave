@@ -223,9 +223,9 @@ Public Class frmDeceased
 
                 ' Insert Deceased record into the 'deceased' table
                 sql = "INSERT INTO deceased (FirstName, MiddleName, LastName, Ext, DateOfBirth, DateofDeath, " &
-                  "Gender, Religion, Interment, Relationship, Client_ID) " &
+                  "Gender, Religion, Interment, Relationship, Client_ID, deceased_status, Plot_ID, Level) " &
                   "VALUES (@FirstName, @MiddleName, @LastName, @Ext, @DateOfBirth, @DateOfDeath, " &
-                  "@Gender, @Religion, @Interment, @Relationship, @ClientId)"
+                  "@Gender, @Religion, @Interment, @Relationship, @ClientId, 'Remaining', NULL, NULL)"
 
                 Using cmd As New MySqlCommand(sql, cn, transaction)
                     cmd.Parameters.AddWithValue("@FirstName", FirstName)

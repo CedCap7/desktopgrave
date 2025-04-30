@@ -203,4 +203,11 @@ Public Class frmDashboard
         UpdateCounts()
     End Sub
 
+    Private Sub dgvNotification_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvNotification.CellContentClick
+
+    End Sub
+
+    Private Sub Label4_Click(sender As Object, e As EventArgs) Handles Label4.Click
+
+    End Sub
 End Class
