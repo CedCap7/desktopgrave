@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmApplication
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class frmApplication
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.panel1 = New System.Windows.Forms.Panel()
         Me.Guna2ShadowPanel1 = New Guna.UI2.WinForms.Guna2ShadowPanel()
@@ -40,6 +40,7 @@ Partial Class frmApplication
         Me.btnConfirm = New Guna.UI2.WinForms.Guna2Button()
         Me.btnCancel = New Guna.UI2.WinForms.Guna2Button()
         Me.Guna2Panel2 = New Guna.UI2.WinForms.Guna2Panel()
+        Me.txtSearch = New Guna.UI2.WinForms.Guna2TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.panel1.SuspendLayout()
@@ -55,10 +56,10 @@ Partial Class frmApplication
         Me.panel1.Controls.Add(Me.btnConfirm)
         Me.panel1.Controls.Add(Me.btnCancel)
         Me.panel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.panel1.Location = New System.Drawing.Point(0, 69)
-        Me.panel1.Margin = New System.Windows.Forms.Padding(2)
+        Me.panel1.Location = New System.Drawing.Point(0, 85)
+        Me.panel1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.panel1.Name = "panel1"
-        Me.panel1.Size = New System.Drawing.Size(983, 349)
+        Me.panel1.Size = New System.Drawing.Size(1311, 429)
         Me.panel1.TabIndex = 13
         '
         'Guna2ShadowPanel1
@@ -79,11 +80,12 @@ Partial Class frmApplication
         Me.Guna2ShadowPanel1.Controls.Add(Me.txtEmail)
         Me.Guna2ShadowPanel1.Controls.Add(Me.txtMobile)
         Me.Guna2ShadowPanel1.FillColor = System.Drawing.Color.FromArgb(CType(CType(14, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(90, Byte), Integer))
-        Me.Guna2ShadowPanel1.Location = New System.Drawing.Point(3, 15)
+        Me.Guna2ShadowPanel1.Location = New System.Drawing.Point(4, 17)
+        Me.Guna2ShadowPanel1.Margin = New System.Windows.Forms.Padding(4)
         Me.Guna2ShadowPanel1.Name = "Guna2ShadowPanel1"
         Me.Guna2ShadowPanel1.Radius = 10
         Me.Guna2ShadowPanel1.ShadowColor = System.Drawing.Color.Black
-        Me.Guna2ShadowPanel1.Size = New System.Drawing.Size(980, 269)
+        Me.Guna2ShadowPanel1.Size = New System.Drawing.Size(1307, 331)
         Me.Guna2ShadowPanel1.TabIndex = 95
         '
         'txtMiddleName
@@ -101,14 +103,13 @@ Partial Class frmApplication
         Me.txtMiddleName.Font = New System.Drawing.Font("Segoe UI", 11.25!)
         Me.txtMiddleName.ForeColor = System.Drawing.Color.Black
         Me.txtMiddleName.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtMiddleName.Location = New System.Drawing.Point(255, 48)
-        Me.txtMiddleName.Margin = New System.Windows.Forms.Padding(5, 6, 5, 6)
+        Me.txtMiddleName.Location = New System.Drawing.Point(340, 59)
+        Me.txtMiddleName.Margin = New System.Windows.Forms.Padding(7)
         Me.txtMiddleName.Name = "txtMiddleName"
-        Me.txtMiddleName.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
         Me.txtMiddleName.PlaceholderForeColor = System.Drawing.Color.Gray
         Me.txtMiddleName.PlaceholderText = "Middle Name"
         Me.txtMiddleName.SelectedText = ""
-        Me.txtMiddleName.Size = New System.Drawing.Size(231, 37)
+        Me.txtMiddleName.Size = New System.Drawing.Size(308, 46)
         Me.txtMiddleName.TabIndex = 2
         '
         'chkMale
@@ -123,10 +124,10 @@ Partial Class frmApplication
         Me.chkMale.Cursor = System.Windows.Forms.Cursors.Hand
         Me.chkMale.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.chkMale.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.chkMale.Location = New System.Drawing.Point(19, 206)
-        Me.chkMale.Margin = New System.Windows.Forms.Padding(2)
+        Me.chkMale.Location = New System.Drawing.Point(25, 254)
+        Me.chkMale.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.chkMale.Name = "chkMale"
-        Me.chkMale.Size = New System.Drawing.Size(116, 30)
+        Me.chkMale.Size = New System.Drawing.Size(155, 37)
         Me.chkMale.TabIndex = 89
         Me.chkMale.Text = "Male"
         Me.chkMale.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -151,14 +152,13 @@ Partial Class frmApplication
         Me.txtAddress.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtAddress.ForeColor = System.Drawing.Color.Black
         Me.txtAddress.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtAddress.Location = New System.Drawing.Point(496, 124)
-        Me.txtAddress.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtAddress.Location = New System.Drawing.Point(661, 153)
+        Me.txtAddress.Margin = New System.Windows.Forms.Padding(7, 6, 7, 6)
         Me.txtAddress.Name = "txtAddress"
-        Me.txtAddress.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
         Me.txtAddress.PlaceholderForeColor = System.Drawing.Color.Gray
         Me.txtAddress.PlaceholderText = "Street, Purok, Barangay, Municipality, Province"
         Me.txtAddress.SelectedText = ""
-        Me.txtAddress.Size = New System.Drawing.Size(472, 37)
+        Me.txtAddress.Size = New System.Drawing.Size(629, 46)
         Me.txtAddress.TabIndex = 7
         '
         'chkFemale
@@ -173,10 +173,10 @@ Partial Class frmApplication
         Me.chkFemale.Cursor = System.Windows.Forms.Cursors.Hand
         Me.chkFemale.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.chkFemale.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.chkFemale.Location = New System.Drawing.Point(139, 206)
-        Me.chkFemale.Margin = New System.Windows.Forms.Padding(2)
+        Me.chkFemale.Location = New System.Drawing.Point(185, 254)
+        Me.chkFemale.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.chkFemale.Name = "chkFemale"
-        Me.chkFemale.Size = New System.Drawing.Size(116, 30)
+        Me.chkFemale.Size = New System.Drawing.Size(155, 37)
         Me.chkFemale.TabIndex = 88
         Me.chkFemale.Text = "Female"
         Me.chkFemale.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -201,37 +201,36 @@ Partial Class frmApplication
         Me.txtFirstName.Font = New System.Drawing.Font("Segoe UI", 11.25!)
         Me.txtFirstName.ForeColor = System.Drawing.Color.Black
         Me.txtFirstName.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtFirstName.Location = New System.Drawing.Point(14, 48)
-        Me.txtFirstName.Margin = New System.Windows.Forms.Padding(5, 6, 5, 6)
+        Me.txtFirstName.Location = New System.Drawing.Point(19, 59)
+        Me.txtFirstName.Margin = New System.Windows.Forms.Padding(7)
         Me.txtFirstName.Name = "txtFirstName"
-        Me.txtFirstName.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
         Me.txtFirstName.PlaceholderForeColor = System.Drawing.Color.Gray
         Me.txtFirstName.PlaceholderText = "First Name"
         Me.txtFirstName.SelectedText = ""
-        Me.txtFirstName.Size = New System.Drawing.Size(231, 37)
+        Me.txtFirstName.Size = New System.Drawing.Size(308, 46)
         Me.txtFirstName.TabIndex = 1
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Roboto", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.ForeColor = System.Drawing.Color.White
-        Me.Label4.Location = New System.Drawing.Point(504, 101)
-        Me.Label4.Margin = New System.Windows.Forms.Padding(2, 10, 2, 0)
+        Me.Label4.Location = New System.Drawing.Point(672, 124)
+        Me.Label4.Margin = New System.Windows.Forms.Padding(3, 12, 3, 0)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(69, 20)
+        Me.Label4.Size = New System.Drawing.Size(92, 25)
         Me.Label4.TabIndex = 94
         Me.Label4.Text = "Address"
         '
         'label2
         '
         Me.label2.AutoSize = True
-        Me.label2.Font = New System.Drawing.Font("Roboto", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.label2.ForeColor = System.Drawing.Color.White
-        Me.label2.Location = New System.Drawing.Point(20, 178)
-        Me.label2.Margin = New System.Windows.Forms.Padding(2, 10, 2, 0)
+        Me.label2.Location = New System.Drawing.Point(27, 219)
+        Me.label2.Margin = New System.Windows.Forms.Padding(3, 12, 3, 0)
         Me.label2.Name = "label2"
-        Me.label2.Size = New System.Drawing.Size(36, 20)
+        Me.label2.Size = New System.Drawing.Size(50, 25)
         Me.label2.TabIndex = 2
         Me.label2.Text = "Sex"
         '
@@ -250,25 +249,24 @@ Partial Class frmApplication
         Me.txtLastName.Font = New System.Drawing.Font("Segoe UI", 11.25!)
         Me.txtLastName.ForeColor = System.Drawing.Color.Black
         Me.txtLastName.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtLastName.Location = New System.Drawing.Point(496, 48)
-        Me.txtLastName.Margin = New System.Windows.Forms.Padding(5, 6, 5, 6)
+        Me.txtLastName.Location = New System.Drawing.Point(661, 59)
+        Me.txtLastName.Margin = New System.Windows.Forms.Padding(7)
         Me.txtLastName.Name = "txtLastName"
-        Me.txtLastName.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
         Me.txtLastName.PlaceholderForeColor = System.Drawing.Color.Gray
         Me.txtLastName.PlaceholderText = "Last Name"
         Me.txtLastName.SelectedText = ""
-        Me.txtLastName.Size = New System.Drawing.Size(231, 37)
+        Me.txtLastName.Size = New System.Drawing.Size(308, 46)
         Me.txtLastName.TabIndex = 3
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Roboto", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.White
-        Me.Label3.Location = New System.Drawing.Point(20, 101)
-        Me.Label3.Margin = New System.Windows.Forms.Padding(2, 10, 2, 0)
+        Me.Label3.Location = New System.Drawing.Point(27, 124)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(3, 12, 3, 0)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(153, 20)
+        Me.Label3.Size = New System.Drawing.Size(200, 25)
         Me.Label3.TabIndex = 93
         Me.Label3.Text = "Contact Information"
         '
@@ -287,14 +285,13 @@ Partial Class frmApplication
         Me.txtExt.Font = New System.Drawing.Font("Segoe UI", 11.25!)
         Me.txtExt.ForeColor = System.Drawing.Color.Black
         Me.txtExt.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtExt.Location = New System.Drawing.Point(737, 48)
-        Me.txtExt.Margin = New System.Windows.Forms.Padding(5, 6, 5, 6)
+        Me.txtExt.Location = New System.Drawing.Point(983, 59)
+        Me.txtExt.Margin = New System.Windows.Forms.Padding(7)
         Me.txtExt.Name = "txtExt"
-        Me.txtExt.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
         Me.txtExt.PlaceholderForeColor = System.Drawing.Color.Gray
         Me.txtExt.PlaceholderText = "Ext. (Jr., II, III)"
         Me.txtExt.SelectedText = ""
-        Me.txtExt.Size = New System.Drawing.Size(231, 37)
+        Me.txtExt.Size = New System.Drawing.Size(308, 46)
         Me.txtExt.TabIndex = 4
         '
         'label1
@@ -302,10 +299,9 @@ Partial Class frmApplication
         Me.label1.AutoSize = True
         Me.label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.label1.ForeColor = System.Drawing.Color.White
-        Me.label1.Location = New System.Drawing.Point(20, 22)
-        Me.label1.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.label1.Location = New System.Drawing.Point(27, 27)
         Me.label1.Name = "label1"
-        Me.label1.Size = New System.Drawing.Size(89, 20)
+        Me.label1.Size = New System.Drawing.Size(109, 25)
         Me.label1.TabIndex = 1
         Me.label1.Text = "Full Name"
         '
@@ -324,14 +320,13 @@ Partial Class frmApplication
         Me.txtEmail.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtEmail.ForeColor = System.Drawing.Color.Black
         Me.txtEmail.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtEmail.Location = New System.Drawing.Point(255, 126)
-        Me.txtEmail.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtEmail.Location = New System.Drawing.Point(340, 155)
+        Me.txtEmail.Margin = New System.Windows.Forms.Padding(7, 6, 7, 6)
         Me.txtEmail.Name = "txtEmail"
-        Me.txtEmail.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
         Me.txtEmail.PlaceholderForeColor = System.Drawing.Color.Gray
         Me.txtEmail.PlaceholderText = "E-mail"
         Me.txtEmail.SelectedText = ""
-        Me.txtEmail.Size = New System.Drawing.Size(231, 37)
+        Me.txtEmail.Size = New System.Drawing.Size(308, 46)
         Me.txtEmail.TabIndex = 6
         '
         'txtMobile
@@ -349,14 +344,13 @@ Partial Class frmApplication
         Me.txtMobile.Font = New System.Drawing.Font("Segoe UI", 11.25!)
         Me.txtMobile.ForeColor = System.Drawing.Color.Black
         Me.txtMobile.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtMobile.Location = New System.Drawing.Point(14, 126)
-        Me.txtMobile.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtMobile.Location = New System.Drawing.Point(19, 155)
+        Me.txtMobile.Margin = New System.Windows.Forms.Padding(7, 6, 7, 6)
         Me.txtMobile.Name = "txtMobile"
-        Me.txtMobile.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
         Me.txtMobile.PlaceholderForeColor = System.Drawing.Color.Gray
         Me.txtMobile.PlaceholderText = "Mobile Number"
         Me.txtMobile.SelectedText = ""
-        Me.txtMobile.Size = New System.Drawing.Size(231, 37)
+        Me.txtMobile.Size = New System.Drawing.Size(308, 46)
         Me.txtMobile.TabIndex = 5
         '
         'btnConfirm
@@ -369,10 +363,10 @@ Partial Class frmApplication
         Me.btnConfirm.FillColor = System.Drawing.Color.LimeGreen
         Me.btnConfirm.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnConfirm.ForeColor = System.Drawing.Color.White
-        Me.btnConfirm.Location = New System.Drawing.Point(480, 301)
-        Me.btnConfirm.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnConfirm.Location = New System.Drawing.Point(640, 369)
+        Me.btnConfirm.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.btnConfirm.Name = "btnConfirm"
-        Me.btnConfirm.Size = New System.Drawing.Size(238, 37)
+        Me.btnConfirm.Size = New System.Drawing.Size(317, 46)
         Me.btnConfirm.TabIndex = 15
         Me.btnConfirm.Text = "Deceased Form"
         '
@@ -385,31 +379,64 @@ Partial Class frmApplication
         Me.btnCancel.FillColor = System.Drawing.Color.LimeGreen
         Me.btnCancel.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnCancel.ForeColor = System.Drawing.Color.White
-        Me.btnCancel.Location = New System.Drawing.Point(238, 301)
-        Me.btnCancel.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnCancel.Location = New System.Drawing.Point(317, 369)
+        Me.btnCancel.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.btnCancel.Name = "btnCancel"
-        Me.btnCancel.Size = New System.Drawing.Size(238, 37)
+        Me.btnCancel.Size = New System.Drawing.Size(317, 46)
         Me.btnCancel.TabIndex = 14
         Me.btnCancel.Text = "Payment/Reservation"
         '
         'Guna2Panel2
         '
+        Me.Guna2Panel2.Controls.Add(Me.txtSearch)
         Me.Guna2Panel2.Controls.Add(Me.Label5)
         Me.Guna2Panel2.Controls.Add(Me.Label6)
         Me.Guna2Panel2.Dock = System.Windows.Forms.DockStyle.Top
         Me.Guna2Panel2.Location = New System.Drawing.Point(0, 0)
+        Me.Guna2Panel2.Margin = New System.Windows.Forms.Padding(4)
         Me.Guna2Panel2.Name = "Guna2Panel2"
-        Me.Guna2Panel2.Size = New System.Drawing.Size(983, 69)
+        Me.Guna2Panel2.Size = New System.Drawing.Size(1311, 85)
         Me.Guna2Panel2.TabIndex = 57
+        '
+        'txtSearch
+        '
+        Me.txtSearch.Animated = True
+        Me.txtSearch.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.txtSearch.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource
+        Me.txtSearch.AutoRoundedCorners = True
+        Me.txtSearch.BorderColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(171, Byte), Integer), CType(CType(189, Byte), Integer))
+        Me.txtSearch.BorderRadius = 21
+        Me.txtSearch.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.txtSearch.DefaultText = ""
+        Me.txtSearch.DisabledState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer))
+        Me.txtSearch.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer))
+        Me.txtSearch.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
+        Me.txtSearch.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
+        Me.txtSearch.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.txtSearch.Font = New System.Drawing.Font("Segoe UI", 11.25!)
+        Me.txtSearch.ForeColor = System.Drawing.Color.Black
+        Me.txtSearch.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.txtSearch.IconLeft = Global.dashboard.My.Resources.Resources.search
+        Me.txtSearch.IconRightOffset = New System.Drawing.Point(8, 0)
+        Me.txtSearch.IconRightSize = New System.Drawing.Size(25, 25)
+        Me.txtSearch.Location = New System.Drawing.Point(892, 30)
+        Me.txtSearch.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.txtSearch.Name = "txtSearch"
+        Me.txtSearch.PlaceholderForeColor = System.Drawing.Color.Gray
+        Me.txtSearch.PlaceholderText = "Search applicant name or ID"
+        Me.txtSearch.SelectedText = ""
+        Me.txtSearch.Size = New System.Drawing.Size(402, 44)
+        Me.txtSearch.TabIndex = 16
         '
         'Label5
         '
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Gill Sans MT", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label5.Location = New System.Drawing.Point(15, 41)
+        Me.Label5.Location = New System.Drawing.Point(20, 50)
+        Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(130, 18)
+        Me.Label5.Size = New System.Drawing.Size(158, 21)
         Me.Label5.TabIndex = 1
         Me.Label5.Text = "Fill-up client information"
         '
@@ -418,22 +445,23 @@ Partial Class frmApplication
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Century Gothic", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label6.Location = New System.Drawing.Point(12, 9)
+        Me.Label6.Location = New System.Drawing.Point(16, 11)
+        Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(237, 32)
+        Me.Label6.Size = New System.Drawing.Size(297, 40)
         Me.Label6.TabIndex = 0
         Me.Label6.Text = "Application Form"
         '
         'frmApplication
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(23, Byte), Integer), CType(CType(107, Byte), Integer), CType(CType(135, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(983, 418)
+        Me.ClientSize = New System.Drawing.Size(1311, 514)
         Me.Controls.Add(Me.panel1)
         Me.Controls.Add(Me.Guna2Panel2)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
-        Me.Margin = New System.Windows.Forms.Padding(2)
+        Me.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.Name = "frmApplication"
         Me.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
@@ -466,4 +494,5 @@ Partial Class frmApplication
     Private WithEvents Label4 As Label
     Friend WithEvents Guna2ShadowPanel1 As Guna.UI2.WinForms.Guna2ShadowPanel
     Private WithEvents btnCancel As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents txtSearch As Guna.UI2.WinForms.Guna2TextBox
 End Class

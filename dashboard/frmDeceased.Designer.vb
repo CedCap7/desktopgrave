@@ -23,6 +23,7 @@ Partial Class frmDeceased
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.guna2Panel1 = New Guna.UI2.WinForms.Guna2Panel()
+        Me.lstClientSuggestions = New System.Windows.Forms.ListBox()
         Me.Guna2ShadowPanel3 = New Guna.UI2.WinForms.Guna2ShadowPanel()
         Me.txtBeneficiaryContact2 = New Guna.UI2.WinForms.Guna2TextBox()
         Me.txtBeneficiaryContact1 = New Guna.UI2.WinForms.Guna2TextBox()
@@ -30,7 +31,6 @@ Partial Class frmDeceased
         Me.txtBeneficiary2 = New Guna.UI2.WinForms.Guna2TextBox()
         Me.Guna2HtmlLabel2 = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.Guna2ShadowPanel1 = New Guna.UI2.WinForms.Guna2ShadowPanel()
-        Me.lstClientSuggestions = New System.Windows.Forms.ListBox()
         Me.txtClientSearch = New Guna.UI2.WinForms.Guna2TextBox()
         Me.txtRelationship = New Guna.UI2.WinForms.Guna2TextBox()
         Me.guna2HtmlLabel1 = New Guna.UI2.WinForms.Guna2HtmlLabel()
@@ -79,11 +79,23 @@ Partial Class frmDeceased
         Me.guna2Panel1.Controls.Add(Me.btnGoBack)
         Me.guna2Panel1.Controls.Add(Me.Guna2ShadowPanel2)
         Me.guna2Panel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.guna2Panel1.Location = New System.Drawing.Point(0, 69)
-        Me.guna2Panel1.Margin = New System.Windows.Forms.Padding(2)
+        Me.guna2Panel1.Location = New System.Drawing.Point(0, 85)
+        Me.guna2Panel1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.guna2Panel1.Name = "guna2Panel1"
-        Me.guna2Panel1.Size = New System.Drawing.Size(638, 642)
+        Me.guna2Panel1.Size = New System.Drawing.Size(851, 790)
         Me.guna2Panel1.TabIndex = 55
+        '
+        'lstClientSuggestions
+        '
+        Me.lstClientSuggestions.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lstClientSuggestions.FormattingEnabled = True
+        Me.lstClientSuggestions.ItemHeight = 25
+        Me.lstClientSuggestions.Location = New System.Drawing.Point(61, 89)
+        Me.lstClientSuggestions.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.lstClientSuggestions.Name = "lstClientSuggestions"
+        Me.lstClientSuggestions.Size = New System.Drawing.Size(401, 79)
+        Me.lstClientSuggestions.TabIndex = 61
+        Me.lstClientSuggestions.Visible = False
         '
         'Guna2ShadowPanel3
         '
@@ -95,11 +107,12 @@ Partial Class frmDeceased
         Me.Guna2ShadowPanel3.Controls.Add(Me.txtBeneficiary2)
         Me.Guna2ShadowPanel3.Controls.Add(Me.Guna2HtmlLabel2)
         Me.Guna2ShadowPanel3.FillColor = System.Drawing.Color.FromArgb(CType(CType(14, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(90, Byte), Integer))
-        Me.Guna2ShadowPanel3.Location = New System.Drawing.Point(3, 121)
+        Me.Guna2ShadowPanel3.Location = New System.Drawing.Point(4, 149)
+        Me.Guna2ShadowPanel3.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Guna2ShadowPanel3.Name = "Guna2ShadowPanel3"
         Me.Guna2ShadowPanel3.Radius = 10
         Me.Guna2ShadowPanel3.ShadowColor = System.Drawing.Color.Black
-        Me.Guna2ShadowPanel3.Size = New System.Drawing.Size(635, 161)
+        Me.Guna2ShadowPanel3.Size = New System.Drawing.Size(847, 198)
         Me.Guna2ShadowPanel3.TabIndex = 97
         '
         'txtBeneficiaryContact2
@@ -117,14 +130,13 @@ Partial Class frmDeceased
         Me.txtBeneficiaryContact2.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtBeneficiaryContact2.ForeColor = System.Drawing.Color.Black
         Me.txtBeneficiaryContact2.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtBeneficiaryContact2.Location = New System.Drawing.Point(360, 86)
-        Me.txtBeneficiaryContact2.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtBeneficiaryContact2.Location = New System.Drawing.Point(480, 106)
+        Me.txtBeneficiaryContact2.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
         Me.txtBeneficiaryContact2.Name = "txtBeneficiaryContact2"
-        Me.txtBeneficiaryContact2.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
         Me.txtBeneficiaryContact2.PlaceholderForeColor = System.Drawing.Color.Gray
         Me.txtBeneficiaryContact2.PlaceholderText = "Contact No."
         Me.txtBeneficiaryContact2.SelectedText = ""
-        Me.txtBeneficiaryContact2.Size = New System.Drawing.Size(250, 37)
+        Me.txtBeneficiaryContact2.Size = New System.Drawing.Size(333, 46)
         Me.txtBeneficiaryContact2.TabIndex = 100
         '
         'txtBeneficiaryContact1
@@ -142,14 +154,13 @@ Partial Class frmDeceased
         Me.txtBeneficiaryContact1.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtBeneficiaryContact1.ForeColor = System.Drawing.Color.Black
         Me.txtBeneficiaryContact1.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtBeneficiaryContact1.Location = New System.Drawing.Point(360, 41)
-        Me.txtBeneficiaryContact1.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtBeneficiaryContact1.Location = New System.Drawing.Point(480, 50)
+        Me.txtBeneficiaryContact1.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
         Me.txtBeneficiaryContact1.Name = "txtBeneficiaryContact1"
-        Me.txtBeneficiaryContact1.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
         Me.txtBeneficiaryContact1.PlaceholderForeColor = System.Drawing.Color.Gray
         Me.txtBeneficiaryContact1.PlaceholderText = "Contact No."
         Me.txtBeneficiaryContact1.SelectedText = ""
-        Me.txtBeneficiaryContact1.Size = New System.Drawing.Size(250, 37)
+        Me.txtBeneficiaryContact1.Size = New System.Drawing.Size(333, 46)
         Me.txtBeneficiaryContact1.TabIndex = 99
         '
         'txtBeneficiary1
@@ -167,14 +178,13 @@ Partial Class frmDeceased
         Me.txtBeneficiary1.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtBeneficiary1.ForeColor = System.Drawing.Color.Black
         Me.txtBeneficiary1.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtBeneficiary1.Location = New System.Drawing.Point(31, 41)
-        Me.txtBeneficiary1.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtBeneficiary1.Location = New System.Drawing.Point(41, 50)
+        Me.txtBeneficiary1.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
         Me.txtBeneficiary1.Name = "txtBeneficiary1"
-        Me.txtBeneficiary1.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
         Me.txtBeneficiary1.PlaceholderForeColor = System.Drawing.Color.Gray
         Me.txtBeneficiary1.PlaceholderText = "1st Beneficiary"
         Me.txtBeneficiary1.SelectedText = ""
-        Me.txtBeneficiary1.Size = New System.Drawing.Size(321, 37)
+        Me.txtBeneficiary1.Size = New System.Drawing.Size(428, 46)
         Me.txtBeneficiary1.TabIndex = 97
         '
         'txtBeneficiary2
@@ -192,25 +202,24 @@ Partial Class frmDeceased
         Me.txtBeneficiary2.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtBeneficiary2.ForeColor = System.Drawing.Color.Black
         Me.txtBeneficiary2.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtBeneficiary2.Location = New System.Drawing.Point(31, 86)
-        Me.txtBeneficiary2.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtBeneficiary2.Location = New System.Drawing.Point(41, 106)
+        Me.txtBeneficiary2.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
         Me.txtBeneficiary2.Name = "txtBeneficiary2"
-        Me.txtBeneficiary2.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
         Me.txtBeneficiary2.PlaceholderForeColor = System.Drawing.Color.Gray
         Me.txtBeneficiary2.PlaceholderText = "2nd Beneficiary"
         Me.txtBeneficiary2.SelectedText = ""
-        Me.txtBeneficiary2.Size = New System.Drawing.Size(321, 37)
+        Me.txtBeneficiary2.Size = New System.Drawing.Size(428, 46)
         Me.txtBeneficiary2.TabIndex = 98
         '
         'Guna2HtmlLabel2
         '
         Me.Guna2HtmlLabel2.BackColor = System.Drawing.Color.Transparent
-        Me.Guna2HtmlLabel2.Font = New System.Drawing.Font("Roboto", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Guna2HtmlLabel2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Guna2HtmlLabel2.ForeColor = System.Drawing.Color.White
-        Me.Guna2HtmlLabel2.Location = New System.Drawing.Point(31, 13)
-        Me.Guna2HtmlLabel2.Margin = New System.Windows.Forms.Padding(2)
+        Me.Guna2HtmlLabel2.Location = New System.Drawing.Point(41, 16)
+        Me.Guna2HtmlLabel2.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.Guna2HtmlLabel2.Name = "Guna2HtmlLabel2"
-        Me.Guna2HtmlLabel2.Size = New System.Drawing.Size(98, 22)
+        Me.Guna2HtmlLabel2.Size = New System.Drawing.Size(127, 27)
         Me.Guna2HtmlLabel2.TabIndex = 96
         Me.Guna2HtmlLabel2.Text = "Beneficiaries"
         '
@@ -222,23 +231,13 @@ Partial Class frmDeceased
         Me.Guna2ShadowPanel1.Controls.Add(Me.txtRelationship)
         Me.Guna2ShadowPanel1.Controls.Add(Me.guna2HtmlLabel1)
         Me.Guna2ShadowPanel1.FillColor = System.Drawing.Color.FromArgb(CType(CType(14, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(90, Byte), Integer))
-        Me.Guna2ShadowPanel1.Location = New System.Drawing.Point(3, 2)
+        Me.Guna2ShadowPanel1.Location = New System.Drawing.Point(4, 2)
+        Me.Guna2ShadowPanel1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Guna2ShadowPanel1.Name = "Guna2ShadowPanel1"
         Me.Guna2ShadowPanel1.Radius = 10
         Me.Guna2ShadowPanel1.ShadowColor = System.Drawing.Color.Black
-        Me.Guna2ShadowPanel1.Size = New System.Drawing.Size(635, 113)
+        Me.Guna2ShadowPanel1.Size = New System.Drawing.Size(847, 139)
         Me.Guna2ShadowPanel1.TabIndex = 96
-        '
-        'lstClientSuggestions
-        '
-        Me.lstClientSuggestions.Font = New System.Drawing.Font("Roboto", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lstClientSuggestions.FormattingEnabled = True
-        Me.lstClientSuggestions.ItemHeight = 20
-        Me.lstClientSuggestions.Location = New System.Drawing.Point(46, 72)
-        Me.lstClientSuggestions.Name = "lstClientSuggestions"
-        Me.lstClientSuggestions.Size = New System.Drawing.Size(302, 84)
-        Me.lstClientSuggestions.TabIndex = 61
-        Me.lstClientSuggestions.Visible = False
         '
         'txtClientSearch
         '
@@ -256,14 +255,13 @@ Partial Class frmDeceased
         Me.txtClientSearch.Font = New System.Drawing.Font("Segoe UI", 11.25!)
         Me.txtClientSearch.ForeColor = System.Drawing.Color.Black
         Me.txtClientSearch.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtClientSearch.Location = New System.Drawing.Point(31, 33)
-        Me.txtClientSearch.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtClientSearch.Location = New System.Drawing.Point(41, 41)
+        Me.txtClientSearch.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
         Me.txtClientSearch.Name = "txtClientSearch"
-        Me.txtClientSearch.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
         Me.txtClientSearch.PlaceholderForeColor = System.Drawing.Color.Gray
         Me.txtClientSearch.PlaceholderText = "Select client or type to search"
         Me.txtClientSearch.SelectedText = ""
-        Me.txtClientSearch.Size = New System.Drawing.Size(321, 37)
+        Me.txtClientSearch.Size = New System.Drawing.Size(428, 46)
         Me.txtClientSearch.TabIndex = 60
         '
         'txtRelationship
@@ -282,26 +280,25 @@ Partial Class frmDeceased
         Me.txtRelationship.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtRelationship.ForeColor = System.Drawing.Color.Black
         Me.txtRelationship.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtRelationship.Location = New System.Drawing.Point(360, 33)
-        Me.txtRelationship.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtRelationship.Location = New System.Drawing.Point(480, 41)
+        Me.txtRelationship.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
         Me.txtRelationship.Name = "txtRelationship"
-        Me.txtRelationship.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
         Me.txtRelationship.PlaceholderForeColor = System.Drawing.Color.Gray
         Me.txtRelationship.PlaceholderText = "Relationship to the Deceased"
         Me.txtRelationship.SelectedText = ""
-        Me.txtRelationship.Size = New System.Drawing.Size(250, 37)
+        Me.txtRelationship.Size = New System.Drawing.Size(333, 46)
         Me.txtRelationship.TabIndex = 59
         '
         'guna2HtmlLabel1
         '
         Me.guna2HtmlLabel1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom), System.Windows.Forms.AnchorStyles)
         Me.guna2HtmlLabel1.BackColor = System.Drawing.Color.Transparent
-        Me.guna2HtmlLabel1.Font = New System.Drawing.Font("Roboto", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.guna2HtmlLabel1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.guna2HtmlLabel1.ForeColor = System.Drawing.Color.White
-        Me.guna2HtmlLabel1.Location = New System.Drawing.Point(31, 12)
-        Me.guna2HtmlLabel1.Margin = New System.Windows.Forms.Padding(2)
+        Me.guna2HtmlLabel1.Location = New System.Drawing.Point(41, 15)
+        Me.guna2HtmlLabel1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.guna2HtmlLabel1.Name = "guna2HtmlLabel1"
-        Me.guna2HtmlLabel1.Size = New System.Drawing.Size(44, 22)
+        Me.guna2HtmlLabel1.Size = New System.Drawing.Size(59, 27)
         Me.guna2HtmlLabel1.TabIndex = 54
         Me.guna2HtmlLabel1.Text = "Client"
         '
@@ -312,16 +309,16 @@ Partial Class frmDeceased
         Me.btnAddDeceased.AutoRoundedCorners = True
         Me.btnAddDeceased.BackColor = System.Drawing.Color.Transparent
         Me.btnAddDeceased.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.btnAddDeceased.BorderRadius = 17
+        Me.btnAddDeceased.BorderRadius = 22
         Me.btnAddDeceased.BorderThickness = 1
         Me.btnAddDeceased.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnAddDeceased.FillColor = System.Drawing.Color.LimeGreen
-        Me.btnAddDeceased.Font = New System.Drawing.Font("Roboto", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.btnAddDeceased.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold)
         Me.btnAddDeceased.ForeColor = System.Drawing.Color.White
-        Me.btnAddDeceased.Location = New System.Drawing.Point(318, 594)
-        Me.btnAddDeceased.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnAddDeceased.Location = New System.Drawing.Point(424, 731)
+        Me.btnAddDeceased.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.btnAddDeceased.Name = "btnAddDeceased"
-        Me.btnAddDeceased.Size = New System.Drawing.Size(238, 37)
+        Me.btnAddDeceased.Size = New System.Drawing.Size(317, 46)
         Me.btnAddDeceased.TabIndex = 82
         Me.btnAddDeceased.Text = "Add Deceased"
         '
@@ -331,16 +328,16 @@ Partial Class frmDeceased
         Me.btnGoBack.Animated = True
         Me.btnGoBack.AutoRoundedCorners = True
         Me.btnGoBack.BackColor = System.Drawing.Color.Transparent
-        Me.btnGoBack.BorderRadius = 17
+        Me.btnGoBack.BorderRadius = 22
         Me.btnGoBack.BorderThickness = 1
         Me.btnGoBack.Cursor = System.Windows.Forms.Cursors.Hand
         Me.btnGoBack.FillColor = System.Drawing.Color.LimeGreen
-        Me.btnGoBack.Font = New System.Drawing.Font("Roboto", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnGoBack.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnGoBack.ForeColor = System.Drawing.Color.White
-        Me.btnGoBack.Location = New System.Drawing.Point(76, 594)
-        Me.btnGoBack.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnGoBack.Location = New System.Drawing.Point(101, 731)
+        Me.btnGoBack.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.btnGoBack.Name = "btnGoBack"
-        Me.btnGoBack.Size = New System.Drawing.Size(238, 37)
+        Me.btnGoBack.Size = New System.Drawing.Size(317, 46)
         Me.btnGoBack.TabIndex = 81
         Me.btnGoBack.Text = "Go Back"
         '
@@ -371,11 +368,12 @@ Partial Class frmDeceased
         Me.Guna2ShadowPanel2.Controls.Add(Me.Guna2HtmlLabel4)
         Me.Guna2ShadowPanel2.Controls.Add(Me.txtDeceasedExt)
         Me.Guna2ShadowPanel2.FillColor = System.Drawing.Color.FromArgb(CType(CType(14, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(90, Byte), Integer))
-        Me.Guna2ShadowPanel2.Location = New System.Drawing.Point(3, 288)
+        Me.Guna2ShadowPanel2.Location = New System.Drawing.Point(4, 354)
+        Me.Guna2ShadowPanel2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Guna2ShadowPanel2.Name = "Guna2ShadowPanel2"
         Me.Guna2ShadowPanel2.Radius = 10
         Me.Guna2ShadowPanel2.ShadowColor = System.Drawing.Color.Black
-        Me.Guna2ShadowPanel2.Size = New System.Drawing.Size(635, 303)
+        Me.Guna2ShadowPanel2.Size = New System.Drawing.Size(847, 373)
         Me.Guna2ShadowPanel2.TabIndex = 97
         '
         'cmbIntermentYear
@@ -392,9 +390,10 @@ Partial Class frmDeceased
         Me.cmbIntermentYear.ForeColor = System.Drawing.Color.Black
         Me.cmbIntermentYear.IntegralHeight = False
         Me.cmbIntermentYear.ItemHeight = 30
-        Me.cmbIntermentYear.Location = New System.Drawing.Point(513, 238)
+        Me.cmbIntermentYear.Location = New System.Drawing.Point(684, 293)
+        Me.cmbIntermentYear.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cmbIntermentYear.Name = "cmbIntermentYear"
-        Me.cmbIntermentYear.Size = New System.Drawing.Size(97, 36)
+        Me.cmbIntermentYear.Size = New System.Drawing.Size(128, 36)
         Me.cmbIntermentYear.TabIndex = 107
         '
         'cmbIntermentDay
@@ -411,9 +410,10 @@ Partial Class frmDeceased
         Me.cmbIntermentDay.ForeColor = System.Drawing.Color.Black
         Me.cmbIntermentDay.IntegralHeight = False
         Me.cmbIntermentDay.ItemHeight = 30
-        Me.cmbIntermentDay.Location = New System.Drawing.Point(423, 238)
+        Me.cmbIntermentDay.Location = New System.Drawing.Point(564, 293)
+        Me.cmbIntermentDay.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cmbIntermentDay.Name = "cmbIntermentDay"
-        Me.cmbIntermentDay.Size = New System.Drawing.Size(84, 36)
+        Me.cmbIntermentDay.Size = New System.Drawing.Size(111, 36)
         Me.cmbIntermentDay.TabIndex = 106
         Me.cmbIntermentDay.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
@@ -429,9 +429,10 @@ Partial Class frmDeceased
         Me.cmbIntermentMonth.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.cmbIntermentMonth.ForeColor = System.Drawing.Color.Black
         Me.cmbIntermentMonth.ItemHeight = 30
-        Me.cmbIntermentMonth.Location = New System.Drawing.Point(283, 238)
+        Me.cmbIntermentMonth.Location = New System.Drawing.Point(377, 293)
+        Me.cmbIntermentMonth.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cmbIntermentMonth.Name = "cmbIntermentMonth"
-        Me.cmbIntermentMonth.Size = New System.Drawing.Size(134, 36)
+        Me.cmbIntermentMonth.Size = New System.Drawing.Size(177, 36)
         Me.cmbIntermentMonth.TabIndex = 105
         '
         'cmbDeathYear
@@ -448,9 +449,10 @@ Partial Class frmDeceased
         Me.cmbDeathYear.ForeColor = System.Drawing.Color.Black
         Me.cmbDeathYear.IntegralHeight = False
         Me.cmbDeathYear.ItemHeight = 30
-        Me.cmbDeathYear.Location = New System.Drawing.Point(513, 181)
+        Me.cmbDeathYear.Location = New System.Drawing.Point(684, 223)
+        Me.cmbDeathYear.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cmbDeathYear.Name = "cmbDeathYear"
-        Me.cmbDeathYear.Size = New System.Drawing.Size(97, 36)
+        Me.cmbDeathYear.Size = New System.Drawing.Size(128, 36)
         Me.cmbDeathYear.TabIndex = 104
         '
         'cmbDeathDay
@@ -467,9 +469,10 @@ Partial Class frmDeceased
         Me.cmbDeathDay.ForeColor = System.Drawing.Color.Black
         Me.cmbDeathDay.IntegralHeight = False
         Me.cmbDeathDay.ItemHeight = 30
-        Me.cmbDeathDay.Location = New System.Drawing.Point(423, 181)
+        Me.cmbDeathDay.Location = New System.Drawing.Point(564, 223)
+        Me.cmbDeathDay.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cmbDeathDay.Name = "cmbDeathDay"
-        Me.cmbDeathDay.Size = New System.Drawing.Size(84, 36)
+        Me.cmbDeathDay.Size = New System.Drawing.Size(111, 36)
         Me.cmbDeathDay.TabIndex = 103
         Me.cmbDeathDay.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
@@ -485,9 +488,10 @@ Partial Class frmDeceased
         Me.cmbDeathMonth.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.cmbDeathMonth.ForeColor = System.Drawing.Color.Black
         Me.cmbDeathMonth.ItemHeight = 30
-        Me.cmbDeathMonth.Location = New System.Drawing.Point(283, 181)
+        Me.cmbDeathMonth.Location = New System.Drawing.Point(377, 223)
+        Me.cmbDeathMonth.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cmbDeathMonth.Name = "cmbDeathMonth"
-        Me.cmbDeathMonth.Size = New System.Drawing.Size(134, 36)
+        Me.cmbDeathMonth.Size = New System.Drawing.Size(177, 36)
         Me.cmbDeathMonth.TabIndex = 102
         '
         'cmbBirthYear
@@ -504,9 +508,10 @@ Partial Class frmDeceased
         Me.cmbBirthYear.ForeColor = System.Drawing.Color.Black
         Me.cmbBirthYear.IntegralHeight = False
         Me.cmbBirthYear.ItemHeight = 30
-        Me.cmbBirthYear.Location = New System.Drawing.Point(513, 123)
+        Me.cmbBirthYear.Location = New System.Drawing.Point(684, 151)
+        Me.cmbBirthYear.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cmbBirthYear.Name = "cmbBirthYear"
-        Me.cmbBirthYear.Size = New System.Drawing.Size(97, 36)
+        Me.cmbBirthYear.Size = New System.Drawing.Size(128, 36)
         Me.cmbBirthYear.TabIndex = 101
         '
         'cmbBirthDay
@@ -523,9 +528,10 @@ Partial Class frmDeceased
         Me.cmbBirthDay.ForeColor = System.Drawing.Color.Black
         Me.cmbBirthDay.IntegralHeight = False
         Me.cmbBirthDay.ItemHeight = 30
-        Me.cmbBirthDay.Location = New System.Drawing.Point(423, 123)
+        Me.cmbBirthDay.Location = New System.Drawing.Point(564, 151)
+        Me.cmbBirthDay.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cmbBirthDay.Name = "cmbBirthDay"
-        Me.cmbBirthDay.Size = New System.Drawing.Size(84, 36)
+        Me.cmbBirthDay.Size = New System.Drawing.Size(111, 36)
         Me.cmbBirthDay.TabIndex = 100
         Me.cmbBirthDay.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
@@ -541,9 +547,10 @@ Partial Class frmDeceased
         Me.cmbBirthMonth.Font = New System.Drawing.Font("Segoe UI", 10.0!)
         Me.cmbBirthMonth.ForeColor = System.Drawing.Color.Black
         Me.cmbBirthMonth.ItemHeight = 30
-        Me.cmbBirthMonth.Location = New System.Drawing.Point(283, 123)
+        Me.cmbBirthMonth.Location = New System.Drawing.Point(377, 151)
+        Me.cmbBirthMonth.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cmbBirthMonth.Name = "cmbBirthMonth"
-        Me.cmbBirthMonth.Size = New System.Drawing.Size(134, 36)
+        Me.cmbBirthMonth.Size = New System.Drawing.Size(177, 36)
         Me.cmbBirthMonth.TabIndex = 99
         '
         'txtDeceasedFirstName
@@ -561,37 +568,35 @@ Partial Class frmDeceased
         Me.txtDeceasedFirstName.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtDeceasedFirstName.ForeColor = System.Drawing.Color.Black
         Me.txtDeceasedFirstName.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtDeceasedFirstName.Location = New System.Drawing.Point(31, 52)
-        Me.txtDeceasedFirstName.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtDeceasedFirstName.Location = New System.Drawing.Point(41, 64)
+        Me.txtDeceasedFirstName.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
         Me.txtDeceasedFirstName.Name = "txtDeceasedFirstName"
-        Me.txtDeceasedFirstName.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
         Me.txtDeceasedFirstName.PlaceholderForeColor = System.Drawing.Color.Gray
         Me.txtDeceasedFirstName.PlaceholderText = "First Name"
         Me.txtDeceasedFirstName.SelectedText = ""
-        Me.txtDeceasedFirstName.Size = New System.Drawing.Size(231, 37)
+        Me.txtDeceasedFirstName.Size = New System.Drawing.Size(308, 46)
         Me.txtDeceasedFirstName.TabIndex = 61
         '
         'guna2HtmlLabel3
         '
         Me.guna2HtmlLabel3.BackColor = System.Drawing.Color.Transparent
-        Me.guna2HtmlLabel3.Font = New System.Drawing.Font("Roboto", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.guna2HtmlLabel3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.guna2HtmlLabel3.ForeColor = System.Drawing.Color.White
-        Me.guna2HtmlLabel3.Location = New System.Drawing.Point(31, 23)
-        Me.guna2HtmlLabel3.Margin = New System.Windows.Forms.Padding(2)
+        Me.guna2HtmlLabel3.Location = New System.Drawing.Point(41, 28)
+        Me.guna2HtmlLabel3.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.guna2HtmlLabel3.Name = "guna2HtmlLabel3"
-        Me.guna2HtmlLabel3.Size = New System.Drawing.Size(163, 22)
+        Me.guna2HtmlLabel3.Size = New System.Drawing.Size(213, 27)
         Me.guna2HtmlLabel3.TabIndex = 60
         Me.guna2HtmlLabel3.Text = "Deceased Information"
         '
         'label2
         '
         Me.label2.AutoSize = True
-        Me.label2.Font = New System.Drawing.Font("Roboto", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.label2.ForeColor = System.Drawing.Color.White
-        Me.label2.Location = New System.Drawing.Point(34, 225)
-        Me.label2.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.label2.Location = New System.Drawing.Point(45, 277)
         Me.label2.Name = "label2"
-        Me.label2.Size = New System.Drawing.Size(69, 20)
+        Me.label2.Size = New System.Drawing.Size(92, 25)
         Me.label2.TabIndex = 62
         Me.label2.Text = "Gender*"
         '
@@ -609,14 +614,13 @@ Partial Class frmDeceased
         Me.txtDeceasedLastName.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtDeceasedLastName.ForeColor = System.Drawing.Color.Black
         Me.txtDeceasedLastName.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtDeceasedLastName.Location = New System.Drawing.Point(31, 140)
-        Me.txtDeceasedLastName.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtDeceasedLastName.Location = New System.Drawing.Point(41, 172)
+        Me.txtDeceasedLastName.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
         Me.txtDeceasedLastName.Name = "txtDeceasedLastName"
-        Me.txtDeceasedLastName.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
         Me.txtDeceasedLastName.PlaceholderForeColor = System.Drawing.Color.Gray
         Me.txtDeceasedLastName.PlaceholderText = "Last Name"
         Me.txtDeceasedLastName.SelectedText = ""
-        Me.txtDeceasedLastName.Size = New System.Drawing.Size(231, 37)
+        Me.txtDeceasedLastName.Size = New System.Drawing.Size(308, 46)
         Me.txtDeceasedLastName.TabIndex = 89
         '
         'txtDeceasedMiddleName
@@ -634,14 +638,13 @@ Partial Class frmDeceased
         Me.txtDeceasedMiddleName.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtDeceasedMiddleName.ForeColor = System.Drawing.Color.Black
         Me.txtDeceasedMiddleName.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtDeceasedMiddleName.Location = New System.Drawing.Point(31, 96)
-        Me.txtDeceasedMiddleName.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtDeceasedMiddleName.Location = New System.Drawing.Point(41, 118)
+        Me.txtDeceasedMiddleName.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
         Me.txtDeceasedMiddleName.Name = "txtDeceasedMiddleName"
-        Me.txtDeceasedMiddleName.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
         Me.txtDeceasedMiddleName.PlaceholderForeColor = System.Drawing.Color.Gray
         Me.txtDeceasedMiddleName.PlaceholderText = "Middle Name"
         Me.txtDeceasedMiddleName.SelectedText = ""
-        Me.txtDeceasedMiddleName.Size = New System.Drawing.Size(231, 37)
+        Me.txtDeceasedMiddleName.Size = New System.Drawing.Size(308, 46)
         Me.txtDeceasedMiddleName.TabIndex = 90
         '
         'chkFemaleDeceased
@@ -655,11 +658,11 @@ Partial Class frmDeceased
         Me.chkFemaleDeceased.CheckedState.BorderThickness = 0
         Me.chkFemaleDeceased.CheckedState.FillColor = System.Drawing.Color.Black
         Me.chkFemaleDeceased.CheckMarkColor = System.Drawing.Color.LimeGreen
-        Me.chkFemaleDeceased.Font = New System.Drawing.Font("Roboto Condensed", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.chkFemaleDeceased.Location = New System.Drawing.Point(150, 248)
-        Me.chkFemaleDeceased.Margin = New System.Windows.Forms.Padding(2)
+        Me.chkFemaleDeceased.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.chkFemaleDeceased.Location = New System.Drawing.Point(200, 305)
+        Me.chkFemaleDeceased.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.chkFemaleDeceased.Name = "chkFemaleDeceased"
-        Me.chkFemaleDeceased.Size = New System.Drawing.Size(91, 30)
+        Me.chkFemaleDeceased.Size = New System.Drawing.Size(121, 37)
         Me.chkFemaleDeceased.TabIndex = 88
         Me.chkFemaleDeceased.Text = "Female"
         Me.chkFemaleDeceased.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -672,12 +675,11 @@ Partial Class frmDeceased
         'label4
         '
         Me.label4.AutoSize = True
-        Me.label4.Font = New System.Drawing.Font("Roboto", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.label4.ForeColor = System.Drawing.Color.White
-        Me.label4.Location = New System.Drawing.Point(276, 215)
-        Me.label4.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.label4.Location = New System.Drawing.Point(368, 265)
         Me.label4.Name = "label4"
-        Me.label4.Size = New System.Drawing.Size(136, 20)
+        Me.label4.Size = New System.Drawing.Size(177, 25)
         Me.label4.TabIndex = 78
         Me.label4.Text = "Date of Interment"
         '
@@ -696,26 +698,24 @@ Partial Class frmDeceased
         Me.txtReligion.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtReligion.ForeColor = System.Drawing.Color.Black
         Me.txtReligion.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtReligion.Location = New System.Drawing.Point(280, 52)
-        Me.txtReligion.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtReligion.Location = New System.Drawing.Point(373, 64)
+        Me.txtReligion.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
         Me.txtReligion.Name = "txtReligion"
-        Me.txtReligion.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
         Me.txtReligion.PlaceholderForeColor = System.Drawing.Color.Gray
         Me.txtReligion.PlaceholderText = "Enter Religion"
         Me.txtReligion.SelectedText = ""
-        Me.txtReligion.Size = New System.Drawing.Size(330, 37)
+        Me.txtReligion.Size = New System.Drawing.Size(440, 46)
         Me.txtReligion.TabIndex = 93
         Me.txtReligion.Tag = ""
         '
         'label1
         '
         Me.label1.AutoSize = True
-        Me.label1.Font = New System.Drawing.Font("Roboto", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.label1.ForeColor = System.Drawing.Color.White
-        Me.label1.Location = New System.Drawing.Point(276, 158)
-        Me.label1.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.label1.Location = New System.Drawing.Point(368, 194)
         Me.label1.Name = "label1"
-        Me.label1.Size = New System.Drawing.Size(114, 20)
+        Me.label1.Size = New System.Drawing.Size(153, 25)
         Me.label1.TabIndex = 66
         Me.label1.Text = "Date of Death*"
         '
@@ -730,11 +730,11 @@ Partial Class frmDeceased
         Me.chkMaleDeceased.CheckedState.BorderThickness = 0
         Me.chkMaleDeceased.CheckedState.FillColor = System.Drawing.Color.Black
         Me.chkMaleDeceased.CheckMarkColor = System.Drawing.Color.LimeGreen
-        Me.chkMaleDeceased.Font = New System.Drawing.Font("Roboto Condensed", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkMaleDeceased.Location = New System.Drawing.Point(48, 248)
-        Me.chkMaleDeceased.Margin = New System.Windows.Forms.Padding(2)
+        Me.chkMaleDeceased.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkMaleDeceased.Location = New System.Drawing.Point(64, 305)
+        Me.chkMaleDeceased.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.chkMaleDeceased.Name = "chkMaleDeceased"
-        Me.chkMaleDeceased.Size = New System.Drawing.Size(91, 30)
+        Me.chkMaleDeceased.Size = New System.Drawing.Size(121, 37)
         Me.chkMaleDeceased.TabIndex = 87
         Me.chkMaleDeceased.Text = "Male"
         Me.chkMaleDeceased.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -747,24 +747,23 @@ Partial Class frmDeceased
         'label3
         '
         Me.label3.AutoSize = True
-        Me.label3.Font = New System.Drawing.Font("Roboto", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.label3.ForeColor = System.Drawing.Color.White
-        Me.label3.Location = New System.Drawing.Point(276, 100)
-        Me.label3.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.label3.Location = New System.Drawing.Point(368, 123)
         Me.label3.Name = "label3"
-        Me.label3.Size = New System.Drawing.Size(106, 20)
+        Me.label3.Size = New System.Drawing.Size(140, 25)
         Me.label3.TabIndex = 63
         Me.label3.Text = "Date of Birth*"
         '
         'Guna2HtmlLabel4
         '
         Me.Guna2HtmlLabel4.BackColor = System.Drawing.Color.Transparent
-        Me.Guna2HtmlLabel4.Font = New System.Drawing.Font("Roboto", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Guna2HtmlLabel4.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Guna2HtmlLabel4.ForeColor = System.Drawing.Color.White
-        Me.Guna2HtmlLabel4.Location = New System.Drawing.Point(280, 24)
-        Me.Guna2HtmlLabel4.Margin = New System.Windows.Forms.Padding(2)
+        Me.Guna2HtmlLabel4.Location = New System.Drawing.Point(373, 30)
+        Me.Guna2HtmlLabel4.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.Guna2HtmlLabel4.Name = "Guna2HtmlLabel4"
-        Me.Guna2HtmlLabel4.Size = New System.Drawing.Size(137, 22)
+        Me.Guna2HtmlLabel4.Size = New System.Drawing.Size(183, 27)
         Me.Guna2HtmlLabel4.TabIndex = 92
         Me.Guna2HtmlLabel4.Text = "Religion (Optional)"
         '
@@ -782,14 +781,13 @@ Partial Class frmDeceased
         Me.txtDeceasedExt.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtDeceasedExt.ForeColor = System.Drawing.Color.Black
         Me.txtDeceasedExt.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtDeceasedExt.Location = New System.Drawing.Point(31, 184)
-        Me.txtDeceasedExt.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtDeceasedExt.Location = New System.Drawing.Point(41, 226)
+        Me.txtDeceasedExt.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
         Me.txtDeceasedExt.Name = "txtDeceasedExt"
-        Me.txtDeceasedExt.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
         Me.txtDeceasedExt.PlaceholderForeColor = System.Drawing.Color.Gray
         Me.txtDeceasedExt.PlaceholderText = "Ext. (Sr., Jr., II, III"
         Me.txtDeceasedExt.SelectedText = ""
-        Me.txtDeceasedExt.Size = New System.Drawing.Size(231, 37)
+        Me.txtDeceasedExt.Size = New System.Drawing.Size(308, 46)
         Me.txtDeceasedExt.TabIndex = 91
         '
         'Guna2Panel2
@@ -799,8 +797,9 @@ Partial Class frmDeceased
         Me.Guna2Panel2.Controls.Add(Me.Label6)
         Me.Guna2Panel2.Dock = System.Windows.Forms.DockStyle.Top
         Me.Guna2Panel2.Location = New System.Drawing.Point(0, 0)
+        Me.Guna2Panel2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Guna2Panel2.Name = "Guna2Panel2"
-        Me.Guna2Panel2.Size = New System.Drawing.Size(638, 69)
+        Me.Guna2Panel2.Size = New System.Drawing.Size(851, 85)
         Me.Guna2Panel2.TabIndex = 56
         '
         'Label5
@@ -808,9 +807,10 @@ Partial Class frmDeceased
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Gill Sans MT", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label5.Location = New System.Drawing.Point(15, 41)
+        Me.Label5.Location = New System.Drawing.Point(20, 50)
+        Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(151, 18)
+        Me.Label5.Size = New System.Drawing.Size(185, 21)
         Me.Label5.TabIndex = 1
         Me.Label5.Text = "Fill-up Deceased Information"
         '
@@ -819,21 +819,22 @@ Partial Class frmDeceased
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Century Gothic", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label6.Location = New System.Drawing.Point(12, 9)
+        Me.Label6.Location = New System.Drawing.Point(16, 11)
+        Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(222, 32)
+        Me.Label6.Size = New System.Drawing.Size(279, 40)
         Me.Label6.TabIndex = 0
         Me.Label6.Text = "Deceased Form"
         '
         'frmDeceased
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(23, Byte), Integer), CType(CType(107, Byte), Integer), CType(CType(135, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(638, 711)
+        Me.ClientSize = New System.Drawing.Size(851, 875)
         Me.Controls.Add(Me.guna2Panel1)
         Me.Controls.Add(Me.Guna2Panel2)
-        Me.Margin = New System.Windows.Forms.Padding(2)
+        Me.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.Name = "frmDeceased"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Form1"

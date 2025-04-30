@@ -25,6 +25,9 @@ Partial Class frmApproval
         Me.components = New System.ComponentModel.Container()
         Me.Guna2Elipse1 = New Guna.UI2.WinForms.Guna2Elipse(Me.components)
         Me.Guna2Panel2 = New Guna.UI2.WinForms.Guna2Panel()
+        Me.btnShowAll = New Guna.UI2.WinForms.Guna2Button()
+        Me.btnReject = New Guna.UI2.WinForms.Guna2Button()
+        Me.btnAssign = New Guna.UI2.WinForms.Guna2Button()
         Me.Guna2ControlBox1 = New Guna.UI2.WinForms.Guna2ControlBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
@@ -35,9 +38,6 @@ Partial Class frmApproval
         Me.fullName = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.dateApplied = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.state = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.btnShowAll = New Guna.UI2.WinForms.Guna2Button()
-        Me.btnReject = New Guna.UI2.WinForms.Guna2Button()
-        Me.btnAssign = New Guna.UI2.WinForms.Guna2Button()
         Me.Guna2Panel2.SuspendLayout()
         Me.Guna2Panel1.SuspendLayout()
         Me.SuspendLayout()
@@ -57,9 +57,52 @@ Partial Class frmApproval
         Me.Guna2Panel2.Controls.Add(Me.Label6)
         Me.Guna2Panel2.Dock = System.Windows.Forms.DockStyle.Top
         Me.Guna2Panel2.Location = New System.Drawing.Point(0, 0)
+        Me.Guna2Panel2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Guna2Panel2.Name = "Guna2Panel2"
-        Me.Guna2Panel2.Size = New System.Drawing.Size(676, 69)
+        Me.Guna2Panel2.Size = New System.Drawing.Size(901, 85)
         Me.Guna2Panel2.TabIndex = 59
+        '
+        'btnShowAll
+        '
+        Me.btnShowAll.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.btnShowAll.Animated = True
+        Me.btnShowAll.FillColor = System.Drawing.Color.DarkGoldenrod
+        Me.btnShowAll.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnShowAll.ForeColor = System.Drawing.Color.White
+        Me.btnShowAll.Location = New System.Drawing.Point(553, 42)
+        Me.btnShowAll.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnShowAll.Name = "btnShowAll"
+        Me.btnShowAll.Size = New System.Drawing.Size(100, 31)
+        Me.btnShowAll.TabIndex = 16
+        Me.btnShowAll.Text = "Refresh"
+        '
+        'btnReject
+        '
+        Me.btnReject.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.btnReject.Animated = True
+        Me.btnReject.FillColor = System.Drawing.Color.Red
+        Me.btnReject.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnReject.ForeColor = System.Drawing.Color.White
+        Me.btnReject.Location = New System.Drawing.Point(785, 42)
+        Me.btnReject.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnReject.Name = "btnReject"
+        Me.btnReject.Size = New System.Drawing.Size(100, 31)
+        Me.btnReject.TabIndex = 15
+        Me.btnReject.Text = "Reject"
+        '
+        'btnAssign
+        '
+        Me.btnAssign.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.btnAssign.Animated = True
+        Me.btnAssign.FillColor = System.Drawing.Color.Green
+        Me.btnAssign.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnAssign.ForeColor = System.Drawing.Color.White
+        Me.btnAssign.Location = New System.Drawing.Point(661, 42)
+        Me.btnAssign.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnAssign.Name = "btnAssign"
+        Me.btnAssign.Size = New System.Drawing.Size(116, 31)
+        Me.btnAssign.TabIndex = 14
+        Me.btnAssign.Text = "Approve"
         '
         'Guna2ControlBox1
         '
@@ -68,9 +111,10 @@ Partial Class frmApproval
         Me.Guna2ControlBox1.FillColor = System.Drawing.Color.FromArgb(CType(CType(139, Byte), Integer), CType(CType(152, Byte), Integer), CType(CType(166, Byte), Integer))
         Me.Guna2ControlBox1.HoverState.FillColor = System.Drawing.Color.Red
         Me.Guna2ControlBox1.IconColor = System.Drawing.Color.WhiteSmoke
-        Me.Guna2ControlBox1.Location = New System.Drawing.Point(637, 0)
+        Me.Guna2ControlBox1.Location = New System.Drawing.Point(849, 0)
+        Me.Guna2ControlBox1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Guna2ControlBox1.Name = "Guna2ControlBox1"
-        Me.Guna2ControlBox1.Size = New System.Drawing.Size(39, 24)
+        Me.Guna2ControlBox1.Size = New System.Drawing.Size(52, 30)
         Me.Guna2ControlBox1.TabIndex = 13
         '
         'Label5
@@ -78,9 +122,10 @@ Partial Class frmApproval
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Gill Sans MT", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label5.Location = New System.Drawing.Point(15, 41)
+        Me.Label5.Location = New System.Drawing.Point(20, 50)
+        Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(260, 18)
+        Me.Label5.Size = New System.Drawing.Size(321, 21)
         Me.Label5.TabIndex = 1
         Me.Label5.Text = "Displays list of clients that applied thru the website"
         '
@@ -89,9 +134,10 @@ Partial Class frmApproval
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Century Gothic", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label6.Location = New System.Drawing.Point(12, 9)
+        Me.Label6.Location = New System.Drawing.Point(16, 11)
+        Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(301, 32)
+        Me.Label6.Size = New System.Drawing.Size(377, 40)
         Me.Label6.TabIndex = 0
         Me.Label6.Text = "Account Approval List"
         '
@@ -101,10 +147,11 @@ Partial Class frmApproval
         Me.Guna2Panel1.Controls.Add(Me.txtSearch)
         Me.Guna2Panel1.Controls.Add(Me.ReservationList)
         Me.Guna2Panel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Guna2Panel1.Location = New System.Drawing.Point(0, 69)
+        Me.Guna2Panel1.Location = New System.Drawing.Point(0, 85)
+        Me.Guna2Panel1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Guna2Panel1.Name = "Guna2Panel1"
         Me.Guna2Panel1.ShadowDecoration.Enabled = True
-        Me.Guna2Panel1.Size = New System.Drawing.Size(676, 367)
+        Me.Guna2Panel1.Size = New System.Drawing.Size(901, 452)
         Me.Guna2Panel1.TabIndex = 60
         '
         'txtSearch
@@ -112,7 +159,7 @@ Partial Class frmApproval
         Me.txtSearch.Animated = True
         Me.txtSearch.AutoRoundedCorners = True
         Me.txtSearch.BorderColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(171, Byte), Integer), CType(CType(189, Byte), Integer))
-        Me.txtSearch.BorderRadius = 16
+        Me.txtSearch.BorderRadius = 20
         Me.txtSearch.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.txtSearch.DefaultText = ""
         Me.txtSearch.DisabledState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer))
@@ -126,14 +173,13 @@ Partial Class frmApproval
         Me.txtSearch.IconRight = Global.dashboard.My.Resources.Resources.search
         Me.txtSearch.IconRightOffset = New System.Drawing.Point(8, 0)
         Me.txtSearch.IconRightSize = New System.Drawing.Size(25, 25)
-        Me.txtSearch.Location = New System.Drawing.Point(12, 7)
-        Me.txtSearch.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.txtSearch.Location = New System.Drawing.Point(16, 9)
+        Me.txtSearch.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txtSearch.Name = "txtSearch"
-        Me.txtSearch.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
         Me.txtSearch.PlaceholderForeColor = System.Drawing.Color.Gray
         Me.txtSearch.PlaceholderText = "Search a name"
         Me.txtSearch.SelectedText = ""
-        Me.txtSearch.Size = New System.Drawing.Size(292, 35)
+        Me.txtSearch.Size = New System.Drawing.Size(389, 43)
         Me.txtSearch.TabIndex = 2
         '
         'ReservationList
@@ -145,15 +191,16 @@ Partial Class frmApproval
         Me.ReservationList.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.ReservationList.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.ReservationList.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.id, Me.fullName, Me.dateApplied, Me.state})
-        Me.ReservationList.Font = New System.Drawing.Font("Roboto", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ReservationList.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ReservationList.ForeColor = System.Drawing.SystemColors.Window
         Me.ReservationList.FullRowSelect = True
         Me.ReservationList.GridLines = True
         Me.ReservationList.HideSelection = False
-        Me.ReservationList.Location = New System.Drawing.Point(12, 49)
+        Me.ReservationList.Location = New System.Drawing.Point(16, 60)
+        Me.ReservationList.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ReservationList.Name = "ReservationList"
         Me.ReservationList.ShowItemToolTips = True
-        Me.ReservationList.Size = New System.Drawing.Size(652, 313)
+        Me.ReservationList.Size = New System.Drawing.Size(869, 385)
         Me.ReservationList.TabIndex = 1
         Me.ReservationList.TileSize = New System.Drawing.Size(10, 10)
         Me.ReservationList.UseCompatibleStateImageBehavior = False
@@ -181,54 +228,16 @@ Partial Class frmApproval
         Me.state.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.state.Width = 120
         '
-        'btnShowAll
-        '
-        Me.btnShowAll.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.btnShowAll.Animated = True
-        Me.btnShowAll.FillColor = System.Drawing.Color.DarkGoldenrod
-        Me.btnShowAll.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnShowAll.ForeColor = System.Drawing.Color.White
-        Me.btnShowAll.Location = New System.Drawing.Point(415, 34)
-        Me.btnShowAll.Name = "btnShowAll"
-        Me.btnShowAll.Size = New System.Drawing.Size(75, 25)
-        Me.btnShowAll.TabIndex = 16
-        Me.btnShowAll.Text = "Refresh"
-        '
-        'btnReject
-        '
-        Me.btnReject.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.btnReject.Animated = True
-        Me.btnReject.FillColor = System.Drawing.Color.Red
-        Me.btnReject.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnReject.ForeColor = System.Drawing.Color.White
-        Me.btnReject.Location = New System.Drawing.Point(589, 34)
-        Me.btnReject.Name = "btnReject"
-        Me.btnReject.Size = New System.Drawing.Size(75, 25)
-        Me.btnReject.TabIndex = 15
-        Me.btnReject.Text = "Reject"
-        '
-        'btnAssign
-        '
-        Me.btnAssign.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.btnAssign.Animated = True
-        Me.btnAssign.FillColor = System.Drawing.Color.Green
-        Me.btnAssign.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnAssign.ForeColor = System.Drawing.Color.White
-        Me.btnAssign.Location = New System.Drawing.Point(496, 34)
-        Me.btnAssign.Name = "btnAssign"
-        Me.btnAssign.Size = New System.Drawing.Size(87, 25)
-        Me.btnAssign.TabIndex = 14
-        Me.btnAssign.Text = "Approve"
-        '
         'frmApproval
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(23, Byte), Integer), CType(CType(107, Byte), Integer), CType(CType(135, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(676, 436)
+        Me.ClientSize = New System.Drawing.Size(901, 537)
         Me.Controls.Add(Me.Guna2Panel1)
         Me.Controls.Add(Me.Guna2Panel2)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "frmApproval"
         Me.Text = "frmApproval"
         Me.Guna2Panel2.ResumeLayout(False)

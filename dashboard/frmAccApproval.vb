@@ -19,7 +19,7 @@ Public Class frmAccApproval
 
             Dim sql As String = "SELECT * FROM application " &
                                 "WHERE LastName LIKE @txtsearch OR FirstName LIKE @txtsearch OR MiddleName LIKE @txtsearch " &
-                                "ORDER BY LastName ASC"
+                                "ORDER BY Date_Applied DESC, LastName ASC"
 
             cmd = New MySqlCommand(sql, cn)
             cmd.Parameters.AddWithValue("@txtsearch", "%" & searchText & "%")
@@ -55,9 +55,6 @@ Public Class frmAccApproval
 
                 newLine.SubItems.Add(statusText)
                 newLine.ForeColor = rowColor ' Apply color to the whole row
-
-
-                newLine.SubItems.Add(statusText)
 
             End While
 
@@ -280,7 +277,7 @@ Public Class frmAccApproval
     End Sub
 
     ' Close button
-    Private Sub btnClose_Click(sender As Object, e As EventArgs) 
+    Private Sub btnClose_Click(sender As Object, e As EventArgs)
         Me.Close()
     End Sub
 

@@ -34,7 +34,6 @@ Partial Class frmDeceasedReg
         Me.DeceasedList = New System.Windows.Forms.ListView()
         Me.number = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.fullname = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.birth = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.death = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.loc = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.status = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
@@ -82,7 +81,7 @@ Partial Class frmDeceasedReg
         Me.Guna2Panel2.Controls.Add(Me.Label1)
         Me.Guna2Panel2.Dock = System.Windows.Forms.DockStyle.Top
         Me.Guna2Panel2.Location = New System.Drawing.Point(0, 0)
-        Me.Guna2Panel2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Guna2Panel2.Margin = New System.Windows.Forms.Padding(4)
         Me.Guna2Panel2.Name = "Guna2Panel2"
         Me.Guna2Panel2.Size = New System.Drawing.Size(1405, 100)
         Me.Guna2Panel2.TabIndex = 3
@@ -98,7 +97,7 @@ Partial Class frmDeceasedReg
         Me.btnImportExcel.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left
         Me.btnImportExcel.ImageOffset = New System.Drawing.Point(-7, 0)
         Me.btnImportExcel.Location = New System.Drawing.Point(955, 60)
-        Me.btnImportExcel.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnImportExcel.Margin = New System.Windows.Forms.Padding(4)
         Me.btnImportExcel.Name = "btnImportExcel"
         Me.btnImportExcel.Size = New System.Drawing.Size(131, 31)
         Me.btnImportExcel.TabIndex = 8
@@ -113,7 +112,7 @@ Partial Class frmDeceasedReg
         Me.btnRefresh.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.btnRefresh.ForeColor = System.Drawing.Color.White
         Me.btnRefresh.Location = New System.Drawing.Point(1094, 60)
-        Me.btnRefresh.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnRefresh.Margin = New System.Windows.Forms.Padding(4)
         Me.btnRefresh.Name = "btnRefresh"
         Me.btnRefresh.Size = New System.Drawing.Size(94, 31)
         Me.btnRefresh.TabIndex = 7
@@ -127,7 +126,7 @@ Partial Class frmDeceasedReg
         Me.btnDelete.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.btnDelete.ForeColor = System.Drawing.Color.White
         Me.btnDelete.Location = New System.Drawing.Point(1296, 60)
-        Me.btnDelete.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnDelete.Margin = New System.Windows.Forms.Padding(4)
         Me.btnDelete.Name = "btnDelete"
         Me.btnDelete.Size = New System.Drawing.Size(94, 31)
         Me.btnDelete.TabIndex = 3
@@ -141,7 +140,7 @@ Partial Class frmDeceasedReg
         Me.btnEdit.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.btnEdit.ForeColor = System.Drawing.Color.White
         Me.btnEdit.Location = New System.Drawing.Point(1195, 60)
-        Me.btnEdit.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnEdit.Margin = New System.Windows.Forms.Padding(4)
         Me.btnEdit.Name = "btnEdit"
         Me.btnEdit.Size = New System.Drawing.Size(94, 31)
         Me.btnEdit.TabIndex = 2
@@ -168,14 +167,14 @@ Partial Class frmDeceasedReg
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.DeceasedList.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.DeceasedList.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.DeceasedList.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.number, Me.fullname, Me.birth, Me.death, Me.loc, Me.status})
+        Me.DeceasedList.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.number, Me.fullname, Me.death, Me.loc, Me.status})
         Me.DeceasedList.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.DeceasedList.ForeColor = System.Drawing.SystemColors.Window
         Me.DeceasedList.FullRowSelect = True
         Me.DeceasedList.GridLines = True
         Me.DeceasedList.HideSelection = False
         Me.DeceasedList.Location = New System.Drawing.Point(15, 61)
-        Me.DeceasedList.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.DeceasedList.Margin = New System.Windows.Forms.Padding(4)
         Me.DeceasedList.Name = "DeceasedList"
         Me.DeceasedList.ShowItemToolTips = True
         Me.DeceasedList.Size = New System.Drawing.Size(1375, 366)
@@ -193,11 +192,6 @@ Partial Class frmDeceasedReg
         '
         Me.fullname.Text = "Full Name (Last Name, First Name MI. Ext."
         Me.fullname.Width = 305
-        '
-        'birth
-        '
-        Me.birth.Text = "Birthdate"
-        Me.birth.Width = 170
         '
         'death
         '
@@ -226,7 +220,7 @@ Partial Class frmDeceasedReg
         Me.Guna2Panel1.Controls.Add(Me.DeceasedList)
         Me.Guna2Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Guna2Panel1.Location = New System.Drawing.Point(0, 100)
-        Me.Guna2Panel1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Guna2Panel1.Margin = New System.Windows.Forms.Padding(4)
         Me.Guna2Panel1.Name = "Guna2Panel1"
         Me.Guna2Panel1.Size = New System.Drawing.Size(1405, 445)
         Me.Guna2Panel1.TabIndex = 2
@@ -242,7 +236,7 @@ Partial Class frmDeceasedReg
         Me.chkbxBoneNiche.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.chkbxBoneNiche.ForeColor = System.Drawing.SystemColors.Control
         Me.chkbxBoneNiche.Location = New System.Drawing.Point(1018, 24)
-        Me.chkbxBoneNiche.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.chkbxBoneNiche.Margin = New System.Windows.Forms.Padding(4)
         Me.chkbxBoneNiche.Name = "chkbxBoneNiche"
         Me.chkbxBoneNiche.Size = New System.Drawing.Size(145, 29)
         Me.chkbxBoneNiche.TabIndex = 8
@@ -263,7 +257,7 @@ Partial Class frmDeceasedReg
         Me.chkbxPrivate.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.chkbxPrivate.ForeColor = System.Drawing.SystemColors.Control
         Me.chkbxPrivate.Location = New System.Drawing.Point(1161, 24)
-        Me.chkbxPrivate.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.chkbxPrivate.Margin = New System.Windows.Forms.Padding(4)
         Me.chkbxPrivate.Name = "chkbxPrivate"
         Me.chkbxPrivate.Size = New System.Drawing.Size(101, 29)
         Me.chkbxPrivate.TabIndex = 7
@@ -284,7 +278,7 @@ Partial Class frmDeceasedReg
         Me.chkbxLawnLots.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.chkbxLawnLots.ForeColor = System.Drawing.SystemColors.Control
         Me.chkbxLawnLots.Location = New System.Drawing.Point(1258, 24)
-        Me.chkbxLawnLots.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.chkbxLawnLots.Margin = New System.Windows.Forms.Padding(4)
         Me.chkbxLawnLots.Name = "chkbxLawnLots"
         Me.chkbxLawnLots.Size = New System.Drawing.Size(132, 29)
         Me.chkbxLawnLots.TabIndex = 6
@@ -305,7 +299,7 @@ Partial Class frmDeceasedReg
         Me.chkbxApartment.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.chkbxApartment.ForeColor = System.Drawing.SystemColors.Control
         Me.chkbxApartment.Location = New System.Drawing.Point(893, 24)
-        Me.chkbxApartment.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.chkbxApartment.Margin = New System.Windows.Forms.Padding(4)
         Me.chkbxApartment.Name = "chkbxApartment"
         Me.chkbxApartment.Size = New System.Drawing.Size(133, 29)
         Me.chkbxApartment.TabIndex = 5
@@ -393,7 +387,7 @@ Partial Class frmDeceasedReg
         Me.Controls.Add(Me.Guna2Panel1)
         Me.Controls.Add(Me.Guna2Panel2)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "frmDeceasedReg"
         Me.RightToLeftLayout = True
         Me.Text = "frmDeceasedReg"
@@ -413,7 +407,6 @@ Partial Class frmDeceasedReg
     Friend WithEvents Guna2Panel1 As Guna.UI2.WinForms.Guna2Panel
     Friend WithEvents DeceasedList As ListView
     Friend WithEvents fullname As ColumnHeader
-    Friend WithEvents birth As ColumnHeader
     Friend WithEvents death As ColumnHeader
     Friend WithEvents loc As ColumnHeader
     Friend WithEvents Label2 As Label

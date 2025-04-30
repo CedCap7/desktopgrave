@@ -43,7 +43,7 @@ Public Class frmDeceasedReg
             whereClause = "WHERE " & String.Join(" OR ", filters)
         End If
 
-        sql = "SELECT d.Deceased_ID, d.LastName, d.FirstName, d.MiddleName, d.DateOfBirth, d.DateOfDeath, d.deceased_status, " &
+        sql = "SELECT d.Deceased_ID, d.LastName, d.FirstName, d.MiddleName, d.DateOfDeath, d.deceased_status, " &
           "l.Type, l.Block, l.Section, l.Row, l.Plot " &
           "FROM deceased d " &
           "JOIN location l ON d.Plot_ID = l.id " &
@@ -64,10 +64,6 @@ Public Class frmDeceasedReg
                 Dim newLine = DeceasedList.Items.Add(index.ToString()) ' This will be the numbered list starting from 1
                 newLine.Tag = dr("Deceased_ID")  ' Store Deceased_ID in the Tag property
                 newLine.SubItems.Add(dr("LastName") & ", " & dr("FirstName") & ", " & dr("MiddleName"))
-
-                ' Format DateOfBirth
-                Dim dob As String = If(dr("DateOfBirth") IsNot DBNull.Value, Convert.ToDateTime(dr("DateOfBirth")).ToString("MMMM dd, yyyy"), "N/A")
-                newLine.SubItems.Add(dob)
 
                 ' Format DateOfDeath
                 Dim dod As String = If(dr("DateOfDeath") IsNot DBNull.Value, Convert.ToDateTime(dr("DateOfDeath")).ToString("MMMM dd, yyyy"), "N/A")
