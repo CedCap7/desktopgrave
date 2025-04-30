@@ -6,9 +6,13 @@ Imports System.Net.Mail
 
 Public Class frmAccApproval
 
+    Dim toolTip As New ToolTip()
     Private Sub frmAccApproval_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         KeyPreview = True
         LoadUsers("") ' Load all users initially with empty search
+
+        ToolTip.SetToolTip(btnApproval, "Click to approve the selected application.")  ' Tooltip for btnApproval
+        ToolTip.SetToolTip(txtSearch, "Enter the name of the client to search.")  ' Tooltip for txtSearch
     End Sub
 
     ' Load applications from database into ListView
@@ -43,14 +47,12 @@ Public Class frmAccApproval
                 ' Get and display status
                 Dim statusValue As Integer = Convert.ToInt32(dr("Status"))
                 Dim statusText As String = "Pending"
-                Dim rowColor As Color = Color.Black
+                Dim rowColor As Color = Color.White
 
                 If statusValue = 1 Then
                     statusText = "Approved"
-                    rowColor = Color.Green
                 ElseIf statusValue = 2 Then
                     statusText = "Rejected"
-                    rowColor = Color.Red
                 End If
 
                 newLine.SubItems.Add(statusText)
@@ -73,7 +75,16 @@ Public Class frmAccApproval
 
             Try
                 dbconn()
-                cn.Open()
+
+                ' Ensure the connection is closed before opening again
+                If cn.State = ConnectionState.Open Then
+                    cn.Close()
+                End If
+
+                ' Ensure connection is open
+                If cn.State = ConnectionState.Closed Then
+                    cn.Open()
+                End If
 
                 ' Check if already approved
                 Dim statusSQL As String = "SELECT Status, Email, FirstName, LastName FROM application WHERE Client_ID = @ClientID"
@@ -87,7 +98,9 @@ Public Class frmAccApproval
                     If statusResult = 1 Then
                         MessageBox.Show("This application has already been approved!", "Already Approved", MessageBoxButtons.OK, MessageBoxIcon.Information)
                         dr.Close() ' Close reader before exiting
-                        cn.Close()
+                        If cn.State = ConnectionState.Open Then
+                            cn.Close() ' Close connection after usage
+                        End If
                         Exit Sub
                     End If
 
@@ -104,11 +117,14 @@ Public Class frmAccApproval
 
                     If result = DialogResult.Yes Then
                         ' Insert into client table and set status to 1
-                        Dim insertSQL As String = "INSERT INTO client (FirstName, MiddleName, LastName, Gender, Mobile, Address, Email, status) " &
-                                              "SELECT FirstName, MiddleName, LastName, Gender, Mobile, Address, Email, 1 " &
+                        Dim insertSQL As String = "INSERT INTO client (FirstName, MiddleName, LastName, Gender, Mobile, Address, Email, status, Date_Registered) " &
+                                              "SELECT FirstName, MiddleName, LastName, Gender, Mobile, Address, Email, 1, @DateRegistered " &
                                               "FROM application WHERE Client_ID = @ClientID"
+
+                        ' Insert into client table and set status to 1
                         cmd = New MySqlCommand(insertSQL, cn)
                         cmd.Parameters.AddWithValue("@ClientID", clientID)
+                        cmd.Parameters.AddWithValue("@DateRegistered", DateTime.Now) ' Add Date_Registered with current date and time
                         cmd.ExecuteNonQuery()
 
                         ' Update application status to approved
@@ -117,7 +133,9 @@ Public Class frmAccApproval
                         cmd.Parameters.AddWithValue("@ClientID", clientID)
                         cmd.ExecuteNonQuery()
 
-                        cn.Close()
+                        If cn.State = ConnectionState.Open Then
+                            cn.Close() ' Close connection after usage
+                        End If
 
                         ' Send Email Notification
                         SendApprovalEmail(email, firstName, lastName)
@@ -125,24 +143,27 @@ Public Class frmAccApproval
                         MessageBox.Show("Application approved successfully! A notification email has been sent.")
                         LoadUsers()
                     Else
-                        cn.Close()
+                        If cn.State = ConnectionState.Open Then
+                            cn.Close() ' Close connection after usage
+                        End If
                     End If
                 Else
                     ' If no record was found
-                    cn.Close()
+                    If cn.State = ConnectionState.Open Then
+                        cn.Close() ' Close connection after usage
+                    End If
                 End If
 
             Catch ex As Exception
                 MessageBox.Show("Error during approval: " & ex.Message)
                 If cn.State = ConnectionState.Open Then
-                    cn.Close()
+                    cn.Close() ' Ensure connection is closed after error
                 End If
             End Try
         Else
             MessageBox.Show("Please select an application to approve.")
         End If
     End Sub
-
 
 
     Private Sub SendApprovalEmail(toEmail As String, firstName As String, lastName As String)
@@ -187,7 +208,10 @@ Public Class frmAccApproval
 
                 ' Check if the application is approved or rejected
                 dbconn()
-                cn.Open()
+
+                If cn.State = ConnectionState.Closed Then
+                    cn.Open()
+                End If
 
                 Dim statusSQL As String = "SELECT Status FROM application WHERE Client_ID = @ClientID"
                 cmd = New MySqlCommand(statusSQL, cn)
@@ -220,7 +244,9 @@ Public Class frmAccApproval
                     cmd.Parameters.AddWithValue("@ClientID", clientID)
                     cmd.ExecuteNonQuery()
 
-                    cn.Close()
+                    If cn.State = ConnectionState.Open Then
+                        cn.Close()
+                    End If
                     MessageBox.Show("Application rejected and deleted successfully!")
                     LoadUsers()
                 End If
@@ -246,7 +272,9 @@ Public Class frmAccApproval
             If confirmDelete = DialogResult.Yes Then
                 Try
                     dbconn()
-                    cn.Open()
+                    If cn.State = ConnectionState.Closed Then
+                        cn.Open()
+                    End If
 
                     Dim deleteSQL As String = "DELETE FROM application WHERE Client_ID = @ClientID"
                     cmd = New MySqlCommand(deleteSQL, cn)
@@ -259,7 +287,9 @@ Public Class frmAccApproval
                         MessageBox.Show("No matching record found to delete.", "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     End If
 
-                    cn.Close()
+                    If cn.State = ConnectionState.Open Then
+                        cn.Close()
+                    End If
                     LoadUsers()
                 Catch ex As Exception
                     MessageBox.Show("Error deleting application: " & ex.Message)

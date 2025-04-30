@@ -22,6 +22,7 @@ Partial Class frmAccApproval
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.Guna2Panel2 = New Guna.UI2.WinForms.Guna2Panel()
         Me.btnReject = New Guna.UI2.WinForms.Guna2Button()
         Me.btnShowAll = New Guna.UI2.WinForms.Guna2Button()
@@ -40,6 +41,7 @@ Partial Class frmAccApproval
         Me.address = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.dateRegistered = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.status = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.Guna2Panel2.SuspendLayout()
         Me.Guna2Panel1.SuspendLayout()
         Me.SuspendLayout()
@@ -249,6 +251,10 @@ Partial Class frmAccApproval
         Me.status.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.status.Width = 100
         '
+        'ToolTip1
+        '
+        Me.ToolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info
+        '
         'frmAccApproval
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -287,4 +293,5 @@ Partial Class frmAccApproval
     Friend WithEvents dateRegistered As ColumnHeader
     Friend WithEvents status As ColumnHeader
     Friend WithEvents btnReject As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents ToolTip1 As ToolTip
 End Class
