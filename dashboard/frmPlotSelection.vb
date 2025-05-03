@@ -32,7 +32,7 @@ Public Class frmPlotSelection
         Try
             Await webViewPlotSelection.EnsureCoreWebView2Async()
             AddHandler webViewPlotSelection.CoreWebView2.WebMessageReceived, AddressOf HandleWebMessage
-            webViewPlotSelection.CoreWebView2.Navigate($"http://map.test/map?type={selectedPlotType}")
+            webViewPlotSelection.CoreWebView2.Navigate($"https://doncarloscemetery.io/map?type={selectedPlotType}")
         Catch ex As Exception
             MessageBox.Show("Error initializing WebView2: " & ex.Message)
         End Try
