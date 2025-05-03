@@ -50,12 +50,6 @@ Partial Class frmDashboard
         Me.lblPrivate = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.dgvNotification = New Guna.UI2.WinForms.Guna2DataGridView()
-        Me.id = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.fullName = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.interment = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.expiry = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.plotLocation = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.status = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
         Me.Guna2Panel9 = New Guna.UI2.WinForms.Guna2Panel()
         Me.lblAvailable = New System.Windows.Forms.Label()
@@ -68,6 +62,14 @@ Partial Class frmDashboard
         Me.Label9 = New System.Windows.Forms.Label()
         Me.tmDashboard = New System.Windows.Forms.Timer(Me.components)
         Me.Label4 = New System.Windows.Forms.Label()
+        Me.pnlNotifications = New Guna.UI2.WinForms.Guna2CustomGradientPanel()
+        Me.id = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.fullName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.interment = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.expiry = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.plotLocation = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.status = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.daysExpired = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Guna2Panel2.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.Guna2Panel3.SuspendLayout()
@@ -93,7 +95,7 @@ Partial Class frmDashboard
         Me.Guna2Panel2.Controls.Add(Me.Label1)
         Me.Guna2Panel2.Dock = System.Windows.Forms.DockStyle.Top
         Me.Guna2Panel2.Location = New System.Drawing.Point(0, 0)
-        Me.Guna2Panel2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Guna2Panel2.Margin = New System.Windows.Forms.Padding(4)
         Me.Guna2Panel2.Name = "Guna2Panel2"
         Me.Guna2Panel2.Size = New System.Drawing.Size(1489, 98)
         Me.Guna2Panel2.TabIndex = 5
@@ -106,7 +108,7 @@ Partial Class frmDashboard
         Me.btnRefresh.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.btnRefresh.ForeColor = System.Drawing.Color.White
         Me.btnRefresh.Location = New System.Drawing.Point(1373, 59)
-        Me.btnRefresh.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnRefresh.Margin = New System.Windows.Forms.Padding(4)
         Me.btnRefresh.Name = "btnRefresh"
         Me.btnRefresh.Size = New System.Drawing.Size(100, 31)
         Me.btnRefresh.TabIndex = 4
@@ -172,7 +174,7 @@ Partial Class frmDashboard
         Me.TableLayoutPanel1.Controls.Add(Me.Guna2Panel5, 5, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.Guna2Panel6, 7, 0)
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 310)
-        Me.TableLayoutPanel1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TableLayoutPanel1.Margin = New System.Windows.Forms.Padding(4)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
@@ -187,7 +189,7 @@ Partial Class frmDashboard
         Me.Guna2Panel3.Controls.Add(Me.Label5)
         Me.Guna2Panel3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Guna2Panel3.Location = New System.Drawing.Point(18, 4)
-        Me.Guna2Panel3.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Guna2Panel3.Margin = New System.Windows.Forms.Padding(4)
         Me.Guna2Panel3.Name = "Guna2Panel3"
         Me.Guna2Panel3.ShadowDecoration.Depth = 5
         Me.Guna2Panel3.ShadowDecoration.Enabled = True
@@ -206,7 +208,7 @@ Partial Class frmDashboard
         Me.pbApartment.Font = New System.Drawing.Font("Segoe UI", 12.0!)
         Me.pbApartment.ForeColor = System.Drawing.Color.White
         Me.pbApartment.Location = New System.Drawing.Point(32, 6)
-        Me.pbApartment.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pbApartment.Margin = New System.Windows.Forms.Padding(4)
         Me.pbApartment.Minimum = 0
         Me.pbApartment.Name = "pbApartment"
         Me.pbApartment.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle
@@ -247,7 +249,7 @@ Partial Class frmDashboard
         Me.Guna2Panel4.Controls.Add(Me.Label6)
         Me.Guna2Panel4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Guna2Panel4.Location = New System.Drawing.Point(386, 4)
-        Me.Guna2Panel4.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Guna2Panel4.Margin = New System.Windows.Forms.Padding(4)
         Me.Guna2Panel4.Name = "Guna2Panel4"
         Me.Guna2Panel4.ShadowDecoration.Depth = 5
         Me.Guna2Panel4.ShadowDecoration.Enabled = True
@@ -267,7 +269,7 @@ Partial Class frmDashboard
         Me.pblawnlots.Font = New System.Drawing.Font("Segoe UI", 12.0!)
         Me.pblawnlots.ForeColor = System.Drawing.Color.White
         Me.pblawnlots.Location = New System.Drawing.Point(32, 6)
-        Me.pblawnlots.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pblawnlots.Margin = New System.Windows.Forms.Padding(4)
         Me.pblawnlots.Minimum = 0
         Me.pblawnlots.Name = "pblawnlots"
         Me.pblawnlots.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle
@@ -308,7 +310,7 @@ Partial Class frmDashboard
         Me.Guna2Panel5.Controls.Add(Me.Label7)
         Me.Guna2Panel5.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Guna2Panel5.Location = New System.Drawing.Point(754, 4)
-        Me.Guna2Panel5.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Guna2Panel5.Margin = New System.Windows.Forms.Padding(4)
         Me.Guna2Panel5.Name = "Guna2Panel5"
         Me.Guna2Panel5.ShadowDecoration.Depth = 5
         Me.Guna2Panel5.ShadowDecoration.Enabled = True
@@ -327,7 +329,7 @@ Partial Class frmDashboard
         Me.pbboneniche.Font = New System.Drawing.Font("Segoe UI", 12.0!)
         Me.pbboneniche.ForeColor = System.Drawing.Color.White
         Me.pbboneniche.Location = New System.Drawing.Point(32, 6)
-        Me.pbboneniche.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pbboneniche.Margin = New System.Windows.Forms.Padding(4)
         Me.pbboneniche.Minimum = 0
         Me.pbboneniche.Name = "pbboneniche"
         Me.pbboneniche.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle
@@ -368,7 +370,7 @@ Partial Class frmDashboard
         Me.Guna2Panel6.Controls.Add(Me.Label8)
         Me.Guna2Panel6.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Guna2Panel6.Location = New System.Drawing.Point(1122, 4)
-        Me.Guna2Panel6.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Guna2Panel6.Margin = New System.Windows.Forms.Padding(4)
         Me.Guna2Panel6.Name = "Guna2Panel6"
         Me.Guna2Panel6.ShadowDecoration.Depth = 5
         Me.Guna2Panel6.ShadowDecoration.Enabled = True
@@ -387,7 +389,7 @@ Partial Class frmDashboard
         Me.pbprivate.Font = New System.Drawing.Font("Segoe UI", 12.0!)
         Me.pbprivate.ForeColor = System.Drawing.Color.White
         Me.pbprivate.Location = New System.Drawing.Point(33, 6)
-        Me.pbprivate.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pbprivate.Margin = New System.Windows.Forms.Padding(4)
         Me.pbprivate.Minimum = 0
         Me.pbprivate.Name = "pbprivate"
         Me.pbprivate.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle
@@ -436,7 +438,7 @@ Partial Class frmDashboard
         Me.dgvNotification.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.dgvNotification.ColumnHeadersHeight = 15
         Me.dgvNotification.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing
-        Me.dgvNotification.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.id, Me.fullName, Me.interment, Me.expiry, Me.plotLocation, Me.status})
+        Me.dgvNotification.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.id, Me.fullName, Me.interment, Me.expiry, Me.plotLocation, Me.status, Me.daysExpired})
         DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle3.BackColor = System.Drawing.Color.White
         DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -446,14 +448,14 @@ Partial Class frmDashboard
         DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.dgvNotification.DefaultCellStyle = DataGridViewCellStyle3
         Me.dgvNotification.GridColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.dgvNotification.Location = New System.Drawing.Point(24, 646)
-        Me.dgvNotification.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.dgvNotification.Location = New System.Drawing.Point(18, 749)
+        Me.dgvNotification.Margin = New System.Windows.Forms.Padding(4)
         Me.dgvNotification.Name = "dgvNotification"
         Me.dgvNotification.ReadOnly = True
         Me.dgvNotification.RowHeadersVisible = False
         Me.dgvNotification.RowHeadersWidth = 51
         Me.dgvNotification.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.dgvNotification.Size = New System.Drawing.Size(995, 182)
+        Me.dgvNotification.Size = New System.Drawing.Size(826, 200)
         Me.dgvNotification.TabIndex = 7
         Me.dgvNotification.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White
         Me.dgvNotification.ThemeStyle.AlternatingRowsStyle.Font = Nothing
@@ -476,6 +478,172 @@ Partial Class frmDashboard
         Me.dgvNotification.ThemeStyle.RowsStyle.Height = 22
         Me.dgvNotification.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.dgvNotification.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
+        '
+        'TableLayoutPanel2
+        '
+        Me.TableLayoutPanel2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TableLayoutPanel2.ColumnCount = 7
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 0.8064516!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.25806!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 0.8064516!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.25806!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 0.8064516!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.25806!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 0.8064516!))
+        Me.TableLayoutPanel2.Controls.Add(Me.Guna2Panel9, 5, 0)
+        Me.TableLayoutPanel2.Controls.Add(Me.Guna2Panel8, 3, 0)
+        Me.TableLayoutPanel2.Controls.Add(Me.Guna2Panel7, 1, 0)
+        Me.TableLayoutPanel2.Location = New System.Drawing.Point(0, 155)
+        Me.TableLayoutPanel2.Margin = New System.Windows.Forms.Padding(4)
+        Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
+        Me.TableLayoutPanel2.RowCount = 1
+        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel2.Size = New System.Drawing.Size(1489, 148)
+        Me.TableLayoutPanel2.TabIndex = 8
+        '
+        'Guna2Panel9
+        '
+        Me.Guna2Panel9.BackColor = System.Drawing.Color.FromArgb(CType(CType(44, Byte), Integer), CType(CType(95, Byte), Integer), CType(CType(120, Byte), Integer))
+        Me.Guna2Panel9.Controls.Add(Me.lblAvailable)
+        Me.Guna2Panel9.Controls.Add(Me.Label11)
+        Me.Guna2Panel9.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Guna2Panel9.Location = New System.Drawing.Point(1000, 4)
+        Me.Guna2Panel9.Margin = New System.Windows.Forms.Padding(4)
+        Me.Guna2Panel9.Name = "Guna2Panel9"
+        Me.Guna2Panel9.Size = New System.Drawing.Size(472, 140)
+        Me.Guna2Panel9.TabIndex = 2
+        '
+        'lblAvailable
+        '
+        Me.lblAvailable.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblAvailable.AutoSize = True
+        Me.lblAvailable.Font = New System.Drawing.Font("Microsoft Sans Serif", 36.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblAvailable.ForeColor = System.Drawing.SystemColors.Control
+        Me.lblAvailable.Location = New System.Drawing.Point(27, 25)
+        Me.lblAvailable.Margin = New System.Windows.Forms.Padding(27, 25, 40, 18)
+        Me.lblAvailable.Name = "lblAvailable"
+        Me.lblAvailable.Size = New System.Drawing.Size(63, 69)
+        Me.lblAvailable.TabIndex = 11
+        Me.lblAvailable.Text = "0"
+        Me.lblAvailable.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'Label11
+        '
+        Me.Label11.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.Label11.AutoSize = True
+        Me.Label11.BackColor = System.Drawing.Color.Transparent
+        Me.Label11.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label11.ForeColor = System.Drawing.SystemColors.Control
+        Me.Label11.Location = New System.Drawing.Point(261, 92)
+        Me.Label11.Margin = New System.Windows.Forms.Padding(27, 0, 27, 18)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(186, 29)
+        Me.Label11.TabIndex = 1
+        Me.Label11.Text = "Available Plots"
+        '
+        'Guna2Panel8
+        '
+        Me.Guna2Panel8.BackColor = System.Drawing.Color.FromArgb(CType(CType(44, Byte), Integer), CType(CType(95, Byte), Integer), CType(CType(120, Byte), Integer))
+        Me.Guna2Panel8.Controls.Add(Me.lblTotalDeceased)
+        Me.Guna2Panel8.Controls.Add(Me.Label10)
+        Me.Guna2Panel8.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Guna2Panel8.Location = New System.Drawing.Point(508, 4)
+        Me.Guna2Panel8.Margin = New System.Windows.Forms.Padding(4)
+        Me.Guna2Panel8.Name = "Guna2Panel8"
+        Me.Guna2Panel8.Size = New System.Drawing.Size(472, 140)
+        Me.Guna2Panel8.TabIndex = 2
+        '
+        'lblTotalDeceased
+        '
+        Me.lblTotalDeceased.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblTotalDeceased.AutoSize = True
+        Me.lblTotalDeceased.Font = New System.Drawing.Font("Microsoft Sans Serif", 36.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTotalDeceased.ForeColor = System.Drawing.SystemColors.Control
+        Me.lblTotalDeceased.Location = New System.Drawing.Point(27, 25)
+        Me.lblTotalDeceased.Margin = New System.Windows.Forms.Padding(27, 25, 40, 18)
+        Me.lblTotalDeceased.Name = "lblTotalDeceased"
+        Me.lblTotalDeceased.Size = New System.Drawing.Size(63, 69)
+        Me.lblTotalDeceased.TabIndex = 11
+        Me.lblTotalDeceased.Text = "0"
+        Me.lblTotalDeceased.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'Label10
+        '
+        Me.Label10.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.Label10.AutoSize = True
+        Me.Label10.BackColor = System.Drawing.Color.Transparent
+        Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label10.ForeColor = System.Drawing.SystemColors.Control
+        Me.Label10.Location = New System.Drawing.Point(256, 92)
+        Me.Label10.Margin = New System.Windows.Forms.Padding(27, 0, 27, 18)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(198, 29)
+        Me.Label10.TabIndex = 1
+        Me.Label10.Text = "Total Deceased"
+        '
+        'Guna2Panel7
+        '
+        Me.Guna2Panel7.BackColor = System.Drawing.Color.FromArgb(CType(CType(44, Byte), Integer), CType(CType(95, Byte), Integer), CType(CType(120, Byte), Integer))
+        Me.Guna2Panel7.Controls.Add(Me.lblTotalClients)
+        Me.Guna2Panel7.Controls.Add(Me.Label9)
+        Me.Guna2Panel7.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Guna2Panel7.Location = New System.Drawing.Point(16, 4)
+        Me.Guna2Panel7.Margin = New System.Windows.Forms.Padding(4)
+        Me.Guna2Panel7.Name = "Guna2Panel7"
+        Me.Guna2Panel7.Size = New System.Drawing.Size(472, 140)
+        Me.Guna2Panel7.TabIndex = 0
+        '
+        'lblTotalClients
+        '
+        Me.lblTotalClients.AutoSize = True
+        Me.lblTotalClients.Font = New System.Drawing.Font("Microsoft Sans Serif", 36.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblTotalClients.ForeColor = System.Drawing.SystemColors.Control
+        Me.lblTotalClients.Location = New System.Drawing.Point(27, 25)
+        Me.lblTotalClients.Margin = New System.Windows.Forms.Padding(27, 25, 40, 18)
+        Me.lblTotalClients.Name = "lblTotalClients"
+        Me.lblTotalClients.Size = New System.Drawing.Size(63, 69)
+        Me.lblTotalClients.TabIndex = 10
+        Me.lblTotalClients.Text = "0"
+        Me.lblTotalClients.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'Label9
+        '
+        Me.Label9.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.Label9.AutoSize = True
+        Me.Label9.BackColor = System.Drawing.Color.Transparent
+        Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label9.ForeColor = System.Drawing.SystemColors.Control
+        Me.Label9.Location = New System.Drawing.Point(288, 92)
+        Me.Label9.Margin = New System.Windows.Forms.Padding(27, 0, 27, 18)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(161, 29)
+        Me.Label9.TabIndex = 1
+        Me.Label9.Text = "Total Clients"
+        '
+        'tmDashboard
+        '
+        Me.tmDashboard.Interval = 600
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.ForeColor = System.Drawing.Color.Red
+        Me.Label4.Location = New System.Drawing.Point(17, 587)
+        Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(609, 46)
+        Me.Label4.TabIndex = 5
+        Me.Label4.Text = "GRAVE EXPIRATION NOTICE!"
+        '
+        'pnlNotifications
+        '
+        Me.pnlNotifications.ImeMode = System.Windows.Forms.ImeMode.NoControl
+        Me.pnlNotifications.Location = New System.Drawing.Point(18, 636)
+        Me.pnlNotifications.Name = "pnlNotifications"
+        Me.pnlNotifications.Size = New System.Drawing.Size(826, 106)
+        Me.pnlNotifications.TabIndex = 9
         '
         'id
         '
@@ -527,163 +695,12 @@ Partial Class frmDashboard
         Me.status.Name = "status"
         Me.status.ReadOnly = True
         '
-        'TableLayoutPanel2
+        'daysExpired
         '
-        Me.TableLayoutPanel2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TableLayoutPanel2.ColumnCount = 7
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 0.8064516!))
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.25806!))
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 0.8064516!))
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.25806!))
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 0.8064516!))
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.25806!))
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 0.8064516!))
-        Me.TableLayoutPanel2.Controls.Add(Me.Guna2Panel9, 5, 0)
-        Me.TableLayoutPanel2.Controls.Add(Me.Guna2Panel8, 3, 0)
-        Me.TableLayoutPanel2.Controls.Add(Me.Guna2Panel7, 1, 0)
-        Me.TableLayoutPanel2.Location = New System.Drawing.Point(0, 155)
-        Me.TableLayoutPanel2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
-        Me.TableLayoutPanel2.RowCount = 1
-        Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel2.Size = New System.Drawing.Size(1489, 148)
-        Me.TableLayoutPanel2.TabIndex = 8
-        '
-        'Guna2Panel9
-        '
-        Me.Guna2Panel9.BackColor = System.Drawing.Color.FromArgb(CType(CType(44, Byte), Integer), CType(CType(95, Byte), Integer), CType(CType(120, Byte), Integer))
-        Me.Guna2Panel9.Controls.Add(Me.lblAvailable)
-        Me.Guna2Panel9.Controls.Add(Me.Label11)
-        Me.Guna2Panel9.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Guna2Panel9.Location = New System.Drawing.Point(1000, 4)
-        Me.Guna2Panel9.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.Guna2Panel9.Name = "Guna2Panel9"
-        Me.Guna2Panel9.Size = New System.Drawing.Size(472, 140)
-        Me.Guna2Panel9.TabIndex = 2
-        '
-        'lblAvailable
-        '
-        Me.lblAvailable.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblAvailable.AutoSize = True
-        Me.lblAvailable.Font = New System.Drawing.Font("Microsoft Sans Serif", 36.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblAvailable.ForeColor = System.Drawing.SystemColors.Control
-        Me.lblAvailable.Location = New System.Drawing.Point(27, 25)
-        Me.lblAvailable.Margin = New System.Windows.Forms.Padding(27, 25, 40, 18)
-        Me.lblAvailable.Name = "lblAvailable"
-        Me.lblAvailable.Size = New System.Drawing.Size(63, 69)
-        Me.lblAvailable.TabIndex = 11
-        Me.lblAvailable.Text = "0"
-        Me.lblAvailable.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        '
-        'Label11
-        '
-        Me.Label11.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.Label11.AutoSize = True
-        Me.Label11.BackColor = System.Drawing.Color.Transparent
-        Me.Label11.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label11.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label11.Location = New System.Drawing.Point(261, 92)
-        Me.Label11.Margin = New System.Windows.Forms.Padding(27, 0, 27, 18)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(186, 29)
-        Me.Label11.TabIndex = 1
-        Me.Label11.Text = "Available Plots"
-        '
-        'Guna2Panel8
-        '
-        Me.Guna2Panel8.BackColor = System.Drawing.Color.FromArgb(CType(CType(44, Byte), Integer), CType(CType(95, Byte), Integer), CType(CType(120, Byte), Integer))
-        Me.Guna2Panel8.Controls.Add(Me.lblTotalDeceased)
-        Me.Guna2Panel8.Controls.Add(Me.Label10)
-        Me.Guna2Panel8.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Guna2Panel8.Location = New System.Drawing.Point(508, 4)
-        Me.Guna2Panel8.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.Guna2Panel8.Name = "Guna2Panel8"
-        Me.Guna2Panel8.Size = New System.Drawing.Size(472, 140)
-        Me.Guna2Panel8.TabIndex = 2
-        '
-        'lblTotalDeceased
-        '
-        Me.lblTotalDeceased.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblTotalDeceased.AutoSize = True
-        Me.lblTotalDeceased.Font = New System.Drawing.Font("Microsoft Sans Serif", 36.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblTotalDeceased.ForeColor = System.Drawing.SystemColors.Control
-        Me.lblTotalDeceased.Location = New System.Drawing.Point(27, 25)
-        Me.lblTotalDeceased.Margin = New System.Windows.Forms.Padding(27, 25, 40, 18)
-        Me.lblTotalDeceased.Name = "lblTotalDeceased"
-        Me.lblTotalDeceased.Size = New System.Drawing.Size(63, 69)
-        Me.lblTotalDeceased.TabIndex = 11
-        Me.lblTotalDeceased.Text = "0"
-        Me.lblTotalDeceased.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'Label10
-        '
-        Me.Label10.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.Label10.AutoSize = True
-        Me.Label10.BackColor = System.Drawing.Color.Transparent
-        Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label10.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label10.Location = New System.Drawing.Point(256, 92)
-        Me.Label10.Margin = New System.Windows.Forms.Padding(27, 0, 27, 18)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(198, 29)
-        Me.Label10.TabIndex = 1
-        Me.Label10.Text = "Total Deceased"
-        '
-        'Guna2Panel7
-        '
-        Me.Guna2Panel7.BackColor = System.Drawing.Color.FromArgb(CType(CType(44, Byte), Integer), CType(CType(95, Byte), Integer), CType(CType(120, Byte), Integer))
-        Me.Guna2Panel7.Controls.Add(Me.lblTotalClients)
-        Me.Guna2Panel7.Controls.Add(Me.Label9)
-        Me.Guna2Panel7.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Guna2Panel7.Location = New System.Drawing.Point(16, 4)
-        Me.Guna2Panel7.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.Guna2Panel7.Name = "Guna2Panel7"
-        Me.Guna2Panel7.Size = New System.Drawing.Size(472, 140)
-        Me.Guna2Panel7.TabIndex = 0
-        '
-        'lblTotalClients
-        '
-        Me.lblTotalClients.AutoSize = True
-        Me.lblTotalClients.Font = New System.Drawing.Font("Microsoft Sans Serif", 36.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblTotalClients.ForeColor = System.Drawing.SystemColors.Control
-        Me.lblTotalClients.Location = New System.Drawing.Point(27, 25)
-        Me.lblTotalClients.Margin = New System.Windows.Forms.Padding(27, 25, 40, 18)
-        Me.lblTotalClients.Name = "lblTotalClients"
-        Me.lblTotalClients.Size = New System.Drawing.Size(63, 69)
-        Me.lblTotalClients.TabIndex = 10
-        Me.lblTotalClients.Text = "0"
-        Me.lblTotalClients.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
-        'Label9
-        '
-        Me.Label9.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.Label9.AutoSize = True
-        Me.Label9.BackColor = System.Drawing.Color.Transparent
-        Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label9.Location = New System.Drawing.Point(288, 92)
-        Me.Label9.Margin = New System.Windows.Forms.Padding(27, 0, 27, 18)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(161, 29)
-        Me.Label9.TabIndex = 1
-        Me.Label9.Text = "Total Clients"
-        '
-        'tmDashboard
-        '
-        Me.tmDashboard.Interval = 600
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.ForeColor = System.Drawing.Color.Red
-        Me.Label4.Location = New System.Drawing.Point(17, 587)
-        Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(609, 46)
-        Me.Label4.TabIndex = 5
-        Me.Label4.Text = "GRAVE EXPIRATION NOTICE!"
+        Me.daysExpired.HeaderText = "Days Expired"
+        Me.daysExpired.MinimumWidth = 6
+        Me.daysExpired.Name = "daysExpired"
+        Me.daysExpired.ReadOnly = True
         '
         'frmDashboard
         '
@@ -691,14 +708,15 @@ Partial Class frmDashboard
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(14, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(90, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1489, 962)
+        Me.Controls.Add(Me.pnlNotifications)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.TableLayoutPanel2)
-        Me.Controls.Add(Me.dgvNotification)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Guna2Panel2)
+        Me.Controls.Add(Me.dgvNotification)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "frmDashboard"
         Me.Text = "frmHome"
         Me.Guna2Panel2.ResumeLayout(False)
@@ -760,11 +778,14 @@ Partial Class frmDashboard
     Friend WithEvents Label10 As Label
     Friend WithEvents lblTotalClients As Label
     Friend WithEvents tmDashboard As Timer
+    Friend WithEvents Label4 As Label
+    Friend WithEvents pnlNotifications As Guna.UI2.WinForms.Guna2CustomGradientPanel
+    Friend WithEvents cmdFilt As Guna.UI2.WinForms.Guna2ComboBox
     Friend WithEvents id As DataGridViewTextBoxColumn
     Friend WithEvents fullName As DataGridViewTextBoxColumn
     Friend WithEvents interment As DataGridViewTextBoxColumn
     Friend WithEvents expiry As DataGridViewTextBoxColumn
     Friend WithEvents plotLocation As DataGridViewTextBoxColumn
     Friend WithEvents status As DataGridViewTextBoxColumn
-    Friend WithEvents Label4 As Label
+    Friend WithEvents daysExpired As DataGridViewTextBoxColumn
 End Class

@@ -21,7 +21,7 @@
         Me.Visible = True
     End Sub
 
-    Private Sub btnReservationForm_Click(sender As Object, e As EventArgs) Handles btnReservationForm.Click
+    Private Sub btnReservationForm_Click(sender As Object, e As EventArgs)
         Try
             ' Create an instance of frmPaymentReserv
             Dim reservationForm As New frmPlotPurchAndAssign()
@@ -36,8 +36,8 @@
         Try
             ' Create an instance of frmDeceased with the dashboard reference
             Dim deceasedForm As New frmDeceased(mainDashboard)
-            ' Show it as a dialog
-            deceasedForm.ShowDialog()
+            ' Show it in the dashboard's subPanel instead of as a dialog
+            mainDashboard.subForm(deceasedForm)
         Catch ex As Exception
             MessageBox.Show("Error opening the deceased form: " & ex.Message)
         End Try
@@ -81,13 +81,8 @@
         Guna2Panel3.FillColor = Color.FromArgb(51, 153, 204) ' Change to a lighter shade
     End Sub
 
-    Private Sub Guna2Panel2_MouseLeave(sender As Object, e As EventArgs) Handles Guna2Panel2.MouseLeave
-        Guna2Panel2.FillColor = Color.FromArgb(40, 171, 189) ' Original teal color
-    End Sub
 
-    Private Sub Guna2Panel2_MouseEnter(sender As Object, e As EventArgs) Handles Guna2Panel2.MouseEnter
-        Guna2Panel2.FillColor = Color.FromArgb(51, 153, 204) ' Change to a lighter shade 
-    End Sub
+
 
     Private Sub Guna2Panel4_MouseLeave(sender As Object, e As EventArgs) Handles Guna2Panel4.MouseLeave
         Guna2Panel4.FillColor = Color.FromArgb(40, 171, 189) ' Original teal color

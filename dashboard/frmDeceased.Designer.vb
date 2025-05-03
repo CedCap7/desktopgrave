@@ -91,7 +91,7 @@ Partial Class frmDeceased
         Me.lstClientSuggestions.FormattingEnabled = True
         Me.lstClientSuggestions.ItemHeight = 25
         Me.lstClientSuggestions.Location = New System.Drawing.Point(61, 89)
-        Me.lstClientSuggestions.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.lstClientSuggestions.Margin = New System.Windows.Forms.Padding(4)
         Me.lstClientSuggestions.Name = "lstClientSuggestions"
         Me.lstClientSuggestions.Size = New System.Drawing.Size(401, 79)
         Me.lstClientSuggestions.TabIndex = 61
@@ -108,7 +108,7 @@ Partial Class frmDeceased
         Me.Guna2ShadowPanel3.Controls.Add(Me.Guna2HtmlLabel2)
         Me.Guna2ShadowPanel3.FillColor = System.Drawing.Color.FromArgb(CType(CType(14, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(90, Byte), Integer))
         Me.Guna2ShadowPanel3.Location = New System.Drawing.Point(4, 149)
-        Me.Guna2ShadowPanel3.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Guna2ShadowPanel3.Margin = New System.Windows.Forms.Padding(4)
         Me.Guna2ShadowPanel3.Name = "Guna2ShadowPanel3"
         Me.Guna2ShadowPanel3.Radius = 10
         Me.Guna2ShadowPanel3.ShadowColor = System.Drawing.Color.Black
@@ -131,7 +131,7 @@ Partial Class frmDeceased
         Me.txtBeneficiaryContact2.ForeColor = System.Drawing.Color.Black
         Me.txtBeneficiaryContact2.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.txtBeneficiaryContact2.Location = New System.Drawing.Point(480, 106)
-        Me.txtBeneficiaryContact2.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
+        Me.txtBeneficiaryContact2.Margin = New System.Windows.Forms.Padding(5)
         Me.txtBeneficiaryContact2.Name = "txtBeneficiaryContact2"
         Me.txtBeneficiaryContact2.PlaceholderForeColor = System.Drawing.Color.Gray
         Me.txtBeneficiaryContact2.PlaceholderText = "Contact No."
@@ -155,7 +155,7 @@ Partial Class frmDeceased
         Me.txtBeneficiaryContact1.ForeColor = System.Drawing.Color.Black
         Me.txtBeneficiaryContact1.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.txtBeneficiaryContact1.Location = New System.Drawing.Point(480, 50)
-        Me.txtBeneficiaryContact1.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
+        Me.txtBeneficiaryContact1.Margin = New System.Windows.Forms.Padding(5)
         Me.txtBeneficiaryContact1.Name = "txtBeneficiaryContact1"
         Me.txtBeneficiaryContact1.PlaceholderForeColor = System.Drawing.Color.Gray
         Me.txtBeneficiaryContact1.PlaceholderText = "Contact No."
@@ -179,7 +179,7 @@ Partial Class frmDeceased
         Me.txtBeneficiary1.ForeColor = System.Drawing.Color.Black
         Me.txtBeneficiary1.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.txtBeneficiary1.Location = New System.Drawing.Point(41, 50)
-        Me.txtBeneficiary1.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
+        Me.txtBeneficiary1.Margin = New System.Windows.Forms.Padding(5)
         Me.txtBeneficiary1.Name = "txtBeneficiary1"
         Me.txtBeneficiary1.PlaceholderForeColor = System.Drawing.Color.Gray
         Me.txtBeneficiary1.PlaceholderText = "1st Beneficiary"
@@ -203,7 +203,7 @@ Partial Class frmDeceased
         Me.txtBeneficiary2.ForeColor = System.Drawing.Color.Black
         Me.txtBeneficiary2.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.txtBeneficiary2.Location = New System.Drawing.Point(41, 106)
-        Me.txtBeneficiary2.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
+        Me.txtBeneficiary2.Margin = New System.Windows.Forms.Padding(5)
         Me.txtBeneficiary2.Name = "txtBeneficiary2"
         Me.txtBeneficiary2.PlaceholderForeColor = System.Drawing.Color.Gray
         Me.txtBeneficiary2.PlaceholderText = "2nd Beneficiary"
@@ -232,7 +232,7 @@ Partial Class frmDeceased
         Me.Guna2ShadowPanel1.Controls.Add(Me.guna2HtmlLabel1)
         Me.Guna2ShadowPanel1.FillColor = System.Drawing.Color.FromArgb(CType(CType(14, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(90, Byte), Integer))
         Me.Guna2ShadowPanel1.Location = New System.Drawing.Point(4, 2)
-        Me.Guna2ShadowPanel1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Guna2ShadowPanel1.Margin = New System.Windows.Forms.Padding(4)
         Me.Guna2ShadowPanel1.Name = "Guna2ShadowPanel1"
         Me.Guna2ShadowPanel1.Radius = 10
         Me.Guna2ShadowPanel1.ShadowColor = System.Drawing.Color.Black
@@ -256,7 +256,7 @@ Partial Class frmDeceased
         Me.txtClientSearch.ForeColor = System.Drawing.Color.Black
         Me.txtClientSearch.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.txtClientSearch.Location = New System.Drawing.Point(41, 41)
-        Me.txtClientSearch.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
+        Me.txtClientSearch.Margin = New System.Windows.Forms.Padding(5)
         Me.txtClientSearch.Name = "txtClientSearch"
         Me.txtClientSearch.PlaceholderForeColor = System.Drawing.Color.Gray
         Me.txtClientSearch.PlaceholderText = "Select client or type to search"
@@ -281,7 +281,7 @@ Partial Class frmDeceased
         Me.txtRelationship.ForeColor = System.Drawing.Color.Black
         Me.txtRelationship.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.txtRelationship.Location = New System.Drawing.Point(480, 41)
-        Me.txtRelationship.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
+        Me.txtRelationship.Margin = New System.Windows.Forms.Padding(5)
         Me.txtRelationship.Name = "txtRelationship"
         Me.txtRelationship.PlaceholderForeColor = System.Drawing.Color.Gray
         Me.txtRelationship.PlaceholderText = "Relationship to the Deceased"
@@ -369,7 +369,7 @@ Partial Class frmDeceased
         Me.Guna2ShadowPanel2.Controls.Add(Me.txtDeceasedExt)
         Me.Guna2ShadowPanel2.FillColor = System.Drawing.Color.FromArgb(CType(CType(14, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(90, Byte), Integer))
         Me.Guna2ShadowPanel2.Location = New System.Drawing.Point(4, 354)
-        Me.Guna2ShadowPanel2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Guna2ShadowPanel2.Margin = New System.Windows.Forms.Padding(4)
         Me.Guna2ShadowPanel2.Name = "Guna2ShadowPanel2"
         Me.Guna2ShadowPanel2.Radius = 10
         Me.Guna2ShadowPanel2.ShadowColor = System.Drawing.Color.Black
@@ -391,7 +391,7 @@ Partial Class frmDeceased
         Me.cmbIntermentYear.IntegralHeight = False
         Me.cmbIntermentYear.ItemHeight = 30
         Me.cmbIntermentYear.Location = New System.Drawing.Point(684, 293)
-        Me.cmbIntermentYear.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cmbIntermentYear.Margin = New System.Windows.Forms.Padding(4)
         Me.cmbIntermentYear.Name = "cmbIntermentYear"
         Me.cmbIntermentYear.Size = New System.Drawing.Size(128, 36)
         Me.cmbIntermentYear.TabIndex = 107
@@ -411,7 +411,7 @@ Partial Class frmDeceased
         Me.cmbIntermentDay.IntegralHeight = False
         Me.cmbIntermentDay.ItemHeight = 30
         Me.cmbIntermentDay.Location = New System.Drawing.Point(564, 293)
-        Me.cmbIntermentDay.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cmbIntermentDay.Margin = New System.Windows.Forms.Padding(4)
         Me.cmbIntermentDay.Name = "cmbIntermentDay"
         Me.cmbIntermentDay.Size = New System.Drawing.Size(111, 36)
         Me.cmbIntermentDay.TabIndex = 106
@@ -430,7 +430,7 @@ Partial Class frmDeceased
         Me.cmbIntermentMonth.ForeColor = System.Drawing.Color.Black
         Me.cmbIntermentMonth.ItemHeight = 30
         Me.cmbIntermentMonth.Location = New System.Drawing.Point(377, 293)
-        Me.cmbIntermentMonth.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cmbIntermentMonth.Margin = New System.Windows.Forms.Padding(4)
         Me.cmbIntermentMonth.Name = "cmbIntermentMonth"
         Me.cmbIntermentMonth.Size = New System.Drawing.Size(177, 36)
         Me.cmbIntermentMonth.TabIndex = 105
@@ -450,7 +450,7 @@ Partial Class frmDeceased
         Me.cmbDeathYear.IntegralHeight = False
         Me.cmbDeathYear.ItemHeight = 30
         Me.cmbDeathYear.Location = New System.Drawing.Point(684, 223)
-        Me.cmbDeathYear.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cmbDeathYear.Margin = New System.Windows.Forms.Padding(4)
         Me.cmbDeathYear.Name = "cmbDeathYear"
         Me.cmbDeathYear.Size = New System.Drawing.Size(128, 36)
         Me.cmbDeathYear.TabIndex = 104
@@ -470,7 +470,7 @@ Partial Class frmDeceased
         Me.cmbDeathDay.IntegralHeight = False
         Me.cmbDeathDay.ItemHeight = 30
         Me.cmbDeathDay.Location = New System.Drawing.Point(564, 223)
-        Me.cmbDeathDay.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cmbDeathDay.Margin = New System.Windows.Forms.Padding(4)
         Me.cmbDeathDay.Name = "cmbDeathDay"
         Me.cmbDeathDay.Size = New System.Drawing.Size(111, 36)
         Me.cmbDeathDay.TabIndex = 103
@@ -489,7 +489,7 @@ Partial Class frmDeceased
         Me.cmbDeathMonth.ForeColor = System.Drawing.Color.Black
         Me.cmbDeathMonth.ItemHeight = 30
         Me.cmbDeathMonth.Location = New System.Drawing.Point(377, 223)
-        Me.cmbDeathMonth.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cmbDeathMonth.Margin = New System.Windows.Forms.Padding(4)
         Me.cmbDeathMonth.Name = "cmbDeathMonth"
         Me.cmbDeathMonth.Size = New System.Drawing.Size(177, 36)
         Me.cmbDeathMonth.TabIndex = 102
@@ -509,7 +509,7 @@ Partial Class frmDeceased
         Me.cmbBirthYear.IntegralHeight = False
         Me.cmbBirthYear.ItemHeight = 30
         Me.cmbBirthYear.Location = New System.Drawing.Point(684, 151)
-        Me.cmbBirthYear.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cmbBirthYear.Margin = New System.Windows.Forms.Padding(4)
         Me.cmbBirthYear.Name = "cmbBirthYear"
         Me.cmbBirthYear.Size = New System.Drawing.Size(128, 36)
         Me.cmbBirthYear.TabIndex = 101
@@ -529,7 +529,7 @@ Partial Class frmDeceased
         Me.cmbBirthDay.IntegralHeight = False
         Me.cmbBirthDay.ItemHeight = 30
         Me.cmbBirthDay.Location = New System.Drawing.Point(564, 151)
-        Me.cmbBirthDay.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cmbBirthDay.Margin = New System.Windows.Forms.Padding(4)
         Me.cmbBirthDay.Name = "cmbBirthDay"
         Me.cmbBirthDay.Size = New System.Drawing.Size(111, 36)
         Me.cmbBirthDay.TabIndex = 100
@@ -548,7 +548,7 @@ Partial Class frmDeceased
         Me.cmbBirthMonth.ForeColor = System.Drawing.Color.Black
         Me.cmbBirthMonth.ItemHeight = 30
         Me.cmbBirthMonth.Location = New System.Drawing.Point(377, 151)
-        Me.cmbBirthMonth.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.cmbBirthMonth.Margin = New System.Windows.Forms.Padding(4)
         Me.cmbBirthMonth.Name = "cmbBirthMonth"
         Me.cmbBirthMonth.Size = New System.Drawing.Size(177, 36)
         Me.cmbBirthMonth.TabIndex = 99
@@ -569,7 +569,7 @@ Partial Class frmDeceased
         Me.txtDeceasedFirstName.ForeColor = System.Drawing.Color.Black
         Me.txtDeceasedFirstName.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.txtDeceasedFirstName.Location = New System.Drawing.Point(41, 64)
-        Me.txtDeceasedFirstName.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
+        Me.txtDeceasedFirstName.Margin = New System.Windows.Forms.Padding(5)
         Me.txtDeceasedFirstName.Name = "txtDeceasedFirstName"
         Me.txtDeceasedFirstName.PlaceholderForeColor = System.Drawing.Color.Gray
         Me.txtDeceasedFirstName.PlaceholderText = "First Name"
@@ -615,7 +615,7 @@ Partial Class frmDeceased
         Me.txtDeceasedLastName.ForeColor = System.Drawing.Color.Black
         Me.txtDeceasedLastName.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.txtDeceasedLastName.Location = New System.Drawing.Point(41, 172)
-        Me.txtDeceasedLastName.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
+        Me.txtDeceasedLastName.Margin = New System.Windows.Forms.Padding(5)
         Me.txtDeceasedLastName.Name = "txtDeceasedLastName"
         Me.txtDeceasedLastName.PlaceholderForeColor = System.Drawing.Color.Gray
         Me.txtDeceasedLastName.PlaceholderText = "Last Name"
@@ -639,7 +639,7 @@ Partial Class frmDeceased
         Me.txtDeceasedMiddleName.ForeColor = System.Drawing.Color.Black
         Me.txtDeceasedMiddleName.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.txtDeceasedMiddleName.Location = New System.Drawing.Point(41, 118)
-        Me.txtDeceasedMiddleName.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
+        Me.txtDeceasedMiddleName.Margin = New System.Windows.Forms.Padding(5)
         Me.txtDeceasedMiddleName.Name = "txtDeceasedMiddleName"
         Me.txtDeceasedMiddleName.PlaceholderForeColor = System.Drawing.Color.Gray
         Me.txtDeceasedMiddleName.PlaceholderText = "Middle Name"
@@ -699,7 +699,7 @@ Partial Class frmDeceased
         Me.txtReligion.ForeColor = System.Drawing.Color.Black
         Me.txtReligion.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.txtReligion.Location = New System.Drawing.Point(373, 64)
-        Me.txtReligion.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
+        Me.txtReligion.Margin = New System.Windows.Forms.Padding(5)
         Me.txtReligion.Name = "txtReligion"
         Me.txtReligion.PlaceholderForeColor = System.Drawing.Color.Gray
         Me.txtReligion.PlaceholderText = "Enter Religion"
@@ -782,7 +782,7 @@ Partial Class frmDeceased
         Me.txtDeceasedExt.ForeColor = System.Drawing.Color.Black
         Me.txtDeceasedExt.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.txtDeceasedExt.Location = New System.Drawing.Point(41, 226)
-        Me.txtDeceasedExt.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
+        Me.txtDeceasedExt.Margin = New System.Windows.Forms.Padding(5)
         Me.txtDeceasedExt.Name = "txtDeceasedExt"
         Me.txtDeceasedExt.PlaceholderForeColor = System.Drawing.Color.Gray
         Me.txtDeceasedExt.PlaceholderText = "Ext. (Sr., Jr., II, III"
@@ -797,7 +797,7 @@ Partial Class frmDeceased
         Me.Guna2Panel2.Controls.Add(Me.Label6)
         Me.Guna2Panel2.Dock = System.Windows.Forms.DockStyle.Top
         Me.Guna2Panel2.Location = New System.Drawing.Point(0, 0)
-        Me.Guna2Panel2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Guna2Panel2.Margin = New System.Windows.Forms.Padding(4)
         Me.Guna2Panel2.Name = "Guna2Panel2"
         Me.Guna2Panel2.Size = New System.Drawing.Size(851, 85)
         Me.Guna2Panel2.TabIndex = 56
@@ -837,7 +837,7 @@ Partial Class frmDeceased
         Me.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.Name = "frmDeceased"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Form1"
+        Me.Text = "Deceased Registration Form"
         Me.guna2Panel1.ResumeLayout(False)
         Me.Guna2ShadowPanel3.ResumeLayout(False)
         Me.Guna2ShadowPanel3.PerformLayout()

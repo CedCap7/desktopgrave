@@ -477,4 +477,12 @@ Public Class frmDeceasedReg
     Private Sub Guna2Panel2_Paint(sender As Object, e As PaintEventArgs) Handles Guna2Panel2.Paint
 
     End Sub
+
+    Private Sub Guna2Panel1_Paint(sender As Object, e As PaintEventArgs) Handles Guna2Panel1.Paint
+
+    End Sub
+
+    Private Sub DeceasedList_SelectedIndexChanged(sender As Object, e As EventArgs) Handles DeceasedList.SelectedIndexChanged
+
+    End Sub
 End Class

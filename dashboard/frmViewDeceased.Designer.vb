@@ -67,7 +67,7 @@ Partial Class frmViewDeceased
         Me.Guna2ShadowPanel1.Controls.Add(Me.LblClient)
         Me.Guna2ShadowPanel1.FillColor = System.Drawing.Color.FromArgb(CType(CType(14, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(90, Byte), Integer))
         Me.Guna2ShadowPanel1.Location = New System.Drawing.Point(16, 74)
-        Me.Guna2ShadowPanel1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Guna2ShadowPanel1.Margin = New System.Windows.Forms.Padding(4)
         Me.Guna2ShadowPanel1.Name = "Guna2ShadowPanel1"
         Me.Guna2ShadowPanel1.Radius = 10
         Me.Guna2ShadowPanel1.ShadowColor = System.Drawing.Color.Black
@@ -222,7 +222,7 @@ Partial Class frmViewDeceased
         Me.Guna2ShadowPanel2.Controls.Add(Me.LblDeceased)
         Me.Guna2ShadowPanel2.FillColor = System.Drawing.Color.FromArgb(CType(CType(14, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(90, Byte), Integer))
         Me.Guna2ShadowPanel2.Location = New System.Drawing.Point(561, 74)
-        Me.Guna2ShadowPanel2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Guna2ShadowPanel2.Margin = New System.Windows.Forms.Padding(4)
         Me.Guna2ShadowPanel2.Name = "Guna2ShadowPanel2"
         Me.Guna2ShadowPanel2.Radius = 10
         Me.Guna2ShadowPanel2.ShadowColor = System.Drawing.Color.Black
@@ -286,7 +286,7 @@ Partial Class frmViewDeceased
         Me.pbClient.ImageRotate = 0!
         Me.pbClient.InitialImage = Global.dashboard.My.Resources.Resources.profile
         Me.pbClient.Location = New System.Drawing.Point(163, 20)
-        Me.pbClient.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pbClient.Margin = New System.Windows.Forms.Padding(4)
         Me.pbClient.Name = "pbClient"
         Me.pbClient.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle
         Me.pbClient.Size = New System.Drawing.Size(233, 215)
@@ -378,7 +378,7 @@ Partial Class frmViewDeceased
         Me.Controls.Add(Me.Guna2ShadowPanel2)
         Me.Controls.Add(Me.Guna2ShadowPanel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "frmViewDeceased"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "frmViewDeceased"

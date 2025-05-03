@@ -57,7 +57,7 @@ Partial Class frmAccApproval
         Me.Guna2Panel2.Controls.Add(Me.Label1)
         Me.Guna2Panel2.Dock = System.Windows.Forms.DockStyle.Top
         Me.Guna2Panel2.Location = New System.Drawing.Point(0, 0)
-        Me.Guna2Panel2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Guna2Panel2.Margin = New System.Windows.Forms.Padding(4)
         Me.Guna2Panel2.Name = "Guna2Panel2"
         Me.Guna2Panel2.Size = New System.Drawing.Size(1727, 100)
         Me.Guna2Panel2.TabIndex = 5
@@ -70,7 +70,7 @@ Partial Class frmAccApproval
         Me.btnReject.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnReject.ForeColor = System.Drawing.Color.White
         Me.btnReject.Location = New System.Drawing.Point(1485, 55)
-        Me.btnReject.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnReject.Margin = New System.Windows.Forms.Padding(4)
         Me.btnReject.Name = "btnReject"
         Me.btnReject.Size = New System.Drawing.Size(117, 31)
         Me.btnReject.TabIndex = 8
@@ -84,7 +84,7 @@ Partial Class frmAccApproval
         Me.btnShowAll.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnShowAll.ForeColor = System.Drawing.Color.White
         Me.btnShowAll.Location = New System.Drawing.Point(1252, 55)
-        Me.btnShowAll.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnShowAll.Margin = New System.Windows.Forms.Padding(4)
         Me.btnShowAll.Name = "btnShowAll"
         Me.btnShowAll.Size = New System.Drawing.Size(100, 31)
         Me.btnShowAll.TabIndex = 6
@@ -98,7 +98,7 @@ Partial Class frmAccApproval
         Me.btnDelete.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnDelete.ForeColor = System.Drawing.Color.White
         Me.btnDelete.Location = New System.Drawing.Point(1611, 55)
-        Me.btnDelete.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnDelete.Margin = New System.Windows.Forms.Padding(4)
         Me.btnDelete.Name = "btnDelete"
         Me.btnDelete.Size = New System.Drawing.Size(100, 31)
         Me.btnDelete.TabIndex = 3
@@ -112,7 +112,7 @@ Partial Class frmAccApproval
         Me.btnApproval.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnApproval.ForeColor = System.Drawing.Color.White
         Me.btnApproval.Location = New System.Drawing.Point(1360, 55)
-        Me.btnApproval.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnApproval.Margin = New System.Windows.Forms.Padding(4)
         Me.btnApproval.Name = "btnApproval"
         Me.btnApproval.Size = New System.Drawing.Size(117, 31)
         Me.btnApproval.TabIndex = 2
@@ -150,7 +150,7 @@ Partial Class frmAccApproval
         Me.Guna2Panel1.Controls.Add(Me.ApprovalList)
         Me.Guna2Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Guna2Panel1.Location = New System.Drawing.Point(0, 100)
-        Me.Guna2Panel1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Guna2Panel1.Margin = New System.Windows.Forms.Padding(4)
         Me.Guna2Panel1.Name = "Guna2Panel1"
         Me.Guna2Panel1.ShadowDecoration.Enabled = True
         Me.Guna2Panel1.Size = New System.Drawing.Size(1727, 496)
@@ -199,7 +199,7 @@ Partial Class frmAccApproval
         Me.ApprovalList.GridLines = True
         Me.ApprovalList.HideSelection = False
         Me.ApprovalList.Location = New System.Drawing.Point(16, 60)
-        Me.ApprovalList.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.ApprovalList.Margin = New System.Windows.Forms.Padding(4)
         Me.ApprovalList.Name = "ApprovalList"
         Me.ApprovalList.ShowItemToolTips = True
         Me.ApprovalList.Size = New System.Drawing.Size(1695, 430)
@@ -264,7 +264,7 @@ Partial Class frmAccApproval
         Me.Controls.Add(Me.Guna2Panel1)
         Me.Controls.Add(Me.Guna2Panel2)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "frmAccApproval"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "frmAccApproval"

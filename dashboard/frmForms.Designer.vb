@@ -29,10 +29,6 @@ Partial Class frmForms
         Me.Guna2Panel1 = New Guna.UI2.WinForms.Guna2Panel()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.Guna2Panel2 = New Guna.UI2.WinForms.Guna2Panel()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.btnReservationForm = New Guna.UI2.WinForms.Guna2Button()
         Me.Guna2Panel3 = New Guna.UI2.WinForms.Guna2Panel()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
@@ -45,7 +41,6 @@ Partial Class frmForms
         Me.Label12 = New System.Windows.Forms.Label()
         Me.btnPlotReservation = New Guna.UI2.WinForms.Guna2Button()
         Me.Guna2Panel1.SuspendLayout()
-        Me.Guna2Panel2.SuspendLayout()
         Me.Guna2Panel3.SuspendLayout()
         Me.Guna2Panel4.SuspendLayout()
         Me.Guna2Panel6.SuspendLayout()
@@ -105,7 +100,7 @@ Partial Class frmForms
         Me.Guna2Panel1.Controls.Add(Me.Label1)
         Me.Guna2Panel1.Controls.Add(Me.btnApplicationForm)
         Me.Guna2Panel1.FillColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(171, Byte), Integer), CType(CType(189, Byte), Integer))
-        Me.Guna2Panel1.Location = New System.Drawing.Point(16, 15)
+        Me.Guna2Panel1.Location = New System.Drawing.Point(19, 170)
         Me.Guna2Panel1.Margin = New System.Windows.Forms.Padding(4)
         Me.Guna2Panel1.Name = "Guna2Panel1"
         Me.Guna2Panel1.ShadowDecoration.BorderRadius = 25
@@ -143,73 +138,6 @@ Partial Class frmForms
         Me.Label1.TabIndex = 1
         Me.Label1.Text = "Application Form"
         '
-        'Guna2Panel2
-        '
-        Me.Guna2Panel2.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Guna2Panel2.BackColor = System.Drawing.Color.Transparent
-        Me.Guna2Panel2.BorderRadius = 20
-        Me.Guna2Panel2.Controls.Add(Me.Label3)
-        Me.Guna2Panel2.Controls.Add(Me.Label4)
-        Me.Guna2Panel2.Controls.Add(Me.btnReservationForm)
-        Me.Guna2Panel2.FillColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(171, Byte), Integer), CType(CType(189, Byte), Integer))
-        Me.Guna2Panel2.Location = New System.Drawing.Point(16, 270)
-        Me.Guna2Panel2.Margin = New System.Windows.Forms.Padding(4)
-        Me.Guna2Panel2.Name = "Guna2Panel2"
-        Me.Guna2Panel2.ShadowDecoration.BorderRadius = 25
-        Me.Guna2Panel2.ShadowDecoration.Depth = 15
-        Me.Guna2Panel2.ShadowDecoration.Enabled = True
-        Me.Guna2Panel2.ShadowDecoration.Shadow = New System.Windows.Forms.Padding(2, 2, 7, 7)
-        Me.Guna2Panel2.Size = New System.Drawing.Size(869, 71)
-        Me.Guna2Panel2.TabIndex = 4
-        '
-        'Label3
-        '
-        Me.Label3.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.Label3.AutoSize = True
-        Me.Label3.BackColor = System.Drawing.Color.Transparent
-        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Label3.Location = New System.Drawing.Point(25, 41)
-        Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(540, 24)
-        Me.Label3.TabIndex = 2
-        Me.Label3.Text = "This form allows you to purchase a plot and assign a deceased."
-        '
-        'Label4
-        '
-        Me.Label4.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.Label4.AutoSize = True
-        Me.Label4.BackColor = System.Drawing.Color.Transparent
-        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Label4.Location = New System.Drawing.Point(24, 5)
-        Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(624, 36)
-        Me.Label4.TabIndex = 1
-        Me.Label4.Text = "Plot Purchase and Burial Assignment Form"
-        '
-        'btnReservationForm
-        '
-        Me.btnReservationForm.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.btnReservationForm.Animated = True
-        Me.btnReservationForm.BorderRadius = 15
-        Me.btnReservationForm.BorderThickness = 1
-        Me.btnReservationForm.FillColor = System.Drawing.Color.FromArgb(CType(CType(52, Byte), Integer), CType(CType(189, Byte), Integer), CType(CType(40, Byte), Integer))
-        Me.btnReservationForm.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold)
-        Me.btnReservationForm.ForeColor = System.Drawing.SystemColors.Control
-        Me.btnReservationForm.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(171, Byte), Integer), CType(CType(189, Byte), Integer))
-        Me.btnReservationForm.HoverState.FillColor = System.Drawing.Color.Black
-        Me.btnReservationForm.HoverState.ForeColor = System.Drawing.Color.White
-        Me.btnReservationForm.Location = New System.Drawing.Point(711, 15)
-        Me.btnReservationForm.Margin = New System.Windows.Forms.Padding(4)
-        Me.btnReservationForm.Name = "btnReservationForm"
-        Me.btnReservationForm.Size = New System.Drawing.Size(144, 41)
-        Me.btnReservationForm.TabIndex = 1
-        Me.btnReservationForm.Text = "Apply"
-        '
         'Guna2Panel3
         '
         Me.Guna2Panel3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
@@ -220,7 +148,7 @@ Partial Class frmForms
         Me.Guna2Panel3.Controls.Add(Me.Label6)
         Me.Guna2Panel3.Controls.Add(Me.btnDeceasedForm)
         Me.Guna2Panel3.FillColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(171, Byte), Integer), CType(CType(189, Byte), Integer))
-        Me.Guna2Panel3.Location = New System.Drawing.Point(16, 100)
+        Me.Guna2Panel3.Location = New System.Drawing.Point(19, 402)
         Me.Guna2Panel3.Margin = New System.Windows.Forms.Padding(4)
         Me.Guna2Panel3.Name = "Guna2Panel3"
         Me.Guna2Panel3.ShadowDecoration.BorderRadius = 25
@@ -268,7 +196,7 @@ Partial Class frmForms
         Me.Guna2Panel4.Controls.Add(Me.Label8)
         Me.Guna2Panel4.Controls.Add(Me.btnAccApprov)
         Me.Guna2Panel4.FillColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(171, Byte), Integer), CType(CType(189, Byte), Integer))
-        Me.Guna2Panel4.Location = New System.Drawing.Point(19, 358)
+        Me.Guna2Panel4.Location = New System.Drawing.Point(19, 32)
         Me.Guna2Panel4.Margin = New System.Windows.Forms.Padding(4)
         Me.Guna2Panel4.Name = "Guna2Panel4"
         Me.Guna2Panel4.ShadowDecoration.BorderRadius = 25
@@ -335,7 +263,7 @@ Partial Class frmForms
         Me.Guna2Panel6.Controls.Add(Me.Label12)
         Me.Guna2Panel6.Controls.Add(Me.btnPlotReservation)
         Me.Guna2Panel6.FillColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(171, Byte), Integer), CType(CType(189, Byte), Integer))
-        Me.Guna2Panel6.Location = New System.Drawing.Point(16, 185)
+        Me.Guna2Panel6.Location = New System.Drawing.Point(19, 280)
         Me.Guna2Panel6.Margin = New System.Windows.Forms.Padding(4)
         Me.Guna2Panel6.Name = "Guna2Panel6"
         Me.Guna2Panel6.ShadowDecoration.BorderRadius = 25
@@ -355,9 +283,9 @@ Partial Class frmForms
         Me.Label11.Location = New System.Drawing.Point(25, 41)
         Me.Label11.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(346, 24)
+        Me.Label11.Size = New System.Drawing.Size(362, 24)
         Me.Label11.TabIndex = 2
-        Me.Label11.Text = "This form allows clients to reserve a plot."
+        Me.Label11.Text = "This form allows clients to purchase a plot."
         '
         'Label12
         '
@@ -369,9 +297,9 @@ Partial Class frmForms
         Me.Label12.Location = New System.Drawing.Point(24, 5)
         Me.Label12.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(266, 36)
+        Me.Label12.Size = New System.Drawing.Size(624, 36)
         Me.Label12.TabIndex = 1
-        Me.Label12.Text = "Reservation Form"
+        Me.Label12.Text = "Plot Purchase and Burial Assignment Form"
         '
         'btnPlotReservation
         '
@@ -401,7 +329,6 @@ Partial Class frmForms
         Me.Controls.Add(Me.Guna2Panel6)
         Me.Controls.Add(Me.Guna2Panel4)
         Me.Controls.Add(Me.Guna2Panel3)
-        Me.Controls.Add(Me.Guna2Panel2)
         Me.Controls.Add(Me.Guna2Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Margin = New System.Windows.Forms.Padding(4)
@@ -409,8 +336,6 @@ Partial Class frmForms
         Me.Text = "frmForms"
         Me.Guna2Panel1.ResumeLayout(False)
         Me.Guna2Panel1.PerformLayout()
-        Me.Guna2Panel2.ResumeLayout(False)
-        Me.Guna2Panel2.PerformLayout()
         Me.Guna2Panel3.ResumeLayout(False)
         Me.Guna2Panel3.PerformLayout()
         Me.Guna2Panel4.ResumeLayout(False)
@@ -430,10 +355,6 @@ Partial Class frmForms
     Friend WithEvents Guna2Panel3 As Guna.UI2.WinForms.Guna2Panel
     Friend WithEvents Label5 As Label
     Friend WithEvents Label6 As Label
-    Friend WithEvents btnReservationForm As Guna.UI2.WinForms.Guna2Button
-    Friend WithEvents Guna2Panel2 As Guna.UI2.WinForms.Guna2Panel
-    Friend WithEvents Label3 As Label
-    Friend WithEvents Label4 As Label
     Friend WithEvents Guna2Panel4 As Guna.UI2.WinForms.Guna2Panel
     Friend WithEvents Label7 As Label
     Friend WithEvents Label8 As Label

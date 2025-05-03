@@ -8,39 +8,47 @@ Public Class frmClientReg
 
     ' Load clients with optional search functionality
     Sub LoadClients(Optional searchText As String = "")
-        dbconn()
-        cn.Open()
+        Try
+            dbconn()
+            cn.Open()
 
-        sql = "SELECT Client_ID, LastName, FirstName, MiddleName, Date_Registered, status FROM client " &
-      "WHERE LastName LIKE @search OR FirstName LIKE @search OR MiddleName LIKE @search " &
-      "ORDER BY LastName ASC"
+            sql = "SELECT Client_ID, LastName, FirstName, MiddleName, Date_Registered, status FROM client " &
+          "WHERE LastName LIKE @search OR FirstName LIKE @search OR MiddleName LIKE @search " &
+          "ORDER BY LastName ASC"
 
+            cmd = New MySqlCommand(sql, cn)
+            cmd.Parameters.AddWithValue("@search", "%" & searchText & "%")
+            dr = cmd.ExecuteReader
 
-        cmd = New MySqlCommand(sql, cn)
-        cmd.Parameters.AddWithValue("@search", "%" & searchText & "%")
-        dr = cmd.ExecuteReader
+            ClientList.Items.Clear()
 
-        ClientList.Items.Clear()
+            While dr.Read
+                newLine = ClientList.Items.Add(dr("Client_ID").ToString())
 
-        While dr.Read
-            newLine = ClientList.Items.Add(dr("Client_ID").ToString())
+                ' Full Name
+                newLine.SubItems.Add(dr("LastName") & ", " & dr("FirstName") & " " & dr("MiddleName"))
 
-            ' Full Name
-            newLine.SubItems.Add(dr("LastName") & ", " & dr("FirstName") & " " & dr("MiddleName"))
+                ' Date Registered
+                Dim dateReg As String = If(IsDBNull(dr("Date_Registered")), "", CDate(dr("Date_Registered")).ToString("yyyy-MM-dd"))
+                newLine.SubItems.Add(dateReg)
 
-            ' Date Registered
-            Dim dateReg As String = If(IsDBNull(dr("Date_Registered")), "", CDate(dr("Date_Registered")).ToString("yyyy-MM-dd"))
-            newLine.SubItems.Add(dateReg)
+                ' Status
+                Dim statusText As String = If(dr("status") = 1, "Active", "Inactive")
+                newLine.SubItems.Add(statusText)
+            End While
 
-            ' Status
-            Dim statusText As String = If(dr("status") = 1, "Active", "Inactive")
-            newLine.SubItems.Add(statusText)
-        End While
-
-
-        cmd.Dispose()
-        dr.Close()
-        cn.Close()
+            cmd.Dispose()
+            dr.Close()
+            cn.Close()
+        Catch ex As MySqlException
+            MessageBox.Show("Database error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Catch ex As Exception
+            MessageBox.Show("An unexpected error occurred: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            If cn IsNot Nothing AndAlso cn.State = ConnectionState.Open Then
+                cn.Close()
+            End If
+        End Try
     End Sub
 
     Private Sub btnEdit_Click(sender As Object, e As EventArgs) Handles btnEdit.Click
