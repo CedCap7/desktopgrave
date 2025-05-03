@@ -151,11 +151,13 @@ Public Class frmDeceased
 
     ' --- CLIENT SUGGESTION SELECTION ---
     Private Sub lstClientSuggestions_Click(sender As Object, e As EventArgs) Handles lstClientSuggestions.Click
-        Dim index As Integer = lstClientSuggestions.SelectedIndex
+        Dim selectedName As String = lstClientSuggestions.SelectedItem?.ToString()
+        If String.IsNullOrEmpty(selectedName) Then Exit Sub
 
-        If index >= 0 AndAlso index < clientSuggestions.Rows.Count Then
-            txtClientSearch.Text = lstClientSuggestions.SelectedItem.ToString()
-            selectedClientId = CInt(clientSuggestions.Rows(index)("Client_ID"))
+        Dim foundRows = clientSuggestions.Select($"FullName = '{selectedName.Replace("'", "''")}'")
+        If foundRows.Length > 0 Then
+            txtClientSearch.Text = selectedName
+            selectedClientId = CInt(foundRows(0)("Client_ID"))
             lstClientSuggestions.Visible = False
         End If
     End Sub
@@ -225,7 +227,7 @@ Public Class frmDeceased
                 sql = "INSERT INTO deceased (FirstName, MiddleName, LastName, Ext, DateOfBirth, DateofDeath, " &
                   "Gender, Religion, Interment, Relationship, Client_ID, deceased_status, Plot_ID, Level) " &
                   "VALUES (@FirstName, @MiddleName, @LastName, @Ext, @DateOfBirth, @DateOfDeath, " &
-                  "@Gender, @Religion, @Interment, @Relationship, @ClientId, 'Remaining', NULL, NULL)"
+                  "@Gender, @Religion, @Interment, @Relationship, @ClientId, @DeceasedStatus, NULL, NULL)"
 
                 Using cmd As New MySqlCommand(sql, cn, transaction)
                     cmd.Parameters.AddWithValue("@FirstName", FirstName)
@@ -239,6 +241,7 @@ Public Class frmDeceased
                     cmd.Parameters.AddWithValue("@Interment", If(hasIntermentDate, intermentDate, DBNull.Value))
                     cmd.Parameters.AddWithValue("@Relationship", If(String.IsNullOrWhiteSpace(Relationship), DBNull.Value, Relationship))
                     cmd.Parameters.AddWithValue("@ClientId", ClientId)
+                    cmd.Parameters.AddWithValue("@DeceasedStatus", If(hasIntermentDate, "Remaining", "Pending"))
 
                     cmd.ExecuteNonQuery()
                 End Using
@@ -259,6 +262,9 @@ Public Class frmDeceased
 
                 MessageBox.Show("Deceased record and beneficiaries added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 ClearForm()
+                Me.Close()
+                Dim formInstance As New frmForms(mainDashboard)
+                mainDashboard.subForm(formInstance)
 
             End Using
 

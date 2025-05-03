@@ -316,5 +316,7 @@ Public Class frmAccApproval
         LoadUsers()
     End Sub
 
+    Private Sub ApprovalList_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ApprovalList.SelectedIndexChanged
 
+    End Sub
 End Class

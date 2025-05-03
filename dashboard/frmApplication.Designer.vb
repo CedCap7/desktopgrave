@@ -368,7 +368,7 @@ Partial Class frmApplication
         Me.btnConfirm.Name = "btnConfirm"
         Me.btnConfirm.Size = New System.Drawing.Size(317, 46)
         Me.btnConfirm.TabIndex = 15
-        Me.btnConfirm.Text = "Deceased Form"
+        Me.btnConfirm.Text = "CONFIRM"
         '
         'btnCancel
         '
@@ -376,7 +376,7 @@ Partial Class frmApplication
         Me.btnCancel.BackColor = System.Drawing.Color.FromArgb(CType(CType(23, Byte), Integer), CType(CType(107, Byte), Integer), CType(CType(135, Byte), Integer))
         Me.btnCancel.BorderRadius = 17
         Me.btnCancel.BorderThickness = 1
-        Me.btnCancel.FillColor = System.Drawing.Color.LimeGreen
+        Me.btnCancel.FillColor = System.Drawing.Color.Brown
         Me.btnCancel.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnCancel.ForeColor = System.Drawing.Color.White
         Me.btnCancel.Location = New System.Drawing.Point(317, 369)
@@ -384,7 +384,7 @@ Partial Class frmApplication
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(317, 46)
         Me.btnCancel.TabIndex = 14
-        Me.btnCancel.Text = "Payment/Reservation"
+        Me.btnCancel.Text = "CANCEL"
         '
         'Guna2Panel2
         '
@@ -465,7 +465,7 @@ Partial Class frmApplication
         Me.Name = "frmApplication"
         Me.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "Form4"
+        Me.Text = "Client Application Form"
         Me.panel1.ResumeLayout(False)
         Me.Guna2ShadowPanel1.ResumeLayout(False)
         Me.Guna2ShadowPanel1.PerformLayout()

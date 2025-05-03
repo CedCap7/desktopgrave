@@ -106,13 +106,13 @@ Public Class frmUpdateDeceased
     Private Sub lstClientSuggestions_Click(sender As Object, e As EventArgs) Handles lstClientSuggestions.Click
         ' Ensure a valid index is selected
         If lstClientSuggestions.SelectedIndex >= 0 Then
-            Dim index As Integer = lstClientSuggestions.SelectedIndex
+            Dim selectedIndex As Integer = lstClientSuggestions.SelectedIndex
 
             ' Ensure the index is within the valid range of clientSuggestions
-            If index >= 0 AndAlso index < clientSuggestions.Rows.Count Then
+            If selectedIndex >= 0 AndAlso selectedIndex < clientSuggestions.Rows.Count Then
                 ' Get the FullName and Client_ID from clientSuggestions
                 txtClientSearch.Text = lstClientSuggestions.SelectedItem.ToString()
-                selectedClientId = CInt(clientSuggestions.Rows(index)("Client_ID"))
+                selectedClientId = CInt(clientSuggestions.Rows(selectedIndex)("Client_ID"))
 
                 ' Hide the suggestions after selection
                 lstClientSuggestions.Visible = False
