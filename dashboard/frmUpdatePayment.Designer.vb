@@ -74,7 +74,6 @@ Partial Class frmUpdatePayment
         Me.txtPaidAmount.Location = New System.Drawing.Point(13, 216)
         Me.txtPaidAmount.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txtPaidAmount.Name = "txtPaidAmount"
-        Me.txtPaidAmount.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
         Me.txtPaidAmount.PlaceholderForeColor = System.Drawing.Color.Gray
         Me.txtPaidAmount.PlaceholderText = "Input Amount"
         Me.txtPaidAmount.SelectedText = ""
@@ -187,7 +186,7 @@ Partial Class frmUpdatePayment
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Name = "frmUpdatePayment"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "frmUpdatePayment"
+        Me.Text = "Update Payment"
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         Me.ResumeLayout(False)

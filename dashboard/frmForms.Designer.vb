@@ -59,15 +59,14 @@ Partial Class frmForms
         Me.btnApplicationForm.BorderRadius = 15
         Me.btnApplicationForm.BorderThickness = 1
         Me.btnApplicationForm.FillColor = System.Drawing.Color.FromArgb(CType(CType(52, Byte), Integer), CType(CType(189, Byte), Integer), CType(CType(40, Byte), Integer))
-        Me.btnApplicationForm.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnApplicationForm.Font = New System.Drawing.Font("Roboto Condensed", 14.25!, System.Drawing.FontStyle.Bold)
         Me.btnApplicationForm.ForeColor = System.Drawing.SystemColors.Control
         Me.btnApplicationForm.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(171, Byte), Integer), CType(CType(189, Byte), Integer))
         Me.btnApplicationForm.HoverState.FillColor = System.Drawing.Color.Black
         Me.btnApplicationForm.HoverState.ForeColor = System.Drawing.Color.White
-        Me.btnApplicationForm.Location = New System.Drawing.Point(711, 14)
-        Me.btnApplicationForm.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnApplicationForm.Location = New System.Drawing.Point(533, 11)
         Me.btnApplicationForm.Name = "btnApplicationForm"
-        Me.btnApplicationForm.Size = New System.Drawing.Size(144, 41)
+        Me.btnApplicationForm.Size = New System.Drawing.Size(108, 33)
         Me.btnApplicationForm.TabIndex = 0
         Me.btnApplicationForm.Text = "Apply"
         '
@@ -78,15 +77,14 @@ Partial Class frmForms
         Me.btnDeceasedForm.BorderRadius = 15
         Me.btnDeceasedForm.BorderThickness = 1
         Me.btnDeceasedForm.FillColor = System.Drawing.Color.FromArgb(CType(CType(52, Byte), Integer), CType(CType(189, Byte), Integer), CType(CType(40, Byte), Integer))
-        Me.btnDeceasedForm.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold)
+        Me.btnDeceasedForm.Font = New System.Drawing.Font("Roboto Condensed", 14.25!, System.Drawing.FontStyle.Bold)
         Me.btnDeceasedForm.ForeColor = System.Drawing.SystemColors.Control
         Me.btnDeceasedForm.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(171, Byte), Integer), CType(CType(189, Byte), Integer))
         Me.btnDeceasedForm.HoverState.FillColor = System.Drawing.Color.Black
         Me.btnDeceasedForm.HoverState.ForeColor = System.Drawing.Color.White
-        Me.btnDeceasedForm.Location = New System.Drawing.Point(711, 15)
-        Me.btnDeceasedForm.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnDeceasedForm.Location = New System.Drawing.Point(533, 12)
         Me.btnDeceasedForm.Name = "btnDeceasedForm"
-        Me.btnDeceasedForm.Size = New System.Drawing.Size(144, 41)
+        Me.btnDeceasedForm.Size = New System.Drawing.Size(108, 33)
         Me.btnDeceasedForm.TabIndex = 2
         Me.btnDeceasedForm.Text = "Apply"
         '
@@ -100,14 +98,13 @@ Partial Class frmForms
         Me.Guna2Panel1.Controls.Add(Me.Label1)
         Me.Guna2Panel1.Controls.Add(Me.btnApplicationForm)
         Me.Guna2Panel1.FillColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(171, Byte), Integer), CType(CType(189, Byte), Integer))
-        Me.Guna2Panel1.Location = New System.Drawing.Point(19, 170)
-        Me.Guna2Panel1.Margin = New System.Windows.Forms.Padding(4)
+        Me.Guna2Panel1.Location = New System.Drawing.Point(14, 96)
         Me.Guna2Panel1.Name = "Guna2Panel1"
         Me.Guna2Panel1.ShadowDecoration.BorderRadius = 25
         Me.Guna2Panel1.ShadowDecoration.Depth = 15
         Me.Guna2Panel1.ShadowDecoration.Enabled = True
         Me.Guna2Panel1.ShadowDecoration.Shadow = New System.Windows.Forms.Padding(2, 2, 7, 7)
-        Me.Guna2Panel1.Size = New System.Drawing.Size(869, 71)
+        Me.Guna2Panel1.Size = New System.Drawing.Size(652, 58)
         Me.Guna2Panel1.TabIndex = 3
         '
         'Label2
@@ -115,12 +112,11 @@ Partial Class frmForms
         Me.Label2.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.Label2.AutoSize = True
         Me.Label2.BackColor = System.Drawing.Color.Transparent
-        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Font = New System.Drawing.Font("Roboto Condensed", 11.25!, System.Drawing.FontStyle.Italic)
         Me.Label2.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Label2.Location = New System.Drawing.Point(25, 41)
-        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label2.Location = New System.Drawing.Point(19, 33)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(339, 24)
+        Me.Label2.Size = New System.Drawing.Size(237, 19)
         Me.Label2.TabIndex = 2
         Me.Label2.Text = "This form serves to register new clients."
         '
@@ -129,12 +125,11 @@ Partial Class frmForms
         Me.Label1.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.Label1.AutoSize = True
         Me.Label1.BackColor = System.Drawing.Color.Transparent
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Font = New System.Drawing.Font("Roboto Condensed", 18.0!, System.Drawing.FontStyle.Bold)
         Me.Label1.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Label1.Location = New System.Drawing.Point(24, 5)
-        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label1.Location = New System.Drawing.Point(18, 4)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(256, 36)
+        Me.Label1.Size = New System.Drawing.Size(177, 29)
         Me.Label1.TabIndex = 1
         Me.Label1.Text = "Application Form"
         '
@@ -148,14 +143,13 @@ Partial Class frmForms
         Me.Guna2Panel3.Controls.Add(Me.Label6)
         Me.Guna2Panel3.Controls.Add(Me.btnDeceasedForm)
         Me.Guna2Panel3.FillColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(171, Byte), Integer), CType(CType(189, Byte), Integer))
-        Me.Guna2Panel3.Location = New System.Drawing.Point(19, 402)
-        Me.Guna2Panel3.Margin = New System.Windows.Forms.Padding(4)
+        Me.Guna2Panel3.Location = New System.Drawing.Point(14, 236)
         Me.Guna2Panel3.Name = "Guna2Panel3"
         Me.Guna2Panel3.ShadowDecoration.BorderRadius = 25
         Me.Guna2Panel3.ShadowDecoration.Depth = 15
         Me.Guna2Panel3.ShadowDecoration.Enabled = True
         Me.Guna2Panel3.ShadowDecoration.Shadow = New System.Windows.Forms.Padding(2, 2, 7, 7)
-        Me.Guna2Panel3.Size = New System.Drawing.Size(869, 71)
+        Me.Guna2Panel3.Size = New System.Drawing.Size(652, 58)
         Me.Guna2Panel3.TabIndex = 5
         '
         'Label5
@@ -163,12 +157,11 @@ Partial Class frmForms
         Me.Label5.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.Label5.AutoSize = True
         Me.Label5.BackColor = System.Drawing.Color.Transparent
-        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.Font = New System.Drawing.Font("Roboto Condensed", 11.25!, System.Drawing.FontStyle.Italic)
         Me.Label5.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Label5.Location = New System.Drawing.Point(25, 41)
-        Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label5.Location = New System.Drawing.Point(19, 33)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(610, 24)
+        Me.Label5.Size = New System.Drawing.Size(415, 19)
         Me.Label5.TabIndex = 2
         Me.Label5.Text = "This form is used to register the deceased and the corresponding client."
         '
@@ -177,12 +170,11 @@ Partial Class frmForms
         Me.Label6.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.Label6.AutoSize = True
         Me.Label6.BackColor = System.Drawing.Color.Transparent
-        Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.Font = New System.Drawing.Font("Roboto Condensed", 18.0!, System.Drawing.FontStyle.Bold)
         Me.Label6.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Label6.Location = New System.Drawing.Point(24, 5)
-        Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label6.Location = New System.Drawing.Point(18, 4)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(236, 36)
+        Me.Label6.Size = New System.Drawing.Size(160, 29)
         Me.Label6.TabIndex = 1
         Me.Label6.Text = "Deceased Form"
         '
@@ -196,14 +188,13 @@ Partial Class frmForms
         Me.Guna2Panel4.Controls.Add(Me.Label8)
         Me.Guna2Panel4.Controls.Add(Me.btnAccApprov)
         Me.Guna2Panel4.FillColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(171, Byte), Integer), CType(CType(189, Byte), Integer))
-        Me.Guna2Panel4.Location = New System.Drawing.Point(19, 32)
-        Me.Guna2Panel4.Margin = New System.Windows.Forms.Padding(4)
+        Me.Guna2Panel4.Location = New System.Drawing.Point(14, 26)
         Me.Guna2Panel4.Name = "Guna2Panel4"
         Me.Guna2Panel4.ShadowDecoration.BorderRadius = 25
         Me.Guna2Panel4.ShadowDecoration.Depth = 15
         Me.Guna2Panel4.ShadowDecoration.Enabled = True
         Me.Guna2Panel4.ShadowDecoration.Shadow = New System.Windows.Forms.Padding(2, 2, 7, 7)
-        Me.Guna2Panel4.Size = New System.Drawing.Size(869, 71)
+        Me.Guna2Panel4.Size = New System.Drawing.Size(652, 58)
         Me.Guna2Panel4.TabIndex = 5
         '
         'Label7
@@ -211,12 +202,11 @@ Partial Class frmForms
         Me.Label7.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.Label7.AutoSize = True
         Me.Label7.BackColor = System.Drawing.Color.Transparent
-        Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.Font = New System.Drawing.Font("Roboto Condensed", 11.25!, System.Drawing.FontStyle.Italic)
         Me.Label7.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Label7.Location = New System.Drawing.Point(25, 41)
-        Me.Label7.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label7.Location = New System.Drawing.Point(19, 33)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(489, 24)
+        Me.Label7.Size = New System.Drawing.Size(338, 19)
         Me.Label7.TabIndex = 2
         Me.Label7.Text = "Shows the list of clients who have applied via the website."
         '
@@ -225,12 +215,11 @@ Partial Class frmForms
         Me.Label8.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.Label8.AutoSize = True
         Me.Label8.BackColor = System.Drawing.Color.Transparent
-        Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label8.Font = New System.Drawing.Font("Roboto Condensed", 18.0!, System.Drawing.FontStyle.Bold)
         Me.Label8.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Label8.Location = New System.Drawing.Point(24, 5)
-        Me.Label8.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label8.Location = New System.Drawing.Point(18, 4)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(269, 36)
+        Me.Label8.Size = New System.Drawing.Size(184, 29)
         Me.Label8.TabIndex = 1
         Me.Label8.Text = "Account Approval"
         '
@@ -241,15 +230,14 @@ Partial Class frmForms
         Me.btnAccApprov.BorderRadius = 15
         Me.btnAccApprov.BorderThickness = 1
         Me.btnAccApprov.FillColor = System.Drawing.Color.FromArgb(CType(CType(52, Byte), Integer), CType(CType(189, Byte), Integer), CType(CType(40, Byte), Integer))
-        Me.btnAccApprov.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold)
+        Me.btnAccApprov.Font = New System.Drawing.Font("Roboto Condensed", 14.25!, System.Drawing.FontStyle.Bold)
         Me.btnAccApprov.ForeColor = System.Drawing.SystemColors.Control
         Me.btnAccApprov.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(171, Byte), Integer), CType(CType(189, Byte), Integer))
         Me.btnAccApprov.HoverState.FillColor = System.Drawing.Color.Black
         Me.btnAccApprov.HoverState.ForeColor = System.Drawing.Color.White
-        Me.btnAccApprov.Location = New System.Drawing.Point(711, 15)
-        Me.btnAccApprov.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnAccApprov.Location = New System.Drawing.Point(533, 12)
         Me.btnAccApprov.Name = "btnAccApprov"
-        Me.btnAccApprov.Size = New System.Drawing.Size(144, 41)
+        Me.btnAccApprov.Size = New System.Drawing.Size(108, 33)
         Me.btnAccApprov.TabIndex = 1
         Me.btnAccApprov.Text = "View"
         '
@@ -263,14 +251,13 @@ Partial Class frmForms
         Me.Guna2Panel6.Controls.Add(Me.Label12)
         Me.Guna2Panel6.Controls.Add(Me.btnPlotReservation)
         Me.Guna2Panel6.FillColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(171, Byte), Integer), CType(CType(189, Byte), Integer))
-        Me.Guna2Panel6.Location = New System.Drawing.Point(19, 280)
-        Me.Guna2Panel6.Margin = New System.Windows.Forms.Padding(4)
+        Me.Guna2Panel6.Location = New System.Drawing.Point(14, 166)
         Me.Guna2Panel6.Name = "Guna2Panel6"
         Me.Guna2Panel6.ShadowDecoration.BorderRadius = 25
         Me.Guna2Panel6.ShadowDecoration.Depth = 15
         Me.Guna2Panel6.ShadowDecoration.Enabled = True
         Me.Guna2Panel6.ShadowDecoration.Shadow = New System.Windows.Forms.Padding(2, 2, 7, 7)
-        Me.Guna2Panel6.Size = New System.Drawing.Size(869, 71)
+        Me.Guna2Panel6.Size = New System.Drawing.Size(652, 58)
         Me.Guna2Panel6.TabIndex = 5
         '
         'Label11
@@ -278,12 +265,11 @@ Partial Class frmForms
         Me.Label11.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.Label11.AutoSize = True
         Me.Label11.BackColor = System.Drawing.Color.Transparent
-        Me.Label11.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label11.Font = New System.Drawing.Font("Roboto Condensed", 11.25!, System.Drawing.FontStyle.Italic)
         Me.Label11.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Label11.Location = New System.Drawing.Point(25, 41)
-        Me.Label11.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label11.Location = New System.Drawing.Point(19, 33)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(362, 24)
+        Me.Label11.Size = New System.Drawing.Size(253, 19)
         Me.Label11.TabIndex = 2
         Me.Label11.Text = "This form allows clients to purchase a plot."
         '
@@ -292,12 +278,11 @@ Partial Class frmForms
         Me.Label12.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.Label12.AutoSize = True
         Me.Label12.BackColor = System.Drawing.Color.Transparent
-        Me.Label12.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label12.Font = New System.Drawing.Font("Roboto Condensed", 18.0!, System.Drawing.FontStyle.Bold)
         Me.Label12.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Label12.Location = New System.Drawing.Point(24, 5)
-        Me.Label12.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label12.Location = New System.Drawing.Point(18, 4)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(624, 36)
+        Me.Label12.Size = New System.Drawing.Size(426, 29)
         Me.Label12.TabIndex = 1
         Me.Label12.Text = "Plot Purchase and Burial Assignment Form"
         '
@@ -308,30 +293,28 @@ Partial Class frmForms
         Me.btnPlotReservation.BorderRadius = 15
         Me.btnPlotReservation.BorderThickness = 1
         Me.btnPlotReservation.FillColor = System.Drawing.Color.FromArgb(CType(CType(52, Byte), Integer), CType(CType(189, Byte), Integer), CType(CType(40, Byte), Integer))
-        Me.btnPlotReservation.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Bold)
+        Me.btnPlotReservation.Font = New System.Drawing.Font("Roboto Condensed", 14.25!, System.Drawing.FontStyle.Bold)
         Me.btnPlotReservation.ForeColor = System.Drawing.SystemColors.Control
         Me.btnPlotReservation.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(171, Byte), Integer), CType(CType(189, Byte), Integer))
         Me.btnPlotReservation.HoverState.FillColor = System.Drawing.Color.Black
         Me.btnPlotReservation.HoverState.ForeColor = System.Drawing.Color.White
-        Me.btnPlotReservation.Location = New System.Drawing.Point(711, 15)
-        Me.btnPlotReservation.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnPlotReservation.Location = New System.Drawing.Point(533, 12)
         Me.btnPlotReservation.Name = "btnPlotReservation"
-        Me.btnPlotReservation.Size = New System.Drawing.Size(144, 41)
+        Me.btnPlotReservation.Size = New System.Drawing.Size(108, 33)
         Me.btnPlotReservation.TabIndex = 1
         Me.btnPlotReservation.Text = "Apply"
         '
         'frmForms
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(14, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(90, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(901, 640)
+        Me.ClientSize = New System.Drawing.Size(676, 520)
         Me.Controls.Add(Me.Guna2Panel6)
         Me.Controls.Add(Me.Guna2Panel4)
         Me.Controls.Add(Me.Guna2Panel3)
         Me.Controls.Add(Me.Guna2Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
-        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "frmForms"
         Me.Text = "frmForms"
         Me.Guna2Panel1.ResumeLayout(False)

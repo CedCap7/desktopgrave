@@ -67,9 +67,9 @@ Partial Class frmReservAssign
         Me.Label5.ForeColor = System.Drawing.SystemColors.Control
         Me.Label5.Location = New System.Drawing.Point(14, 38)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(272, 17)
+        Me.Label5.Size = New System.Drawing.Size(281, 17)
         Me.Label5.TabIndex = 13
-        Me.Label5.Text = "Assign the deceased to a reserved plot from a client."
+        Me.Label5.Text = "Assign the deceased to a purchased plot from a client."
         '
         'Guna2Panel1
         '
@@ -171,7 +171,7 @@ Partial Class frmReservAssign
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Name = "frmReservAssign"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "frmReservAssign"
+        Me.Text = "Assigned Deceased to Plot"
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         Me.Guna2Panel1.ResumeLayout(False)

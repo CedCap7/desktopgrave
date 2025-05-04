@@ -19,7 +19,7 @@ Public Class frmReservationsReg
         Dim tempConnection As MySqlConnection = Nothing
         Try
             ' Create a new connection for this operation
-            tempConnection = New MySqlConnection("server=localhost; user=root; password=root; database=dccms")
+            tempConnection = New MySqlConnection("server=srv594.hstgr.io; database=u976878483_cemetery; username=u976878483_doncarlos; password=d0Nc4los; port=3306")
             tempConnection.Open()
 
             Dim reservationData As New List(Of Dictionary(Of String, Object))
@@ -46,8 +46,8 @@ Public Class frmReservationsReg
               "    WHEN 3 THEN 'Bone Niche' " &
               "    WHEN 4 THEN 'Private' " &
               "END AS TypeName " &
-              "FROM Reservation r " &
-              "LEFT JOIN Client c ON r.Client_ID = c.Client_ID " &
+              "FROM reservation r " &
+              "LEFT JOIN client c ON r.Client_ID = c.Client_ID " &
               "JOIN plot_reservation pr ON r.Reservation_ID = pr.reservation_id " &
               "JOIN payment p ON r.Reservation_ID = p.Reservation_ID " &
               "JOIN location l ON pr.Plot_ID = l.id " &
@@ -77,13 +77,12 @@ Public Class frmReservationsReg
                 newLine.SubItems.Add(reservation("FullName").ToString())  ' Full Name
 
                 ' Include plot type and level in the plot location
-                Dim plotLocation As String = String.Format("{0} - Block {1}, Section {2}, Row {3}, Plot {4}, Plot ID {5}, Level {6}",
+                Dim plotLocation As String = String.Format("{0} - Block {1}, Section {2}, Row {3}, Plot {4}, Level {5}",
                 reservation("TypeName"),
                 reservation("block"),
                 reservation("section"),
                 reservation("row"),
                 reservation("plot"),
-                If(reservation("Plot_ID") Is DBNull.Value, "N/A", reservation("Plot_ID").ToString()),  ' Plot ID
                 If(reservation("Level") Is DBNull.Value, "N/A", reservation("Level").ToString()))  ' Level
                 newLine.SubItems.Add(plotLocation)  ' Reserved Plot
 
@@ -283,7 +282,7 @@ Public Class frmReservationsReg
         Dim clientID As Integer = -1 ' Default value if not found
         Dim sql As String = "SELECT Client_ID FROM reservation WHERE Reservation_ID = @ReservationID"
 
-        Using conn As New MySqlConnection("server=localhost; user=root; password=root; database=dccms")
+        Using conn As New MySqlConnection("server=srv594.hstgr.io; database=u976878483_cemetery; username=u976878483_doncarlos; password=d0Nc4los; port=3306")
             Using cmd As New MySqlCommand(sql, conn)
                 cmd.Parameters.AddWithValue("@ReservationID", reservationID)
                 conn.Open()

@@ -65,10 +65,6 @@ Public Class frmDeceasedReg
                 newLine.Tag = dr("Deceased_ID")  ' Store Deceased_ID in the Tag property
                 newLine.SubItems.Add(dr("LastName") & ", " & dr("FirstName") & ", " & dr("MiddleName"))
 
-                ' Format DateOfDeath
-                Dim dod As String = If(dr("DateOfDeath") IsNot DBNull.Value, Convert.ToDateTime(dr("DateOfDeath")).ToString("MMMM dd, yyyy"), "N/A")
-                newLine.SubItems.Add(dod)
-
                 ' Convert type integer to string
                 Dim typeString As String = ""
                 Select Case Convert.ToInt32(dr("Type"))
@@ -235,12 +231,6 @@ Public Class frmDeceasedReg
         While dr.Read
             Dim newLine = DeceasedList.Items.Add(dr("Deceased_ID"))
             newLine.SubItems.Add(dr("LastName") & ", " & dr("FirstName") & ", " & dr("MiddleName"))
-
-            Dim dob As String = If(dr("DateOfBirth") IsNot DBNull.Value, Convert.ToDateTime(dr("DateOfBirth")).ToString("MMMM dd, yyyy"), "N/A")
-            newLine.SubItems.Add(dob)
-
-            Dim dod As String = If(dr("DateOfDeath") IsNot DBNull.Value, Convert.ToDateTime(dr("DateOfDeath")).ToString("MMMM dd, yyyy"), "N/A")
-            newLine.SubItems.Add(dod)
 
             Dim typeString As String = ""
             Select Case Convert.ToInt32(dr("Type"))

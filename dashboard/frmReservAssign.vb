@@ -1,7 +1,6 @@
 ﻿Imports MySql.Data.MySqlClient
 
 Public Class frmReservAssign
-    Private conn As MySqlConnection = Nothing
     Private ReservationID As Integer
     Private ClientID As Integer
 
@@ -10,7 +9,7 @@ Public Class frmReservAssign
         InitializeComponent()
         Me.ReservationID = reservationId
         Me.ClientID = clientId
-        conn = New MySqlConnection("server=localhost; user=root; password=root; database=dccms")
+        Module1.dbconn() ' Initialize the database connection
     End Sub
 
     Private Sub frmReservAssign_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -20,15 +19,10 @@ Public Class frmReservAssign
 
     Private Sub LoadReservationDetails()
         Try
-            ' Ensure the connection is initialized
-            If conn Is Nothing Then
-                conn = New MySqlConnection("server=localhost; user=root; password=root; database=dccms")
+            If Module1.cn.State = ConnectionState.Open Then
+                Module1.cn.Close()
             End If
-
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
-            conn.Open()
+            Module1.cn.Open()
 
             ' Updated SQL query to get client name and plot details from plot_reservation
             Dim sql As String = "SELECT " &
@@ -40,7 +34,7 @@ Public Class frmReservAssign
             "JOIN location l ON pr.Plot_ID = l.id " &  ' Join on Plot_ID
             "WHERE pr.Reservation_ID = @ReservationID"
 
-            Using cmd As New MySqlCommand(sql, conn)
+            Using cmd As New MySqlCommand(sql, Module1.cn)
                 cmd.Parameters.AddWithValue("@ReservationID", ReservationID)
                 Using dr As MySqlDataReader = cmd.ExecuteReader()
                     If dr.Read() Then
@@ -90,23 +84,18 @@ Public Class frmReservAssign
         Catch ex As Exception
             MessageBox.Show("Error loading reservation details: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
-            If conn IsNot Nothing AndAlso conn.State = ConnectionState.Open Then
-                conn.Close()
+            If Module1.cn.State = ConnectionState.Open Then
+                Module1.cn.Close()
             End If
         End Try
     End Sub
 
     Private Sub LoadDeceasedList()
         Try
-            ' Ensure the connection is initialized
-            If conn Is Nothing Then
-                conn = New MySqlConnection("server=localhost; user=root; password=root; database=dccms")
+            If Module1.cn.State = ConnectionState.Open Then
+                Module1.cn.Close()
             End If
-
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
-            conn.Open()
+            Module1.cn.Open()
 
             ' Create DataTable for ComboBox
             Dim dt As New DataTable()
@@ -127,7 +116,7 @@ Public Class frmReservAssign
                           "COALESCE(MiddleName, ''), " &
                           "COALESCE(LastName, ''))) != ''"
 
-            Using cmd As New MySqlCommand(sql, conn)
+            Using cmd As New MySqlCommand(sql, Module1.cn)
                 cmd.Parameters.AddWithValue("@ClientID", ClientID)
                 Using dr As MySqlDataReader = cmd.ExecuteReader()
                     While dr.Read()
@@ -147,8 +136,8 @@ Public Class frmReservAssign
         Catch ex As Exception
             MessageBox.Show("Error loading deceased list: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
-            If conn IsNot Nothing AndAlso conn.State = ConnectionState.Open Then
-                conn.Close()
+            If Module1.cn.State = ConnectionState.Open Then
+                Module1.cn.Close()
             End If
         End Try
     End Sub
@@ -174,12 +163,11 @@ Public Class frmReservAssign
             LblPlotReserved.Text = ""
 
             ' Clean up connection
-            If conn IsNot Nothing Then
-                If conn.State = ConnectionState.Open Then
-                    conn.Close()
+            If Module1.cn IsNot Nothing Then
+                If Module1.cn.State = ConnectionState.Open Then
+                    Module1.cn.Close()
                 End If
-                conn.Dispose()
-                conn = Nothing
+                Module1.cn.Dispose()
             End If
 
         Catch ex As Exception
@@ -197,16 +185,12 @@ Public Class frmReservAssign
         End If
 
         Try
-            If conn Is Nothing Then
-                conn = New MySqlConnection("server=localhost; user=root; password=root; database=dccms")
+            If Module1.cn.State = ConnectionState.Open Then
+                Module1.cn.Close()
             End If
+            Module1.cn.Open()
 
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
-            conn.Open()
-
-            Using transaction As MySqlTransaction = conn.BeginTransaction()
+            Using transaction As MySqlTransaction = Module1.cn.BeginTransaction()
                 Try
                     ' Get Plot_ID and Level from plot_reservation
                     Dim plotId As Integer
@@ -215,7 +199,7 @@ Public Class frmReservAssign
                                     "FROM plot_reservation pr " &
                                     "WHERE pr.Reservation_ID = @ReservationID"
 
-                    Using cmd As New MySqlCommand(sql, conn, transaction)
+                    Using cmd As New MySqlCommand(sql, Module1.cn, transaction)
                         cmd.Parameters.AddWithValue("@ReservationID", ReservationID)
                         Using dr As MySqlDataReader = cmd.ExecuteReader()
                             If dr.Read() Then
@@ -231,7 +215,7 @@ Public Class frmReservAssign
                     ' Update deceased record with Plot_ID and Level
                     sql = "UPDATE deceased SET Plot_ID = @PlotID, Level = @Level WHERE Deceased_ID = @DeceasedID"
 
-                    Using cmd As New MySqlCommand(sql, conn, transaction)
+                    Using cmd As New MySqlCommand(sql, Module1.cn, transaction)
                         cmd.Parameters.AddWithValue("@PlotID", plotId)
                         cmd.Parameters.AddWithValue("@Level", level)
                         cmd.Parameters.AddWithValue("@DeceasedID", Convert.ToInt32(cmbDeceased.SelectedValue))
@@ -240,7 +224,7 @@ Public Class frmReservAssign
 
                     ' Update the status of the specific reservation to 1
                     sql = "UPDATE reservation SET Status = 1 WHERE Reservation_ID = @ReservationID"
-                    Using cmd As New MySqlCommand(sql, conn, transaction)
+                    Using cmd As New MySqlCommand(sql, Module1.cn, transaction)
                         cmd.Parameters.AddWithValue("@ReservationID", ReservationID) ' Ensure this is the correct Reservation_ID
                         cmd.ExecuteNonQuery()
                     End Using
@@ -263,8 +247,8 @@ Public Class frmReservAssign
         Catch ex As Exception
             MessageBox.Show("Error assigning deceased to plot: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
-            If conn IsNot Nothing AndAlso conn.State = ConnectionState.Open Then
-                conn.Close()
+            If Module1.cn.State = ConnectionState.Open Then
+                Module1.cn.Close()
             End If
         End Try
     End Sub

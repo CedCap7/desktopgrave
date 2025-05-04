@@ -3,10 +3,8 @@ Imports MySql.Data.MySqlClient
 Imports Newtonsoft.Json
 Imports System.Globalization
 
-
 Public Class frmPlotPurchAndAssign
     Private _plotSelectionForm As frmPlotSelection = Nothing
-    Private conn As New MySqlConnection("server=localhost; user=root; password=root; database=dccms")
     Private _selectedPlots As New List(Of PlotSelection)
     Private _currentPlotCount As Integer = 0
     Private clientSuggestions As DataTable
@@ -19,6 +17,7 @@ Public Class frmPlotPurchAndAssign
     End Class
 
     Private Sub frmPlotPurchAndAssign_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Module1.dbconn() ' Initialize the database connection
         LoadPackages()
         SetupClientSearchBox()
         lblQuantity.Visible = False
@@ -28,6 +27,7 @@ Public Class frmPlotPurchAndAssign
         currentQuantity.Value = 1
         currentQuantity.Minimum = 1
         currentQuantity.Maximum = 100
+        txtTotal.Visible = False
     End Sub
 
     Private Sub SetupClientSearchBox()
@@ -68,8 +68,9 @@ Public Class frmPlotPurchAndAssign
         End If
 
         Dim input As String = txtClientSearch.Text.Trim()
+        Dim connectionString As String = "server=srv594.hstgr.io; database=u976878483_cemetery; username=u976878483_doncarlos; password=d0Nc4los; port=3306"
+
         Try
-            ' Modified query to format the Middle Name as Initial with a period, if available
             Dim query As String = "SELECT Client_ID, " &
                               "CONCAT(FirstName, ' ', " &
                               "IF(MiddleName IS NULL OR MiddleName = '', '', CONCAT(LEFT(MiddleName, 1), '. ')), " &
@@ -77,22 +78,26 @@ Public Class frmPlotPurchAndAssign
                               "FROM client WHERE CONCAT(FirstName, ' ', IF(MiddleName IS NULL OR MiddleName = '', '', CONCAT(LEFT(MiddleName, 1), '. ')), LastName) LIKE @search " &
                               "ORDER BY Client_ID DESC"
 
-            Using cmd As New MySqlCommand(query, conn)
-                cmd.Parameters.AddWithValue("@search", "%" & input & "%")
-                Dim adapter As New MySqlDataAdapter(cmd)
-                clientSuggestions = New DataTable()
-                adapter.Fill(clientSuggestions)
+            Using cn As New MySqlConnection(connectionString)
+                cn.Open()
+                Using cmd As New MySqlCommand(query, cn)
+                    cmd.Parameters.AddWithValue("@search", "%" & input & "%")
+                    Dim adapter As New MySqlDataAdapter(cmd)
+                    clientSuggestions = New DataTable()
+                    adapter.Fill(clientSuggestions)
 
-                lstClientSuggestions.Items.Clear()
-                For Each row As DataRow In clientSuggestions.Rows
-                    lstClientSuggestions.Items.Add(row("FullName").ToString())
-                Next
-                lstClientSuggestions.Visible = clientSuggestions.Rows.Count > 0
+                    lstClientSuggestions.Items.Clear()
+                    For Each row As DataRow In clientSuggestions.Rows
+                        lstClientSuggestions.Items.Add(row("FullName").ToString())
+                    Next
+                    lstClientSuggestions.Visible = clientSuggestions.Rows.Count > 0
+                End Using
             End Using
         Catch ex As Exception
             MessageBox.Show("Error loading client suggestions: " & ex.Message)
         End Try
     End Sub
+
 
     Private Sub lstClientSuggestions_Click(sender As Object, e As EventArgs) Handles lstClientSuggestions.Click
         Dim selectedName As String = lstClientSuggestions.SelectedItem?.ToString()
@@ -111,33 +116,34 @@ Public Class frmPlotPurchAndAssign
         End If
     End Sub
 
-
     Private Sub LoadPackages()
         Try
-            Dim query As String = "SELECT p_id, package_name, description, price FROM package"
-            Using cmd As New MySqlCommand(query, conn)
-                conn.Open()
-                Dim adapter As New MySqlDataAdapter(cmd)
-                Dim dt As New DataTable()
-                adapter.Fill(dt)
+            Dim connectionString As String = "server=srv594.hstgr.io; database=u976878483_cemetery; username=u976878483_doncarlos; password=d0Nc4los; port=3306"
+            Using cn As New MySqlConnection(connectionString)
+                cn.Open()
+                Dim query As String = "SELECT p_id, package_name, description, price FROM package"
+                Using cmd As New MySqlCommand(query, cn)
+                    Dim adapter As New MySqlDataAdapter(cmd)
+                    Dim dt As New DataTable()
+                    adapter.Fill(dt)
 
-                Dim defaultRow As DataRow = dt.NewRow()
-                defaultRow("p_id") = 0
-                defaultRow("package_name") = "Select a Package"
-                defaultRow("description") = ""
-                defaultRow("price") = 0
-                dt.Rows.InsertAt(defaultRow, 0)
+                    Dim defaultRow As DataRow = dt.NewRow()
+                    defaultRow("p_id") = 0
+                    defaultRow("package_name") = "Select a Package"
+                    defaultRow("description") = ""
+                    defaultRow("price") = 0
+                    dt.Rows.InsertAt(defaultRow, 0)
 
-                GraveType.DataSource = dt
-                GraveType.DisplayMember = "package_name"
-                GraveType.ValueMember = "p_id"
+                    GraveType.DataSource = dt
+                    GraveType.DisplayMember = "package_name"
+                    GraveType.ValueMember = "p_id"
+                End Using
             End Using
         Catch ex As Exception
             MessageBox.Show("Error loading packages: " & ex.Message)
-        Finally
-            conn.Close()
         End Try
     End Sub
+
 
     Private Sub LoadDeceasedList()
         Try
@@ -146,10 +152,13 @@ Public Class frmPlotPurchAndAssign
                 Return
             End If
 
-            Dim query As String = "SELECT Deceased_ID, CONCAT(FirstName, ' ', LastName) AS FullName FROM deceased WHERE Client_ID = @ClientId"
-            Using cmd As New MySqlCommand(query, conn)
+            Dim query As String = "SELECT Deceased_ID, CONCAT(FirstName, ' ', LastName) AS FullName FROM deceased WHERE Client_ID = @ClientId AND Plot_ID IS NULL"
+            Using cmd As New MySqlCommand(query, Module1.cn)
                 cmd.Parameters.AddWithValue("@ClientId", selectedClientId)
                 Dim adapter As New MySqlDataAdapter(cmd)
+                If Module1.cn.State <> ConnectionState.Open Then
+                    Module1.cn.Open() ' Open the connection only if it's not already open
+                End If
                 Dim dt As New DataTable()
                 adapter.Fill(dt)
 
@@ -165,6 +174,10 @@ Public Class frmPlotPurchAndAssign
             End Using
         Catch ex As Exception
             MessageBox.Show("Error loading deceased list: " & ex.Message)
+        Finally
+            If Module1.cn.State = ConnectionState.Open Then
+                Module1.cn.Close() ' Ensure the connection is closed
+            End If
         End Try
     End Sub
 
@@ -212,7 +225,6 @@ Public Class frmPlotPurchAndAssign
 
         _plotSelectionForm.Show()
     End Sub
-
 
     Private Sub OnPlotSelected(plotId As Integer, locationString As String, level As Integer)
         Try
@@ -272,61 +284,54 @@ Public Class frmPlotPurchAndAssign
             Return
         End If
 
-        ' Get selected deceased ID
-        Dim deceasedId As Integer = 0
+        Dim deceasedId As Integer? = Nothing
         If cmbDeceased.SelectedItem IsNot Nothing Then
             Dim selectedRow As DataRowView = DirectCast(cmbDeceased.SelectedItem, DataRowView)
             deceasedId = Convert.ToInt32(selectedRow("Deceased_ID"))
         End If
 
-        ' Check if client is selected
         Dim clientId As Integer = selectedClientId
         If clientId <= 0 Then
             Dim result = MessageBox.Show("No client is selected. Do you want to proceed with the reservation without a client?",
-                         "Confirm Reservation",
-                         MessageBoxButtons.YesNo,
-                         MessageBoxIcon.Question)
+             "Confirm Reservation",
+             MessageBoxButtons.YesNo,
+             MessageBoxIcon.Question)
             If result = DialogResult.No Then
                 Return
             End If
         End If
 
         Try
-            conn.Open()
-            Using transaction As MySqlTransaction = conn.BeginTransaction()
+            ' Ensure the connection is open before starting the transaction
+            If Module1.cn Is Nothing Then
+                MessageBox.Show("Database connection is not initialized.", "Connection Error")
+                Return
+            End If
+
+            If Module1.cn.State <> ConnectionState.Open Then
+                Module1.cn.Open()
+            End If
+
+
+            Using transaction As MySqlTransaction = Module1.cn.BeginTransaction()
                 Try
-                    ' Package and total amount calculation
+                    ' Declare and initialize selectedRow here
                     Dim selectedRow As DataRowView = DirectCast(GraveType.SelectedItem, DataRowView)
                     Dim packageType As Integer = Convert.ToInt32(selectedRow("p_id"))
                     Dim packagePrice As Decimal = Convert.ToDecimal(selectedRow("price"))
-                    Dim totalAmount As Decimal = packagePrice * currentQuantity.Value
 
-                    ' Insert into reservation table with PlotId (p_id from selected plot)
-                    ' Create the MySqlCommand with parameters
+                    ' Insert into reservation table
                     Dim reservationQuery As String = "INSERT INTO reservation (Client_ID, p_id, Reservation_Date, Status, Quantity) " &
-                                 "VALUES (@Client_ID, @p_id, @Reservation_Date, '1', @currentQuantity)"
+                 "VALUES (@Client_ID, @p_id, @Reservation_Date, '1', '1')"
 
                     Dim reservationId As Integer
-                    Using cmd As New MySqlCommand(reservationQuery & "; SELECT LAST_INSERT_ID();", conn, transaction)
+                    Using cmd As New MySqlCommand(reservationQuery & "; SELECT LAST_INSERT_ID();", Module1.cn, transaction)
                         cmd.Parameters.AddWithValue("@Client_ID", clientId)
-                        cmd.Parameters.AddWithValue("@p_id", _selectedPlots(0).PlotId) ' Correctly insert the PlotId from the selected plot
-                        cmd.Parameters.AddWithValue("@total_Amount", totalAmount)
+                        cmd.Parameters.AddWithValue("@p_id", _selectedPlots(0).PlotId)
                         cmd.Parameters.AddWithValue("@Reservation_Date", DateTime.Now)
-                        cmd.Parameters.AddWithValue("@currentQuantity", currentQuantity.Value)
 
-                        ' Log the SQL and parameters for debugging
-                        Console.WriteLine("Executing SQL: " & cmd.CommandText)
-                        For Each param As MySqlParameter In cmd.Parameters
-                            Console.WriteLine($"Parameter: {param.ParameterName}, Value: {param.Value}")
-                        Next
-
-                        Try
-                            reservationId = Convert.ToInt32(cmd.ExecuteScalar())
-                        Catch ex As MySqlException
-                            MessageBox.Show("SQL Error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                        End Try
+                        reservationId = Convert.ToInt32(cmd.ExecuteScalar())
                     End Using
-
 
                     ' Insert into payment table
                     Dim paidAmount As Decimal = 0
@@ -335,75 +340,94 @@ Public Class frmPlotPurchAndAssign
                     End If
 
                     Dim paymentQuery As String = "INSERT INTO payment (Client_ID, total_paid, reservation_id, total_amount, payment_date, payment_status) " &
-                                             "VALUES (@Client_ID, @total_paid, @reservation_id, @total_amount, @payment_date, 0)"
-                    Using cmd As New MySqlCommand(paymentQuery, conn, transaction)
+                                 "VALUES (@Client_ID, @total_paid, @reservation_id, @total_amount, @payment_date, 0)"
+                    Using cmd As New MySqlCommand(paymentQuery, Module1.cn, transaction)
+                        cmd.Parameters.AddWithValue("@Client_ID", clientId)
                         cmd.Parameters.AddWithValue("@reservation_id", reservationId)
-                        cmd.Parameters.AddWithValue("@total_amount", totalAmount)
+                        cmd.Parameters.AddWithValue("@total_amount", packagePrice)
                         cmd.Parameters.AddWithValue("@total_paid", paidAmount)
                         cmd.Parameters.AddWithValue("@payment_date", DateTime.Now)
-
-                        ' Log the SQL command and parameters for debugging
-                        Console.WriteLine("Executing SQL: " & cmd.CommandText)
-                        For Each param As MySqlParameter In cmd.Parameters
-                            Console.WriteLine($"Parameter: {param.ParameterName}, Value: {param.Value}")
-                        Next
 
                         cmd.ExecuteNonQuery()
                     End Using
 
-                    ' Insert into transaction table with Type_ID from location
-                    Dim locationType As Integer = GetLocationTypeId(_selectedPlots(0).PlotId) ' Get the Type_ID from location based on selected PlotId
-                    Dim transactionQuery As String = "INSERT INTO transaction (Date, Amount, Client_ID, Type_ID, Deceased_ID) " &
-                                 "VALUES (@Date, @Amount, @Client_ID, @Type_ID, @Deceased_ID)"
+                    ' Insert into transaction table
+                    ' Generate a unique transaction ID
+                    Dim transactionId As String = GenerateUniqueTransactionId()
+                    Dim locationType As Integer = GetLocationTypeId(_selectedPlots(0).PlotId)
+                    Dim transactionQuery As String = "INSERT INTO transaction (Transaction_ID, Date, Amount, Client_ID, Type_ID, Deceased_ID) " &
+    "VALUES (@Transaction_ID, @Date, @Amount, @Client_ID, @Type_ID, @Deceased_ID)"
 
-                    Using cmd As New MySqlCommand(transactionQuery, conn, transaction)
+                    Using cmd As New MySqlCommand(transactionQuery, Module1.cn, transaction)
+                        cmd.Parameters.AddWithValue("@Transaction_ID", transactionId)
                         cmd.Parameters.AddWithValue("@Date", DateTime.Now)
                         cmd.Parameters.AddWithValue("@Amount", paidAmount)
                         cmd.Parameters.AddWithValue("@Client_ID", clientId)
                         cmd.Parameters.AddWithValue("@Type_ID", locationType)
-                        cmd.Parameters.AddWithValue("@Deceased_ID", deceasedId)
+                        cmd.Parameters.AddWithValue("@Deceased_ID", If(deceasedId.HasValue, deceasedId.Value, DBNull.Value))
                         cmd.ExecuteNonQuery()
                     End Using
 
-                    ' Insert plot reservations and update deceased if selected
+                    ' Insert plot reservations
                     Dim plotReservationQuery As String = "INSERT INTO plot_reservation (reservation_id, plot_id, level) VALUES (@reservation_id, @plot_id, @level)"
                     For Each plot In _selectedPlots
-                        ' Insert plot reservation
-                        Using cmd As New MySqlCommand(plotReservationQuery, conn, transaction)
+                        Using cmd As New MySqlCommand(plotReservationQuery, Module1.cn, transaction)
                             cmd.Parameters.AddWithValue("@reservation_id", reservationId)
-                            cmd.Parameters.AddWithValue("@plot_id", plot.PlotId) ' Use PlotId from selected plot
+                            cmd.Parameters.AddWithValue("@plot_id", plot.PlotId)
                             cmd.Parameters.AddWithValue("@level", If(packageType = 2 OrElse packageType = 4, 0, plot.Level))
                             cmd.ExecuteNonQuery()
                         End Using
-
-                        ' Update deceased record if one is selected
-                        If deceasedId > 0 Then
-                            Dim deceasedQuery As String = "UPDATE deceased SET Plot_ID = @PlotId, Level = @Level WHERE Deceased_ID = @DeceasedId"
-                            Using cmd As New MySqlCommand(deceasedQuery, conn, transaction)
-                                cmd.Parameters.AddWithValue("@PlotId", plot.PlotId)
-                                cmd.Parameters.AddWithValue("@Level", If(packageType = 2 OrElse packageType = 4, 0, plot.Level))
-                                cmd.Parameters.AddWithValue("@DeceasedId", deceasedId)
-                                cmd.ExecuteNonQuery()
-                            End Using
-                        End If
                     Next
 
                     transaction.Commit()
                     MessageBox.Show("Reservation and payment saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     Me.Close()
                 Catch ex As Exception
-                    transaction.Rollback()
-                    Throw
+                    Try
+                        If transaction IsNot Nothing AndAlso Module1.cn.State = ConnectionState.Open Then
+                            transaction.Rollback()
+                        End If
+                    Catch rollbackEx As Exception
+                        MessageBox.Show("Rollback failed: " & rollbackEx.Message)
+                    End Try
+                    MessageBox.Show("Error during transaction: " & ex.Message)
+
                 End Try
             End Using
         Catch ex As Exception
-            MessageBox.Show("Error adding Reservation and Payment: " & ex.Message & vbCrLf & "Stack Trace: " & ex.StackTrace)
+            MessageBox.Show("Error adding Reservation and Payment: " & ex.Message)
         Finally
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
+            If Module1.cn.State = ConnectionState.Open Then
+                Module1.cn.Close() ' Ensure the connection is closed
             End If
         End Try
     End Sub
+
+    Private Function GenerateUniqueTransactionId() As String
+        Dim random As New Random()
+        Dim transactionId As String
+        Dim exists As Boolean = True
+
+        Dim query As String = "SELECT COUNT(*) FROM transaction WHERE Transaction_ID = @TransactionId"
+        Dim connectionString As String = "server=srv594.hstgr.io; database=u976878483_cemetery; username=u976878483_doncarlos; password=d0Nc4los; port=3306" ' adjust if needed
+
+        Using cn As New MySqlConnection(connectionString)
+            cn.Open()
+
+            While exists
+                transactionId = random.Next(100000, 999999).ToString() ' 6-digit random number
+
+                Using cmd As New MySqlCommand(query, cn)
+                    cmd.Parameters.AddWithValue("@TransactionId", transactionId)
+                    Dim count As Integer = Convert.ToInt32(cmd.ExecuteScalar())
+                    exists = (count > 0)
+                End Using
+            End While
+        End Using
+
+        Return transactionId
+    End Function
+
 
     Private Function ValidateSelections() As Boolean
         If GraveType.SelectedValue Is Nothing OrElse Convert.ToInt32(GraveType.SelectedValue) = 0 Then
@@ -486,7 +510,7 @@ Public Class frmPlotPurchAndAssign
 
     Private Function GetDeceasedCount(plotId As Integer) As Integer
         Try
-            Using cmd As New MySqlCommand("SELECT COUNT(*) FROM deceased WHERE Plot_ID = @plotId", conn)
+            Using cmd As New MySqlCommand("SELECT COUNT(*) FROM deceased WHERE Plot_ID = @plotId", Module1.cn)
                 cmd.Parameters.AddWithValue("@plotId", plotId)
                 Return Convert.ToInt32(cmd.ExecuteScalar())
             End Using
@@ -498,7 +522,7 @@ Public Class frmPlotPurchAndAssign
 
     Private Function GetLevelDeceasedCount(plotId As Integer, level As Integer) As Integer
         Try
-            Using cmd As New MySqlCommand("SELECT COUNT(*) FROM deceased WHERE Plot_ID = @plotId AND Level = @level AND Level > 0", conn)
+            Using cmd As New MySqlCommand("SELECT COUNT(*) FROM deceased WHERE Plot_ID = @plotId AND Level = @level AND Level > 0", Module1.cn)
                 cmd.Parameters.AddWithValue("@plotId", plotId)
                 cmd.Parameters.AddWithValue("@level", level)
                 Return Convert.ToInt32(cmd.ExecuteScalar())
@@ -511,7 +535,7 @@ Public Class frmPlotPurchAndAssign
 
     Private Function IsLevelOccupied(plotId As Integer, level As Integer) As Boolean
         Try
-            Using cmd As New MySqlCommand("SELECT COUNT(*) FROM deceased WHERE Plot_ID = @plotId AND Level = @level AND Level > 0", conn)
+            Using cmd As New MySqlCommand("SELECT COUNT(*) FROM deceased WHERE Plot_ID = @plotId AND Level = @level AND Level > 0", Module1.cn)
                 cmd.Parameters.AddWithValue("@plotId", plotId)
                 cmd.Parameters.AddWithValue("@level", level)
                 Return Convert.ToInt32(cmd.ExecuteScalar()) > 0
@@ -562,12 +586,14 @@ Public Class frmPlotPurchAndAssign
 
     Private Sub LoadPackageDetails(p_id As Integer)
         Try
-            If conn.State = ConnectionState.Open Then conn.Close()
+            If Module1.cn.State = ConnectionState.Open Then Module1.cn.Close()
 
             Dim query As String = "SELECT * FROM package WHERE p_id = @p_id"
-            Using cmd As New MySqlCommand(query, conn)
+            Using cmd As New MySqlCommand(query, Module1.cn)
                 cmd.Parameters.AddWithValue("@p_id", p_id)
-                conn.Open()
+                If Module1.cn.State <> ConnectionState.Open Then
+                    Module1.cn.Open() ' Open the connection only if it's not already open
+                End If
                 Using reader As MySqlDataReader = cmd.ExecuteReader()
                     If reader.Read() Then
                         Dim packagePrice As Decimal = Convert.ToDecimal(reader("price"))
@@ -584,7 +610,9 @@ Public Class frmPlotPurchAndAssign
         Catch ex As Exception
             MessageBox.Show("Error loading package details: " & ex.Message)
         Finally
-            If conn.State = ConnectionState.Open Then conn.Close()
+            If Module1.cn.State = ConnectionState.Open Then
+                Module1.cn.Close() ' Ensure the connection is closed
+            End If
         End Try
     End Sub
 
@@ -608,27 +636,23 @@ Public Class frmPlotPurchAndAssign
 
     Private Function GetLocationTypeId(plotId As Integer) As Integer
         Try
-            ' Correctly query for the location type using PlotId
-            Dim query As String = "SELECT type FROM location WHERE id = @LocationId"
-            Using cmd As New MySqlCommand(query, conn)
-                cmd.Parameters.AddWithValue("@LocationId", plotId) ' Correctly pass the PlotId here
-                conn.Open()
-                Dim result As Object = cmd.ExecuteScalar()
-
-                ' Ensure a result is returned
-                If result IsNot Nothing AndAlso IsNumeric(result) Then
-                    Return Convert.ToInt32(result)
-                Else
-                    Return 0 ' Default value if no valid Type_ID is found
-                End If
+            Dim connectionString As String = "server=srv594.hstgr.io; database=u976878483_cemetery; username=u976878483_doncarlos; password=d0Nc4los; port=3306"
+            Using cn As New MySqlConnection(connectionString)
+                cn.Open()
+                Dim query As String = "SELECT type FROM location WHERE id = @LocationId"
+                Using cmd As New MySqlCommand(query, cn)
+                    cmd.Parameters.AddWithValue("@LocationId", plotId)
+                    Dim result As Object = cmd.ExecuteScalar()
+                    If result IsNot Nothing AndAlso IsNumeric(result) Then
+                        Return Convert.ToInt32(result)
+                    Else
+                        Return 0 ' Default value if no valid Type_ID is found
+                    End If
+                End Using
             End Using
         Catch ex As Exception
             MessageBox.Show("Error fetching location type: " & ex.Message)
-            Return 0 ' Return a default value in case of error
-        Finally
-            If conn.State = ConnectionState.Open Then
-                conn.Close()
-            End If
+            Return 0
         End Try
     End Function
 

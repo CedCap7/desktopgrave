@@ -1,6 +1,6 @@
 ﻿Public Class frmLogin
     Private Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
-        Dim conn As New MySql.Data.MySqlClient.MySqlConnection("server=localhost; userid=root; password=root; database=dccms; port=3306")
+        Dim conn As New MySql.Data.MySqlClient.MySqlConnection("server=srv594.hstgr.io; database=u976878483_cemetery; username=u976878483_doncarlos; password=d0Nc4los; port=3306")
         Dim sql As String = "SELECT * FROM user WHERE Username = @username AND Password = @password"
 
         Try

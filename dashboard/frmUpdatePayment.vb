@@ -51,7 +51,7 @@ Public Class frmUpdatePayment
 
     Private Function SaveTransaction(paidAmount As Decimal) As Boolean
         Try
-            Using tempConnection As New MySqlConnection("server=localhost; user=root; password=root; database=dccms")
+            Using tempConnection As New MySqlConnection("server=srv594.hstgr.io; database=u976878483_cemetery; username=u976878483_doncarlos; password=d0Nc4los; port=3306")
                 tempConnection.Open()
 
                 ' Generate new Transaction_ID manually
@@ -60,15 +60,15 @@ Public Class frmUpdatePayment
 
                 ' Get Type_ID from the location table using reservation.p_id
                 Dim getTypeCmd As New MySqlCommand("
-                SELECT l.type FROM Reservation r 
-                INNER JOIN Location l ON r.p_id = l.id 
+                SELECT l.type FROM reservation r 
+                INNER JOIN location l ON r.p_id = l.id 
                 WHERE r.Reservation_ID = @ResID", tempConnection)
                 getTypeCmd.Parameters.AddWithValue("@ResID", reservationID)
                 Dim typeID As Integer = Convert.ToInt32(getTypeCmd.ExecuteScalar())
 
                 ' Update the total_Paid and Payment_Date in the payment table
                 Dim updatePaymentCmd As New MySqlCommand("
-                UPDATE Payment 
+                UPDATE payment 
                 SET total_Paid = total_Paid + @Amount, Payment_Date = @Date 
                 WHERE Reservation_ID = @ReservationID", tempConnection)
                 updatePaymentCmd.Parameters.AddWithValue("@Amount", paidAmount)
@@ -83,9 +83,9 @@ Public Class frmUpdatePayment
                     @TransactionID,
                     @Date,
                     @Amount,
-                    (SELECT Client_ID FROM Reservation WHERE Reservation_ID = @ReservationID),
+                    (SELECT Client_ID FROM reservation WHERE Reservation_ID = @ReservationID),
                     @TypeID,
-                    (SELECT Deceased_ID FROM Reservation WHERE Reservation_ID = @ReservationID)
+                    (SELECT Deceased_ID FROM reservation WHERE Reservation_ID = @ReservationID)
                 )"
 
                 Using cmd As New MySqlCommand(sql, tempConnection)
