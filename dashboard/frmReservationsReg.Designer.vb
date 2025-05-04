@@ -126,9 +126,9 @@ Partial Class frmReservationsReg
         Me.Label2.ForeColor = System.Drawing.SystemColors.Control
         Me.Label2.Location = New System.Drawing.Point(15, 44)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(249, 21)
+        Me.Label2.Size = New System.Drawing.Size(195, 21)
         Me.Label2.TabIndex = 1
-        Me.Label2.Text = "List of Reservations for unassigned plot"
+        Me.Label2.Text = "List of client's purchased plots"
         '
         'Label1
         '
@@ -137,9 +137,9 @@ Partial Class frmReservationsReg
         Me.Label1.ForeColor = System.Drawing.SystemColors.Control
         Me.Label1.Location = New System.Drawing.Point(12, 9)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(192, 36)
+        Me.Label1.Size = New System.Drawing.Size(252, 36)
         Me.Label1.TabIndex = 0
-        Me.Label1.Text = "Reservations"
+        Me.Label1.Text = "Grave Purchases"
         '
         'Guna2Panel1
         '
@@ -175,7 +175,6 @@ Partial Class frmReservationsReg
         Me.txtSearch.Location = New System.Drawing.Point(12, 7)
         Me.txtSearch.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.txtSearch.Name = "txtSearch"
-        Me.txtSearch.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
         Me.txtSearch.PlaceholderForeColor = System.Drawing.Color.Gray
         Me.txtSearch.PlaceholderText = "Search a name"
         Me.txtSearch.SelectedText = ""

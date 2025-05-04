@@ -5,7 +5,7 @@ Imports System.Globalization  ' Add this for CultureInfo and NumberStyles
 
 Public Class frmPlotReservation
     Private _plotSelectionForm As frmPlotSelection = Nothing
-    Private conn As New MySqlConnection("server=localhost; user=root; password=root; database=dccms")
+    Private conn As New MySqlConnection("server=srv594.hstgr.io; database=u976878483_cemetery; username=u976878483_doncarlos; password=d0Nc4los; port=3306")
     Private _selectedPlots As New List(Of PlotSelection)
     Private _currentPlotCount As Integer = 0
 

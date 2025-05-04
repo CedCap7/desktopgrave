@@ -36,8 +36,8 @@
         Try
             ' Create an instance of frmDeceased with the dashboard reference
             Dim deceasedForm As New frmDeceased(mainDashboard)
-            ' Show it in the dashboard's subPanel instead of as a dialog
-            mainDashboard.subForm(deceasedForm)
+            ' Show it as a dialog
+            deceasedForm.ShowDialog()
         Catch ex As Exception
             MessageBox.Show("Error opening the deceased form: " & ex.Message)
         End Try
@@ -45,12 +45,12 @@
 
     Private Sub btnPlotReservation_Click(sender As Object, e As EventArgs) Handles btnPlotReservation.Click
         Try
-            ' Create an instance of frmDeceased with the dashboard reference
-            Dim plotreservationForm As New frmPlotReservation(mainDashboard)
+            ' Create an instance of frmPaymentReserv
+            Dim reservationForm As New frmPlotPurchAndAssign()
             ' Show it as a dialog
-            plotreservationForm.ShowDialog()
+            reservationForm.ShowDialog()
         Catch ex As Exception
-            MessageBox.Show("Error opening the plot reservation form: " & ex.Message)
+            MessageBox.Show("Error opening the grave purchase form: " & ex.Message)
         End Try
     End Sub
 

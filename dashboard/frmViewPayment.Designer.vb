@@ -23,6 +23,7 @@ Partial Class frmViewPayment
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.Guna2Panel2 = New Guna.UI2.WinForms.Guna2Panel()
+        Me.btnPayment = New Guna.UI2.WinForms.Guna2Button()
         Me.btnShowAll = New Guna.UI2.WinForms.Guna2Button()
         Me.btnDelete = New Guna.UI2.WinForms.Guna2Button()
         Me.btnUpdate = New Guna.UI2.WinForms.Guna2Button()
@@ -49,7 +50,6 @@ Partial Class frmViewPayment
         Me.ColumnHeader2 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader3 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.btnPayment = New Guna.UI2.WinForms.Guna2Button()
         Me.Guna2Panel2.SuspendLayout()
         Me.Guna2ShadowPanel1.SuspendLayout()
         Me.Guna2ShadowPanel2.SuspendLayout()
@@ -70,6 +70,19 @@ Partial Class frmViewPayment
         Me.Guna2Panel2.Name = "Guna2Panel2"
         Me.Guna2Panel2.Size = New System.Drawing.Size(1233, 81)
         Me.Guna2Panel2.TabIndex = 5
+        '
+        'btnPayment
+        '
+        Me.btnPayment.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.btnPayment.Animated = True
+        Me.btnPayment.FillColor = System.Drawing.Color.LimeGreen
+        Me.btnPayment.Font = New System.Drawing.Font("Segoe UI", 9.75!)
+        Me.btnPayment.ForeColor = System.Drawing.Color.White
+        Me.btnPayment.Location = New System.Drawing.Point(984, 45)
+        Me.btnPayment.Name = "btnPayment"
+        Me.btnPayment.Size = New System.Drawing.Size(75, 25)
+        Me.btnPayment.TabIndex = 7
+        Me.btnPayment.Text = "Pay"
         '
         'btnShowAll
         '
@@ -361,19 +374,6 @@ Partial Class frmViewPayment
         Me.Label5.TabIndex = 9
         Me.Label5.Text = "Payment History"
         '
-        'btnPayment
-        '
-        Me.btnPayment.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.btnPayment.Animated = True
-        Me.btnPayment.FillColor = System.Drawing.Color.LimeGreen
-        Me.btnPayment.Font = New System.Drawing.Font("Segoe UI", 9.75!)
-        Me.btnPayment.ForeColor = System.Drawing.Color.White
-        Me.btnPayment.Location = New System.Drawing.Point(984, 45)
-        Me.btnPayment.Name = "btnPayment"
-        Me.btnPayment.Size = New System.Drawing.Size(75, 25)
-        Me.btnPayment.TabIndex = 7
-        Me.btnPayment.Text = "Pay"
-        '
         'frmViewPayment
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -390,7 +390,7 @@ Partial Class frmViewPayment
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
         Me.Name = "frmViewPayment"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "frmViewPayment"
+        Me.Text = "View Payment"
         Me.Guna2Panel2.ResumeLayout(False)
         Me.Guna2Panel2.PerformLayout()
         Me.Guna2ShadowPanel1.ResumeLayout(False)

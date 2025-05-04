@@ -20,7 +20,7 @@ Public Class frmViewPayment
         Dim tempConnection As MySqlConnection = Nothing
         Try
             ' Create a new connection
-            tempConnection = New MySqlConnection("server=localhost; user=root; password=root; database=dccms")
+            tempConnection = New MySqlConnection("server=srv594.hstgr.io; database=u976878483_cemetery; username=u976878483_doncarlos; password=d0Nc4los; port=3306")
             tempConnection.Open()
 
             ' SQL Query to get Client Name and Total Reservations
@@ -31,11 +31,11 @@ Public Class frmViewPayment
                     SUM(p.total_Amount) AS OverallAmount,
                     SUM(p.total_Paid) AS TotalPaid
                 FROM 
-                    Client c
+                    client c
                 LEFT JOIN 
-                    Reservation r ON c.Client_ID = r.Client_ID
+                    reservation r ON c.Client_ID = r.Client_ID
                 LEFT JOIN 
-                    Payment p ON r.Reservation_ID = p.Reservation_ID
+                    payment p ON r.Reservation_ID = p.Reservation_ID
                 WHERE 
                     c.Client_ID = @ClientID
                 GROUP BY 
@@ -83,7 +83,7 @@ Public Class frmViewPayment
 
     Public Sub LoadClientPaymentData()
         Try
-            Using tempConnection As New MySqlConnection("server=localhost; user=root; password=root; database=dccms")
+            Using tempConnection As New MySqlConnection("server=srv594.hstgr.io; database=u976878483_cemetery; username=u976878483_doncarlos; password=d0Nc4los; port=3306")
                 tempConnection.Open()
                 Dim sql As String = "
                 SELECT 
@@ -106,11 +106,11 @@ Public Class frmViewPayment
                         ELSE 'Partial' 
                     END AS PaymentStatus
                 FROM 
-                    Reservation r
+                    reservation r
                 LEFT JOIN 
-                    Location l ON r.p_id = l.id
+                    location l ON r.p_id = l.id
                 LEFT JOIN 
-                    Payment p ON r.Reservation_ID = p.Reservation_ID
+                    payment p ON r.Reservation_ID = p.Reservation_ID
                 WHERE 
                     r.Client_ID = @ClientID
                 GROUP BY 
@@ -166,7 +166,7 @@ Public Class frmViewPayment
 
     Public Sub LoadPaymentHistory()
         Try
-            Using tempConnection As New MySqlConnection("server=localhost; user=root; password=root; database=dccms")
+            Using tempConnection As New MySqlConnection("server=srv594.hstgr.io; database=u976878483_cemetery; username=u976878483_doncarlos; password=d0Nc4los; port=3306")
                 tempConnection.Open()
 
                 Dim sql As String = "

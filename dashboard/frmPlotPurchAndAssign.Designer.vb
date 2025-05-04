@@ -26,6 +26,7 @@ Partial Class frmPlotPurchAndAssign
         Me.subSidePanel = New Guna.UI2.WinForms.Guna2Panel()
         Me.Guna2Panel4 = New Guna.UI2.WinForms.Guna2Panel()
         Me.Guna2ShadowPanel2 = New Guna.UI2.WinForms.Guna2ShadowPanel()
+        Me.lblPaidAmount = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.txtPackage = New System.Windows.Forms.Label()
@@ -54,7 +55,6 @@ Partial Class frmPlotPurchAndAssign
         Me.Guna2Panel2 = New Guna.UI2.WinForms.Guna2Panel()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.lblPaidAmount = New System.Windows.Forms.Label()
         Me.panel1.SuspendLayout()
         Me.Guna2Panel4.SuspendLayout()
         Me.Guna2ShadowPanel2.SuspendLayout()
@@ -115,6 +115,18 @@ Partial Class frmPlotPurchAndAssign
         Me.Guna2ShadowPanel2.ShadowColor = System.Drawing.Color.Black
         Me.Guna2ShadowPanel2.Size = New System.Drawing.Size(332, 208)
         Me.Guna2ShadowPanel2.TabIndex = 0
+        '
+        'lblPaidAmount
+        '
+        Me.lblPaidAmount.AutoSize = True
+        Me.lblPaidAmount.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblPaidAmount.ForeColor = System.Drawing.Color.White
+        Me.lblPaidAmount.Location = New System.Drawing.Point(15, 89)
+        Me.lblPaidAmount.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.lblPaidAmount.Name = "lblPaidAmount"
+        Me.lblPaidAmount.Size = New System.Drawing.Size(92, 17)
+        Me.lblPaidAmount.TabIndex = 27
+        Me.lblPaidAmount.Text = "Paid Amount:"
         '
         'Label10
         '
@@ -193,6 +205,7 @@ Partial Class frmPlotPurchAndAssign
         Me.txtTotal.Size = New System.Drawing.Size(79, 25)
         Me.txtTotal.TabIndex = 20
         Me.txtTotal.Text = "Total: "
+        Me.txtTotal.Visible = False
         '
         'lblQuantity
         '
@@ -270,7 +283,6 @@ Partial Class frmPlotPurchAndAssign
         Me.txtPaidAmount.Location = New System.Drawing.Point(18, 257)
         Me.txtPaidAmount.Margin = New System.Windows.Forms.Padding(4)
         Me.txtPaidAmount.Name = "txtPaidAmount"
-        Me.txtPaidAmount.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
         Me.txtPaidAmount.PlaceholderForeColor = System.Drawing.Color.Gray
         Me.txtPaidAmount.PlaceholderText = "Input Amount"
         Me.txtPaidAmount.SelectedText = ""
@@ -298,7 +310,7 @@ Partial Class frmPlotPurchAndAssign
         Me.lstClientSuggestions.ItemHeight = 20
         Me.lstClientSuggestions.Location = New System.Drawing.Point(18, 117)
         Me.lstClientSuggestions.Name = "lstClientSuggestions"
-        Me.lstClientSuggestions.Size = New System.Drawing.Size(302, 84)
+        Me.lstClientSuggestions.Size = New System.Drawing.Size(301, 84)
         Me.lstClientSuggestions.TabIndex = 63
         Me.lstClientSuggestions.Visible = False
         '
@@ -321,7 +333,6 @@ Partial Class frmPlotPurchAndAssign
         Me.txtClientSearch.Location = New System.Drawing.Point(18, 80)
         Me.txtClientSearch.Margin = New System.Windows.Forms.Padding(4)
         Me.txtClientSearch.Name = "txtClientSearch"
-        Me.txtClientSearch.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
         Me.txtClientSearch.PlaceholderForeColor = System.Drawing.Color.Gray
         Me.txtClientSearch.PlaceholderText = "Select client or type to search"
         Me.txtClientSearch.SelectedText = ""
@@ -394,7 +405,7 @@ Partial Class frmPlotPurchAndAssign
         Me.btnSelectPlot.Location = New System.Drawing.Point(18, 299)
         Me.btnSelectPlot.Margin = New System.Windows.Forms.Padding(2)
         Me.btnSelectPlot.Name = "btnSelectPlot"
-        Me.btnSelectPlot.Size = New System.Drawing.Size(228, 36)
+        Me.btnSelectPlot.Size = New System.Drawing.Size(301, 36)
         Me.btnSelectPlot.TabIndex = 23
         Me.btnSelectPlot.Text = "Select Plot"
         '
@@ -518,18 +529,6 @@ Partial Class frmPlotPurchAndAssign
         Me.Label6.Size = New System.Drawing.Size(479, 32)
         Me.Label6.TabIndex = 0
         Me.Label6.Text = "Plot Purchase and Assignment Form"
-        '
-        'lblPaidAmount
-        '
-        Me.lblPaidAmount.AutoSize = True
-        Me.lblPaidAmount.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblPaidAmount.ForeColor = System.Drawing.Color.White
-        Me.lblPaidAmount.Location = New System.Drawing.Point(15, 89)
-        Me.lblPaidAmount.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.lblPaidAmount.Name = "lblPaidAmount"
-        Me.lblPaidAmount.Size = New System.Drawing.Size(92, 17)
-        Me.lblPaidAmount.TabIndex = 27
-        Me.lblPaidAmount.Text = "Paid Amount:"
         '
         'frmPlotPurchAndAssign
         '

@@ -12,7 +12,7 @@ Public Class frmPaymentReg
         Dim tempConnection As MySqlConnection = Nothing
         Try
             ' Create a new connection for this operation
-            tempConnection = New MySqlConnection("server=localhost; user=root; password=root; database=dccms")
+            tempConnection = New MySqlConnection("server=srv594.hstgr.io; database=u976878483_cemetery; username=u976878483_doncarlos; password=d0Nc4los; port=3306")
             tempConnection.Open()
 
             ' Start building the SQL query
@@ -27,11 +27,11 @@ Public Class frmPaymentReg
                 ELSE 'Fully Paid' 
             END AS PaymentStatus
         FROM 
-            Client c
+            client c
         LEFT JOIN 
-            Reservation r ON c.Client_ID = r.Client_ID
+            reservation r ON c.Client_ID = r.Client_ID
         LEFT JOIN 
-            Payment p ON r.Reservation_ID = p.Reservation_ID"
+            payment p ON r.Reservation_ID = p.Reservation_ID"
 
             ' Add the filter if there is any text entered in the search box
             If Not String.IsNullOrWhiteSpace(filterText) Then
@@ -159,7 +159,7 @@ Public Class frmPaymentReg
             End If
 
             ' Get filtered payment data
-            tempConnection = New MySqlConnection("server=localhost; user=root; password=root; database=dccms")
+            tempConnection = New MySqlConnection("server=srv594.hstgr.io; database=u976878483_cemetery; username=u976878483_doncarlos; password=d0Nc4los; port=3306")
             tempConnection.Open()
 
             Dim sql As String = "
@@ -176,11 +176,11 @@ Public Class frmPaymentReg
                         ELSE 'Fully Paid' 
                     END AS PaymentStatus
                 FROM 
-                    Client c
+                    client c
                 INNER JOIN 
-                    Reservation r ON c.Client_ID = r.Client_ID
+                    reservation r ON c.Client_ID = r.Client_ID
                 INNER JOIN 
-                    Payment p ON r.Reservation_ID = p.Reservation_ID
+                    payment p ON r.Reservation_ID = p.Reservation_ID
                 WHERE
                     p.payment_date BETWEEN @FromDate AND @ToDate
                 ORDER BY 

@@ -5,9 +5,7 @@ Imports System.Net
 Imports System.Net.Mail
 
 Public Class frmDashboard
-    ' Ensure connection is initialized globally
-    Private cn As MySqlConnection
-    Private sql As String
+
     Private notificationCount As Integer = 0
 
     ' Add new controls
@@ -165,7 +163,7 @@ Public Class frmDashboard
     Private Sub InitializeConnection()
         Try
             ' Replace this with your actual connection string or method
-            cn = New MySqlConnection("server=localhost; database=dccms; username=root; password=root; port=3306")
+            dbconn()
             ' IMPORTANT: If using custom dbconn() method, make sure it doesn't create a new connection object
             ' that overwrites the global cn variable
             ' dbconn()  ' Comment this out if it's causing issues

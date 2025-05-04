@@ -26,8 +26,6 @@ Partial Class frmUpdateClient
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.panel1 = New System.Windows.Forms.Panel()
-        Me.btnUpdateClient = New Guna.UI2.WinForms.Guna2Button()
-        Me.btnCancel = New Guna.UI2.WinForms.Guna2Button()
         Me.Guna2ShadowPanel1 = New Guna.UI2.WinForms.Guna2ShadowPanel()
         Me.txtMiddleName = New Guna.UI2.WinForms.Guna2TextBox()
         Me.chkMale = New Guna.UI2.WinForms.Guna2CheckBox()
@@ -42,6 +40,8 @@ Partial Class frmUpdateClient
         Me.label1 = New System.Windows.Forms.Label()
         Me.txtEmail = New Guna.UI2.WinForms.Guna2TextBox()
         Me.txtMobile = New Guna.UI2.WinForms.Guna2TextBox()
+        Me.btnUpdateClient = New Guna.UI2.WinForms.Guna2Button()
+        Me.btnCancel = New Guna.UI2.WinForms.Guna2Button()
         Me.Guna2Panel2.SuspendLayout()
         Me.panel1.SuspendLayout()
         Me.Guna2ShadowPanel1.SuspendLayout()
@@ -94,37 +94,6 @@ Partial Class frmUpdateClient
         Me.panel1.Size = New System.Drawing.Size(983, 349)
         Me.panel1.TabIndex = 59
         '
-        'btnUpdateClient
-        '
-        Me.btnUpdateClient.BackColor = System.Drawing.Color.Transparent
-        Me.btnUpdateClient.BorderRadius = 17
-        Me.btnUpdateClient.BorderThickness = 1
-        Me.btnUpdateClient.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.btnUpdateClient.FillColor = System.Drawing.Color.LimeGreen
-        Me.btnUpdateClient.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnUpdateClient.ForeColor = System.Drawing.Color.White
-        Me.btnUpdateClient.Location = New System.Drawing.Point(480, 301)
-        Me.btnUpdateClient.Margin = New System.Windows.Forms.Padding(2)
-        Me.btnUpdateClient.Name = "btnUpdateClient"
-        Me.btnUpdateClient.Size = New System.Drawing.Size(238, 37)
-        Me.btnUpdateClient.TabIndex = 15
-        Me.btnUpdateClient.Text = "Update Client"
-        '
-        'btnCancel
-        '
-        Me.btnCancel.BackColor = System.Drawing.Color.Transparent
-        Me.btnCancel.BorderRadius = 17
-        Me.btnCancel.BorderThickness = 1
-        Me.btnCancel.FillColor = System.Drawing.Color.LimeGreen
-        Me.btnCancel.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnCancel.ForeColor = System.Drawing.Color.White
-        Me.btnCancel.Location = New System.Drawing.Point(238, 301)
-        Me.btnCancel.Margin = New System.Windows.Forms.Padding(2)
-        Me.btnCancel.Name = "btnCancel"
-        Me.btnCancel.Size = New System.Drawing.Size(238, 37)
-        Me.btnCancel.TabIndex = 14
-        Me.btnCancel.Text = "Cancel"
-        '
         'Guna2ShadowPanel1
         '
         Me.Guna2ShadowPanel1.Anchor = CType((System.Windows.Forms.AnchorStyles.Left Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
@@ -168,7 +137,6 @@ Partial Class frmUpdateClient
         Me.txtMiddleName.Location = New System.Drawing.Point(255, 48)
         Me.txtMiddleName.Margin = New System.Windows.Forms.Padding(5, 6, 5, 6)
         Me.txtMiddleName.Name = "txtMiddleName"
-        Me.txtMiddleName.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
         Me.txtMiddleName.PlaceholderForeColor = System.Drawing.Color.Gray
         Me.txtMiddleName.PlaceholderText = "Middle Name"
         Me.txtMiddleName.SelectedText = ""
@@ -218,7 +186,6 @@ Partial Class frmUpdateClient
         Me.txtAddress.Location = New System.Drawing.Point(496, 126)
         Me.txtAddress.Margin = New System.Windows.Forms.Padding(5)
         Me.txtAddress.Name = "txtAddress"
-        Me.txtAddress.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
         Me.txtAddress.PlaceholderForeColor = System.Drawing.Color.Gray
         Me.txtAddress.PlaceholderText = "Street, Purok, Barangay, Municipality, Province"
         Me.txtAddress.SelectedText = ""
@@ -268,7 +235,6 @@ Partial Class frmUpdateClient
         Me.txtFirstName.Location = New System.Drawing.Point(14, 48)
         Me.txtFirstName.Margin = New System.Windows.Forms.Padding(5, 6, 5, 6)
         Me.txtFirstName.Name = "txtFirstName"
-        Me.txtFirstName.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
         Me.txtFirstName.PlaceholderForeColor = System.Drawing.Color.Gray
         Me.txtFirstName.PlaceholderText = "First Name"
         Me.txtFirstName.SelectedText = ""
@@ -317,7 +283,6 @@ Partial Class frmUpdateClient
         Me.txtLastName.Location = New System.Drawing.Point(496, 48)
         Me.txtLastName.Margin = New System.Windows.Forms.Padding(5, 6, 5, 6)
         Me.txtLastName.Name = "txtLastName"
-        Me.txtLastName.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
         Me.txtLastName.PlaceholderForeColor = System.Drawing.Color.Gray
         Me.txtLastName.PlaceholderText = "Last Name"
         Me.txtLastName.SelectedText = ""
@@ -354,7 +319,6 @@ Partial Class frmUpdateClient
         Me.txtExt.Location = New System.Drawing.Point(737, 48)
         Me.txtExt.Margin = New System.Windows.Forms.Padding(5, 6, 5, 6)
         Me.txtExt.Name = "txtExt"
-        Me.txtExt.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
         Me.txtExt.PlaceholderForeColor = System.Drawing.Color.Gray
         Me.txtExt.PlaceholderText = "Ext. (Jr., II, III)"
         Me.txtExt.SelectedText = ""
@@ -391,7 +355,6 @@ Partial Class frmUpdateClient
         Me.txtEmail.Location = New System.Drawing.Point(255, 126)
         Me.txtEmail.Margin = New System.Windows.Forms.Padding(5)
         Me.txtEmail.Name = "txtEmail"
-        Me.txtEmail.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
         Me.txtEmail.PlaceholderForeColor = System.Drawing.Color.Gray
         Me.txtEmail.PlaceholderText = "E-mail"
         Me.txtEmail.SelectedText = ""
@@ -416,12 +379,42 @@ Partial Class frmUpdateClient
         Me.txtMobile.Location = New System.Drawing.Point(14, 126)
         Me.txtMobile.Margin = New System.Windows.Forms.Padding(5)
         Me.txtMobile.Name = "txtMobile"
-        Me.txtMobile.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
         Me.txtMobile.PlaceholderForeColor = System.Drawing.Color.Gray
         Me.txtMobile.PlaceholderText = "Mobile Number"
         Me.txtMobile.SelectedText = ""
         Me.txtMobile.Size = New System.Drawing.Size(231, 37)
         Me.txtMobile.TabIndex = 5
+        '
+        'btnUpdateClient
+        '
+        Me.btnUpdateClient.BackColor = System.Drawing.Color.Transparent
+        Me.btnUpdateClient.BorderRadius = 17
+        Me.btnUpdateClient.BorderThickness = 1
+        Me.btnUpdateClient.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.btnUpdateClient.FillColor = System.Drawing.Color.LimeGreen
+        Me.btnUpdateClient.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnUpdateClient.ForeColor = System.Drawing.Color.White
+        Me.btnUpdateClient.Location = New System.Drawing.Point(480, 301)
+        Me.btnUpdateClient.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnUpdateClient.Name = "btnUpdateClient"
+        Me.btnUpdateClient.Size = New System.Drawing.Size(238, 37)
+        Me.btnUpdateClient.TabIndex = 15
+        Me.btnUpdateClient.Text = "Update Client"
+        '
+        'btnCancel
+        '
+        Me.btnCancel.BackColor = System.Drawing.Color.Transparent
+        Me.btnCancel.BorderRadius = 17
+        Me.btnCancel.BorderThickness = 1
+        Me.btnCancel.FillColor = System.Drawing.Color.LimeGreen
+        Me.btnCancel.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnCancel.ForeColor = System.Drawing.Color.White
+        Me.btnCancel.Location = New System.Drawing.Point(238, 301)
+        Me.btnCancel.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnCancel.Name = "btnCancel"
+        Me.btnCancel.Size = New System.Drawing.Size(238, 37)
+        Me.btnCancel.TabIndex = 14
+        Me.btnCancel.Text = "Cancel"
         '
         'frmUpdateClient
         '
@@ -434,7 +427,7 @@ Partial Class frmUpdateClient
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Name = "frmUpdateClient"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "frmUpdateClient"
+        Me.Text = "Update Client Form"
         Me.Guna2Panel2.ResumeLayout(False)
         Me.Guna2Panel2.PerformLayout()
         Me.panel1.ResumeLayout(False)

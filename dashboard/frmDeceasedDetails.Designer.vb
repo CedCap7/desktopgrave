@@ -34,10 +34,9 @@ Partial Class frmDeceasedDetails
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label1.Location = New System.Drawing.Point(232, 23)
-        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label1.Location = New System.Drawing.Point(174, 19)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(349, 46)
+        Me.Label1.Size = New System.Drawing.Size(281, 37)
         Me.Label1.TabIndex = 1
         Me.Label1.Text = "Deceased Details"
         '
@@ -46,10 +45,9 @@ Partial Class frmDeceasedDetails
         Me.lblName.AutoSize = True
         Me.lblName.Font = New System.Drawing.Font("Microsoft Sans Serif", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblName.ForeColor = System.Drawing.SystemColors.Control
-        Me.lblName.Location = New System.Drawing.Point(285, 90)
-        Me.lblName.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblName.Location = New System.Drawing.Point(214, 73)
         Me.lblName.Name = "lblName"
-        Me.lblName.Size = New System.Drawing.Size(203, 46)
+        Me.lblName.Size = New System.Drawing.Size(167, 37)
         Me.lblName.TabIndex = 2
         Me.lblName.Text = "Fullname:"
         '
@@ -58,10 +56,9 @@ Partial Class frmDeceasedDetails
         Me.lblPlotLocation.AutoSize = True
         Me.lblPlotLocation.Font = New System.Drawing.Font("Microsoft Sans Serif", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblPlotLocation.ForeColor = System.Drawing.SystemColors.Control
-        Me.lblPlotLocation.Location = New System.Drawing.Point(243, 204)
-        Me.lblPlotLocation.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblPlotLocation.Location = New System.Drawing.Point(182, 166)
         Me.lblPlotLocation.Name = "lblPlotLocation"
-        Me.lblPlotLocation.Size = New System.Drawing.Size(291, 46)
+        Me.lblPlotLocation.Size = New System.Drawing.Size(236, 37)
         Me.lblPlotLocation.TabIndex = 6
         Me.lblPlotLocation.Text = "Plot Location :"
         '
@@ -70,10 +67,9 @@ Partial Class frmDeceasedDetails
         Me.lblStatus.AutoSize = True
         Me.lblStatus.Font = New System.Drawing.Font("Microsoft Sans Serif", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblStatus.ForeColor = System.Drawing.SystemColors.Control
-        Me.lblStatus.Location = New System.Drawing.Point(306, 311)
-        Me.lblStatus.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblStatus.Location = New System.Drawing.Point(230, 253)
         Me.lblStatus.Name = "lblStatus"
-        Me.lblStatus.Size = New System.Drawing.Size(163, 46)
+        Me.lblStatus.Size = New System.Drawing.Size(134, 37)
         Me.lblStatus.TabIndex = 7
         Me.lblStatus.Text = "Status :"
         '
@@ -82,27 +78,27 @@ Partial Class frmDeceasedDetails
         Me.lblIntermentDate.AutoSize = True
         Me.lblIntermentDate.Font = New System.Drawing.Font("Microsoft Sans Serif", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblIntermentDate.ForeColor = System.Drawing.SystemColors.Control
-        Me.lblIntermentDate.Location = New System.Drawing.Point(243, 145)
-        Me.lblIntermentDate.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblIntermentDate.Location = New System.Drawing.Point(182, 118)
         Me.lblIntermentDate.Name = "lblIntermentDate"
-        Me.lblIntermentDate.Size = New System.Drawing.Size(312, 46)
+        Me.lblIntermentDate.Size = New System.Drawing.Size(256, 37)
         Me.lblIntermentDate.TabIndex = 5
         Me.lblIntermentDate.Text = "Interment date :"
         '
         'frmDeceasedDetails
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(14, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(90, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(843, 426)
+        Me.ClientSize = New System.Drawing.Size(632, 346)
         Me.Controls.Add(Me.lblStatus)
         Me.Controls.Add(Me.lblPlotLocation)
         Me.Controls.Add(Me.lblIntermentDate)
         Me.Controls.Add(Me.lblName)
         Me.Controls.Add(Me.Label1)
+        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.Name = "frmDeceasedDetails"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "frmDeceasedDetails"
+        Me.Text = "Deceased Details"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

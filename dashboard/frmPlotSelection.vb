@@ -5,7 +5,7 @@ Imports MySql.Data.MySqlClient
 
 Public Class frmPlotSelection
     Public Event PlotSelected(plotId As Integer, locationString As String, level As Integer)
-    Private conn As New MySqlConnection("server=localhost; user=root; password=root; database=dccms")
+    Private conn As New MySqlConnection("server=srv594.hstgr.io; database=u976878483_cemetery; username=u976878483_doncarlos; password=d0Nc4los; port=3306")
     Private selectedPlotType As String
 
     Public Sub CloseForm()
