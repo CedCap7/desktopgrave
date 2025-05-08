@@ -518,7 +518,7 @@ Public Class frmPlotReservation
     End Function
 
 
-    Private Sub BtnPrintReceipt_Click(sender As Object, e As EventArgs) Handles BtnPrintReceipt.Click
+    Private Sub BtnPrintReceipt_Click(sender As Object, e As EventArgs)
         Try
             Dim receiptContent As New System.Text.StringBuilder()
             receiptContent.AppendLine("=== RESERVATION RECEIPT ===")

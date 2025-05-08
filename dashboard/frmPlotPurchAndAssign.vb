@@ -444,7 +444,7 @@ Public Class frmPlotPurchAndAssign
         Return True
     End Function
 
-    Private Sub BtnPrintReceipt_Click(sender As Object, e As EventArgs) Handles guna2Button1.Click
+    Private Sub BtnPrintReceipt_Click(sender As Object, e As EventArgs)
         Try
             Dim receiptContent As New System.Text.StringBuilder()
             receiptContent.AppendLine("=== RESERVATION RECEIPT ===")
