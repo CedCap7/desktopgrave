@@ -77,4 +77,8 @@
     Private Sub paymentbtn_Click(sender As Object, e As EventArgs) Handles paymentbtn.Click
         subForm(frmPaymentReg)
     End Sub
+
+    Private Sub btnUserManagement_Click(sender As Object, e As EventArgs) Handles btnUserManagement.Click
+        subForm(frmUserManagement)
+    End Sub
 End Class

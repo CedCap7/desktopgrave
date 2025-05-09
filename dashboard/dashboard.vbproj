@@ -264,6 +264,12 @@
     <Compile Include="frmUpdatePayment.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmUserManagement.Designer.vb">
+      <DependentUpon>frmUserManagement.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmUserManagement.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmViewClient.Designer.vb">
       <DependentUpon>frmViewClient.vb</DependentUpon>
     </Compile>
@@ -363,6 +369,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmUpdatePayment.resx">
       <DependentUpon>frmUpdatePayment.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUserManagement.resx">
+      <DependentUpon>frmUserManagement.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmViewClient.resx">
       <DependentUpon>frmViewClient.vb</DependentUpon>
