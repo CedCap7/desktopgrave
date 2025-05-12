@@ -12,9 +12,11 @@ Public Class frmClientReg
             dbconn()
             cn.Open()
 
-            sql = "SELECT Client_ID, LastName, FirstName, MiddleName, Date_Registered, status FROM client " &
-          "WHERE LastName LIKE @search OR FirstName LIKE @search OR MiddleName LIKE @search " &
-          "ORDER BY LastName ASC"
+            sql = "SELECT c.Client_ID, c.LastName, c.FirstName, c.MiddleName, c.Date_Registered, " &
+                  "CASE WHEN EXISTS (SELECT 1 FROM deceased d WHERE d.Client_ID = c.Client_ID) THEN 1 ELSE 0 END as has_deceased " &
+                  "FROM client c " &
+                  "WHERE c.LastName LIKE @search OR c.FirstName LIKE @search OR c.MiddleName LIKE @search " &
+                  "ORDER BY c.LastName ASC"
 
             cmd = New MySqlCommand(sql, cn)
             cmd.Parameters.AddWithValue("@search", "%" & searchText & "%")
@@ -32,8 +34,11 @@ Public Class frmClientReg
                 Dim dateReg As String = If(IsDBNull(dr("Date_Registered")), "", CDate(dr("Date_Registered")).ToString("yyyy-MM-dd"))
                 newLine.SubItems.Add(dateReg)
 
-                ' Status
-                Dim statusText As String = If(dr("status") = 1, "Active", "Inactive")
+                ' Status - Now based on deceased association
+                Dim statusText As String = "Inactive"
+                If Convert.ToInt32(dr("has_deceased")) = 1 Then
+                    statusText = "Active"
+                End If
                 newLine.SubItems.Add(statusText)
             End While
 
@@ -125,5 +130,9 @@ Public Class frmClientReg
     ' Search functionality added
     Private Sub txtSearch_TextChanged(sender As Object, e As EventArgs) Handles txtSearch.TextChanged
         LoadClients(txtSearch.Text.Trim()) ' Search as user types
+    End Sub
+
+    Private Sub ClientList_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ClientList.SelectedIndexChanged
+
     End Sub
 End Class

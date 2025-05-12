@@ -17,11 +17,71 @@ Public Class frmDeceasedReg
         contextMenu.Items.Add("Relocated", Nothing, Sub() UpdateStatus("Relocated"))
         contextMenu.Items.Add("Renewal", Nothing, Sub() UpdateStatus("Renewal"))
         contextMenu.Items.Add("Pending", Nothing, Sub() UpdateStatus("Pending"))
+        contextMenu.Items.Add("Expired", Nothing, Sub() UpdateStatus("Expired"))
 
         ' Assign the context menu to the ListView
         DeceasedList.ContextMenuStrip = contextMenu
 
     End Sub
+
+    Private Function GetDeceasedStatus(deceasedId As Integer, typeValue As Integer, dateOfDeath As Date?, intermentDate As Date?) As String
+        Try
+            ' Check if deceased has location and client
+            Dim hasLocationAndClient As Boolean = False
+            Dim sql As String = "SELECT COUNT(*) FROM deceased d " &
+                              "WHERE d.Deceased_ID = @DeceasedID " &
+                              "AND d.Plot_ID IS NOT NULL " &
+                              "AND d.Client_ID IS NOT NULL"
+
+            If cn IsNot Nothing AndAlso cn.State = ConnectionState.Open Then
+                cn.Close()
+            End If
+
+            dbconn()
+            cn.Open()
+
+            Using cmd As New MySqlCommand(sql, cn)
+                cmd.Parameters.AddWithValue("@DeceasedID", deceasedId)
+                Dim count As Integer = Convert.ToInt32(cmd.ExecuteScalar())
+                hasLocationAndClient = (count > 0)
+            End Using
+
+            ' If no location or client, status is Pending
+            If Not hasLocationAndClient Then
+                Return "Pending"
+            End If
+
+            ' For apartment type, check for expired status
+            If typeValue = 1 Then
+                Dim baseDate As Date? = Nothing
+                If dateOfDeath.HasValue AndAlso intermentDate.HasValue Then
+                    baseDate = If(dateOfDeath > intermentDate, dateOfDeath, intermentDate)
+                ElseIf dateOfDeath.HasValue Then
+                    baseDate = dateOfDeath
+                ElseIf intermentDate.HasValue Then
+                    baseDate = intermentDate
+                End If
+
+                If baseDate.HasValue Then
+                    Dim expiryDate = baseDate.Value.AddYears(8)
+                    If Date.Now >= expiryDate Then
+                        Return "Expired"
+                    End If
+                End If
+            End If
+
+            ' Default status if location and client exist
+            Return "Remaining"
+
+        Catch ex As Exception
+            MessageBox.Show("Error checking deceased status: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return "Pending"
+        Finally
+            If cn IsNot Nothing AndAlso cn.State = ConnectionState.Open Then
+                cn.Close()
+            End If
+        End Try
+    End Function
 
     Sub LoadUsers(Optional filterText As String = "")
         ' Ensure the connection is closed before using it
@@ -45,10 +105,10 @@ Public Class frmDeceasedReg
         End If
 
         sql = "SELECT d.Deceased_ID, d.LastName, d.FirstName, d.MiddleName, d.DateOfDeath, d.deceased_status, " &
-          "l.Type, l.Block, l.Section, l.Row, l.Plot " &
+          "l.Type, l.Block, l.Section, l.Row, l.Plot, d.Interment, d.Plot_ID, d.Client_ID " &
           "FROM deceased d " &
-          "JOIN location l ON d.Plot_ID = l.id " &
-          whereClause & " ORDER BY d.LastName ASC"
+          "LEFT JOIN location l ON d.Plot_ID = l.id " &
+          whereClause & " ORDER BY d.DateOfDeath DESC, d.LastName ASC"
 
         cmd = New MySqlCommand(sql, cn)
         dr = cmd.ExecuteReader
@@ -68,7 +128,7 @@ Public Class frmDeceasedReg
 
                 ' Convert type integer to string
                 Dim typeValue As Integer = 0
-                If Not IsDBNull(dr("Type")) AndAlso Integer.TryParse(dr("Type").ToString(), typeValue) Then
+                If dr("Type") IsNot DBNull.Value AndAlso Integer.TryParse(dr("Type").ToString(), typeValue) Then
                     ' typeValue is set
                 Else
                     typeValue = 0 ' or any default value for unknown
@@ -92,8 +152,44 @@ Public Class frmDeceasedReg
                 Dim locationString As String = $"{typeString}, Block {dr("Block")}, Section {dr("Section")}, Row {dr("Row")}, Plot {dr("Plot")}"
                 newLine.SubItems.Add(locationString)
 
-                ' Get deceased status
+                ' Get status logic inline (no DB call)
+                Dim plotId As Object = dr("Plot_ID")
+                Dim clientId As Object = dr("Client_ID")
+                Dim hasLocationAndClient As Boolean = (plotId IsNot DBNull.Value AndAlso clientId IsNot DBNull.Value)
+
+                ' Get dates for status check
+                Dim dateOfDeath As Date? = Nothing
+                Dim intermentDate As Date? = Nothing
+                If dr("DateOfDeath") IsNot DBNull.Value Then
+                    Dim tmpDate As Date
+                    If Date.TryParse(dr("DateOfDeath").ToString(), tmpDate) Then
+                        dateOfDeath = tmpDate
+                    End If
+                End If
+                If dr("Interment") IsNot DBNull.Value Then
+                    Dim tmpDate As Date
+                    If Date.TryParse(dr("Interment").ToString(), tmpDate) Then
+                        intermentDate = tmpDate
+                    End If
+                End If
+
                 Dim status As String = If(dr("deceased_status") IsNot DBNull.Value, dr("deceased_status").ToString(), "N/A")
+                If Not hasLocationAndClient Then
+                    status = "Pending"
+                ElseIf typeValue = 1 Then
+                    Dim baseDate As Date? = Nothing
+                    If dateOfDeath.HasValue AndAlso intermentDate.HasValue Then
+                        baseDate = If(dateOfDeath > intermentDate, dateOfDeath, intermentDate)
+                    ElseIf dateOfDeath.HasValue Then
+                        baseDate = dateOfDeath
+                    ElseIf intermentDate.HasValue Then
+                        baseDate = intermentDate
+                    End If
+                    If baseDate.HasValue AndAlso Date.Now >= baseDate.Value.AddYears(8) _
+                        AndAlso status <> "Relocated" AndAlso status <> "Renewal" Then
+                        status = "Expired"
+                    End If
+                End If
                 newLine.SubItems.Add(status)  ' Display deceased status
 
                 ' Increment index for the next item
@@ -241,7 +337,7 @@ Public Class frmDeceasedReg
             newLine.SubItems.Add(dr("LastName") & ", " & dr("FirstName") & ", " & dr("MiddleName"))
 
             Dim typeValue As Integer = 0
-            If Not IsDBNull(dr("Type")) AndAlso Integer.TryParse(dr("Type").ToString(), typeValue) Then
+            If dr("Type") IsNot DBNull.Value AndAlso Integer.TryParse(dr("Type").ToString(), typeValue) Then
                 ' typeValue is set
             Else
                 typeValue = 0 ' or any default value for unknown
@@ -498,6 +594,12 @@ Public Class frmDeceasedReg
                             Dim resultLoc = cmdCheckLoc.ExecuteScalar()
                             If resultLoc IsNot Nothing Then
                                 plotId = Convert.ToInt32(resultLoc)
+                                ' Additional validation to ensure plotId is greater than 0
+                                If plotId <= 0 Then
+                                    errorMessages.Add($"Row {rowIndex}: Invalid location ID retrieved from database (ID: {plotId})")
+                                    errorCount += 1
+                                    Continue For
+                                End If
                             Else
                                 ' 2. Insert location if not exists
                                 Dim sqlInsertLoc As String = "INSERT INTO location (block, section, row, plot, type) VALUES (@block, @section, @row, @plot, @type)"
@@ -509,6 +611,13 @@ Public Class frmDeceasedReg
                                     cmdInsertLoc.Parameters.AddWithValue("@type", typeNumber)
                                     cmdInsertLoc.ExecuteNonQuery()
                                     plotId = Convert.ToInt32(cmdInsertLoc.LastInsertedId)
+
+                                    ' Additional validation after insert
+                                    If plotId <= 0 Then
+                                        errorMessages.Add($"Row {rowIndex}: Failed to create valid location ID (ID: {plotId})")
+                                        errorCount += 1
+                                        Continue For
+                                    End If
                                 End Using
                             End If
                         End Using

@@ -57,8 +57,9 @@ Partial Class frmReservationsReg
         Me.Guna2Panel2.Controls.Add(Me.Label1)
         Me.Guna2Panel2.Dock = System.Windows.Forms.DockStyle.Top
         Me.Guna2Panel2.Location = New System.Drawing.Point(0, 0)
+        Me.Guna2Panel2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Guna2Panel2.Name = "Guna2Panel2"
-        Me.Guna2Panel2.Size = New System.Drawing.Size(888, 81)
+        Me.Guna2Panel2.Size = New System.Drawing.Size(1184, 100)
         Me.Guna2Panel2.TabIndex = 4
         '
         'btnShowAll
@@ -68,9 +69,10 @@ Partial Class frmReservationsReg
         Me.btnShowAll.FillColor = System.Drawing.Color.DarkGoldenrod
         Me.btnShowAll.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnShowAll.ForeColor = System.Drawing.Color.White
-        Me.btnShowAll.Location = New System.Drawing.Point(639, 45)
+        Me.btnShowAll.Location = New System.Drawing.Point(852, 55)
+        Me.btnShowAll.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.btnShowAll.Name = "btnShowAll"
-        Me.btnShowAll.Size = New System.Drawing.Size(75, 25)
+        Me.btnShowAll.Size = New System.Drawing.Size(100, 31)
         Me.btnShowAll.TabIndex = 6
         Me.btnShowAll.Text = "Refresh"
         '
@@ -84,9 +86,10 @@ Partial Class frmReservationsReg
         Me.btnExportPDF.Image = Global.dashboard.My.Resources.Resources.pdf
         Me.btnExportPDF.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left
         Me.btnExportPDF.ImageOffset = New System.Drawing.Point(-5, 0)
-        Me.btnExportPDF.Location = New System.Drawing.Point(510, 45)
+        Me.btnExportPDF.Location = New System.Drawing.Point(680, 55)
+        Me.btnExportPDF.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.btnExportPDF.Name = "btnExportPDF"
-        Me.btnExportPDF.Size = New System.Drawing.Size(121, 25)
+        Me.btnExportPDF.Size = New System.Drawing.Size(161, 31)
         Me.btnExportPDF.TabIndex = 4
         Me.btnExportPDF.Text = "Export to PDF"
         Me.btnExportPDF.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
@@ -99,9 +102,10 @@ Partial Class frmReservationsReg
         Me.btnDelete.FillColor = System.Drawing.Color.Red
         Me.btnDelete.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnDelete.ForeColor = System.Drawing.Color.White
-        Me.btnDelete.Location = New System.Drawing.Point(801, 45)
+        Me.btnDelete.Location = New System.Drawing.Point(1068, 55)
+        Me.btnDelete.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.btnDelete.Name = "btnDelete"
-        Me.btnDelete.Size = New System.Drawing.Size(75, 25)
+        Me.btnDelete.Size = New System.Drawing.Size(100, 31)
         Me.btnDelete.TabIndex = 3
         Me.btnDelete.Text = "Delete"
         '
@@ -112,9 +116,10 @@ Partial Class frmReservationsReg
         Me.btnAssign.FillColor = System.Drawing.Color.Blue
         Me.btnAssign.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnAssign.ForeColor = System.Drawing.Color.White
-        Me.btnAssign.Location = New System.Drawing.Point(720, 45)
+        Me.btnAssign.Location = New System.Drawing.Point(960, 55)
+        Me.btnAssign.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.btnAssign.Name = "btnAssign"
-        Me.btnAssign.Size = New System.Drawing.Size(75, 25)
+        Me.btnAssign.Size = New System.Drawing.Size(100, 31)
         Me.btnAssign.TabIndex = 2
         Me.btnAssign.Text = "Assign"
         '
@@ -124,9 +129,10 @@ Partial Class frmReservationsReg
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Gill Sans MT", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label2.Location = New System.Drawing.Point(15, 44)
+        Me.Label2.Location = New System.Drawing.Point(20, 54)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(195, 21)
+        Me.Label2.Size = New System.Drawing.Size(242, 27)
         Me.Label2.TabIndex = 1
         Me.Label2.Text = "List of client's purchased plots"
         '
@@ -135,9 +141,10 @@ Partial Class frmReservationsReg
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Century Gothic", 21.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label1.Location = New System.Drawing.Point(12, 9)
+        Me.Label1.Location = New System.Drawing.Point(16, 11)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(252, 36)
+        Me.Label1.Size = New System.Drawing.Size(323, 44)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Grave Purchases"
         '
@@ -147,10 +154,11 @@ Partial Class frmReservationsReg
         Me.Guna2Panel1.Controls.Add(Me.txtSearch)
         Me.Guna2Panel1.Controls.Add(Me.ReservationList)
         Me.Guna2Panel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Guna2Panel1.Location = New System.Drawing.Point(0, 81)
+        Me.Guna2Panel1.Location = New System.Drawing.Point(0, 100)
+        Me.Guna2Panel1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Guna2Panel1.Name = "Guna2Panel1"
         Me.Guna2Panel1.ShadowDecoration.Enabled = True
-        Me.Guna2Panel1.Size = New System.Drawing.Size(888, 355)
+        Me.Guna2Panel1.Size = New System.Drawing.Size(1184, 437)
         Me.Guna2Panel1.TabIndex = 5
         '
         'txtSearch
@@ -158,7 +166,7 @@ Partial Class frmReservationsReg
         Me.txtSearch.Animated = True
         Me.txtSearch.AutoRoundedCorners = True
         Me.txtSearch.BorderColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(171, Byte), Integer), CType(CType(189, Byte), Integer))
-        Me.txtSearch.BorderRadius = 16
+        Me.txtSearch.BorderRadius = 20
         Me.txtSearch.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.txtSearch.DefaultText = ""
         Me.txtSearch.DisabledState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer))
@@ -172,13 +180,13 @@ Partial Class frmReservationsReg
         Me.txtSearch.IconRight = Global.dashboard.My.Resources.Resources.search
         Me.txtSearch.IconRightOffset = New System.Drawing.Point(8, 0)
         Me.txtSearch.IconRightSize = New System.Drawing.Size(25, 25)
-        Me.txtSearch.Location = New System.Drawing.Point(12, 7)
-        Me.txtSearch.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.txtSearch.Location = New System.Drawing.Point(16, 9)
+        Me.txtSearch.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txtSearch.Name = "txtSearch"
         Me.txtSearch.PlaceholderForeColor = System.Drawing.Color.Gray
         Me.txtSearch.PlaceholderText = "Search a name"
         Me.txtSearch.SelectedText = ""
-        Me.txtSearch.Size = New System.Drawing.Size(292, 35)
+        Me.txtSearch.Size = New System.Drawing.Size(389, 43)
         Me.txtSearch.TabIndex = 2
         '
         'ReservationList
@@ -190,15 +198,16 @@ Partial Class frmReservationsReg
         Me.ReservationList.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.ReservationList.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.ReservationList.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.id, Me.fullName, Me.plotlocation, Me.dateOfReserv, Me.quantity, Me.status, Me.payment_status})
-        Me.ReservationList.Font = New System.Drawing.Font("Roboto", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ReservationList.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ReservationList.ForeColor = System.Drawing.SystemColors.Window
         Me.ReservationList.FullRowSelect = True
         Me.ReservationList.GridLines = True
         Me.ReservationList.HideSelection = False
-        Me.ReservationList.Location = New System.Drawing.Point(12, 49)
+        Me.ReservationList.Location = New System.Drawing.Point(16, 60)
+        Me.ReservationList.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ReservationList.Name = "ReservationList"
         Me.ReservationList.ShowItemToolTips = True
-        Me.ReservationList.Size = New System.Drawing.Size(864, 301)
+        Me.ReservationList.Size = New System.Drawing.Size(1152, 370)
         Me.ReservationList.TabIndex = 1
         Me.ReservationList.TileSize = New System.Drawing.Size(10, 10)
         Me.ReservationList.UseCompatibleStateImageBehavior = False
@@ -255,13 +264,14 @@ Partial Class frmReservationsReg
         '
         'frmReservationsReg
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(14, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(90, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(888, 436)
+        Me.ClientSize = New System.Drawing.Size(1184, 537)
         Me.Controls.Add(Me.Guna2Panel1)
         Me.Controls.Add(Me.Guna2Panel2)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "frmReservationsReg"
         Me.Text = "frmReservations"
         Me.Guna2Panel2.ResumeLayout(False)

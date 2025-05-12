@@ -167,7 +167,6 @@ Public Class frmReservAssign
                 If Module1.cn.State = ConnectionState.Open Then
                     Module1.cn.Close()
                 End If
-                Module1.cn.Dispose()
             End If
 
         Catch ex As Exception

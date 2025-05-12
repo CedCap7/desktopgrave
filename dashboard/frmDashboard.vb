@@ -176,41 +176,45 @@ Public Class frmDashboard
         Try
             If cn.State <> ConnectionState.Open Then cn.Open()
 
-            sql = "SELECT d.Deceased_ID, d.FirstName, d.LastName, d.Interment, 
-                      DATE_ADD(d.Interment, INTERVAL 8 YEAR) AS ExpirationDate, 
-                      d.deceased_status,
-                      DATEDIFF(CURDATE(), DATE_ADD(d.Interment, INTERVAL 8 YEAR)) AS DaysExpired,
-                      CASE l.type 
-                          WHEN 1 THEN 'Apartment' 
-                          WHEN 2 THEN 'Family Lawn Lots' 
-                          WHEN 3 THEN 'Bone Niche' 
-                          WHEN 4 THEN 'Private' 
-                      END AS PlotType, 
-                      l.block, l.section, l.row, l.plot, 
-                      CONCAT(
-                          CASE l.type 
-                              WHEN 1 THEN 'Apartment' 
-                              WHEN 2 THEN 'Family Lawn Lots' 
-                              WHEN 3 THEN 'Bone Niche' 
-                              WHEN 4 THEN 'Private' 
-                          END, ' - Block ', l.block, ', Section ', l.section, 
-                          ', Row ', l.row, ', Plot ', l.plot
-                      ) AS Location,
-                      c.Email AS ClientEmail,
-                      CONCAT(c.FirstName, ' ', c.LastName) AS ClientName,
-                      d.last_notification_date
-               FROM deceased d 
-               JOIN location l ON d.Plot_ID = l.id 
-               JOIN client c ON d.Client_ID = c.Client_ID
-               WHERE DATE_ADD(d.Interment, INTERVAL 8 YEAR) <= CURDATE()
-               AND LOWER(d.deceased_status) NOT IN (LOWER('Remaining'), LOWER('Relocated'), LOWER('Renewal'), LOWER('Pending'))"
+            sql = "
+SELECT d.Deceased_ID, d.FirstName, d.LastName, d.Interment, d.DateOfDeath,
+       GREATEST(IFNULL(d.Interment, '1000-01-01'), IFNULL(d.DateOfDeath, '1000-01-01')) AS BaseDate,
+       DATE_ADD(GREATEST(IFNULL(d.Interment, '1000-01-01'), IFNULL(d.DateOfDeath, '1000-01-01')), INTERVAL 8 YEAR) AS ExpirationDate,
+       d.deceased_status,
+       DATEDIFF(CURDATE(), DATE_ADD(GREATEST(IFNULL(d.Interment, '1000-01-01'), IFNULL(d.DateOfDeath, '1000-01-01')), INTERVAL 8 YEAR)) AS DaysExpired,
+       CASE l.type 
+           WHEN 1 THEN 'Apartment' 
+           WHEN 2 THEN 'Family Lawn Lots' 
+           WHEN 3 THEN 'Bone Niche' 
+           WHEN 4 THEN 'Private' 
+       END AS PlotType, 
+       l.block, l.section, l.row, l.plot, 
+       CONCAT(
+           CASE l.type 
+               WHEN 1 THEN 'Apartment' 
+               WHEN 2 THEN 'Family Lawn Lots' 
+               WHEN 3 THEN 'Bone Niche' 
+               WHEN 4 THEN 'Private' 
+           END, ' - Block ', l.block, ', Section ', l.section, 
+           ', Row ', l.row, ', Plot ', l.plot
+       ) AS Location,
+       c.Email AS ClientEmail,
+       CONCAT(c.FirstName, ' ', c.LastName) AS ClientName,
+       d.last_notification_date
+FROM deceased d 
+JOIN location l ON d.Plot_ID = l.id 
+JOIN client c ON d.Client_ID = c.Client_ID
+WHERE l.type = 1
+  AND DATE_ADD(GREATEST(IFNULL(d.Interment, '1000-01-01'), IFNULL(d.DateOfDeath, '1000-01-01')), INTERVAL 8 YEAR) <= CURDATE()
+  AND LOWER(d.deceased_status) NOT IN (LOWER('Remaining'), LOWER('Relocated'), LOWER('Renewal'), LOWER('Pending'))
+"
 
             ' Apply filter based on combobox selection
             Select Case cmbFilter.SelectedIndex
                 Case 1 ' Recently Expired
-                    sql &= " AND DATEDIFF(CURDATE(), DATE_ADD(d.Interment, INTERVAL 8 YEAR)) <= 30"
+                    sql &= " AND DATEDIFF(CURDATE(), DATE_ADD(GREATEST(IFNULL(d.Interment, '1000-01-01'), IFNULL(d.DateOfDeath, '1000-01-01')), INTERVAL 8 YEAR)) <= 30"
                 Case 2 ' Expiring Soon
-                    sql &= " AND DATEDIFF(CURDATE(), DATE_ADD(d.Interment, INTERVAL 8 YEAR)) > 30"
+                    sql &= " AND DATEDIFF(CURDATE(), DATE_ADD(GREATEST(IFNULL(d.Interment, '1000-01-01'), IFNULL(d.DateOfDeath, '1000-01-01')), INTERVAL 8 YEAR)) > 30"
             End Select
 
             sql &= " ORDER BY DaysExpired DESC"
@@ -236,10 +240,10 @@ Public Class frmDashboard
 
                         ' Collect info for email notification if the deceased status is expired and no notification was sent in the last 7 days
                         If reader("deceased_status").ToString().ToLower() = "expired" Then
-                            Dim lastNotificationDate As DateTime? = If(reader("last_notification_date") IsNot DBNull.Value, 
-                                                                     Convert.ToDateTime(reader("last_notification_date")), 
+                            Dim lastNotificationDate As DateTime? = If(reader("last_notification_date") IsNot DBNull.Value,
+                                                                     Convert.ToDateTime(reader("last_notification_date")),
                                                                      Nothing)
-                            If Not lastNotificationDate.HasValue OrElse 
+                            If Not lastNotificationDate.HasValue OrElse
                                DateDiff(DateInterval.Day, lastNotificationDate.Value, DateTime.Now) > 7 Then
                                 Dim clientEmail As String = reader("ClientEmail").ToString()
                                 Dim clientName As String = reader("ClientName").ToString()
@@ -317,7 +321,7 @@ Public Class frmDashboard
 
                 For Each row As DataGridViewRow In dgvNotification.SelectedRows
                     Dim deceasedId As String = row.Cells("ID").Value.ToString()
-                    sql = "UPDATE deceased SET deceased_status = 'Remaining' WHERE Deceased_ID = @id"
+                    sql = "UPDATE deceased SET deceased_status = 'Renewal' WHERE Deceased_ID = @id"
 
                     Using cmd As New MySqlCommand(sql, cn, transaction)
                         cmd.Parameters.AddWithValue("@id", deceasedId)
