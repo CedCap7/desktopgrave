@@ -3,6 +3,7 @@ Imports System.IO
 Imports Microsoft.Office.Interop.Excel
 Imports System.Runtime.InteropServices
 Imports System.Diagnostics
+Imports System.Globalization
 
 Public Class frmDeceasedReg
 
@@ -66,8 +67,15 @@ Public Class frmDeceasedReg
                 newLine.SubItems.Add(dr("LastName") & ", " & dr("FirstName") & ", " & dr("MiddleName"))
 
                 ' Convert type integer to string
+                Dim typeValue As Integer = 0
+                If Not IsDBNull(dr("Type")) AndAlso Integer.TryParse(dr("Type").ToString(), typeValue) Then
+                    ' typeValue is set
+                Else
+                    typeValue = 0 ' or any default value for unknown
+                End If
+
                 Dim typeString As String = ""
-                Select Case Convert.ToInt32(dr("Type"))
+                Select Case typeValue
                     Case 1
                         typeString = "Apartment"
                     Case 2
@@ -232,8 +240,15 @@ Public Class frmDeceasedReg
             Dim newLine = DeceasedList.Items.Add(dr("Deceased_ID"))
             newLine.SubItems.Add(dr("LastName") & ", " & dr("FirstName") & ", " & dr("MiddleName"))
 
+            Dim typeValue As Integer = 0
+            If Not IsDBNull(dr("Type")) AndAlso Integer.TryParse(dr("Type").ToString(), typeValue) Then
+                ' typeValue is set
+            Else
+                typeValue = 0 ' or any default value for unknown
+            End If
+
             Dim typeString As String = ""
-            Select Case Convert.ToInt32(dr("Type"))
+            Select Case typeValue
                 Case 1 : typeString = "Apartment"
                 Case 2 : typeString = "Family Lawn Lots"
                 Case 3 : typeString = "Bone Niche"
@@ -260,101 +275,382 @@ Public Class frmDeceasedReg
         Dim errorMessages As New List(Of String)
 
         Try
-            ' Start Excel and open the workbook
             excelApp = New Application()
+            excelApp.Visible = False
+            excelApp.DisplayAlerts = False
             workbooks = excelApp.Workbooks
             workbook = workbooks.Open(filePath)
             worksheet = DirectCast(workbook.Worksheets(1), Worksheet)
-
-            ' Get the used range
             Dim range As Range = worksheet.UsedRange
             Dim rowCount As Integer = range.Rows.Count
 
-            ' Check if there's at least one data row (plus header)
             If rowCount <= 1 Then
                 MessageBox.Show("No data found in the Excel file.", "Empty File", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 Return
             End If
 
-            ' Begin database transaction
             dbconn()
             cn.Open()
             Dim transaction As MySqlTransaction = cn.BeginTransaction()
 
             Try
-                ' Process each row starting from row 2 (assuming row 1 is header)
-                For rowIndex As Integer = 2 To rowCount
+                For rowIndex As Integer = 2 To rowCount ' Start from row 2 (assuming row 1 has headers)
                     Try
-                        ' Read values based on the row structure
-                        Dim deceasedId As String = GetCellValue(worksheet.Cells(rowIndex, 1))
-                        Dim lastName As String = GetCellValue(worksheet.Cells(rowIndex, 2))
-                        Dim firstName As String = GetCellValue(worksheet.Cells(rowIndex, 3))
-                        Dim middleName As String = GetCellValue(worksheet.Cells(rowIndex, 4))
-                        Dim ext As String = GetCellValue(worksheet.Cells(rowIndex, 5))
-                        Dim dateOfBirthStr As String = GetCellValue(worksheet.Cells(rowIndex, 6))
-                        Dim dateOfDeathStr As String = GetCellValue(worksheet.Cells(rowIndex, 7))
-                        Dim intermentStr As String = GetCellValue(worksheet.Cells(rowIndex, 8))
-                        Dim gender As String = GetCellValue(worksheet.Cells(rowIndex, 9))
-                        Dim nationality As String = GetCellValue(worksheet.Cells(rowIndex, 10))
-                        Dim religion As String = GetCellValue(worksheet.Cells(rowIndex, 11))
-                        Dim beneficiary1 As String = GetCellValue(worksheet.Cells(rowIndex, 12))
-                        Dim beneficiary2 As String = GetCellValue(worksheet.Cells(rowIndex, 13))
-                        Dim relationship As String = GetCellValue(worksheet.Cells(rowIndex, 14))
-                        Dim plotId As String = GetCellValue(worksheet.Cells(rowIndex, 15))
+                        ' 1. Read client info
+                        Dim clientFirstName As String = GetCellValue(worksheet.Cells(rowIndex, 1))
+                        Dim clientMiddleName As String = GetCellValue(worksheet.Cells(rowIndex, 2))
+                        Dim clientLastName As String = GetCellValue(worksheet.Cells(rowIndex, 3))
+                        Dim clientExt As String = GetCellValue(worksheet.Cells(rowIndex, 4))
+                        Dim clientGender As String = GetCellValue(worksheet.Cells(rowIndex, 5))
+                        Dim clientMobile As String = GetCellValue(worksheet.Cells(rowIndex, 6))
+                        Dim clientRelationship As String = GetCellValue(worksheet.Cells(rowIndex, 7))
+                        Dim clientAddress As String = GetCellValue(worksheet.Cells(rowIndex, 8))
 
-                        ' Debugging output
-                        Debug.WriteLine($"Row {rowIndex}: Deceased ID: {deceasedId}, First Name: {firstName}, Last Name: {lastName}, Date of Birth: {dateOfBirthStr}, Date of Death: {dateOfDeathStr}")
-
-                        ' Parse dates
-                        Dim dateOfBirth As Date
-                        Dim dateOfDeath As Date
-
-                        If Not Date.TryParse(dateOfBirthStr, dateOfBirth) Then
-                            errorMessages.Add($"Row {rowIndex}: Invalid Date of Birth format: {dateOfBirthStr}")
+                        ' Skip row if essential client information is missing
+                        If String.IsNullOrWhiteSpace(clientFirstName) OrElse String.IsNullOrWhiteSpace(clientLastName) Then
+                            errorMessages.Add($"Row {rowIndex}: Missing essential client information (First Name and Last Name required)")
                             errorCount += 1
                             Continue For
                         End If
 
-                        If Not Date.TryParse(dateOfDeathStr, dateOfDeath) Then
-                            errorMessages.Add($"Row {rowIndex}: Invalid Date of Death format: {dateOfDeathStr}")
-                            errorCount += 1
-                            Continue For
+                        ' 2. Check if client exists
+                        Dim clientId As Integer = -1
+                        Dim sqlCheckClient As String = "SELECT Client_ID FROM client WHERE FirstName=@FirstName AND LastName=@LastName"
+                        If Not String.IsNullOrWhiteSpace(clientMobile) Then
+                            sqlCheckClient &= " AND Mobile=@Mobile"
                         End If
+                        sqlCheckClient &= " LIMIT 1"
 
-                        Dim intermentDate As Date
-                        If Not Date.TryParse(intermentStr, intermentDate) Then
-                            errorMessages.Add($"Row {rowIndex}: Invalid Interment date format: {intermentStr}")
-                            errorCount += 1
-                            Continue For
-                        End If
+                        Using cmdCheck As New MySqlCommand(sqlCheckClient, cn, transaction)
+                            cmdCheck.Parameters.AddWithValue("@FirstName", clientFirstName)
+                            cmdCheck.Parameters.AddWithValue("@LastName", clientLastName)
+                            If Not String.IsNullOrWhiteSpace(clientMobile) Then
+                                cmdCheck.Parameters.AddWithValue("@Mobile", clientMobile)
+                            End If
 
-                        ' Insert into database with all fields
-                        sql = "INSERT INTO deceased (Deceased_ID, FirstName, MiddleName, LastName, DateOfBirth, DateOfDeath, Plot_ID, " &
-                              "Ext, Interment, Gender, Nationality, Religion, Beneficiary1, Beneficiary2, Relationship) " &
-                              "VALUES (@DeceasedID, @FirstName, @MiddleName, @LastName, @DateOfBirth, @DateOfDeath, @PlotID, " &
-                              "@Ext, @Interment, @Gender, @Nationality, @Religion, @Beneficiary1, @Beneficiary2, @Relationship)"
-
-                        Using cmd As New MySqlCommand(sql, cn, transaction)
-                            ' Add essential parameters
-                            cmd.Parameters.AddWithValue("@DeceasedID", If(String.IsNullOrWhiteSpace(deceasedId) OrElse Not IsNumeric(deceasedId), DBNull.Value, Convert.ToInt32(deceasedId)))
-                            cmd.Parameters.AddWithValue("@FirstName", firstName)
-                            cmd.Parameters.AddWithValue("@LastName", lastName)
-                            cmd.Parameters.AddWithValue("@MiddleName", If(String.IsNullOrWhiteSpace(middleName), DBNull.Value, middleName))
-                            cmd.Parameters.AddWithValue("@DateOfBirth", dateOfBirth)
-                            cmd.Parameters.AddWithValue("@DateOfDeath", dateOfDeath)
-                            cmd.Parameters.AddWithValue("@PlotID", If(String.IsNullOrWhiteSpace(plotId) OrElse Not IsNumeric(plotId), DBNull.Value, Convert.ToInt32(plotId)))
-                            cmd.Parameters.AddWithValue("@Ext", If(String.IsNullOrWhiteSpace(ext), DBNull.Value, ext))
-                            cmd.Parameters.AddWithValue("@Interment", intermentDate)
-                            cmd.Parameters.AddWithValue("@Gender", If(String.IsNullOrWhiteSpace(gender), DBNull.Value, gender))
-                            cmd.Parameters.AddWithValue("@Nationality", If(String.IsNullOrWhiteSpace(nationality), DBNull.Value, nationality))
-                            cmd.Parameters.AddWithValue("@Religion", If(String.IsNullOrWhiteSpace(religion), DBNull.Value, religion))
-                            cmd.Parameters.AddWithValue("@Beneficiary1", If(String.IsNullOrWhiteSpace(beneficiary1), DBNull.Value, beneficiary1))
-                            cmd.Parameters.AddWithValue("@Beneficiary2", If(String.IsNullOrWhiteSpace(beneficiary2), DBNull.Value, beneficiary2))
-                            cmd.Parameters.AddWithValue("@Relationship", If(String.IsNullOrWhiteSpace(relationship), DBNull.Value, relationship))
-
-                            cmd.ExecuteNonQuery()
-                            successCount += 1
+                            Dim result = cmdCheck.ExecuteScalar()
+                            If result IsNot Nothing Then
+                                clientId = Convert.ToInt32(result)
+                            Else
+                                ' Insert client
+                                Dim sqlInsertClient As String = "INSERT INTO client (FirstName, MiddleName, LastName, Ext, Gender, Mobile, Relationship_to_Deceased, Address) VALUES (@FirstName, @MiddleName, @LastName, @Ext, @Gender, @Mobile, @Relationship, @Address)"
+                                Using cmdInsert As New MySqlCommand(sqlInsertClient, cn, transaction)
+                                    cmdInsert.Parameters.AddWithValue("@FirstName", clientFirstName)
+                                    cmdInsert.Parameters.AddWithValue("@MiddleName", If(String.IsNullOrWhiteSpace(clientMiddleName), DBNull.Value, clientMiddleName))
+                                    cmdInsert.Parameters.AddWithValue("@LastName", clientLastName)
+                                    cmdInsert.Parameters.AddWithValue("@Ext", If(String.IsNullOrWhiteSpace(clientExt), DBNull.Value, clientExt))
+                                    cmdInsert.Parameters.AddWithValue("@Gender", clientGender)
+                                    cmdInsert.Parameters.AddWithValue("@Mobile", If(String.IsNullOrWhiteSpace(clientMobile), DBNull.Value, clientMobile))
+                                    cmdInsert.Parameters.AddWithValue("@Relationship", If(String.IsNullOrWhiteSpace(clientRelationship), DBNull.Value, clientRelationship))
+                                    cmdInsert.Parameters.AddWithValue("@Address", If(String.IsNullOrWhiteSpace(clientAddress), DBNull.Value, clientAddress))
+                                    cmdInsert.ExecuteNonQuery()
+                                    clientId = Convert.ToInt32(cmdInsert.LastInsertedId)
+                                End Using
+                            End If
                         End Using
+
+                        ' 3. Read deceased info
+                        Dim deceasedFirstName As String = GetCellValue(worksheet.Cells(rowIndex, 9))
+                        Dim deceasedMiddleName As String = GetCellValue(worksheet.Cells(rowIndex, 10))
+                        Dim deceasedLastName As String = GetCellValue(worksheet.Cells(rowIndex, 11))
+                        Dim deceasedExt As String = GetCellValue(worksheet.Cells(rowIndex, 12))
+                        Dim dateOfBirthStr As String = GetCellValue(worksheet.Cells(rowIndex, 13))
+                        Dim dateOfDeathStr As String = GetCellValue(worksheet.Cells(rowIndex, 14))
+                        Dim intermentStr As String = GetCellValue(worksheet.Cells(rowIndex, 20))
+                        Dim deceasedGender As String = GetCellValue(worksheet.Cells(rowIndex, 21))
+                        Dim deceasedNationality As String = GetCellValue(worksheet.Cells(rowIndex, 22))
+                        Dim deceasedReligion As String = GetCellValue(worksheet.Cells(rowIndex, 23))
+
+                        ' Skip row if essential deceased information is missing
+                        If String.IsNullOrWhiteSpace(deceasedFirstName) OrElse String.IsNullOrWhiteSpace(deceasedLastName) Then
+                            errorMessages.Add($"Row {rowIndex}: Missing essential deceased information (First Name and Last Name required)")
+                            errorCount += 1
+                            Continue For
+                        End If
+
+                        ' Acceptable date formats
+                        Dim dateFormats() As String = {
+                        "yyyy-MM-dd", "dd/MM/yyyy", "MM/dd/yyyy", "M/d/yyyy", "d/M/yyyy",
+                        "yyyy/MM/dd", "dd-MM-yyyy", "MM-dd-yyyy", "d-M-yyyy", "M-d-yyyy",
+                        "dd/MM/yyyy HH:mm:ss tt", "dd/MM/yyyy h:mm:ss tt", "dd/MM/yyyy HH:mm:ss", "dd/MM/yyyy h:mm:ss"
+                    }
+
+                        ' Date of Birth handling
+                        Dim dateOfBirth As Date
+                        Dim dobIsValid As Boolean = False
+
+                        If Not String.IsNullOrWhiteSpace(dateOfBirthStr) Then
+                            ' Try to extract just the date part if there's time information
+                            Dim datePart As String = dateOfBirthStr.Split(" "c)(0)
+                            dobIsValid = Date.TryParseExact(datePart, dateFormats, CultureInfo.InvariantCulture, DateTimeStyles.None, dateOfBirth)
+                            If Not dobIsValid Then
+                                dobIsValid = Date.TryParse(datePart, CultureInfo.InvariantCulture, DateTimeStyles.None, dateOfBirth)
+                            End If
+
+                            If Not dobIsValid Then
+                                errorMessages.Add($"Row {rowIndex}: Invalid Date of Birth format: {dateOfBirthStr}")
+                                errorCount += 1
+                                Continue For
+                            End If
+                        Else
+                            ' If no DOB provided, can either skip or use a default
+                            errorMessages.Add($"Row {rowIndex}: Missing Date of Birth")
+                            errorCount += 1
+                            Continue For
+                        End If
+
+                        ' Date of Death handling
+                        Dim dateOfDeath As Date
+                        Dim dodIsValid As Boolean = False
+
+                        If Not String.IsNullOrWhiteSpace(dateOfDeathStr) Then
+                            ' Try to extract just the date part if there's time information
+                            Dim datePart As String = dateOfDeathStr.Split(" "c)(0)
+                            dodIsValid = Date.TryParseExact(datePart, dateFormats, CultureInfo.InvariantCulture, DateTimeStyles.None, dateOfDeath)
+                            If Not dodIsValid Then
+                                dodIsValid = Date.TryParse(datePart, CultureInfo.InvariantCulture, DateTimeStyles.None, dateOfDeath)
+                            End If
+
+                            If Not dodIsValid Then
+                                errorMessages.Add($"Row {rowIndex}: Invalid Date of Death format: {dateOfDeathStr}")
+                                errorCount += 1
+                                Continue For
+                            End If
+                        Else
+                            ' If no DOD provided, can either skip or use a default
+                            errorMessages.Add($"Row {rowIndex}: Missing Date of Death")
+                            errorCount += 1
+                            Continue For
+                        End If
+
+                        ' Interment date handling (optional)
+                        Dim intermentDate As Date
+                        Dim intermentIsValid As Boolean = False
+
+                        If Not String.IsNullOrWhiteSpace(intermentStr) Then
+                            ' Try to extract just the date part if there's time information
+                            Dim datePart As String = intermentStr.Split(" "c)(0)
+                            intermentIsValid = Date.TryParseExact(datePart, dateFormats, CultureInfo.InvariantCulture, DateTimeStyles.None, intermentDate)
+                            If Not intermentIsValid Then
+                                intermentIsValid = Date.TryParse(datePart, CultureInfo.InvariantCulture, DateTimeStyles.None, intermentDate)
+                            End If
+
+                            If Not intermentIsValid Then
+                                ' Warning only - not critical
+                                errorMessages.Add($"Row {rowIndex}: Warning - Invalid Interment Date format: {intermentStr}, it will be ignored")
+                            End If
+                        End If
+
+                        ' Read location info from Excel
+                        Dim block As String = GetCellValue(worksheet.Cells(rowIndex, 15))
+                        Dim section As String = GetCellValue(worksheet.Cells(rowIndex, 16))
+                        Dim row As String = GetCellValue(worksheet.Cells(rowIndex, 17))
+                        Dim plot As String = GetCellValue(worksheet.Cells(rowIndex, 18))
+                        Dim type As String = GetCellValue(worksheet.Cells(rowIndex, 19))
+
+                        ' Convert type to integer if needed (if stored as string in Excel)
+                        Dim typeNumber As Integer
+                        If Not Integer.TryParse(type, typeNumber) Then
+                            ' Try to convert type string to number
+                            Select Case type.Trim().ToLower()
+                                Case "apartment"
+                                    typeNumber = 1
+                                Case "family lawn lots", "lawn lots", "lawn"
+                                    typeNumber = 2
+                                Case "bone niche", "niche", "bone"
+                                    typeNumber = 3
+                                Case "private"
+                                    typeNumber = 4
+                                Case Else
+                                    ' Default type or error
+                                    errorMessages.Add($"Row {rowIndex}: Unknown location type: {type}, using default")
+                                    typeNumber = 1 ' Default to apartment or whatever makes sense as default
+                            End Select
+                        End If
+
+                        ' Convert location fields to integers
+                        Dim blockInt, sectionInt, rowInt, plotInt As Integer
+                        If Not Integer.TryParse(block, blockInt) OrElse
+                           Not Integer.TryParse(section, sectionInt) OrElse
+                           Not Integer.TryParse(row, rowInt) OrElse
+                           Not Integer.TryParse(plot, plotInt) Then
+                            errorMessages.Add($"Row {rowIndex}: Invalid number in location fields (Block, Section, Row, Plot must be numbers)")
+                            errorCount += 1
+                            Continue For
+                        End If
+
+                        ' Check essential location info
+                        If String.IsNullOrWhiteSpace(block) OrElse String.IsNullOrWhiteSpace(section) Then
+                            errorMessages.Add($"Row {rowIndex}: Missing essential location information (Block and Section required)")
+                            errorCount += 1
+                            Continue For
+                        End If
+
+                        ' 1. Check if location exists
+                        Dim plotId As Integer = -1
+                        Dim sqlCheckLocation As String = "SELECT id FROM location WHERE block=@block AND section=@section AND row=@row AND plot=@plot AND type=@type LIMIT 1"
+                        Using cmdCheckLoc As New MySqlCommand(sqlCheckLocation, cn, transaction)
+                            cmdCheckLoc.Parameters.AddWithValue("@block", blockInt)
+                            cmdCheckLoc.Parameters.AddWithValue("@section", sectionInt)
+                            cmdCheckLoc.Parameters.AddWithValue("@row", rowInt)
+                            cmdCheckLoc.Parameters.AddWithValue("@plot", plotInt)
+                            cmdCheckLoc.Parameters.AddWithValue("@type", typeNumber)
+                            Dim resultLoc = cmdCheckLoc.ExecuteScalar()
+                            If resultLoc IsNot Nothing Then
+                                plotId = Convert.ToInt32(resultLoc)
+                            Else
+                                ' 2. Insert location if not exists
+                                Dim sqlInsertLoc As String = "INSERT INTO location (block, section, row, plot, type) VALUES (@block, @section, @row, @plot, @type)"
+                                Using cmdInsertLoc As New MySqlCommand(sqlInsertLoc, cn, transaction)
+                                    cmdInsertLoc.Parameters.AddWithValue("@block", blockInt)
+                                    cmdInsertLoc.Parameters.AddWithValue("@section", sectionInt)
+                                    cmdInsertLoc.Parameters.AddWithValue("@row", rowInt)
+                                    cmdInsertLoc.Parameters.AddWithValue("@plot", plotInt)
+                                    cmdInsertLoc.Parameters.AddWithValue("@type", typeNumber)
+                                    cmdInsertLoc.ExecuteNonQuery()
+                                    plotId = Convert.ToInt32(cmdInsertLoc.LastInsertedId)
+                                End Using
+                            End If
+                        End Using
+
+                        ' 4. Insert deceased
+                        Dim deceasedStatus As String = "Pending"
+                        If plotId > 0 AndAlso clientId > 0 Then
+                            deceasedStatus = "Remaining"
+                        End If
+
+                        ' Ensure clientId is valid before proceeding
+                        If clientId <= 0 Then
+                            errorMessages.Add($"Row {rowIndex}: Invalid or missing client information (Client_ID is {clientId})")
+                            errorCount += 1
+                            Continue For
+                        End If
+
+                        ' Ensure plotId is valid before proceeding
+                        If plotId <= 0 Then
+                            errorMessages.Add($"Row {rowIndex}: Invalid or missing plot information (Plot_ID is {plotId})")
+                            errorCount += 1
+                            Continue For
+                        End If
+
+                        ' Check if deceased with same details already exists to prevent duplicates
+                        Dim deceasedExists As Boolean = False
+                        Dim deceasedId As Integer = -1
+                        Dim sqlCheckDeceased As String = "SELECT Deceased_ID FROM deceased WHERE FirstName=@FirstName AND LastName=@LastName AND DateOfDeath=@DateOfDeath LIMIT 1"
+                        Using cmdCheckDeceased As New MySqlCommand(sqlCheckDeceased, cn, transaction)
+                            cmdCheckDeceased.Parameters.AddWithValue("@FirstName", deceasedFirstName)
+                            cmdCheckDeceased.Parameters.AddWithValue("@LastName", deceasedLastName)
+                            cmdCheckDeceased.Parameters.AddWithValue("@DateOfDeath", dateOfDeath)
+                            Dim resultDeceased = cmdCheckDeceased.ExecuteScalar()
+                            If resultDeceased IsNot Nothing Then
+                                deceasedExists = True
+                                deceasedId = Convert.ToInt32(resultDeceased)
+                                errorMessages.Add($"Row {rowIndex}: Warning - Deceased person already exists in database, updating existing record")
+                            End If
+                        End Using
+
+                        If deceasedExists Then
+                            ' Update existing record
+                            Dim sqlUpdateDeceased As String = "UPDATE deceased SET " &
+                                                      "MiddleName=@MiddleName, Ext=@Ext, " &
+                                                      "DateOfBirth=@DateOfBirth, Plot_ID=@PlotID, " &
+                                                      "Interment=@Interment, Gender=@Gender, " &
+                                                      "Nationality=@Nationality, Religion=@Religion, " &
+                                                      "Client_ID=@ClientID, deceased_status=@DeceasedStatus " &
+                                                      "WHERE Deceased_ID=@DeceasedID"
+                            Using cmdUpdateDeceased As New MySqlCommand(sqlUpdateDeceased, cn, transaction)
+                                cmdUpdateDeceased.Parameters.AddWithValue("@MiddleName", If(String.IsNullOrWhiteSpace(deceasedMiddleName), DBNull.Value, deceasedMiddleName))
+                                cmdUpdateDeceased.Parameters.AddWithValue("@Ext", If(String.IsNullOrWhiteSpace(deceasedExt), DBNull.Value, deceasedExt))
+                                cmdUpdateDeceased.Parameters.AddWithValue("@DateOfBirth", dateOfBirth)
+                                cmdUpdateDeceased.Parameters.AddWithValue("@PlotID", plotId)
+                                cmdUpdateDeceased.Parameters.AddWithValue("@Interment", If(intermentIsValid, intermentDate, DBNull.Value))
+                                cmdUpdateDeceased.Parameters.AddWithValue("@Gender", deceasedGender)
+                                cmdUpdateDeceased.Parameters.AddWithValue("@Nationality", If(String.IsNullOrWhiteSpace(deceasedNationality), DBNull.Value, deceasedNationality))
+                                cmdUpdateDeceased.Parameters.AddWithValue("@Religion", If(String.IsNullOrWhiteSpace(deceasedReligion), DBNull.Value, deceasedReligion))
+                                cmdUpdateDeceased.Parameters.AddWithValue("@ClientID", clientId)
+                                cmdUpdateDeceased.Parameters.AddWithValue("@DeceasedStatus", deceasedStatus)
+                                cmdUpdateDeceased.Parameters.AddWithValue("@DeceasedID", deceasedId)
+                                cmdUpdateDeceased.ExecuteNonQuery()
+                            End Using
+                        Else
+                            ' Insert new deceased record
+                            Dim sqlInsertDeceased As String = "INSERT INTO deceased (FirstName, MiddleName, LastName, Ext, DateOfBirth, DateOfDeath, Plot_ID, Interment, Gender, Nationality, Religion, Client_ID, deceased_status) " &
+                                                      "VALUES (@FirstName, @MiddleName, @LastName, @Ext, @DateOfBirth, @DateOfDeath, @PlotID, @Interment, @Gender, @Nationality, @Religion, @ClientID, @DeceasedStatus)"
+                            Using cmdInsertDeceased As New MySqlCommand(sqlInsertDeceased, cn, transaction)
+                                cmdInsertDeceased.Parameters.AddWithValue("@FirstName", deceasedFirstName)
+                                cmdInsertDeceased.Parameters.AddWithValue("@MiddleName", If(String.IsNullOrWhiteSpace(deceasedMiddleName), DBNull.Value, deceasedMiddleName))
+                                cmdInsertDeceased.Parameters.AddWithValue("@LastName", deceasedLastName)
+                                cmdInsertDeceased.Parameters.AddWithValue("@Ext", If(String.IsNullOrWhiteSpace(deceasedExt), DBNull.Value, deceasedExt))
+                                cmdInsertDeceased.Parameters.AddWithValue("@DateOfBirth", dateOfBirth)
+                                cmdInsertDeceased.Parameters.AddWithValue("@DateOfDeath", dateOfDeath)
+                                cmdInsertDeceased.Parameters.AddWithValue("@PlotID", plotId)
+                                cmdInsertDeceased.Parameters.AddWithValue("@Interment", If(intermentIsValid, intermentDate, DBNull.Value))
+                                cmdInsertDeceased.Parameters.AddWithValue("@Gender", deceasedGender)
+                                cmdInsertDeceased.Parameters.AddWithValue("@Nationality", If(String.IsNullOrWhiteSpace(deceasedNationality), DBNull.Value, deceasedNationality))
+                                cmdInsertDeceased.Parameters.AddWithValue("@Religion", If(String.IsNullOrWhiteSpace(deceasedReligion), DBNull.Value, deceasedReligion))
+                                cmdInsertDeceased.Parameters.AddWithValue("@ClientID", clientId)
+                                cmdInsertDeceased.Parameters.AddWithValue("@DeceasedStatus", deceasedStatus)
+                                cmdInsertDeceased.ExecuteNonQuery()
+                                deceasedId = Convert.ToInt32(cmdInsertDeceased.LastInsertedId)
+                            End Using
+                        End If
+
+                        ' 5. Insert beneficiaries
+                        Dim beneficiary1Name As String = GetCellValue(worksheet.Cells(rowIndex, 24))
+                        Dim beneficiary1Contact As String = GetCellValue(worksheet.Cells(rowIndex, 25))
+                        Dim beneficiary2Name As String = GetCellValue(worksheet.Cells(rowIndex, 26))
+                        Dim beneficiary2Contact As String = GetCellValue(worksheet.Cells(rowIndex, 27))
+                        Dim relationship As String = GetCellValue(worksheet.Cells(rowIndex, 28))
+
+                        If Not String.IsNullOrWhiteSpace(beneficiary1Name) Then
+                            ' Check if beneficiary already exists
+                            Dim sqlCheckBenef As String = "SELECT id FROM beneficiaries WHERE Client_ID = @ClientID AND FullName = @FullName AND `Order` = @Order LIMIT 1"
+                            Dim benefExists As Boolean = False
+                            Using cmdCheckBenef As New MySqlCommand(sqlCheckBenef, cn, transaction)
+                                cmdCheckBenef.Parameters.AddWithValue("@ClientID", clientId)
+                                cmdCheckBenef.Parameters.AddWithValue("@FullName", beneficiary1Name)
+                                cmdCheckBenef.Parameters.AddWithValue("@Order", 1)
+                                benefExists = cmdCheckBenef.ExecuteScalar() IsNot Nothing
+                            End Using
+
+                            If Not benefExists Then
+                                Dim sqlInsertBeneficiary As String = "INSERT INTO beneficiaries (Client_ID, FullName, `Order`, Contact, status) VALUES (@ClientID, @FullName, @Order, @Contact, @Status)"
+                                Using cmdB As New MySqlCommand(sqlInsertBeneficiary, cn, transaction)
+                                    cmdB.Parameters.AddWithValue("@ClientID", clientId)
+                                    cmdB.Parameters.AddWithValue("@FullName", beneficiary1Name)
+                                    cmdB.Parameters.AddWithValue("@Order", 1)
+                                    cmdB.Parameters.AddWithValue("@Contact", If(String.IsNullOrWhiteSpace(beneficiary1Contact), DBNull.Value, beneficiary1Contact))
+                                    cmdB.Parameters.AddWithValue("@Status", DBNull.Value)
+                                    cmdB.ExecuteNonQuery()
+                                End Using
+                            End If
+                        End If
+
+                        If Not String.IsNullOrWhiteSpace(beneficiary2Name) Then
+                            ' Check if beneficiary already exists
+                            Dim sqlCheckBenef As String = "SELECT id FROM beneficiaries WHERE Client_ID = @ClientID AND FullName = @FullName AND `Order` = @Order LIMIT 1"
+                            Dim benefExists As Boolean = False
+                            Using cmdCheckBenef As New MySqlCommand(sqlCheckBenef, cn, transaction)
+                                cmdCheckBenef.Parameters.AddWithValue("@ClientID", clientId)
+                                cmdCheckBenef.Parameters.AddWithValue("@FullName", beneficiary2Name)
+                                cmdCheckBenef.Parameters.AddWithValue("@Order", 2)
+                                benefExists = cmdCheckBenef.ExecuteScalar() IsNot Nothing
+                            End Using
+
+                            If Not benefExists Then
+                                Dim sqlInsertBeneficiary As String = "INSERT INTO beneficiaries (Client_ID, FullName, `Order`, Contact, status) VALUES (@ClientID, @FullName, @Order, @Contact, @Status)"
+                                Using cmdB As New MySqlCommand(sqlInsertBeneficiary, cn, transaction)
+                                    cmdB.Parameters.AddWithValue("@ClientID", clientId)
+                                    cmdB.Parameters.AddWithValue("@FullName", beneficiary2Name)
+                                    cmdB.Parameters.AddWithValue("@Order", 2)
+                                    cmdB.Parameters.AddWithValue("@Contact", If(String.IsNullOrWhiteSpace(beneficiary2Contact), DBNull.Value, beneficiary2Contact))
+                                    cmdB.Parameters.AddWithValue("@Status", DBNull.Value)
+                                    cmdB.ExecuteNonQuery()
+                                End Using
+                            End If
+                        End If
+
+                        successCount += 1
                     Catch ex As Exception
                         errorMessages.Add($"Row {rowIndex}: {ex.Message}")
                         errorCount += 1
@@ -362,16 +658,18 @@ Public Class frmDeceasedReg
                 Next
 
                 transaction.Commit()
+                LoadUsers() ' Refresh the list to show new imported records
+
                 If errorMessages.Count > 0 Then
                     Dim errorDetails As String = String.Join(Environment.NewLine, errorMessages.Take(5))
                     If errorMessages.Count > 5 Then
                         errorDetails += Environment.NewLine + $"...and {errorMessages.Count - 5} more errors"
                     End If
                     MessageBox.Show($"Import complete. {successCount} records imported successfully. {errorCount} records had errors.{Environment.NewLine}{Environment.NewLine}First few errors:{Environment.NewLine}{errorDetails}",
-                                "Import Results", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                            "Import Results", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Else
                     MessageBox.Show($"Import complete. {successCount} records imported successfully.",
-                                "Import Results", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                            "Import Results", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 End If
 
             Catch ex As Exception
@@ -379,8 +677,10 @@ Public Class frmDeceasedReg
                 MessageBox.Show($"Transaction error: {ex.Message}", "Import Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
 
+        Catch ex As Exception
+            MessageBox.Show($"Excel processing error: {ex.Message}", "Import Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
-            ' Clean up Excel objects
+            ' Clean up Excel objects to prevent memory leaks
             If worksheet IsNot Nothing Then Marshal.ReleaseComObject(worksheet)
             If workbook IsNot Nothing Then
                 workbook.Close(False)
@@ -391,22 +691,23 @@ Public Class frmDeceasedReg
                 excelApp.Quit()
                 Marshal.ReleaseComObject(excelApp)
             End If
-
-            ' Close database connection
             If cn IsNot Nothing AndAlso cn.State = ConnectionState.Open Then
                 cn.Close()
             End If
-
-            ' Force garbage collection
             GC.Collect()
             GC.WaitForPendingFinalizers()
         End Try
     End Sub
 
     Private Function GetCellValue(cell As Range) As String
-        If cell IsNot Nothing AndAlso cell.Value IsNot Nothing Then
-            Return cell.Value.ToString().Trim()
-        End If
+        Try
+            If cell IsNot Nothing AndAlso cell.Value IsNot Nothing Then
+                Return cell.Value.ToString().Trim()
+            End If
+        Catch ex As Exception
+            ' Handle any unexpected exceptions when reading cell values
+            Return String.Empty
+        End Try
         Return String.Empty
     End Function
 
