@@ -22,9 +22,15 @@ Partial Class frmViewClient
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmViewClient))
         Me.Guna2ShadowPanel1 = New Guna.UI2.WinForms.Guna2ShadowPanel()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.pbClient = New Guna.UI2.WinForms.Guna2CirclePictureBox()
         Me.LblAddress = New System.Windows.Forms.Label()
+        Me.LblEmail = New System.Windows.Forms.Label()
         Me.LblMobile = New System.Windows.Forms.Label()
         Me.LblClient = New System.Windows.Forms.Label()
         Me.Guna2ShadowPanel2 = New Guna.UI2.WinForms.Guna2ShadowPanel()
@@ -33,11 +39,6 @@ Partial Class frmViewClient
         Me.plotLocation = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.LblEmail = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
         Me.Guna2ShadowPanel1.SuspendLayout()
         CType(Me.pbClient, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Guna2ShadowPanel2.SuspendLayout()
@@ -65,6 +66,50 @@ Partial Class frmViewClient
         Me.Guna2ShadowPanel1.Size = New System.Drawing.Size(406, 426)
         Me.Guna2ShadowPanel1.TabIndex = 7
         '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Roboto", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.ForeColor = System.Drawing.SystemColors.Control
+        Me.Label4.Location = New System.Drawing.Point(20, 322)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(87, 24)
+        Me.Label4.TabIndex = 10
+        Me.Label4.Text = "Address:"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Roboto", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.ForeColor = System.Drawing.SystemColors.Control
+        Me.Label3.Location = New System.Drawing.Point(20, 278)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(62, 24)
+        Me.Label3.TabIndex = 9
+        Me.Label3.Text = "Email:"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Roboto", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.ForeColor = System.Drawing.SystemColors.Control
+        Me.Label2.Location = New System.Drawing.Point(20, 234)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(110, 24)
+        Me.Label2.TabIndex = 8
+        Me.Label2.Text = "Contact No:"
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Roboto", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.SystemColors.Control
+        Me.Label1.Location = New System.Drawing.Point(20, 190)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(64, 24)
+        Me.Label1.TabIndex = 7
+        Me.Label1.Text = "Client:"
+        '
         'pbClient
         '
         Me.pbClient.Image = Global.dashboard.My.Resources.Resources.profile
@@ -89,6 +134,17 @@ Partial Class frmViewClient
         Me.LblAddress.Size = New System.Drawing.Size(70, 20)
         Me.LblAddress.TabIndex = 5
         Me.LblAddress.Text = "Address:"
+        '
+        'LblEmail
+        '
+        Me.LblEmail.AutoSize = True
+        Me.LblEmail.Font = New System.Drawing.Font("Roboto", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LblEmail.ForeColor = System.Drawing.SystemColors.Control
+        Me.LblEmail.Location = New System.Drawing.Point(20, 302)
+        Me.LblEmail.Name = "LblEmail"
+        Me.LblEmail.Size = New System.Drawing.Size(53, 20)
+        Me.LblEmail.TabIndex = 4
+        Me.LblEmail.Text = "Email:"
         '
         'LblMobile
         '
@@ -177,61 +233,6 @@ Partial Class frmViewClient
         Me.Label5.TabIndex = 12
         Me.Label5.Text = "Information of the Client and its Associated Deceased"
         '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Roboto", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label1.Location = New System.Drawing.Point(20, 190)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(64, 24)
-        Me.Label1.TabIndex = 7
-        Me.Label1.Text = "Client:"
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Roboto", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label2.Location = New System.Drawing.Point(20, 234)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(110, 24)
-        Me.Label2.TabIndex = 8
-        Me.Label2.Text = "Contact No:"
-        '
-        'LblEmail
-        '
-        Me.LblEmail.AutoSize = True
-        Me.LblEmail.Font = New System.Drawing.Font("Roboto", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LblEmail.ForeColor = System.Drawing.SystemColors.Control
-        Me.LblEmail.Location = New System.Drawing.Point(20, 302)
-        Me.LblEmail.Name = "LblEmail"
-        Me.LblEmail.Size = New System.Drawing.Size(53, 20)
-        Me.LblEmail.TabIndex = 4
-        Me.LblEmail.Text = "Email:"
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Roboto", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label3.Location = New System.Drawing.Point(20, 278)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(62, 24)
-        Me.Label3.TabIndex = 9
-        Me.Label3.Text = "Email:"
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Roboto", 14.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label4.Location = New System.Drawing.Point(20, 322)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(87, 24)
-        Me.Label4.TabIndex = 10
-        Me.Label4.Text = "Address:"
-        '
         'frmViewClient
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -243,6 +244,7 @@ Partial Class frmViewClient
         Me.Controls.Add(Me.Guna2ShadowPanel2)
         Me.Controls.Add(Me.Guna2ShadowPanel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "frmViewClient"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "View Client"

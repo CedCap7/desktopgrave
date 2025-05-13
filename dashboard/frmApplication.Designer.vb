@@ -22,6 +22,7 @@ Partial Class frmApplication
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmApplication))
         Me.panel1 = New System.Windows.Forms.Panel()
         Me.Guna2ShadowPanel1 = New Guna.UI2.WinForms.Guna2ShadowPanel()
         Me.txtMiddleName = New Guna.UI2.WinForms.Guna2TextBox()
@@ -57,7 +58,7 @@ Partial Class frmApplication
         Me.panel1.Controls.Add(Me.btnCancel)
         Me.panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.panel1.Location = New System.Drawing.Point(0, 69)
-        Me.panel1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.panel1.Margin = New System.Windows.Forms.Padding(2)
         Me.panel1.Name = "panel1"
         Me.panel1.Size = New System.Drawing.Size(983, 349)
         Me.panel1.TabIndex = 13
@@ -124,7 +125,7 @@ Partial Class frmApplication
         Me.chkMale.Font = New System.Drawing.Font("Roboto Condensed", 12.0!, System.Drawing.FontStyle.Bold)
         Me.chkMale.ForeColor = System.Drawing.SystemColors.ControlText
         Me.chkMale.Location = New System.Drawing.Point(19, 206)
-        Me.chkMale.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.chkMale.Margin = New System.Windows.Forms.Padding(2)
         Me.chkMale.Name = "chkMale"
         Me.chkMale.Size = New System.Drawing.Size(116, 30)
         Me.chkMale.TabIndex = 89
@@ -152,7 +153,7 @@ Partial Class frmApplication
         Me.txtAddress.ForeColor = System.Drawing.Color.Black
         Me.txtAddress.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.txtAddress.Location = New System.Drawing.Point(496, 124)
-        Me.txtAddress.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
+        Me.txtAddress.Margin = New System.Windows.Forms.Padding(5)
         Me.txtAddress.Name = "txtAddress"
         Me.txtAddress.PlaceholderForeColor = System.Drawing.Color.Gray
         Me.txtAddress.PlaceholderText = "Street, Purok, Barangay, Municipality, Province"
@@ -173,7 +174,7 @@ Partial Class frmApplication
         Me.chkFemale.Font = New System.Drawing.Font("Roboto Condensed", 12.0!, System.Drawing.FontStyle.Bold)
         Me.chkFemale.ForeColor = System.Drawing.SystemColors.ControlText
         Me.chkFemale.Location = New System.Drawing.Point(139, 206)
-        Me.chkFemale.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.chkFemale.Margin = New System.Windows.Forms.Padding(2)
         Me.chkFemale.Name = "chkFemale"
         Me.chkFemale.Size = New System.Drawing.Size(116, 30)
         Me.chkFemale.TabIndex = 88
@@ -321,7 +322,7 @@ Partial Class frmApplication
         Me.txtEmail.ForeColor = System.Drawing.Color.Black
         Me.txtEmail.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.txtEmail.Location = New System.Drawing.Point(255, 126)
-        Me.txtEmail.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
+        Me.txtEmail.Margin = New System.Windows.Forms.Padding(5)
         Me.txtEmail.Name = "txtEmail"
         Me.txtEmail.PlaceholderForeColor = System.Drawing.Color.Gray
         Me.txtEmail.PlaceholderText = "E-mail"
@@ -345,7 +346,7 @@ Partial Class frmApplication
         Me.txtMobile.ForeColor = System.Drawing.Color.Black
         Me.txtMobile.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.txtMobile.Location = New System.Drawing.Point(14, 126)
-        Me.txtMobile.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
+        Me.txtMobile.Margin = New System.Windows.Forms.Padding(5)
         Me.txtMobile.Name = "txtMobile"
         Me.txtMobile.PlaceholderForeColor = System.Drawing.Color.Gray
         Me.txtMobile.PlaceholderText = "Mobile Number"
@@ -364,7 +365,7 @@ Partial Class frmApplication
         Me.btnConfirm.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnConfirm.ForeColor = System.Drawing.Color.White
         Me.btnConfirm.Location = New System.Drawing.Point(480, 300)
-        Me.btnConfirm.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnConfirm.Margin = New System.Windows.Forms.Padding(2)
         Me.btnConfirm.Name = "btnConfirm"
         Me.btnConfirm.Size = New System.Drawing.Size(238, 37)
         Me.btnConfirm.TabIndex = 15
@@ -380,7 +381,7 @@ Partial Class frmApplication
         Me.btnCancel.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnCancel.ForeColor = System.Drawing.Color.White
         Me.btnCancel.Location = New System.Drawing.Point(238, 300)
-        Me.btnCancel.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.btnCancel.Margin = New System.Windows.Forms.Padding(2)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(238, 37)
         Me.btnCancel.TabIndex = 14
@@ -458,7 +459,8 @@ Partial Class frmApplication
         Me.Controls.Add(Me.panel1)
         Me.Controls.Add(Me.Guna2Panel2)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
-        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "frmApplication"
         Me.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent

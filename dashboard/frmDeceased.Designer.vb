@@ -22,6 +22,7 @@ Partial Class frmDeceased
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmDeceased))
         Me.guna2Panel1 = New Guna.UI2.WinForms.Guna2Panel()
         Me.lstClientSuggestions = New System.Windows.Forms.ListBox()
         Me.Guna2ShadowPanel3 = New Guna.UI2.WinForms.Guna2ShadowPanel()
@@ -822,6 +823,7 @@ Partial Class frmDeceased
         Me.ClientSize = New System.Drawing.Size(638, 711)
         Me.Controls.Add(Me.guna2Panel1)
         Me.Controls.Add(Me.Guna2Panel2)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "frmDeceased"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen

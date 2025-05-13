@@ -22,7 +22,9 @@ Partial Class frmUpdateDeceased
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmUpdateDeceased))
         Me.guna2Panel1 = New Guna.UI2.WinForms.Guna2Panel()
+        Me.lstClientSuggestions = New System.Windows.Forms.ListBox()
         Me.Guna2ShadowPanel3 = New Guna.UI2.WinForms.Guna2ShadowPanel()
         Me.txtBeneficiaryContact2 = New Guna.UI2.WinForms.Guna2TextBox()
         Me.txtBeneficiaryContact1 = New Guna.UI2.WinForms.Guna2TextBox()
@@ -30,7 +32,6 @@ Partial Class frmUpdateDeceased
         Me.txtBeneficiary2 = New Guna.UI2.WinForms.Guna2TextBox()
         Me.Guna2HtmlLabel2 = New Guna.UI2.WinForms.Guna2HtmlLabel()
         Me.Guna2ShadowPanel1 = New Guna.UI2.WinForms.Guna2ShadowPanel()
-        Me.lstClientSuggestions = New System.Windows.Forms.ListBox()
         Me.txtClientSearch = New Guna.UI2.WinForms.Guna2TextBox()
         Me.txtRelationship = New Guna.UI2.WinForms.Guna2TextBox()
         Me.guna2HtmlLabel1 = New Guna.UI2.WinForms.Guna2HtmlLabel()
@@ -84,6 +85,17 @@ Partial Class frmUpdateDeceased
         Me.guna2Panel1.Name = "guna2Panel1"
         Me.guna2Panel1.Size = New System.Drawing.Size(638, 642)
         Me.guna2Panel1.TabIndex = 56
+        '
+        'lstClientSuggestions
+        '
+        Me.lstClientSuggestions.Font = New System.Drawing.Font("Roboto", 12.0!)
+        Me.lstClientSuggestions.FormattingEnabled = True
+        Me.lstClientSuggestions.ItemHeight = 20
+        Me.lstClientSuggestions.Location = New System.Drawing.Point(43, 76)
+        Me.lstClientSuggestions.Name = "lstClientSuggestions"
+        Me.lstClientSuggestions.Size = New System.Drawing.Size(302, 64)
+        Me.lstClientSuggestions.TabIndex = 61
+        Me.lstClientSuggestions.Visible = False
         '
         'Guna2ShadowPanel3
         '
@@ -224,17 +236,6 @@ Partial Class frmUpdateDeceased
         Me.Guna2ShadowPanel1.ShadowColor = System.Drawing.Color.Black
         Me.Guna2ShadowPanel1.Size = New System.Drawing.Size(635, 113)
         Me.Guna2ShadowPanel1.TabIndex = 98
-        '
-        'lstClientSuggestions
-        '
-        Me.lstClientSuggestions.Font = New System.Drawing.Font("Roboto", 12.0!)
-        Me.lstClientSuggestions.FormattingEnabled = True
-        Me.lstClientSuggestions.ItemHeight = 20
-        Me.lstClientSuggestions.Location = New System.Drawing.Point(43, 76)
-        Me.lstClientSuggestions.Name = "lstClientSuggestions"
-        Me.lstClientSuggestions.Size = New System.Drawing.Size(302, 64)
-        Me.lstClientSuggestions.TabIndex = 61
-        Me.lstClientSuggestions.Visible = False
         '
         'txtClientSearch
         '
@@ -821,6 +822,7 @@ Partial Class frmUpdateDeceased
         Me.Controls.Add(Me.guna2Panel1)
         Me.Controls.Add(Me.Guna2Panel2)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "frmUpdateDeceased"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen

@@ -22,6 +22,7 @@ Partial Class frmPlotPurchAndAssign
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmPlotPurchAndAssign))
         Me.panel1 = New System.Windows.Forms.Panel()
         Me.subSidePanel = New Guna.UI2.WinForms.Guna2Panel()
         Me.Guna2Panel4 = New Guna.UI2.WinForms.Guna2Panel()
@@ -43,7 +44,6 @@ Partial Class frmPlotPurchAndAssign
         Me.Label9 = New System.Windows.Forms.Label()
         Me.GraveType = New Guna.UI2.WinForms.Guna2ComboBox()
         Me.btnConfirm = New Guna.UI2.WinForms.Guna2Button()
-        Me.btnSelectPlot = New Guna.UI2.WinForms.Guna2Button()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.lblPlotLocation = New System.Windows.Forms.Label()
         Me.label1 = New System.Windows.Forms.Label()
@@ -54,6 +54,7 @@ Partial Class frmPlotPurchAndAssign
         Me.Guna2Panel2 = New Guna.UI2.WinForms.Guna2Panel()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
+        Me.btnSelectPlot = New Guna.UI2.WinForms.Guna2Button()
         Me.panel1.SuspendLayout()
         Me.Guna2Panel4.SuspendLayout()
         Me.Guna2ShadowPanel2.SuspendLayout()
@@ -69,10 +70,10 @@ Partial Class frmPlotPurchAndAssign
         Me.panel1.Controls.Add(Me.Guna2Panel4)
         Me.panel1.Controls.Add(Me.Label3)
         Me.panel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.panel1.Location = New System.Drawing.Point(0, 85)
-        Me.panel1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.panel1.Location = New System.Drawing.Point(0, 69)
+        Me.panel1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.panel1.Name = "panel1"
-        Me.panel1.Size = New System.Drawing.Size(1620, 837)
+        Me.panel1.Size = New System.Drawing.Size(1028, 680)
         Me.panel1.TabIndex = 5
         '
         'subSidePanel
@@ -80,10 +81,9 @@ Partial Class frmPlotPurchAndAssign
         Me.subSidePanel.AutoSize = True
         Me.subSidePanel.BackColor = System.Drawing.Color.FromArgb(CType(CType(14, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(90, Byte), Integer))
         Me.subSidePanel.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.subSidePanel.Location = New System.Drawing.Point(496, 0)
-        Me.subSidePanel.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.subSidePanel.Location = New System.Drawing.Point(372, 0)
         Me.subSidePanel.Name = "subSidePanel"
-        Me.subSidePanel.Size = New System.Drawing.Size(1124, 837)
+        Me.subSidePanel.Size = New System.Drawing.Size(656, 680)
         Me.subSidePanel.TabIndex = 61
         '
         'Guna2Panel4
@@ -92,9 +92,8 @@ Partial Class frmPlotPurchAndAssign
         Me.Guna2Panel4.Controls.Add(Me.Guna2ShadowPanel1)
         Me.Guna2Panel4.Dock = System.Windows.Forms.DockStyle.Left
         Me.Guna2Panel4.Location = New System.Drawing.Point(0, 0)
-        Me.Guna2Panel4.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Guna2Panel4.Name = "Guna2Panel4"
-        Me.Guna2Panel4.Size = New System.Drawing.Size(496, 837)
+        Me.Guna2Panel4.Size = New System.Drawing.Size(372, 680)
         Me.Guna2Panel4.TabIndex = 30
         '
         'Guna2ShadowPanel2
@@ -110,12 +109,11 @@ Partial Class frmPlotPurchAndAssign
         Me.Guna2ShadowPanel2.Controls.Add(Me.currentQuantity)
         Me.Guna2ShadowPanel2.Controls.Add(Me.txtPrice)
         Me.Guna2ShadowPanel2.FillColor = System.Drawing.Color.FromArgb(CType(CType(14, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(90, Byte), Integer))
-        Me.Guna2ShadowPanel2.Location = New System.Drawing.Point(24, 581)
-        Me.Guna2ShadowPanel2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Guna2ShadowPanel2.Location = New System.Drawing.Point(18, 472)
         Me.Guna2ShadowPanel2.Name = "Guna2ShadowPanel2"
         Me.Guna2ShadowPanel2.Radius = 10
         Me.Guna2ShadowPanel2.ShadowColor = System.Drawing.Color.Black
-        Me.Guna2ShadowPanel2.Size = New System.Drawing.Size(443, 256)
+        Me.Guna2ShadowPanel2.Size = New System.Drawing.Size(332, 208)
         Me.Guna2ShadowPanel2.TabIndex = 0
         '
         'lblPaidAmount
@@ -123,9 +121,10 @@ Partial Class frmPlotPurchAndAssign
         Me.lblPaidAmount.AutoSize = True
         Me.lblPaidAmount.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblPaidAmount.ForeColor = System.Drawing.Color.White
-        Me.lblPaidAmount.Location = New System.Drawing.Point(20, 110)
+        Me.lblPaidAmount.Location = New System.Drawing.Point(15, 89)
+        Me.lblPaidAmount.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblPaidAmount.Name = "lblPaidAmount"
-        Me.lblPaidAmount.Size = New System.Drawing.Size(109, 20)
+        Me.lblPaidAmount.Size = New System.Drawing.Size(92, 17)
         Me.lblPaidAmount.TabIndex = 27
         Me.lblPaidAmount.Text = "Paid Amount:"
         '
@@ -134,9 +133,10 @@ Partial Class frmPlotPurchAndAssign
         Me.Label10.AutoSize = True
         Me.Label10.Font = New System.Drawing.Font("Microsoft Sans Serif", 21.75!, System.Drawing.FontStyle.Bold)
         Me.Label10.ForeColor = System.Drawing.Color.White
-        Me.Label10.Location = New System.Drawing.Point(16, 160)
+        Me.Label10.Location = New System.Drawing.Point(12, 130)
+        Me.Label10.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(128, 42)
+        Me.Label10.Size = New System.Drawing.Size(103, 33)
         Me.Label10.TabIndex = 26
         Me.Label10.Text = "Total: "
         '
@@ -145,9 +145,10 @@ Partial Class frmPlotPurchAndAssign
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.ForeColor = System.Drawing.Color.White
-        Me.Label4.Location = New System.Drawing.Point(131, 15)
+        Me.Label4.Location = New System.Drawing.Point(98, 12)
+        Me.Label4.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(169, 39)
+        Me.Label4.Size = New System.Drawing.Size(136, 31)
         Me.Label4.TabIndex = 25
         Me.Label4.Text = "Summary"
         Me.Label4.TextAlign = System.Drawing.ContentAlignment.TopCenter
@@ -157,9 +158,10 @@ Partial Class frmPlotPurchAndAssign
         Me.txtPackage.AutoSize = True
         Me.txtPackage.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtPackage.ForeColor = System.Drawing.Color.White
-        Me.txtPackage.Location = New System.Drawing.Point(20, 68)
+        Me.txtPackage.Location = New System.Drawing.Point(15, 55)
+        Me.txtPackage.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.txtPackage.Name = "txtPackage"
-        Me.txtPackage.Size = New System.Drawing.Size(78, 20)
+        Me.txtPackage.Size = New System.Drawing.Size(67, 17)
         Me.txtPackage.TabIndex = 18
         Me.txtPackage.Text = "Package:"
         '
@@ -168,9 +170,10 @@ Partial Class frmPlotPurchAndAssign
         Me.txtGraveType.AutoSize = True
         Me.txtGraveType.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtGraveType.ForeColor = System.Drawing.Color.White
-        Me.txtGraveType.Location = New System.Drawing.Point(20, 47)
+        Me.txtGraveType.Location = New System.Drawing.Point(15, 38)
+        Me.txtGraveType.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.txtGraveType.Name = "txtGraveType"
-        Me.txtGraveType.Size = New System.Drawing.Size(105, 20)
+        Me.txtGraveType.Size = New System.Drawing.Size(91, 17)
         Me.txtGraveType.TabIndex = 17
         Me.txtGraveType.Text = "Grave Type: "
         '
@@ -179,9 +182,10 @@ Partial Class frmPlotPurchAndAssign
         Me.txtTotal.AutoSize = True
         Me.txtTotal.Font = New System.Drawing.Font("Microsoft Sans Serif", 15.75!, System.Drawing.FontStyle.Bold)
         Me.txtTotal.ForeColor = System.Drawing.Color.White
-        Me.txtTotal.Location = New System.Drawing.Point(17, 201)
+        Me.txtTotal.Location = New System.Drawing.Point(13, 163)
+        Me.txtTotal.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.txtTotal.Name = "txtTotal"
-        Me.txtTotal.Size = New System.Drawing.Size(97, 31)
+        Me.txtTotal.Size = New System.Drawing.Size(79, 25)
         Me.txtTotal.TabIndex = 20
         Me.txtTotal.Text = "Total: "
         Me.txtTotal.Visible = False
@@ -191,18 +195,18 @@ Partial Class frmPlotPurchAndAssign
         Me.lblQuantity.AutoSize = True
         Me.lblQuantity.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblQuantity.ForeColor = System.Drawing.Color.White
-        Me.lblQuantity.Location = New System.Drawing.Point(20, 130)
+        Me.lblQuantity.Location = New System.Drawing.Point(15, 106)
+        Me.lblQuantity.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblQuantity.Name = "lblQuantity"
-        Me.lblQuantity.Size = New System.Drawing.Size(76, 20)
+        Me.lblQuantity.Size = New System.Drawing.Size(65, 17)
         Me.lblQuantity.TabIndex = 21
         Me.lblQuantity.Text = "Quantity:"
         '
         'currentQuantity
         '
-        Me.currentQuantity.Location = New System.Drawing.Point(113, 132)
-        Me.currentQuantity.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.currentQuantity.Location = New System.Drawing.Point(85, 107)
         Me.currentQuantity.Name = "currentQuantity"
-        Me.currentQuantity.Size = New System.Drawing.Size(61, 22)
+        Me.currentQuantity.Size = New System.Drawing.Size(46, 20)
         Me.currentQuantity.TabIndex = 22
         Me.currentQuantity.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.currentQuantity.Visible = False
@@ -212,9 +216,10 @@ Partial Class frmPlotPurchAndAssign
         Me.txtPrice.AutoSize = True
         Me.txtPrice.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtPrice.ForeColor = System.Drawing.Color.White
-        Me.txtPrice.Location = New System.Drawing.Point(20, 89)
+        Me.txtPrice.Location = New System.Drawing.Point(15, 72)
+        Me.txtPrice.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.txtPrice.Name = "txtPrice"
-        Me.txtPrice.Size = New System.Drawing.Size(53, 20)
+        Me.txtPrice.Size = New System.Drawing.Size(44, 17)
         Me.txtPrice.TabIndex = 19
         Me.txtPrice.Text = "Price:"
         '
@@ -236,12 +241,11 @@ Partial Class frmPlotPurchAndAssign
         Me.Guna2ShadowPanel1.Controls.Add(Me.cmbDeceased)
         Me.Guna2ShadowPanel1.Controls.Add(Me.Label7)
         Me.Guna2ShadowPanel1.FillColor = System.Drawing.Color.FromArgb(CType(CType(14, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(90, Byte), Integer))
-        Me.Guna2ShadowPanel1.Location = New System.Drawing.Point(24, 41)
-        Me.Guna2ShadowPanel1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Guna2ShadowPanel1.Location = New System.Drawing.Point(18, 33)
         Me.Guna2ShadowPanel1.Name = "Guna2ShadowPanel1"
         Me.Guna2ShadowPanel1.Radius = 10
         Me.Guna2ShadowPanel1.ShadowColor = System.Drawing.Color.Black
-        Me.Guna2ShadowPanel1.Size = New System.Drawing.Size(443, 533)
+        Me.Guna2ShadowPanel1.Size = New System.Drawing.Size(332, 433)
         Me.Guna2ShadowPanel1.TabIndex = 0
         '
         'txtPaidAmount
@@ -259,13 +263,13 @@ Partial Class frmPlotPurchAndAssign
         Me.txtPaidAmount.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.txtPaidAmount.ForeColor = System.Drawing.Color.Black
         Me.txtPaidAmount.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtPaidAmount.Location = New System.Drawing.Point(24, 316)
-        Me.txtPaidAmount.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
+        Me.txtPaidAmount.Location = New System.Drawing.Point(18, 257)
+        Me.txtPaidAmount.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.txtPaidAmount.Name = "txtPaidAmount"
         Me.txtPaidAmount.PlaceholderForeColor = System.Drawing.Color.Gray
         Me.txtPaidAmount.PlaceholderText = "Input Amount"
         Me.txtPaidAmount.SelectedText = ""
-        Me.txtPaidAmount.Size = New System.Drawing.Size(401, 44)
+        Me.txtPaidAmount.Size = New System.Drawing.Size(301, 36)
         Me.txtPaidAmount.TabIndex = 65
         Me.txtPaidAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -275,9 +279,10 @@ Partial Class frmPlotPurchAndAssign
         Me.Label11.BackColor = System.Drawing.Color.Transparent
         Me.Label11.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label11.ForeColor = System.Drawing.Color.White
-        Me.Label11.Location = New System.Drawing.Point(20, 290)
+        Me.Label11.Location = New System.Drawing.Point(15, 236)
+        Me.Label11.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(104, 20)
+        Me.Label11.Size = New System.Drawing.Size(88, 17)
         Me.Label11.TabIndex = 64
         Me.Label11.Text = "Amount Paid"
         '
@@ -285,11 +290,10 @@ Partial Class frmPlotPurchAndAssign
         '
         Me.lstClientSuggestions.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lstClientSuggestions.FormattingEnabled = True
-        Me.lstClientSuggestions.ItemHeight = 25
-        Me.lstClientSuggestions.Location = New System.Drawing.Point(24, 144)
-        Me.lstClientSuggestions.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.lstClientSuggestions.ItemHeight = 20
+        Me.lstClientSuggestions.Location = New System.Drawing.Point(18, 117)
         Me.lstClientSuggestions.Name = "lstClientSuggestions"
-        Me.lstClientSuggestions.Size = New System.Drawing.Size(400, 79)
+        Me.lstClientSuggestions.Size = New System.Drawing.Size(301, 64)
         Me.lstClientSuggestions.TabIndex = 63
         Me.lstClientSuggestions.Visible = False
         '
@@ -309,13 +313,13 @@ Partial Class frmPlotPurchAndAssign
         Me.txtClientSearch.Font = New System.Drawing.Font("Segoe UI", 11.25!)
         Me.txtClientSearch.ForeColor = System.Drawing.Color.Black
         Me.txtClientSearch.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtClientSearch.Location = New System.Drawing.Point(24, 98)
-        Me.txtClientSearch.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
+        Me.txtClientSearch.Location = New System.Drawing.Point(18, 80)
+        Me.txtClientSearch.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.txtClientSearch.Name = "txtClientSearch"
         Me.txtClientSearch.PlaceholderForeColor = System.Drawing.Color.Gray
         Me.txtClientSearch.PlaceholderText = "Select client or type to search"
         Me.txtClientSearch.SelectedText = ""
-        Me.txtClientSearch.Size = New System.Drawing.Size(401, 46)
+        Me.txtClientSearch.Size = New System.Drawing.Size(301, 37)
         Me.txtClientSearch.TabIndex = 62
         '
         'Label9
@@ -323,9 +327,10 @@ Partial Class frmPlotPurchAndAssign
         Me.Label9.AutoSize = True
         Me.Label9.Font = New System.Drawing.Font("Microsoft Sans Serif", 21.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label9.ForeColor = System.Drawing.Color.White
-        Me.Label9.Location = New System.Drawing.Point(68, 15)
+        Me.Label9.Location = New System.Drawing.Point(51, 12)
+        Me.Label9.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(303, 42)
+        Me.Label9.Size = New System.Drawing.Size(240, 33)
         Me.Label9.TabIndex = 28
         Me.Label9.Text = "Grave Purchase"
         Me.Label9.TextAlign = System.Drawing.ContentAlignment.TopCenter
@@ -344,10 +349,10 @@ Partial Class frmPlotPurchAndAssign
         Me.GraveType.ForeColor = System.Drawing.Color.Black
         Me.GraveType.FormattingEnabled = True
         Me.GraveType.ItemHeight = 30
-        Me.GraveType.Location = New System.Drawing.Point(24, 171)
-        Me.GraveType.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.GraveType.Location = New System.Drawing.Point(18, 139)
+        Me.GraveType.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.GraveType.Name = "GraveType"
-        Me.GraveType.Size = New System.Drawing.Size(400, 36)
+        Me.GraveType.Size = New System.Drawing.Size(301, 36)
         Me.GraveType.TabIndex = 6
         Me.GraveType.Tag = ""
         '
@@ -356,45 +361,27 @@ Partial Class frmPlotPurchAndAssign
         Me.btnConfirm.Anchor = System.Windows.Forms.AnchorStyles.Bottom
         Me.btnConfirm.AutoRoundedCorners = True
         Me.btnConfirm.BackColor = System.Drawing.Color.FromArgb(CType(CType(14, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(90, Byte), Integer))
-        Me.btnConfirm.BorderRadius = 22
+        Me.btnConfirm.BorderRadius = 17
         Me.btnConfirm.BorderThickness = 1
         Me.btnConfirm.FillColor = System.Drawing.Color.LimeGreen
         Me.btnConfirm.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold)
         Me.btnConfirm.ForeColor = System.Drawing.Color.White
-        Me.btnConfirm.Location = New System.Drawing.Point(59, 469)
-        Me.btnConfirm.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.btnConfirm.Location = New System.Drawing.Point(44, 381)
+        Me.btnConfirm.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.btnConfirm.Name = "btnConfirm"
-        Me.btnConfirm.Size = New System.Drawing.Size(317, 46)
+        Me.btnConfirm.Size = New System.Drawing.Size(238, 37)
         Me.btnConfirm.TabIndex = 2
         Me.btnConfirm.Text = "Confirm"
-        '
-        'btnSelectPlot
-        '
-        Me.btnSelectPlot.Animated = True
-        Me.btnSelectPlot.BackColor = System.Drawing.Color.FromArgb(CType(CType(14, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(90, Byte), Integer))
-        Me.btnSelectPlot.BorderRadius = 5
-        Me.btnSelectPlot.BorderThickness = 1
-        Me.btnSelectPlot.FillColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(171, Byte), Integer), CType(CType(189, Byte), Integer))
-        Me.btnSelectPlot.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold)
-        Me.btnSelectPlot.ForeColor = System.Drawing.SystemColors.Window
-        Me.btnSelectPlot.HoverState.BorderColor = System.Drawing.SystemColors.Control
-        Me.btnSelectPlot.HoverState.FillColor = System.Drawing.Color.Black
-        Me.btnSelectPlot.Image = Global.dashboard.My.Resources.Resources.map
-        Me.btnSelectPlot.Location = New System.Drawing.Point(24, 368)
-        Me.btnSelectPlot.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.btnSelectPlot.Name = "btnSelectPlot"
-        Me.btnSelectPlot.Size = New System.Drawing.Size(401, 44)
-        Me.btnSelectPlot.TabIndex = 23
-        Me.btnSelectPlot.Text = "Select Plot"
         '
         'Label8
         '
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label8.ForeColor = System.Drawing.Color.White
-        Me.Label8.Location = New System.Drawing.Point(20, 218)
+        Me.Label8.Location = New System.Drawing.Point(15, 177)
+        Me.Label8.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(85, 20)
+        Me.Label8.Size = New System.Drawing.Size(72, 17)
         Me.Label8.TabIndex = 27
         Me.Label8.Text = "Deceased"
         '
@@ -403,10 +390,9 @@ Partial Class frmPlotPurchAndAssign
         Me.lblPlotLocation.AutoSize = True
         Me.lblPlotLocation.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!)
         Me.lblPlotLocation.ForeColor = System.Drawing.Color.White
-        Me.lblPlotLocation.Location = New System.Drawing.Point(20, 437)
-        Me.lblPlotLocation.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblPlotLocation.Location = New System.Drawing.Point(15, 355)
         Me.lblPlotLocation.Name = "lblPlotLocation"
-        Me.lblPlotLocation.Size = New System.Drawing.Size(59, 20)
+        Me.lblPlotLocation.Size = New System.Drawing.Size(51, 17)
         Me.lblPlotLocation.TabIndex = 24
         Me.lblPlotLocation.Text = "Label7"
         Me.lblPlotLocation.Visible = False
@@ -416,9 +402,10 @@ Partial Class frmPlotPurchAndAssign
         Me.label1.AutoSize = True
         Me.label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.label1.ForeColor = System.Drawing.Color.White
-        Me.label1.Location = New System.Drawing.Point(20, 148)
+        Me.label1.Location = New System.Drawing.Point(15, 120)
+        Me.label1.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.label1.Name = "label1"
-        Me.label1.Size = New System.Drawing.Size(344, 20)
+        Me.label1.Size = New System.Drawing.Size(291, 17)
         Me.label1.TabIndex = 5
         Me.label1.Text = "Burial Type (Apartment, Private, Maoseleum)"
         '
@@ -427,9 +414,10 @@ Partial Class frmPlotPurchAndAssign
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.Color.White
-        Me.Label2.Location = New System.Drawing.Point(20, 73)
+        Me.Label2.Location = New System.Drawing.Point(15, 59)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(101, 20)
+        Me.Label2.Size = New System.Drawing.Size(84, 17)
         Me.Label2.TabIndex = 15
         Me.Label2.Text = "Client Name"
         '
@@ -445,10 +433,10 @@ Partial Class frmPlotPurchAndAssign
         Me.cmbDeceased.ForeColor = System.Drawing.Color.Black
         Me.cmbDeceased.FormattingEnabled = True
         Me.cmbDeceased.ItemHeight = 30
-        Me.cmbDeceased.Location = New System.Drawing.Point(24, 241)
-        Me.cmbDeceased.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.cmbDeceased.Location = New System.Drawing.Point(18, 196)
+        Me.cmbDeceased.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.cmbDeceased.Name = "cmbDeceased"
-        Me.cmbDeceased.Size = New System.Drawing.Size(400, 36)
+        Me.cmbDeceased.Size = New System.Drawing.Size(301, 36)
         Me.cmbDeceased.TabIndex = 26
         '
         'Label7
@@ -456,10 +444,9 @@ Partial Class frmPlotPurchAndAssign
         Me.Label7.AutoSize = True
         Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.ForeColor = System.Drawing.Color.White
-        Me.Label7.Location = New System.Drawing.Point(20, 415)
-        Me.Label7.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label7.Location = New System.Drawing.Point(15, 337)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(139, 24)
+        Me.Label7.Size = New System.Drawing.Size(113, 18)
         Me.Label7.TabIndex = 25
         Me.Label7.Text = "Selected Plot:"
         '
@@ -468,9 +455,10 @@ Partial Class frmPlotPurchAndAssign
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.White
-        Me.Label3.Location = New System.Drawing.Point(113, 113)
+        Me.Label3.Location = New System.Drawing.Point(85, 92)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(0, 20)
+        Me.Label3.Size = New System.Drawing.Size(0, 17)
         Me.Label3.TabIndex = 16
         '
         'Guna2Panel2
@@ -480,9 +468,8 @@ Partial Class frmPlotPurchAndAssign
         Me.Guna2Panel2.Controls.Add(Me.Label6)
         Me.Guna2Panel2.Dock = System.Windows.Forms.DockStyle.Top
         Me.Guna2Panel2.Location = New System.Drawing.Point(0, 0)
-        Me.Guna2Panel2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Guna2Panel2.Name = "Guna2Panel2"
-        Me.Guna2Panel2.Size = New System.Drawing.Size(1620, 85)
+        Me.Guna2Panel2.Size = New System.Drawing.Size(1028, 69)
         Me.Guna2Panel2.TabIndex = 57
         '
         'Label5
@@ -490,10 +477,9 @@ Partial Class frmPlotPurchAndAssign
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Gill Sans MT", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label5.Location = New System.Drawing.Point(20, 50)
-        Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label5.Location = New System.Drawing.Point(15, 41)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(308, 21)
+        Me.Label5.Size = New System.Drawing.Size(249, 18)
         Me.Label5.TabIndex = 1
         Me.Label5.Text = "Select Grave Type, Plot, and Package Information"
         '
@@ -502,28 +488,46 @@ Partial Class frmPlotPurchAndAssign
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Century Gothic", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label6.Location = New System.Drawing.Point(16, 11)
-        Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label6.Location = New System.Drawing.Point(12, 9)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(601, 40)
+        Me.Label6.Size = New System.Drawing.Size(479, 32)
         Me.Label6.TabIndex = 0
         Me.Label6.Text = "Plot Purchase and Assignment Form"
         '
+        'btnSelectPlot
+        '
+        Me.btnSelectPlot.Animated = True
+        Me.btnSelectPlot.BackColor = System.Drawing.Color.FromArgb(CType(CType(14, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(90, Byte), Integer))
+        Me.btnSelectPlot.BorderRadius = 5
+        Me.btnSelectPlot.BorderThickness = 1
+        Me.btnSelectPlot.FillColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(171, Byte), Integer), CType(CType(189, Byte), Integer))
+        Me.btnSelectPlot.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold)
+        Me.btnSelectPlot.ForeColor = System.Drawing.SystemColors.Window
+        Me.btnSelectPlot.HoverState.BorderColor = System.Drawing.SystemColors.Control
+        Me.btnSelectPlot.HoverState.FillColor = System.Drawing.Color.Black
+        Me.btnSelectPlot.Image = Global.dashboard.My.Resources.Resources.map
+        Me.btnSelectPlot.Location = New System.Drawing.Point(18, 299)
+        Me.btnSelectPlot.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnSelectPlot.Name = "btnSelectPlot"
+        Me.btnSelectPlot.Size = New System.Drawing.Size(301, 36)
+        Me.btnSelectPlot.TabIndex = 23
+        Me.btnSelectPlot.Text = "Select Plot"
+        '
         'frmPlotPurchAndAssign
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSize = True
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(23, Byte), Integer), CType(CType(107, Byte), Integer), CType(CType(135, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(1620, 922)
+        Me.ClientSize = New System.Drawing.Size(1028, 749)
         Me.Controls.Add(Me.panel1)
         Me.Controls.Add(Me.Guna2Panel2)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
-        Me.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
         Me.Name = "frmPlotPurchAndAssign"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Plot Purchase and Assignment Form"
-        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.panel1.ResumeLayout(False)
         Me.panel1.PerformLayout()
         Me.Guna2Panel4.ResumeLayout(False)
