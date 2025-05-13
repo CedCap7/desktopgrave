@@ -43,7 +43,7 @@ Public Class frmPaymentReg
         GROUP BY 
             c.Client_ID, FullName
         ORDER BY 
-            c.Client_ID"
+            MAX(p.payment_date) DESC, c.Client_ID"
 
             ' First get all the data
             Using cmd As New MySqlCommand(sql, tempConnection)
