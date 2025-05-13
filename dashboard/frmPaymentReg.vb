@@ -45,6 +45,7 @@ Public Class frmPaymentReg
         ORDER BY 
             LastPaymentDate DESC, c.Client_ID"
 
+
             ' First get all the data
             Using cmd As New MySqlCommand(sql, tempConnection)
                 ' Add the filter parameter if applicable

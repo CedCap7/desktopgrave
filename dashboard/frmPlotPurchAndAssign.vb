@@ -379,6 +379,17 @@ Public Class frmPlotPurchAndAssign
                         End Using
                     Next
 
+                    ' Update deceased record with Plot_ID and Level if a deceased person is selected
+                    If deceasedId.HasValue Then
+                        Dim updateDeceasedQuery As String = "UPDATE deceased SET Plot_ID = @PlotID, Level = @Level WHERE Deceased_ID = @DeceasedID"
+                        Using cmd As New MySqlCommand(updateDeceasedQuery, Module1.cn, transaction)
+                            cmd.Parameters.AddWithValue("@PlotID", _selectedPlots(0).PlotId)
+                            cmd.Parameters.AddWithValue("@Level", If(packageType = 2 OrElse packageType = 4, 0, _selectedPlots(0).Level))
+                            cmd.Parameters.AddWithValue("@DeceasedID", deceasedId.Value)
+                            cmd.ExecuteNonQuery()
+                        End Using
+                    End If
+
                     transaction.Commit()
                     MessageBox.Show("Reservation and payment saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     Me.Close()

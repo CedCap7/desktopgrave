@@ -26,7 +26,6 @@ Partial Class frmReservationsReg
         Me.Guna2Panel2 = New Guna.UI2.WinForms.Guna2Panel()
         Me.btnShowAll = New Guna.UI2.WinForms.Guna2Button()
         Me.btnExportPDF = New Guna.UI2.WinForms.Guna2Button()
-        Me.btnDelete = New Guna.UI2.WinForms.Guna2Button()
         Me.btnAssign = New Guna.UI2.WinForms.Guna2Button()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -51,13 +50,12 @@ Partial Class frmReservationsReg
         Me.Guna2Panel2.AutoSize = True
         Me.Guna2Panel2.Controls.Add(Me.btnShowAll)
         Me.Guna2Panel2.Controls.Add(Me.btnExportPDF)
-        Me.Guna2Panel2.Controls.Add(Me.btnDelete)
         Me.Guna2Panel2.Controls.Add(Me.btnAssign)
         Me.Guna2Panel2.Controls.Add(Me.Label2)
         Me.Guna2Panel2.Controls.Add(Me.Label1)
         Me.Guna2Panel2.Dock = System.Windows.Forms.DockStyle.Top
         Me.Guna2Panel2.Location = New System.Drawing.Point(0, 0)
-        Me.Guna2Panel2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Guna2Panel2.Margin = New System.Windows.Forms.Padding(4)
         Me.Guna2Panel2.Name = "Guna2Panel2"
         Me.Guna2Panel2.Size = New System.Drawing.Size(1184, 100)
         Me.Guna2Panel2.TabIndex = 4
@@ -69,8 +67,8 @@ Partial Class frmReservationsReg
         Me.btnShowAll.FillColor = System.Drawing.Color.DarkGoldenrod
         Me.btnShowAll.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnShowAll.ForeColor = System.Drawing.Color.White
-        Me.btnShowAll.Location = New System.Drawing.Point(852, 55)
-        Me.btnShowAll.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnShowAll.Location = New System.Drawing.Point(947, 55)
+        Me.btnShowAll.Margin = New System.Windows.Forms.Padding(4)
         Me.btnShowAll.Name = "btnShowAll"
         Me.btnShowAll.Size = New System.Drawing.Size(100, 31)
         Me.btnShowAll.TabIndex = 6
@@ -86,28 +84,14 @@ Partial Class frmReservationsReg
         Me.btnExportPDF.Image = Global.dashboard.My.Resources.Resources.pdf
         Me.btnExportPDF.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left
         Me.btnExportPDF.ImageOffset = New System.Drawing.Point(-5, 0)
-        Me.btnExportPDF.Location = New System.Drawing.Point(680, 55)
-        Me.btnExportPDF.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnExportPDF.Location = New System.Drawing.Point(768, 54)
+        Me.btnExportPDF.Margin = New System.Windows.Forms.Padding(4)
         Me.btnExportPDF.Name = "btnExportPDF"
         Me.btnExportPDF.Size = New System.Drawing.Size(161, 31)
         Me.btnExportPDF.TabIndex = 4
         Me.btnExportPDF.Text = "Export to PDF"
         Me.btnExportPDF.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         Me.btnExportPDF.TextOffset = New System.Drawing.Point(2, 0)
-        '
-        'btnDelete
-        '
-        Me.btnDelete.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.btnDelete.Animated = True
-        Me.btnDelete.FillColor = System.Drawing.Color.Red
-        Me.btnDelete.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnDelete.ForeColor = System.Drawing.Color.White
-        Me.btnDelete.Location = New System.Drawing.Point(1068, 55)
-        Me.btnDelete.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.btnDelete.Name = "btnDelete"
-        Me.btnDelete.Size = New System.Drawing.Size(100, 31)
-        Me.btnDelete.TabIndex = 3
-        Me.btnDelete.Text = "Delete"
         '
         'btnAssign
         '
@@ -116,8 +100,8 @@ Partial Class frmReservationsReg
         Me.btnAssign.FillColor = System.Drawing.Color.Blue
         Me.btnAssign.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnAssign.ForeColor = System.Drawing.Color.White
-        Me.btnAssign.Location = New System.Drawing.Point(960, 55)
-        Me.btnAssign.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnAssign.Location = New System.Drawing.Point(1071, 54)
+        Me.btnAssign.Margin = New System.Windows.Forms.Padding(4)
         Me.btnAssign.Name = "btnAssign"
         Me.btnAssign.Size = New System.Drawing.Size(100, 31)
         Me.btnAssign.TabIndex = 2
@@ -155,7 +139,7 @@ Partial Class frmReservationsReg
         Me.Guna2Panel1.Controls.Add(Me.ReservationList)
         Me.Guna2Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Guna2Panel1.Location = New System.Drawing.Point(0, 100)
-        Me.Guna2Panel1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Guna2Panel1.Margin = New System.Windows.Forms.Padding(4)
         Me.Guna2Panel1.Name = "Guna2Panel1"
         Me.Guna2Panel1.ShadowDecoration.Enabled = True
         Me.Guna2Panel1.Size = New System.Drawing.Size(1184, 437)
@@ -204,7 +188,7 @@ Partial Class frmReservationsReg
         Me.ReservationList.GridLines = True
         Me.ReservationList.HideSelection = False
         Me.ReservationList.Location = New System.Drawing.Point(16, 60)
-        Me.ReservationList.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.ReservationList.Margin = New System.Windows.Forms.Padding(4)
         Me.ReservationList.Name = "ReservationList"
         Me.ReservationList.ShowItemToolTips = True
         Me.ReservationList.Size = New System.Drawing.Size(1152, 370)
@@ -271,7 +255,7 @@ Partial Class frmReservationsReg
         Me.Controls.Add(Me.Guna2Panel1)
         Me.Controls.Add(Me.Guna2Panel2)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "frmReservationsReg"
         Me.Text = "frmReservations"
         Me.Guna2Panel2.ResumeLayout(False)

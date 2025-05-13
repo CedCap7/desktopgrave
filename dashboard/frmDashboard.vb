@@ -205,8 +205,11 @@ FROM deceased d
 JOIN location l ON d.Plot_ID = l.id 
 JOIN client c ON d.Client_ID = c.Client_ID
 WHERE l.type = 1
-  AND DATE_ADD(GREATEST(IFNULL(d.Interment, '1000-01-01'), IFNULL(d.DateOfDeath, '1000-01-01')), INTERVAL 8 YEAR) <= CURDATE()
-  AND LOWER(d.deceased_status) NOT IN (LOWER('Remaining'), LOWER('Relocated'), LOWER('Renewal'), LOWER('Pending'))
+  AND (
+      (DATE_ADD(GREATEST(IFNULL(d.Interment, '1000-01-01'), IFNULL(d.DateOfDeath, '1000-01-01')), INTERVAL 8 YEAR) <= CURDATE()
+       AND LOWER(d.deceased_status) NOT IN (LOWER('Remaining'), LOWER('Relocated'), LOWER('Renewal'), LOWER('Pending')))
+      OR LOWER(d.deceased_status) = LOWER('Expired')
+  )
 "
 
             ' Apply filter based on combobox selection
@@ -391,4 +394,8 @@ WHERE l.type = 1
     Private Sub pnlNotifications_Paint(sender As Object, e As PaintEventArgs) Handles pnlNotifications.Paint
 
     End Sub
+
+
+
+
 End Class

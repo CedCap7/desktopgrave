@@ -10,18 +10,6 @@ Public Class frmDeceasedReg
     Private Sub frmDeceasedReg_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         KeyPreview = True
         LoadUsers()
-
-        ' Create the context menu for status updates
-        Dim contextMenu As New ContextMenuStrip()
-        contextMenu.Items.Add("Remaining", Nothing, Sub() UpdateStatus("Remaining"))
-        contextMenu.Items.Add("Relocated", Nothing, Sub() UpdateStatus("Relocated"))
-        contextMenu.Items.Add("Renewal", Nothing, Sub() UpdateStatus("Renewal"))
-        contextMenu.Items.Add("Pending", Nothing, Sub() UpdateStatus("Pending"))
-        contextMenu.Items.Add("Expired", Nothing, Sub() UpdateStatus("Expired"))
-
-        ' Assign the context menu to the ListView
-        DeceasedList.ContextMenuStrip = contextMenu
-
     End Sub
 
     Private Function GetDeceasedStatus(deceasedId As Integer, typeValue As Integer, dateOfDeath As Date?, intermentDate As Date?) As String
@@ -232,12 +220,24 @@ Public Class frmDeceasedReg
     End Sub
 
     Private Sub DeceasedList_MouseDown(sender As Object, e As MouseEventArgs) Handles DeceasedList.MouseDown
-        ' Check if the user right-clicked (MouseButtons.Right) on the ListView
         If e.Button = MouseButtons.Right Then
-            ' Check if the click is on an item (i.e., not just on empty space)
             Dim hit = DeceasedList.HitTest(e.Location)
-            If hit.Item IsNot Nothing AndAlso hit.Item.SubItems.Count > 5 Then
-                ' Show the context menu at the click location
+            If hit.Item IsNot Nothing AndAlso hit.Item.SubItems.Count > 2 Then
+                ' Get the type from the location string (e.g., "Apartment, Block 1, ...")
+                Dim locationString As String = hit.Item.SubItems(2).Text
+                Dim isApartment As Boolean = locationString.StartsWith("Apartment", StringComparison.OrdinalIgnoreCase)
+
+                ' Build context menu dynamically
+                Dim contextMenu As New ContextMenuStrip()
+                contextMenu.Items.Add("Remaining", Nothing, Sub() UpdateStatus("Remaining"))
+                contextMenu.Items.Add("Relocated", Nothing, Sub() UpdateStatus("Relocated"))
+                contextMenu.Items.Add("Renewal", Nothing, Sub() UpdateStatus("Renewal"))
+                contextMenu.Items.Add("Pending", Nothing, Sub() UpdateStatus("Pending"))
+                If isApartment Then
+                    contextMenu.Items.Add("Expired", Nothing, Sub() UpdateStatus("Expired"))
+                End If
+
+                DeceasedList.ContextMenuStrip = contextMenu
                 DeceasedList.ContextMenuStrip.Show(DeceasedList, e.Location)
             End If
         End If
@@ -245,16 +245,23 @@ Public Class frmDeceasedReg
 
     Private Sub UpdateStatus(newStatus As String)
         Try
-            ' Get the selected item
             If DeceasedList.SelectedItems.Count = 0 Then
                 MessageBox.Show("Please select a deceased record to update the status.", "Select Record", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Return
+            End If
+
+            ' Get the type from the location string
+            Dim locationString As String = DeceasedList.SelectedItems(0).SubItems(2).Text
+            Dim isApartment As Boolean = locationString.StartsWith("Apartment", StringComparison.OrdinalIgnoreCase)
+
+            If newStatus = "Expired" AndAlso Not isApartment Then
+                MessageBox.Show("Only Apartment plots can be set to Expired.", "Invalid Status", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 Return
             End If
 
             ' Retrieve the Deceased_ID from the Tag property of the selected item
             Dim selectedID As Integer = Convert.ToInt32(DeceasedList.SelectedItems(0).Tag)
 
-            ' Close connection if it's open
             If cn IsNot Nothing AndAlso cn.State = ConnectionState.Open Then
                 cn.Close()
             End If
@@ -270,8 +277,6 @@ Public Class frmDeceasedReg
             End Using
 
             MessageBox.Show("Status updated successfully to: " & newStatus, "Update Successful", MessageBoxButtons.OK, MessageBoxIcon.Information)
-
-            ' Refresh the list to show the updated status
             LoadUsers()
         Catch ex As Exception
             MessageBox.Show("Error updating status: " & ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -429,7 +434,7 @@ Public Class frmDeceasedReg
                                 clientId = Convert.ToInt32(result)
                             Else
                                 ' Insert client
-                                Dim sqlInsertClient As String = "INSERT INTO client (FirstName, MiddleName, LastName, Ext, Gender, Mobile, Relationship_to_Deceased, Address) VALUES (@FirstName, @MiddleName, @LastName, @Ext, @Gender, @Mobile, @Relationship, @Address)"
+                                Dim sqlInsertClient As String = "INSERT INTO client (FirstName, MiddleName, LastName, Ext, Gender, Mobile, Relationship_to_Deceased, Address, status, date_registered) VALUES (@FirstName, @MiddleName, @LastName, @Ext, @Gender, @Mobile, @Relationship, @Address, @Status, @DateRegistered)"
                                 Using cmdInsert As New MySqlCommand(sqlInsertClient, cn, transaction)
                                     cmdInsert.Parameters.AddWithValue("@FirstName", clientFirstName)
                                     cmdInsert.Parameters.AddWithValue("@MiddleName", If(String.IsNullOrWhiteSpace(clientMiddleName), DBNull.Value, clientMiddleName))
@@ -439,6 +444,8 @@ Public Class frmDeceasedReg
                                     cmdInsert.Parameters.AddWithValue("@Mobile", If(String.IsNullOrWhiteSpace(clientMobile), DBNull.Value, clientMobile))
                                     cmdInsert.Parameters.AddWithValue("@Relationship", If(String.IsNullOrWhiteSpace(clientRelationship), DBNull.Value, clientRelationship))
                                     cmdInsert.Parameters.AddWithValue("@Address", If(String.IsNullOrWhiteSpace(clientAddress), DBNull.Value, clientAddress))
+                                    cmdInsert.Parameters.AddWithValue("@Status", "Active")
+                                    cmdInsert.Parameters.AddWithValue("@DateRegistered", Date.Now)
                                     cmdInsert.ExecuteNonQuery()
                                     clientId = Convert.ToInt32(cmdInsert.LastInsertedId)
                                 End Using
@@ -623,10 +630,8 @@ Public Class frmDeceasedReg
                         End Using
 
                         ' 4. Insert deceased
-                        Dim deceasedStatus As String = "Pending"
-                        If plotId > 0 AndAlso clientId > 0 Then
-                            deceasedStatus = "Remaining"
-                        End If
+                        Dim deceasedStatus As String = "Active"  ' Always set to Active for imported records
+                        Dim registrationDate As Date = Date.Now  ' Current timestamp for registration
 
                         ' Ensure clientId is valid before proceeding
                         If clientId <= 0 Then
@@ -665,7 +670,8 @@ Public Class frmDeceasedReg
                                                       "DateOfBirth=@DateOfBirth, Plot_ID=@PlotID, " &
                                                       "Interment=@Interment, Gender=@Gender, " &
                                                       "Nationality=@Nationality, Religion=@Religion, " &
-                                                      "Client_ID=@ClientID, deceased_status=@DeceasedStatus " &
+                                                      "Client_ID=@ClientID, deceased_status=@DeceasedStatus, " &
+                                                      "date_registered=@DateRegistered " &
                                                       "WHERE Deceased_ID=@DeceasedID"
                             Using cmdUpdateDeceased As New MySqlCommand(sqlUpdateDeceased, cn, transaction)
                                 cmdUpdateDeceased.Parameters.AddWithValue("@MiddleName", If(String.IsNullOrWhiteSpace(deceasedMiddleName), DBNull.Value, deceasedMiddleName))
@@ -678,13 +684,14 @@ Public Class frmDeceasedReg
                                 cmdUpdateDeceased.Parameters.AddWithValue("@Religion", If(String.IsNullOrWhiteSpace(deceasedReligion), DBNull.Value, deceasedReligion))
                                 cmdUpdateDeceased.Parameters.AddWithValue("@ClientID", clientId)
                                 cmdUpdateDeceased.Parameters.AddWithValue("@DeceasedStatus", deceasedStatus)
+                                cmdUpdateDeceased.Parameters.AddWithValue("@DateRegistered", registrationDate)
                                 cmdUpdateDeceased.Parameters.AddWithValue("@DeceasedID", deceasedId)
                                 cmdUpdateDeceased.ExecuteNonQuery()
                             End Using
                         Else
                             ' Insert new deceased record
-                            Dim sqlInsertDeceased As String = "INSERT INTO deceased (FirstName, MiddleName, LastName, Ext, DateOfBirth, DateOfDeath, Plot_ID, Interment, Gender, Nationality, Religion, Client_ID, deceased_status) " &
-                                                      "VALUES (@FirstName, @MiddleName, @LastName, @Ext, @DateOfBirth, @DateOfDeath, @PlotID, @Interment, @Gender, @Nationality, @Religion, @ClientID, @DeceasedStatus)"
+                            Dim sqlInsertDeceased As String = "INSERT INTO deceased (FirstName, MiddleName, LastName, Ext, DateOfBirth, DateOfDeath, Plot_ID, Interment, Gender, Nationality, Religion, Client_ID, deceased_status, date_registered) " &
+                                                      "VALUES (@FirstName, @MiddleName, @LastName, @Ext, @DateOfBirth, @DateOfDeath, @PlotID, @Interment, @Gender, @Nationality, @Religion, @ClientID, @DeceasedStatus, @DateRegistered)"
                             Using cmdInsertDeceased As New MySqlCommand(sqlInsertDeceased, cn, transaction)
                                 cmdInsertDeceased.Parameters.AddWithValue("@FirstName", deceasedFirstName)
                                 cmdInsertDeceased.Parameters.AddWithValue("@MiddleName", If(String.IsNullOrWhiteSpace(deceasedMiddleName), DBNull.Value, deceasedMiddleName))
@@ -699,6 +706,7 @@ Public Class frmDeceasedReg
                                 cmdInsertDeceased.Parameters.AddWithValue("@Religion", If(String.IsNullOrWhiteSpace(deceasedReligion), DBNull.Value, deceasedReligion))
                                 cmdInsertDeceased.Parameters.AddWithValue("@ClientID", clientId)
                                 cmdInsertDeceased.Parameters.AddWithValue("@DeceasedStatus", deceasedStatus)
+                                cmdInsertDeceased.Parameters.AddWithValue("@DateRegistered", registrationDate)
                                 cmdInsertDeceased.ExecuteNonQuery()
                                 deceasedId = Convert.ToInt32(cmdInsertDeceased.LastInsertedId)
                             End Using
