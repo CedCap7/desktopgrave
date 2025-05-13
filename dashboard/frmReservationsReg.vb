@@ -118,8 +118,15 @@ Public Class frmReservationsReg
     Private Sub btnAssign_Click(sender As Object, e As EventArgs) Handles btnAssign.Click
         If ReservationList.SelectedItems.Count > 0 Then
             Try
+                ' Check if the selected reservation is already used
+                Dim status As String = ReservationList.SelectedItems(0).SubItems(5).Text ' Status is in the 6th column (index 5)
+                If status = "Used" Then
+                    MessageBox.Show("Cannot assign this reservation as it is already marked as Used.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    Return
+                End If
+
                 Dim reservationID As Integer = Convert.ToInt32(ReservationList.SelectedItems(0).Tag)
-                Dim clientID As Integer = GetClientIDFromReservation(reservationID) ' Implement this method to fetch ClientID
+                Dim clientID As Integer = GetClientIDFromReservation(reservationID)
                 Dim assignForm As New frmReservAssign(reservationID, clientID)
                 assignForm.ShowDialog()
                 LoadReservations() ' Refresh after assignment
@@ -131,7 +138,7 @@ Public Class frmReservationsReg
         End If
     End Sub
 
-    Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
+    Private Sub btnDelete_Click(sender As Object, e As EventArgs) 
         If ReservationList.SelectedItems.Count > 0 Then
             Dim selectedID As Integer = Convert.ToInt32(ReservationList.SelectedItems(0).Tag)
 
@@ -299,15 +306,22 @@ Public Class frmReservationsReg
     Private Sub ReservationList_DoubleClick(sender As Object, e As EventArgs) Handles ReservationList.DoubleClick
         If ReservationList.SelectedItems.Count > 0 Then
             Try
+                ' Check if the selected reservation is already used
+                Dim status As String = ReservationList.SelectedItems(0).SubItems(5).Text ' Status is in the 6th column (index 5)
+                If status = "Used" Then
+                    MessageBox.Show("Cannot assign this reservation as it is already marked as Used.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    Return
+                End If
+
                 Dim reservationID As Integer = Convert.ToInt32(ReservationList.SelectedItems(0).Tag)
-                Dim clientID As Integer = GetClientIDFromReservation(reservationID) ' Fetch ClientID
+                Dim clientID As Integer = GetClientIDFromReservation(reservationID)
 
                 If clientID = -1 Then
                     MessageBox.Show("Client ID not found for the selected reservation.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Return
                 End If
 
-                Dim assignForm As New frmReservAssign(reservationID, clientID) ' Pass both parameters
+                Dim assignForm As New frmReservAssign(reservationID, clientID)
                 assignForm.ShowDialog()
                 LoadReservations() ' Refresh after assignment
             Catch ex As Exception
