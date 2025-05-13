@@ -1,8 +1,12 @@
-﻿Imports MySql.Data.MySqlClient
+Imports MySql.Data.MySqlClient
 
 Public Class frmClientReg
     Private Sub ClientList_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         KeyPreview = True
+
+        ' Initialize context menu
+        ClientList.ContextMenuStrip = contextMenu
+
         LoadClients()
     End Sub
 
@@ -12,8 +16,7 @@ Public Class frmClientReg
             dbconn()
             cn.Open()
 
-            sql = "SELECT c.Client_ID, c.LastName, c.FirstName, c.MiddleName, c.Date_Registered, " &
-                  "CASE WHEN EXISTS (SELECT 1 FROM deceased d WHERE d.Client_ID = c.Client_ID) THEN 1 ELSE 0 END as has_deceased " &
+            sql = "SELECT c.Client_ID, c.LastName, c.FirstName, c.MiddleName, c.Date_Registered, c.Status " &
                   "FROM client c " &
                   "WHERE c.LastName LIKE @search OR c.FirstName LIKE @search OR c.MiddleName LIKE @search " &
                   "ORDER BY c.LastName ASC"
@@ -34,11 +37,8 @@ Public Class frmClientReg
                 Dim dateReg As String = If(IsDBNull(dr("Date_Registered")), "", CDate(dr("Date_Registered")).ToString("yyyy-MM-dd"))
                 newLine.SubItems.Add(dateReg)
 
-                ' Status - Now based on deceased association
-                Dim statusText As String = "Inactive"
-                If Convert.ToInt32(dr("has_deceased")) = 1 Then
-                    statusText = "Active"
-                End If
+                ' Status based on Status column
+                Dim statusText As String = If(Convert.ToInt32(dr("Status")) = 1, "Active", "Inactive")
                 newLine.SubItems.Add(statusText)
             End While
 
@@ -123,6 +123,25 @@ Public Class frmClientReg
         viewClientForm.ShowDialog()
     End Sub
 
+    Private Sub ClientList_MouseDown(sender As Object, e As MouseEventArgs) Handles ClientList.MouseDown
+        If e.Button = MouseButtons.Right Then
+            ' Select the item under the mouse cursor
+            Dim hitTest As ListViewHitTestInfo = ClientList.HitTest(e.X, e.Y)
+            If hitTest.Item IsNot Nothing Then
+                ClientList.SelectedItems.Clear()
+                hitTest.Item.Selected = True
+            End If
+        End If
+    End Sub
+
+    Private Sub InactiveToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles InactiveToolStripMenuItem.Click
+        SetClientInactive()
+    End Sub
+
+    Private Sub ActiveToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ActiveToolStripMenuItem.Click
+        SetClientActive()
+    End Sub
+
     Private Sub btnRefresh_Click(sender As Object, e As EventArgs) Handles btnRefresh.Click
         LoadClients()
     End Sub
@@ -132,7 +151,88 @@ Public Class frmClientReg
         LoadClients(txtSearch.Text.Trim()) ' Search as user types
     End Sub
 
-    Private Sub ClientList_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ClientList.SelectedIndexChanged
+    ' Add a new method to handle setting client status to active
+    Private Sub SetClientActive()
+        If ClientList.SelectedItems.Count = 0 Then
+            MessageBox.Show("Please select a client to set as active.", "Set Active", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
 
+        Dim selectedID As Integer = CInt(ClientList.SelectedItems(0).SubItems(0).Text)
+        Dim clientName As String = ClientList.SelectedItems(0).SubItems(1).Text
+
+        Dim confirmActive As DialogResult = MessageBox.Show($"Are you sure you want to set {clientName} as active?", "Confirm Active", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+
+        If confirmActive = DialogResult.Yes Then
+            Try
+                dbconn()
+                cn.Open()
+
+                ' Update the client status to 1
+                sql = "UPDATE client SET Status = 1 WHERE Client_ID = @ID"
+                cmd = New MySqlCommand(sql, cn)
+                cmd.Parameters.AddWithValue("@ID", selectedID)
+
+                cmd.ExecuteNonQuery()
+                cn.Close()
+
+                MessageBox.Show("Client status updated to active.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+                ' Refresh client list to show updated status
+                LoadClients()
+
+            Catch ex As MySqlException
+                MessageBox.Show("Database error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Catch ex As Exception
+                MessageBox.Show("An unexpected error occurred: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Finally
+                If cn IsNot Nothing AndAlso cn.State = ConnectionState.Open Then
+                    cn.Close()
+                End If
+            End Try
+        End If
     End Sub
+
+    ' Add a new method to handle setting client status to inactive
+    Private Sub SetClientInactive()
+        If ClientList.SelectedItems.Count = 0 Then
+            MessageBox.Show("Please select a client to set as inactive.", "Set Inactive", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
+        Dim selectedID As Integer = CInt(ClientList.SelectedItems(0).SubItems(0).Text)
+        Dim clientName As String = ClientList.SelectedItems(0).SubItems(1).Text
+
+        Dim confirmInactive As DialogResult = MessageBox.Show($"Are you sure you want to set {clientName} as inactive?", "Confirm Inactive", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+
+        If confirmInactive = DialogResult.Yes Then
+            Try
+                dbconn()
+                cn.Open()
+
+                ' Update the client status to 0
+                sql = "UPDATE client SET Status = 0 WHERE Client_ID = @ID"
+                cmd = New MySqlCommand(sql, cn)
+                cmd.Parameters.AddWithValue("@ID", selectedID)
+
+                cmd.ExecuteNonQuery()
+                cn.Close()
+
+                MessageBox.Show("Client status updated to inactive.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+                ' Refresh client list to show updated status
+                LoadClients()
+
+            Catch ex As MySqlException
+                MessageBox.Show("Database error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Catch ex As Exception
+                MessageBox.Show("An unexpected error occurred: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Finally
+                If cn IsNot Nothing AndAlso cn.State = ConnectionState.Open Then
+                    cn.Close()
+                End If
+            End Try
+        End If
+    End Sub
+
 End Class

@@ -1,4 +1,4 @@
-﻿Imports MySql.Data.MySqlClient
+Imports MySql.Data.MySqlClient
 Imports System.IO
 Imports System.Diagnostics
 Imports iTextSharp.text
@@ -43,7 +43,8 @@ Public Class frmPaymentReg
         GROUP BY 
             c.Client_ID, FullName
         ORDER BY 
-            MAX(p.payment_date) DESC, c.Client_ID"
+            LastPaymentDate DESC, c.Client_ID"
+
 
             ' First get all the data
             Using cmd As New MySqlCommand(sql, tempConnection)
@@ -283,5 +284,15 @@ Public Class frmPaymentReg
 
     Private Sub btnShowAll_Click(sender As Object, e As EventArgs) Handles btnShowAll.Click
         LoadPaymentData() ' Refresh the ListView with the latest data
+    End Sub
+
+    Private Sub btnView_Click(sender As Object, e As EventArgs) Handles btnView.Click
+        If PaymentList.SelectedItems.Count > 0 Then
+            Dim selectedClientID As String = PaymentList.SelectedItems(0).Text
+            Dim viewPaymentForm As New frmViewPayment(selectedClientID)
+            viewPaymentForm.ShowDialog()
+        Else
+            MessageBox.Show("Please select a client first.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End If
     End Sub
 End Class

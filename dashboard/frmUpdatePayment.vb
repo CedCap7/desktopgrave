@@ -110,4 +110,14 @@ Public Class frmUpdatePayment
         Me.Dispose()
         Me.Close()
     End Sub
+
+    Public Property SelectedReservationID As String
+        Get
+            Return reservationID
+        End Get
+        Set(value As String)
+            reservationID = value
+        End Set
+    End Property
+
 End Class
