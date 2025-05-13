@@ -156,7 +156,7 @@ Partial Class dashboard
         Me.btnPackages.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left
         Me.btnPackages.ImageSize = New System.Drawing.Size(28, 28)
         Me.btnPackages.IndicateFocus = True
-        Me.btnPackages.Location = New System.Drawing.Point(0, 518)
+        Me.btnPackages.Location = New System.Drawing.Point(0, 551)
         Me.btnPackages.Name = "btnPackages"
         Me.btnPackages.Size = New System.Drawing.Size(178, 60)
         Me.btnPackages.TabIndex = 9
@@ -181,7 +181,7 @@ Partial Class dashboard
         Me.btnUserManagement.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left
         Me.btnUserManagement.ImageSize = New System.Drawing.Size(28, 28)
         Me.btnUserManagement.IndicateFocus = True
-        Me.btnUserManagement.Location = New System.Drawing.Point(0, 458)
+        Me.btnUserManagement.Location = New System.Drawing.Point(0, 491)
         Me.btnUserManagement.Name = "btnUserManagement"
         Me.btnUserManagement.Size = New System.Drawing.Size(178, 60)
         Me.btnUserManagement.TabIndex = 8
@@ -203,7 +203,7 @@ Partial Class dashboard
         Me.paymentbtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left
         Me.paymentbtn.ImageSize = New System.Drawing.Size(28, 28)
         Me.paymentbtn.IndicateFocus = True
-        Me.paymentbtn.Location = New System.Drawing.Point(0, 230)
+        Me.paymentbtn.Location = New System.Drawing.Point(0, 263)
         Me.paymentbtn.Name = "paymentbtn"
         Me.paymentbtn.Size = New System.Drawing.Size(178, 54)
         Me.paymentbtn.TabIndex = 7
@@ -225,7 +225,7 @@ Partial Class dashboard
         Me.btnDashboard.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left
         Me.btnDashboard.ImageSize = New System.Drawing.Size(28, 28)
         Me.btnDashboard.IndicateFocus = True
-        Me.btnDashboard.Location = New System.Drawing.Point(0, 69)
+        Me.btnDashboard.Location = New System.Drawing.Point(0, 102)
         Me.btnDashboard.Name = "btnDashboard"
         Me.btnDashboard.Size = New System.Drawing.Size(178, 54)
         Me.btnDashboard.TabIndex = 0
@@ -250,7 +250,7 @@ Partial Class dashboard
         Me.clientregistrybtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left
         Me.clientregistrybtn.ImageSize = New System.Drawing.Size(28, 28)
         Me.clientregistrybtn.IndicateFocus = True
-        Me.clientregistrybtn.Location = New System.Drawing.Point(0, 398)
+        Me.clientregistrybtn.Location = New System.Drawing.Point(0, 431)
         Me.clientregistrybtn.Name = "clientregistrybtn"
         Me.clientregistrybtn.Size = New System.Drawing.Size(178, 60)
         Me.clientregistrybtn.TabIndex = 5
@@ -296,7 +296,7 @@ Partial Class dashboard
         Me.payreservbtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left
         Me.payreservbtn.ImageSize = New System.Drawing.Size(28, 28)
         Me.payreservbtn.IndicateFocus = True
-        Me.payreservbtn.Location = New System.Drawing.Point(0, 177)
+        Me.payreservbtn.Location = New System.Drawing.Point(0, 210)
         Me.payreservbtn.Name = "payreservbtn"
         Me.payreservbtn.Size = New System.Drawing.Size(178, 53)
         Me.payreservbtn.TabIndex = 2
@@ -318,7 +318,7 @@ Partial Class dashboard
         Me.mapbtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left
         Me.mapbtn.ImageSize = New System.Drawing.Size(28, 28)
         Me.mapbtn.IndicateFocus = True
-        Me.mapbtn.Location = New System.Drawing.Point(0, 284)
+        Me.mapbtn.Location = New System.Drawing.Point(0, 317)
         Me.mapbtn.Name = "mapbtn"
         Me.mapbtn.Size = New System.Drawing.Size(178, 54)
         Me.mapbtn.TabIndex = 3
@@ -343,7 +343,7 @@ Partial Class dashboard
         Me.registrybtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left
         Me.registrybtn.ImageSize = New System.Drawing.Size(28, 28)
         Me.registrybtn.IndicateFocus = True
-        Me.registrybtn.Location = New System.Drawing.Point(0, 338)
+        Me.registrybtn.Location = New System.Drawing.Point(0, 371)
         Me.registrybtn.Name = "registrybtn"
         Me.registrybtn.Size = New System.Drawing.Size(178, 60)
         Me.registrybtn.TabIndex = 4
@@ -365,7 +365,7 @@ Partial Class dashboard
         Me.formsbtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left
         Me.formsbtn.ImageSize = New System.Drawing.Size(28, 28)
         Me.formsbtn.IndicateFocus = True
-        Me.formsbtn.Location = New System.Drawing.Point(0, 123)
+        Me.formsbtn.Location = New System.Drawing.Point(0, 156)
         Me.formsbtn.Name = "formsbtn"
         Me.formsbtn.Size = New System.Drawing.Size(178, 54)
         Me.formsbtn.TabIndex = 1

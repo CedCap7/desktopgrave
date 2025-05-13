@@ -1,4 +1,4 @@
-﻿Imports MySql.Data.MySqlClient
+Imports MySql.Data.MySqlClient
 Imports System.Data
 Imports System.Windows.Forms
 
@@ -68,24 +68,28 @@ FROM
         LoadUsers()
     End Sub
 
-    ' Private Sub btnAddUser_Click(sender As Object, e As EventArgs) Handles btnAddUser.Click
-    'Dim addUserForm As New frmAddUser()
-    'If addUserForm.ShowDialog() = DialogResult.OK Then
-    '       LoadUsers()
-    'End If
 
-    'End Sub
+    Private Sub btnAddUser_Click(sender As Object, e As EventArgs) Handles btnAddUser.Click
+        Dim addUserForm As New frmAddUser()
+        If addUserForm.ShowDialog() = DialogResult.OK Then
+            LoadUsers()
+        End If
 
-    ' Private Sub btnEdit_Click(sender As Object, e As EventArgs) Handles btnEdit.Click
-    'If DataGridView1.SelectedRows.Count > 0 Then
-    'Dim userId As Integer = DataGridView1.SelectedRows(0).Cells("user_id").Value
-    'Dim editUserForm As New frmEditUser(userId)
-    'If editUserForm.ShowDialog() = DialogResult.OK Then
-    '           LoadUsers()
-    'End If
-    'Else
-    '       MessageBox.Show("Please select a user to edit.")
-    'End If
-    'End Sub
+    End Sub
 
+    Private Sub btnEdit_Click(sender As Object, e As EventArgs) Handles btnEdit.Click
+        If UserList.SelectedItems.Count > 0 Then
+            Dim userId As Integer = CInt(UserList.SelectedItems(0).SubItems(0).Text) ' Get user ID from first column
+            Dim editUserForm As New frmEditUser(userId)
+            If editUserForm.ShowDialog() = DialogResult.OK Then
+                LoadUsers() ' Refresh the list after successful edit
+            End If
+        Else
+            MessageBox.Show("Please select a user to edit.", "No User Selected", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End If
+    End Sub
+
+    Private Sub btnShowAll_Click(sender As Object, e As EventArgs) Handles btnShowAll.Click
+        LoadUsers()
+    End Sub
 End Class
