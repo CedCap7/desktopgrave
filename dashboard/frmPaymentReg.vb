@@ -243,12 +243,19 @@ Public Class frmPaymentReg
                 table.AddCell(New iTextSharp.text.Phrase(row("Client_ID").ToString(), normalFont))
                 table.AddCell(New iTextSharp.text.Phrase(row("FullName").ToString(), normalFont))
                 table.AddCell(New iTextSharp.text.Phrase(row("Reservation_ID").ToString(), normalFont))
-                table.AddCell(New iTextSharp.text.Phrase(Convert.ToDateTime(row("payment_date")).ToString("MM/dd/yyyy"), normalFont))
-                table.AddCell(New iTextSharp.text.Phrase(Convert.ToDecimal(row("total_Paid")).ToString("C"), normalFont))
-                table.AddCell(New iTextSharp.text.Phrase(row("PaymentStatus").ToString(), normalFont))
 
-                totalPaid += Convert.ToDecimal(row("total_Paid"))
-                totalDue += Convert.ToDecimal(row("total_Amount"))
+                ' Safely handle DBNull for payment_date, total_Paid, total_Amount, and PaymentStatus
+                Dim paymentDateStr As String = If(IsDBNull(row("payment_date")), "N/A", Convert.ToDateTime(row("payment_date")).ToString("MM/dd/yyyy"))
+                Dim totalPaidVal As Decimal = If(IsDBNull(row("total_Paid")), 0D, Convert.ToDecimal(row("total_Paid")))
+                Dim totalAmountVal As Decimal = If(IsDBNull(row("total_Amount")), 0D, Convert.ToDecimal(row("total_Amount")))
+                Dim paymentStatusStr As String = If(IsDBNull(row("PaymentStatus")), "N/A", row("PaymentStatus").ToString())
+
+                table.AddCell(New iTextSharp.text.Phrase(paymentDateStr, normalFont))
+                table.AddCell(New iTextSharp.text.Phrase(totalPaidVal.ToString("C"), normalFont))
+                table.AddCell(New iTextSharp.text.Phrase(paymentStatusStr, normalFont))
+
+                totalPaid += totalPaidVal
+                totalDue += totalAmountVal
             Next
 
             document.Add(table)
