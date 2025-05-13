@@ -25,6 +25,12 @@ Partial Class dashboard
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(dashboard))
         Me.Guna2Panel1 = New Guna.UI2.WinForms.Guna2Panel()
+        Me.Guna2Elipse1 = New Guna.UI2.WinForms.Guna2Elipse(Me.components)
+        Me.Guna2Panel3 = New Guna.UI2.WinForms.Guna2Panel()
+        Me.Guna2ControlBox3 = New Guna.UI2.WinForms.Guna2ControlBox()
+        Me.Guna2ControlBox2 = New Guna.UI2.WinForms.Guna2ControlBox()
+        Me.Guna2ControlBox1 = New Guna.UI2.WinForms.Guna2ControlBox()
+        Me.subPanel = New Guna.UI2.WinForms.Guna2Panel()
         Me.btnUserManagement = New Guna.UI2.WinForms.Guna2Button()
         Me.paymentbtn = New Guna.UI2.WinForms.Guna2Button()
         Me.btnDashboard = New Guna.UI2.WinForms.Guna2Button()
@@ -34,13 +40,7 @@ Partial Class dashboard
         Me.mapbtn = New Guna.UI2.WinForms.Guna2Button()
         Me.registrybtn = New Guna.UI2.WinForms.Guna2Button()
         Me.formsbtn = New Guna.UI2.WinForms.Guna2Button()
-        Me.Guna2Elipse1 = New Guna.UI2.WinForms.Guna2Elipse(Me.components)
-        Me.Guna2Panel3 = New Guna.UI2.WinForms.Guna2Panel()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.Guna2ControlBox3 = New Guna.UI2.WinForms.Guna2ControlBox()
-        Me.Guna2ControlBox2 = New Guna.UI2.WinForms.Guna2ControlBox()
-        Me.Guna2ControlBox1 = New Guna.UI2.WinForms.Guna2ControlBox()
-        Me.subPanel = New Guna.UI2.WinForms.Guna2Panel()
         Me.Guna2Panel1.SuspendLayout()
         Me.Guna2Panel3.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -66,6 +66,75 @@ Partial Class dashboard
         Me.Guna2Panel1.ShadowDecoration.Shadow = New System.Windows.Forms.Padding(10)
         Me.Guna2Panel1.Size = New System.Drawing.Size(178, 581)
         Me.Guna2Panel1.TabIndex = 0
+        '
+        'Guna2Elipse1
+        '
+        Me.Guna2Elipse1.BorderRadius = 10
+        '
+        'Guna2Panel3
+        '
+        Me.Guna2Panel3.BackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(171, Byte), Integer), CType(CType(189, Byte), Integer))
+        Me.Guna2Panel3.Controls.Add(Me.PictureBox1)
+        Me.Guna2Panel3.Controls.Add(Me.Guna2ControlBox3)
+        Me.Guna2Panel3.Controls.Add(Me.Guna2ControlBox2)
+        Me.Guna2Panel3.Controls.Add(Me.Guna2ControlBox1)
+        Me.Guna2Panel3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Guna2Panel3.Location = New System.Drawing.Point(0, 0)
+        Me.Guna2Panel3.Name = "Guna2Panel3"
+        Me.Guna2Panel3.ShadowDecoration.BorderRadius = 10
+        Me.Guna2Panel3.ShadowDecoration.Enabled = True
+        Me.Guna2Panel3.ShadowDecoration.Shadow = New System.Windows.Forms.Padding(0, 0, 0, 5)
+        Me.Guna2Panel3.Size = New System.Drawing.Size(870, 51)
+        Me.Guna2Panel3.TabIndex = 5
+        '
+        'Guna2ControlBox3
+        '
+        Me.Guna2ControlBox3.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Guna2ControlBox3.Animated = True
+        Me.Guna2ControlBox3.ControlBoxType = Guna.UI2.WinForms.Enums.ControlBoxType.MinimizeBox
+        Me.Guna2ControlBox3.FillColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(171, Byte), Integer), CType(CType(189, Byte), Integer))
+        Me.Guna2ControlBox3.IconColor = System.Drawing.Color.White
+        Me.Guna2ControlBox3.Location = New System.Drawing.Point(762, 0)
+        Me.Guna2ControlBox3.Name = "Guna2ControlBox3"
+        Me.Guna2ControlBox3.Size = New System.Drawing.Size(36, 23)
+        Me.Guna2ControlBox3.TabIndex = 3
+        '
+        'Guna2ControlBox2
+        '
+        Me.Guna2ControlBox2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Guna2ControlBox2.Animated = True
+        Me.Guna2ControlBox2.ControlBoxType = Guna.UI2.WinForms.Enums.ControlBoxType.MaximizeBox
+        Me.Guna2ControlBox2.FillColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(171, Byte), Integer), CType(CType(189, Byte), Integer))
+        Me.Guna2ControlBox2.IconColor = System.Drawing.Color.White
+        Me.Guna2ControlBox2.Location = New System.Drawing.Point(798, 0)
+        Me.Guna2ControlBox2.Name = "Guna2ControlBox2"
+        Me.Guna2ControlBox2.Size = New System.Drawing.Size(36, 23)
+        Me.Guna2ControlBox2.TabIndex = 2
+        '
+        'Guna2ControlBox1
+        '
+        Me.Guna2ControlBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Guna2ControlBox1.Animated = True
+        Me.Guna2ControlBox1.FillColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(171, Byte), Integer), CType(CType(189, Byte), Integer))
+        Me.Guna2ControlBox1.HoverState.FillColor = System.Drawing.Color.Red
+        Me.Guna2ControlBox1.IconColor = System.Drawing.Color.White
+        Me.Guna2ControlBox1.Location = New System.Drawing.Point(834, 0)
+        Me.Guna2ControlBox1.Name = "Guna2ControlBox1"
+        Me.Guna2ControlBox1.Size = New System.Drawing.Size(36, 23)
+        Me.Guna2ControlBox1.TabIndex = 1
+        '
+        'subPanel
+        '
+        Me.subPanel.AutoRoundedCorners = True
+        Me.subPanel.AutoSize = True
+        Me.subPanel.BackColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(15, Byte), Integer), CType(CType(26, Byte), Integer))
+        Me.subPanel.BorderRadius = 289
+        Me.subPanel.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.subPanel.Location = New System.Drawing.Point(178, 51)
+        Me.subPanel.Name = "subPanel"
+        Me.subPanel.Padding = New System.Windows.Forms.Padding(5, 5, 5, 5)
+        Me.subPanel.Size = New System.Drawing.Size(692, 581)
+        Me.subPanel.TabIndex = 6
         '
         'btnUserManagement
         '
@@ -276,26 +345,6 @@ Partial Class dashboard
         Me.formsbtn.Text = "Forms"
         Me.formsbtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
         '
-        'Guna2Elipse1
-        '
-        Me.Guna2Elipse1.BorderRadius = 10
-        '
-        'Guna2Panel3
-        '
-        Me.Guna2Panel3.BackColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(171, Byte), Integer), CType(CType(189, Byte), Integer))
-        Me.Guna2Panel3.Controls.Add(Me.PictureBox1)
-        Me.Guna2Panel3.Controls.Add(Me.Guna2ControlBox3)
-        Me.Guna2Panel3.Controls.Add(Me.Guna2ControlBox2)
-        Me.Guna2Panel3.Controls.Add(Me.Guna2ControlBox1)
-        Me.Guna2Panel3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Guna2Panel3.Location = New System.Drawing.Point(0, 0)
-        Me.Guna2Panel3.Name = "Guna2Panel3"
-        Me.Guna2Panel3.ShadowDecoration.BorderRadius = 10
-        Me.Guna2Panel3.ShadowDecoration.Enabled = True
-        Me.Guna2Panel3.ShadowDecoration.Shadow = New System.Windows.Forms.Padding(0, 0, 0, 5)
-        Me.Guna2Panel3.Size = New System.Drawing.Size(870, 51)
-        Me.Guna2Panel3.TabIndex = 5
-        '
         'PictureBox1
         '
         Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
@@ -305,55 +354,6 @@ Partial Class dashboard
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBox1.TabIndex = 4
         Me.PictureBox1.TabStop = False
-        '
-        'Guna2ControlBox3
-        '
-        Me.Guna2ControlBox3.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Guna2ControlBox3.Animated = True
-        Me.Guna2ControlBox3.ControlBoxType = Guna.UI2.WinForms.Enums.ControlBoxType.MinimizeBox
-        Me.Guna2ControlBox3.FillColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(171, Byte), Integer), CType(CType(189, Byte), Integer))
-        Me.Guna2ControlBox3.IconColor = System.Drawing.Color.White
-        Me.Guna2ControlBox3.Location = New System.Drawing.Point(762, 0)
-        Me.Guna2ControlBox3.Name = "Guna2ControlBox3"
-        Me.Guna2ControlBox3.Size = New System.Drawing.Size(36, 23)
-        Me.Guna2ControlBox3.TabIndex = 3
-        '
-        'Guna2ControlBox2
-        '
-        Me.Guna2ControlBox2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Guna2ControlBox2.Animated = True
-        Me.Guna2ControlBox2.ControlBoxType = Guna.UI2.WinForms.Enums.ControlBoxType.MaximizeBox
-        Me.Guna2ControlBox2.FillColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(171, Byte), Integer), CType(CType(189, Byte), Integer))
-        Me.Guna2ControlBox2.IconColor = System.Drawing.Color.White
-        Me.Guna2ControlBox2.Location = New System.Drawing.Point(798, 0)
-        Me.Guna2ControlBox2.Name = "Guna2ControlBox2"
-        Me.Guna2ControlBox2.Size = New System.Drawing.Size(36, 23)
-        Me.Guna2ControlBox2.TabIndex = 2
-        '
-        'Guna2ControlBox1
-        '
-        Me.Guna2ControlBox1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Guna2ControlBox1.Animated = True
-        Me.Guna2ControlBox1.FillColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(171, Byte), Integer), CType(CType(189, Byte), Integer))
-        Me.Guna2ControlBox1.HoverState.FillColor = System.Drawing.Color.Red
-        Me.Guna2ControlBox1.IconColor = System.Drawing.Color.White
-        Me.Guna2ControlBox1.Location = New System.Drawing.Point(834, 0)
-        Me.Guna2ControlBox1.Name = "Guna2ControlBox1"
-        Me.Guna2ControlBox1.Size = New System.Drawing.Size(36, 23)
-        Me.Guna2ControlBox1.TabIndex = 1
-        '
-        'subPanel
-        '
-        Me.subPanel.AutoRoundedCorners = True
-        Me.subPanel.AutoSize = True
-        Me.subPanel.BackColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(15, Byte), Integer), CType(CType(26, Byte), Integer))
-        Me.subPanel.BorderRadius = 289
-        Me.subPanel.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.subPanel.Location = New System.Drawing.Point(178, 51)
-        Me.subPanel.Name = "subPanel"
-        Me.subPanel.Padding = New System.Windows.Forms.Padding(5, 5, 5, 5)
-        Me.subPanel.Size = New System.Drawing.Size(692, 581)
-        Me.subPanel.TabIndex = 6
         '
         'dashboard
         '
@@ -366,6 +366,7 @@ Partial Class dashboard
         Me.Controls.Add(Me.Guna2Panel1)
         Me.Controls.Add(Me.Guna2Panel3)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "dashboard"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "DCCMS"

@@ -1,4 +1,4 @@
-﻿Imports MySql.Data.MySqlClient
+Imports MySql.Data.MySqlClient
 
 Public Class frmApplication
 
@@ -144,6 +144,46 @@ Public Class frmApplication
         Dim mobile As String = txtMobile.Text
         Dim email As String = txtEmail.Text
         Dim gender As String = If(chkMale.Checked, "Male", If(chkFemale.Checked, "Female", "Not Specified"))
+
+        ' Validate email (if provided)
+        If Not String.IsNullOrWhiteSpace(email) Then
+            ' Check if email already exists in database
+            sql = "SELECT COUNT(*) FROM client WHERE Email = @email"
+            Using cmd As New MySqlCommand(sql, cn)
+                cmd.Parameters.AddWithValue("@email", email)
+                Dim emailCount As Integer = CInt(cmd.ExecuteScalar())
+                If emailCount > 0 Then
+                    MessageBox.Show("This email address is already registered.", "Duplicate Email", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    Return
+                End If
+            End Using
+        End If
+
+        ' Validate mobile number (if provided)
+        If Not String.IsNullOrWhiteSpace(mobile) Then
+            ' Clean the mobile number
+            Dim cleanedMobile = mobile.Replace(" ", "").Replace("-", "")
+
+            ' Check if mobile number is valid
+            If cleanedMobile.Length <> 11 OrElse Not cleanedMobile.StartsWith("09") Then
+                MessageBox.Show("Please enter a valid Philippine mobile number starting with '09' and exactly 11 digits.", "Invalid Mobile Number", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Return
+            End If
+
+            ' Check if mobile number already exists in database
+            sql = "SELECT COUNT(*) FROM client WHERE Mobile = @mobile"
+            Using cmd As New MySqlCommand(sql, cn)
+                cmd.Parameters.AddWithValue("@mobile", cleanedMobile)
+                Dim mobileCount As Integer = CInt(cmd.ExecuteScalar())
+                If mobileCount > 0 Then
+                    MessageBox.Show("This mobile number is already registered.", "Duplicate Mobile Number", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    Return
+                End If
+            End Using
+
+            ' Use the cleaned mobile number for insertion
+            mobile = cleanedMobile
+        End If
 
         Dim clientId As Integer = 0 ' Variable to store the inserted Client_ID
 

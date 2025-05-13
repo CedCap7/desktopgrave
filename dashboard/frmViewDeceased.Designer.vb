@@ -24,6 +24,8 @@ Partial Class frmViewDeceased
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmViewDeceased))
         Me.Guna2ShadowPanel1 = New Guna.UI2.WinForms.Guna2ShadowPanel()
+        Me.lbl2ndContact = New System.Windows.Forms.Label()
+        Me.lbl1stContact = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
@@ -55,6 +57,8 @@ Partial Class frmViewDeceased
         'Guna2ShadowPanel1
         '
         Me.Guna2ShadowPanel1.BackColor = System.Drawing.Color.Transparent
+        Me.Guna2ShadowPanel1.Controls.Add(Me.lbl2ndContact)
+        Me.Guna2ShadowPanel1.Controls.Add(Me.lbl1stContact)
         Me.Guna2ShadowPanel1.Controls.Add(Me.Label8)
         Me.Guna2ShadowPanel1.Controls.Add(Me.Label7)
         Me.Guna2ShadowPanel1.Controls.Add(Me.Label6)
@@ -75,6 +79,28 @@ Partial Class frmViewDeceased
         Me.Guna2ShadowPanel1.ShadowShift = 7
         Me.Guna2ShadowPanel1.Size = New System.Drawing.Size(409, 426)
         Me.Guna2ShadowPanel1.TabIndex = 6
+        '
+        'lbl2ndContact
+        '
+        Me.lbl2ndContact.AutoSize = True
+        Me.lbl2ndContact.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl2ndContact.ForeColor = System.Drawing.SystemColors.Control
+        Me.lbl2ndContact.Location = New System.Drawing.Point(35, 361)
+        Me.lbl2ndContact.Name = "lbl2ndContact"
+        Me.lbl2ndContact.Size = New System.Drawing.Size(107, 16)
+        Me.lbl2ndContact.TabIndex = 14
+        Me.lbl2ndContact.Text = "Contact Number:"
+        '
+        'lbl1stContact
+        '
+        Me.lbl1stContact.AutoSize = True
+        Me.lbl1stContact.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl1stContact.ForeColor = System.Drawing.SystemColors.Control
+        Me.lbl1stContact.Location = New System.Drawing.Point(35, 306)
+        Me.lbl1stContact.Name = "lbl1stContact"
+        Me.lbl1stContact.Size = New System.Drawing.Size(107, 16)
+        Me.lbl1stContact.TabIndex = 13
+        Me.lbl1stContact.Text = "Contact Number:"
         '
         'Label8
         '
@@ -140,7 +166,7 @@ Partial Class frmViewDeceased
         Me.Lbl2ndBeneficiary.AutoSize = True
         Me.Lbl2ndBeneficiary.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Lbl2ndBeneficiary.ForeColor = System.Drawing.SystemColors.Control
-        Me.Lbl2ndBeneficiary.Location = New System.Drawing.Point(33, 318)
+        Me.Lbl2ndBeneficiary.Location = New System.Drawing.Point(33, 341)
         Me.Lbl2ndBeneficiary.Margin = New System.Windows.Forms.Padding(30, 0, 3, 0)
         Me.Lbl2ndBeneficiary.Name = "Lbl2ndBeneficiary"
         Me.Lbl2ndBeneficiary.Size = New System.Drawing.Size(119, 16)
@@ -258,9 +284,9 @@ Partial Class frmViewDeceased
         Me.Label2.ForeColor = System.Drawing.SystemColors.Control
         Me.Label2.Location = New System.Drawing.Point(31, 199)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(95, 20)
+        Me.Label2.Size = New System.Drawing.Size(146, 20)
         Me.Label2.TabIndex = 14
-        Me.Label2.Text = "Deceased:"
+        Me.Label2.Text = "Deceased Name:"
         '
         'Label1
         '
@@ -402,4 +428,6 @@ Partial Class frmViewDeceased
     Friend WithEvents Label7 As Label
     Friend WithEvents Label6 As Label
     Friend WithEvents Label5 As Label
+    Friend WithEvents lbl2ndContact As Label
+    Friend WithEvents lbl1stContact As Label
 End Class

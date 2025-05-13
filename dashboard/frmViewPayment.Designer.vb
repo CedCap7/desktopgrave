@@ -26,8 +26,6 @@ Partial Class frmViewPayment
         Me.Guna2Panel2 = New Guna.UI2.WinForms.Guna2Panel()
         Me.btnPayment = New Guna.UI2.WinForms.Guna2Button()
         Me.btnShowAll = New Guna.UI2.WinForms.Guna2Button()
-        Me.btnDelete = New Guna.UI2.WinForms.Guna2Button()
-        Me.btnUpdate = New Guna.UI2.WinForms.Guna2Button()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Guna2ShadowPanel1 = New Guna.UI2.WinForms.Guna2ShadowPanel()
@@ -62,8 +60,6 @@ Partial Class frmViewPayment
         Me.Guna2Panel2.AutoSize = True
         Me.Guna2Panel2.Controls.Add(Me.btnPayment)
         Me.Guna2Panel2.Controls.Add(Me.btnShowAll)
-        Me.Guna2Panel2.Controls.Add(Me.btnDelete)
-        Me.Guna2Panel2.Controls.Add(Me.btnUpdate)
         Me.Guna2Panel2.Controls.Add(Me.Label2)
         Me.Guna2Panel2.Controls.Add(Me.Label1)
         Me.Guna2Panel2.Dock = System.Windows.Forms.DockStyle.Top
@@ -79,7 +75,7 @@ Partial Class frmViewPayment
         Me.btnPayment.FillColor = System.Drawing.Color.LimeGreen
         Me.btnPayment.Font = New System.Drawing.Font("Segoe UI", 9.75!)
         Me.btnPayment.ForeColor = System.Drawing.Color.White
-        Me.btnPayment.Location = New System.Drawing.Point(984, 45)
+        Me.btnPayment.Location = New System.Drawing.Point(1146, 44)
         Me.btnPayment.Name = "btnPayment"
         Me.btnPayment.Size = New System.Drawing.Size(75, 25)
         Me.btnPayment.TabIndex = 7
@@ -92,37 +88,11 @@ Partial Class frmViewPayment
         Me.btnShowAll.FillColor = System.Drawing.Color.DarkGoldenrod
         Me.btnShowAll.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnShowAll.ForeColor = System.Drawing.Color.White
-        Me.btnShowAll.Location = New System.Drawing.Point(903, 45)
+        Me.btnShowAll.Location = New System.Drawing.Point(1065, 44)
         Me.btnShowAll.Name = "btnShowAll"
         Me.btnShowAll.Size = New System.Drawing.Size(75, 25)
         Me.btnShowAll.TabIndex = 6
         Me.btnShowAll.Text = "Refresh"
-        '
-        'btnDelete
-        '
-        Me.btnDelete.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.btnDelete.Animated = True
-        Me.btnDelete.FillColor = System.Drawing.Color.Red
-        Me.btnDelete.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnDelete.ForeColor = System.Drawing.Color.White
-        Me.btnDelete.Location = New System.Drawing.Point(1146, 45)
-        Me.btnDelete.Name = "btnDelete"
-        Me.btnDelete.Size = New System.Drawing.Size(75, 25)
-        Me.btnDelete.TabIndex = 3
-        Me.btnDelete.Text = "Delete"
-        '
-        'btnUpdate
-        '
-        Me.btnUpdate.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.btnUpdate.Animated = True
-        Me.btnUpdate.FillColor = System.Drawing.Color.Blue
-        Me.btnUpdate.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnUpdate.ForeColor = System.Drawing.Color.White
-        Me.btnUpdate.Location = New System.Drawing.Point(1065, 45)
-        Me.btnUpdate.Name = "btnUpdate"
-        Me.btnUpdate.Size = New System.Drawing.Size(75, 25)
-        Me.btnUpdate.TabIndex = 2
-        Me.btnUpdate.Text = "Update"
         '
         'Label2
         '
@@ -405,8 +375,6 @@ Partial Class frmViewPayment
     End Sub
     Friend WithEvents Guna2Panel2 As Guna.UI2.WinForms.Guna2Panel
     Friend WithEvents btnShowAll As Guna.UI2.WinForms.Guna2Button
-    Friend WithEvents btnDelete As Guna.UI2.WinForms.Guna2Button
-    Friend WithEvents btnUpdate As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents Label2 As Label
     Friend WithEvents Label1 As Label
     Friend WithEvents Guna2ShadowPanel1 As Guna.UI2.WinForms.Guna2ShadowPanel

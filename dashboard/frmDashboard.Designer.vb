@@ -23,9 +23,9 @@ Partial Class frmDashboard
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Guna2Elipse1 = New Guna.UI2.WinForms.Guna2Elipse(Me.components)
         Me.Guna2Panel2 = New Guna.UI2.WinForms.Guna2Panel()
         Me.btnRefresh = New Guna.UI2.WinForms.Guna2Button()
@@ -34,18 +34,22 @@ Partial Class frmDashboard
         Me.Label3 = New System.Windows.Forms.Label()
         Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
         Me.Guna2Panel3 = New Guna.UI2.WinForms.Guna2Panel()
+        Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
         Me.pbApartment = New Guna.UI2.WinForms.Guna2CircleProgressBar()
         Me.lblApartment = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Guna2Panel4 = New Guna.UI2.WinForms.Guna2Panel()
+        Me.TableLayoutPanel4 = New System.Windows.Forms.TableLayoutPanel()
         Me.pblawnlots = New Guna.UI2.WinForms.Guna2CircleProgressBar()
         Me.lblLawnlots = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Guna2Panel5 = New Guna.UI2.WinForms.Guna2Panel()
+        Me.TableLayoutPanel5 = New System.Windows.Forms.TableLayoutPanel()
         Me.pbboneniche = New Guna.UI2.WinForms.Guna2CircleProgressBar()
         Me.lblBoneNiche = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Guna2Panel6 = New Guna.UI2.WinForms.Guna2Panel()
+        Me.TableLayoutPanel6 = New System.Windows.Forms.TableLayoutPanel()
         Me.pbprivate = New Guna.UI2.WinForms.Guna2CircleProgressBar()
         Me.lblPrivate = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
@@ -73,9 +77,13 @@ Partial Class frmDashboard
         Me.Guna2Panel2.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.Guna2Panel3.SuspendLayout()
+        Me.TableLayoutPanel3.SuspendLayout()
         Me.Guna2Panel4.SuspendLayout()
+        Me.TableLayoutPanel4.SuspendLayout()
         Me.Guna2Panel5.SuspendLayout()
+        Me.TableLayoutPanel5.SuspendLayout()
         Me.Guna2Panel6.SuspendLayout()
+        Me.TableLayoutPanel6.SuspendLayout()
         CType(Me.dgvNotification, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TableLayoutPanel2.SuspendLayout()
         Me.Guna2Panel9.SuspendLayout()
@@ -178,7 +186,7 @@ Partial Class frmDashboard
         'Guna2Panel3
         '
         Me.Guna2Panel3.BackColor = System.Drawing.Color.FromArgb(CType(CType(44, Byte), Integer), CType(CType(95, Byte), Integer), CType(CType(120, Byte), Integer))
-        Me.Guna2Panel3.Controls.Add(Me.pbApartment)
+        Me.Guna2Panel3.Controls.Add(Me.TableLayoutPanel3)
         Me.Guna2Panel3.Controls.Add(Me.lblApartment)
         Me.Guna2Panel3.Controls.Add(Me.Label5)
         Me.Guna2Panel3.Dock = System.Windows.Forms.DockStyle.Fill
@@ -190,22 +198,36 @@ Partial Class frmDashboard
         Me.Guna2Panel3.Size = New System.Drawing.Size(241, 205)
         Me.Guna2Panel3.TabIndex = 1
         '
+        'TableLayoutPanel3
+        '
+        Me.TableLayoutPanel3.ColumnCount = 3
+        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
+        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
+        Me.TableLayoutPanel3.Controls.Add(Me.pbApartment, 1, 0)
+        Me.TableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.TableLayoutPanel3.Location = New System.Drawing.Point(0, 0)
+        Me.TableLayoutPanel3.Name = "TableLayoutPanel3"
+        Me.TableLayoutPanel3.RowCount = 1
+        Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel3.Size = New System.Drawing.Size(241, 143)
+        Me.TableLayoutPanel3.TabIndex = 9
+        '
         'pbApartment
         '
-        Me.pbApartment.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pbApartment.Animated = True
+        Me.pbApartment.AnimationSpeed = 0!
         Me.pbApartment.BackColor = System.Drawing.Color.Transparent
+        Me.pbApartment.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pbApartment.FillColor = System.Drawing.Color.FromArgb(CType(CType(200, Byte), Integer), CType(CType(213, Byte), Integer), CType(CType(218, Byte), Integer), CType(CType(223, Byte), Integer))
         Me.pbApartment.Font = New System.Drawing.Font("Segoe UI", 12.0!)
         Me.pbApartment.ForeColor = System.Drawing.Color.White
-        Me.pbApartment.Location = New System.Drawing.Point(24, 5)
+        Me.pbApartment.Location = New System.Drawing.Point(63, 3)
         Me.pbApartment.Minimum = 0
         Me.pbApartment.Name = "pbApartment"
         Me.pbApartment.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle
         Me.pbApartment.ShowText = True
-        Me.pbApartment.Size = New System.Drawing.Size(130, 130)
+        Me.pbApartment.Size = New System.Drawing.Size(137, 137)
         Me.pbApartment.TabIndex = 8
         Me.pbApartment.Text = "Guna"
         '
@@ -236,7 +258,7 @@ Partial Class frmDashboard
         'Guna2Panel4
         '
         Me.Guna2Panel4.BackColor = System.Drawing.Color.FromArgb(CType(CType(44, Byte), Integer), CType(CType(95, Byte), Integer), CType(CType(120, Byte), Integer))
-        Me.Guna2Panel4.Controls.Add(Me.pblawnlots)
+        Me.Guna2Panel4.Controls.Add(Me.TableLayoutPanel4)
         Me.Guna2Panel4.Controls.Add(Me.lblLawnlots)
         Me.Guna2Panel4.Controls.Add(Me.Label6)
         Me.Guna2Panel4.Dock = System.Windows.Forms.DockStyle.Fill
@@ -248,23 +270,36 @@ Partial Class frmDashboard
         Me.Guna2Panel4.Size = New System.Drawing.Size(241, 205)
         Me.Guna2Panel4.TabIndex = 2
         '
+        'TableLayoutPanel4
+        '
+        Me.TableLayoutPanel4.ColumnCount = 3
+        Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
+        Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
+        Me.TableLayoutPanel4.Controls.Add(Me.pblawnlots, 1, 0)
+        Me.TableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Top
+        Me.TableLayoutPanel4.Location = New System.Drawing.Point(0, 0)
+        Me.TableLayoutPanel4.Name = "TableLayoutPanel4"
+        Me.TableLayoutPanel4.RowCount = 1
+        Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel4.Size = New System.Drawing.Size(241, 143)
+        Me.TableLayoutPanel4.TabIndex = 10
+        '
         'pblawnlots
         '
-        Me.pblawnlots.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pblawnlots.Animated = True
         Me.pblawnlots.AnimationSpeed = 0!
         Me.pblawnlots.BackColor = System.Drawing.Color.Transparent
+        Me.pblawnlots.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pblawnlots.FillColor = System.Drawing.Color.FromArgb(CType(CType(200, Byte), Integer), CType(CType(213, Byte), Integer), CType(CType(218, Byte), Integer), CType(CType(223, Byte), Integer))
         Me.pblawnlots.Font = New System.Drawing.Font("Segoe UI", 12.0!)
         Me.pblawnlots.ForeColor = System.Drawing.Color.White
-        Me.pblawnlots.Location = New System.Drawing.Point(24, 5)
+        Me.pblawnlots.Location = New System.Drawing.Point(63, 3)
         Me.pblawnlots.Minimum = 0
         Me.pblawnlots.Name = "pblawnlots"
         Me.pblawnlots.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle
         Me.pblawnlots.ShowText = True
-        Me.pblawnlots.Size = New System.Drawing.Size(130, 130)
+        Me.pblawnlots.Size = New System.Drawing.Size(137, 137)
         Me.pblawnlots.TabIndex = 8
         Me.pblawnlots.Text = "Guna2CircleProgressBar3"
         '
@@ -295,7 +330,7 @@ Partial Class frmDashboard
         'Guna2Panel5
         '
         Me.Guna2Panel5.BackColor = System.Drawing.Color.FromArgb(CType(CType(44, Byte), Integer), CType(CType(95, Byte), Integer), CType(CType(120, Byte), Integer))
-        Me.Guna2Panel5.Controls.Add(Me.pbboneniche)
+        Me.Guna2Panel5.Controls.Add(Me.TableLayoutPanel5)
         Me.Guna2Panel5.Controls.Add(Me.lblBoneNiche)
         Me.Guna2Panel5.Controls.Add(Me.Label7)
         Me.Guna2Panel5.Dock = System.Windows.Forms.DockStyle.Fill
@@ -307,22 +342,36 @@ Partial Class frmDashboard
         Me.Guna2Panel5.Size = New System.Drawing.Size(241, 205)
         Me.Guna2Panel5.TabIndex = 3
         '
+        'TableLayoutPanel5
+        '
+        Me.TableLayoutPanel5.ColumnCount = 3
+        Me.TableLayoutPanel5.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
+        Me.TableLayoutPanel5.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel5.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
+        Me.TableLayoutPanel5.Controls.Add(Me.pbboneniche, 1, 0)
+        Me.TableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Top
+        Me.TableLayoutPanel5.Location = New System.Drawing.Point(0, 0)
+        Me.TableLayoutPanel5.Name = "TableLayoutPanel5"
+        Me.TableLayoutPanel5.RowCount = 1
+        Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel5.Size = New System.Drawing.Size(241, 143)
+        Me.TableLayoutPanel5.TabIndex = 10
+        '
         'pbboneniche
         '
-        Me.pbboneniche.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pbboneniche.Animated = True
+        Me.pbboneniche.AnimationSpeed = 0!
         Me.pbboneniche.BackColor = System.Drawing.Color.Transparent
+        Me.pbboneniche.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pbboneniche.FillColor = System.Drawing.Color.FromArgb(CType(CType(200, Byte), Integer), CType(CType(213, Byte), Integer), CType(CType(218, Byte), Integer), CType(CType(223, Byte), Integer))
         Me.pbboneniche.Font = New System.Drawing.Font("Segoe UI", 12.0!)
         Me.pbboneniche.ForeColor = System.Drawing.Color.White
-        Me.pbboneniche.Location = New System.Drawing.Point(24, 5)
+        Me.pbboneniche.Location = New System.Drawing.Point(63, 3)
         Me.pbboneniche.Minimum = 0
         Me.pbboneniche.Name = "pbboneniche"
         Me.pbboneniche.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle
         Me.pbboneniche.ShowText = True
-        Me.pbboneniche.Size = New System.Drawing.Size(130, 130)
+        Me.pbboneniche.Size = New System.Drawing.Size(137, 137)
         Me.pbboneniche.TabIndex = 8
         Me.pbboneniche.Text = "Guna2CircleProgressBar4"
         '
@@ -353,7 +402,7 @@ Partial Class frmDashboard
         'Guna2Panel6
         '
         Me.Guna2Panel6.BackColor = System.Drawing.Color.FromArgb(CType(CType(44, Byte), Integer), CType(CType(95, Byte), Integer), CType(CType(120, Byte), Integer))
-        Me.Guna2Panel6.Controls.Add(Me.pbprivate)
+        Me.Guna2Panel6.Controls.Add(Me.TableLayoutPanel6)
         Me.Guna2Panel6.Controls.Add(Me.lblPrivate)
         Me.Guna2Panel6.Controls.Add(Me.Label8)
         Me.Guna2Panel6.Dock = System.Windows.Forms.DockStyle.Fill
@@ -365,22 +414,36 @@ Partial Class frmDashboard
         Me.Guna2Panel6.Size = New System.Drawing.Size(241, 205)
         Me.Guna2Panel6.TabIndex = 4
         '
+        'TableLayoutPanel6
+        '
+        Me.TableLayoutPanel6.ColumnCount = 3
+        Me.TableLayoutPanel6.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
+        Me.TableLayoutPanel6.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel6.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
+        Me.TableLayoutPanel6.Controls.Add(Me.pbprivate, 1, 0)
+        Me.TableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Top
+        Me.TableLayoutPanel6.Location = New System.Drawing.Point(0, 0)
+        Me.TableLayoutPanel6.Name = "TableLayoutPanel6"
+        Me.TableLayoutPanel6.RowCount = 1
+        Me.TableLayoutPanel6.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TableLayoutPanel6.Size = New System.Drawing.Size(241, 143)
+        Me.TableLayoutPanel6.TabIndex = 10
+        '
         'pbprivate
         '
-        Me.pbprivate.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.pbprivate.Animated = True
+        Me.pbprivate.AnimationSpeed = 0!
         Me.pbprivate.BackColor = System.Drawing.Color.Transparent
+        Me.pbprivate.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pbprivate.FillColor = System.Drawing.Color.FromArgb(CType(CType(200, Byte), Integer), CType(CType(213, Byte), Integer), CType(CType(218, Byte), Integer), CType(CType(223, Byte), Integer))
         Me.pbprivate.Font = New System.Drawing.Font("Segoe UI", 12.0!)
         Me.pbprivate.ForeColor = System.Drawing.Color.White
-        Me.pbprivate.Location = New System.Drawing.Point(25, 5)
+        Me.pbprivate.Location = New System.Drawing.Point(63, 3)
         Me.pbprivate.Minimum = 0
         Me.pbprivate.Name = "pbprivate"
         Me.pbprivate.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle
         Me.pbprivate.ShowText = True
-        Me.pbprivate.Size = New System.Drawing.Size(130, 130)
+        Me.pbprivate.Size = New System.Drawing.Size(137, 137)
         Me.pbprivate.TabIndex = 8
         Me.pbprivate.Text = "Guna2CircleProgressBar5"
         '
@@ -411,28 +474,28 @@ Partial Class frmDashboard
         'dgvNotification
         '
         Me.dgvNotification.AllowUserToDeleteRows = False
-        DataGridViewCellStyle4.BackColor = System.Drawing.Color.White
-        Me.dgvNotification.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.White
+        Me.dgvNotification.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.dgvNotification.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle5.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.dgvNotification.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(CType(CType(100, Byte), Integer), CType(CType(88, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.dgvNotification.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle2
         Me.dgvNotification.ColumnHeadersHeight = 15
         Me.dgvNotification.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing
         Me.dgvNotification.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.id, Me.fullName, Me.interment, Me.expiry, Me.plotLocation, Me.status, Me.daysExpired})
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle6.BackColor = System.Drawing.Color.White
-        DataGridViewCellStyle6.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
-        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
-        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
-        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.dgvNotification.DefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = System.Drawing.Color.White
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(CType(CType(71, Byte), Integer), CType(CType(69, Byte), Integer), CType(CType(94, Byte), Integer))
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.dgvNotification.DefaultCellStyle = DataGridViewCellStyle3
         Me.dgvNotification.GridColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.dgvNotification.Location = New System.Drawing.Point(14, 608)
         Me.dgvNotification.Name = "dgvNotification"
@@ -571,12 +634,12 @@ Partial Class frmDashboard
         '
         'Label11
         '
-        Me.Label11.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.Label11.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.Label11.AutoSize = True
         Me.Label11.BackColor = System.Drawing.Color.Transparent
         Me.Label11.Font = New System.Drawing.Font("Roboto", 14.25!, System.Drawing.FontStyle.Bold)
         Me.Label11.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label11.Location = New System.Drawing.Point(171, 75)
+        Me.Label11.Location = New System.Drawing.Point(20, 75)
         Me.Label11.Margin = New System.Windows.Forms.Padding(20, 0, 20, 15)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(138, 24)
@@ -610,12 +673,12 @@ Partial Class frmDashboard
         '
         'Label10
         '
-        Me.Label10.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.Label10.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.Label10.AutoSize = True
         Me.Label10.BackColor = System.Drawing.Color.Transparent
         Me.Label10.Font = New System.Drawing.Font("Roboto", 14.25!, System.Drawing.FontStyle.Bold)
         Me.Label10.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label10.Location = New System.Drawing.Point(167, 75)
+        Me.Label10.Location = New System.Drawing.Point(20, 75)
         Me.Label10.Margin = New System.Windows.Forms.Padding(20, 0, 20, 15)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(142, 24)
@@ -648,12 +711,12 @@ Partial Class frmDashboard
         '
         'Label9
         '
-        Me.Label9.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.Label9.Anchor = System.Windows.Forms.AnchorStyles.Left
         Me.Label9.AutoSize = True
         Me.Label9.BackColor = System.Drawing.Color.Transparent
         Me.Label9.Font = New System.Drawing.Font("Roboto", 14.25!, System.Drawing.FontStyle.Bold)
         Me.Label9.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label9.Location = New System.Drawing.Point(191, 75)
+        Me.Label9.Location = New System.Drawing.Point(18, 75)
         Me.Label9.Margin = New System.Windows.Forms.Padding(20, 0, 20, 15)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(118, 24)
@@ -705,12 +768,16 @@ Partial Class frmDashboard
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.Guna2Panel3.ResumeLayout(False)
         Me.Guna2Panel3.PerformLayout()
+        Me.TableLayoutPanel3.ResumeLayout(False)
         Me.Guna2Panel4.ResumeLayout(False)
         Me.Guna2Panel4.PerformLayout()
+        Me.TableLayoutPanel4.ResumeLayout(False)
         Me.Guna2Panel5.ResumeLayout(False)
         Me.Guna2Panel5.PerformLayout()
+        Me.TableLayoutPanel5.ResumeLayout(False)
         Me.Guna2Panel6.ResumeLayout(False)
         Me.Guna2Panel6.PerformLayout()
+        Me.TableLayoutPanel6.ResumeLayout(False)
         CType(Me.dgvNotification, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TableLayoutPanel2.ResumeLayout(False)
         Me.Guna2Panel9.ResumeLayout(False)
@@ -769,4 +836,8 @@ Partial Class frmDashboard
     Friend WithEvents plotLocation As DataGridViewTextBoxColumn
     Friend WithEvents status As DataGridViewTextBoxColumn
     Friend WithEvents daysExpired As DataGridViewTextBoxColumn
+    Friend WithEvents TableLayoutPanel3 As TableLayoutPanel
+    Friend WithEvents TableLayoutPanel4 As TableLayoutPanel
+    Friend WithEvents TableLayoutPanel5 As TableLayoutPanel
+    Friend WithEvents TableLayoutPanel6 As TableLayoutPanel
 End Class

@@ -22,8 +22,8 @@ Public Class frmAccApproval
             cn.Open()
 
             Dim sql As String = "SELECT * FROM application " &
-                                "WHERE LastName LIKE @txtsearch OR FirstName LIKE @txtsearch OR MiddleName LIKE @txtsearch " &
-                                "ORDER BY Date_Applied DESC, LastName ASC"
+                    "WHERE LastName LIKE @txtsearch OR FirstName LIKE @txtsearch OR MiddleName LIKE @txtsearch " &
+                    "ORDER BY CASE WHEN Status = 0 THEN 0 ELSE 1 END ASC, Date_Applied DESC, LastName ASC"
 
             cmd = New MySqlCommand(sql, cn)
             cmd.Parameters.AddWithValue("@txtsearch", "%" & searchText & "%")
@@ -42,6 +42,8 @@ Public Class frmAccApproval
                 Dim dateApplied As String = If(dr("Date_Applied") IsNot DBNull.Value,
                     Convert.ToDateTime(dr("Date_Applied")).ToString("MMMM dd, yyyy"), "N/A")
                 newLine.SubItems.Add(dateApplied)
+
+                newLine.SubItems.Add(dr("service_to_avail").ToString())
 
                 ' Display Status
                 ' Get and display status

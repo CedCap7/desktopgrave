@@ -25,20 +25,20 @@ Partial Class frmPaymentReg
         Me.components = New System.ComponentModel.Container()
         Me.Guna2Elipse1 = New Guna.UI2.WinForms.Guna2Elipse(Me.components)
         Me.Guna2Panel2 = New Guna.UI2.WinForms.Guna2Panel()
-        Me.btnExport = New Guna.UI2.WinForms.Guna2Button()
         Me.btnShowAll = New Guna.UI2.WinForms.Guna2Button()
         Me.btnDelete = New Guna.UI2.WinForms.Guna2Button()
-        Me.btnUpdate = New Guna.UI2.WinForms.Guna2Button()
+        Me.btnView = New Guna.UI2.WinForms.Guna2Button()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Guna2Panel1 = New Guna.UI2.WinForms.Guna2Panel()
-        Me.txtSearch = New Guna.UI2.WinForms.Guna2TextBox()
         Me.PaymentList = New System.Windows.Forms.ListView()
         Me.id = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.fullName = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.reservedplot = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.payment_status = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.payment_date = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.txtSearch = New Guna.UI2.WinForms.Guna2TextBox()
+        Me.btnExport = New Guna.UI2.WinForms.Guna2Button()
         Me.Guna2Panel2.SuspendLayout()
         Me.Guna2Panel1.SuspendLayout()
         Me.SuspendLayout()
@@ -53,7 +53,7 @@ Partial Class frmPaymentReg
         Me.Guna2Panel2.Controls.Add(Me.btnExport)
         Me.Guna2Panel2.Controls.Add(Me.btnShowAll)
         Me.Guna2Panel2.Controls.Add(Me.btnDelete)
-        Me.Guna2Panel2.Controls.Add(Me.btnUpdate)
+        Me.Guna2Panel2.Controls.Add(Me.btnView)
         Me.Guna2Panel2.Controls.Add(Me.Label2)
         Me.Guna2Panel2.Controls.Add(Me.Label1)
         Me.Guna2Panel2.Dock = System.Windows.Forms.DockStyle.Top
@@ -61,24 +61,6 @@ Partial Class frmPaymentReg
         Me.Guna2Panel2.Name = "Guna2Panel2"
         Me.Guna2Panel2.Size = New System.Drawing.Size(888, 81)
         Me.Guna2Panel2.TabIndex = 5
-        '
-        'btnExport
-        '
-        Me.btnExport.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.btnExport.Animated = True
-        Me.btnExport.FillColor = System.Drawing.Color.DarkOrange
-        Me.btnExport.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnExport.ForeColor = System.Drawing.Color.White
-        Me.btnExport.Image = Global.dashboard.My.Resources.Resources.pdf
-        Me.btnExport.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left
-        Me.btnExport.ImageOffset = New System.Drawing.Point(-5, 0)
-        Me.btnExport.Location = New System.Drawing.Point(512, 45)
-        Me.btnExport.Name = "btnExport"
-        Me.btnExport.Size = New System.Drawing.Size(121, 25)
-        Me.btnExport.TabIndex = 7
-        Me.btnExport.Text = "Export to PDF"
-        Me.btnExport.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.btnExport.TextOffset = New System.Drawing.Point(2, 0)
         '
         'btnShowAll
         '
@@ -106,18 +88,18 @@ Partial Class frmPaymentReg
         Me.btnDelete.TabIndex = 3
         Me.btnDelete.Text = "Delete"
         '
-        'btnUpdate
+        'btnView
         '
-        Me.btnUpdate.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.btnUpdate.Animated = True
-        Me.btnUpdate.FillColor = System.Drawing.Color.Blue
-        Me.btnUpdate.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnUpdate.ForeColor = System.Drawing.Color.White
-        Me.btnUpdate.Location = New System.Drawing.Point(720, 45)
-        Me.btnUpdate.Name = "btnUpdate"
-        Me.btnUpdate.Size = New System.Drawing.Size(75, 25)
-        Me.btnUpdate.TabIndex = 2
-        Me.btnUpdate.Text = "Update"
+        Me.btnView.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.btnView.Animated = True
+        Me.btnView.FillColor = System.Drawing.Color.Blue
+        Me.btnView.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnView.ForeColor = System.Drawing.Color.White
+        Me.btnView.Location = New System.Drawing.Point(720, 45)
+        Me.btnView.Name = "btnView"
+        Me.btnView.Size = New System.Drawing.Size(75, 25)
+        Me.btnView.TabIndex = 2
+        Me.btnView.Text = "View"
         '
         'Label2
         '
@@ -153,35 +135,6 @@ Partial Class frmPaymentReg
         Me.Guna2Panel1.ShadowDecoration.Enabled = True
         Me.Guna2Panel1.Size = New System.Drawing.Size(888, 355)
         Me.Guna2Panel1.TabIndex = 6
-        '
-        'txtSearch
-        '
-        Me.txtSearch.Animated = True
-        Me.txtSearch.AutoRoundedCorners = True
-        Me.txtSearch.BorderColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(171, Byte), Integer), CType(CType(189, Byte), Integer))
-        Me.txtSearch.BorderRadius = 16
-        Me.txtSearch.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.txtSearch.DefaultText = ""
-        Me.txtSearch.DisabledState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer))
-        Me.txtSearch.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer))
-        Me.txtSearch.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
-        Me.txtSearch.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
-        Me.txtSearch.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtSearch.Font = New System.Drawing.Font("Segoe UI", 11.25!)
-        Me.txtSearch.ForeColor = System.Drawing.Color.Black
-        Me.txtSearch.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtSearch.IconRight = Global.dashboard.My.Resources.Resources.search
-        Me.txtSearch.IconRightOffset = New System.Drawing.Point(8, 0)
-        Me.txtSearch.IconRightSize = New System.Drawing.Size(25, 25)
-        Me.txtSearch.Location = New System.Drawing.Point(12, 7)
-        Me.txtSearch.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.txtSearch.Name = "txtSearch"
-        Me.txtSearch.PasswordChar = Global.Microsoft.VisualBasic.ChrW(0)
-        Me.txtSearch.PlaceholderForeColor = System.Drawing.Color.Gray
-        Me.txtSearch.PlaceholderText = "Search a name"
-        Me.txtSearch.SelectedText = ""
-        Me.txtSearch.Size = New System.Drawing.Size(292, 35)
-        Me.txtSearch.TabIndex = 2
         '
         'PaymentList
         '
@@ -233,6 +186,52 @@ Partial Class frmPaymentReg
         Me.payment_date.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.payment_date.Width = 150
         '
+        'txtSearch
+        '
+        Me.txtSearch.Animated = True
+        Me.txtSearch.AutoRoundedCorners = True
+        Me.txtSearch.BorderColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(171, Byte), Integer), CType(CType(189, Byte), Integer))
+        Me.txtSearch.BorderRadius = 16
+        Me.txtSearch.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.txtSearch.DefaultText = ""
+        Me.txtSearch.DisabledState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer))
+        Me.txtSearch.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer))
+        Me.txtSearch.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
+        Me.txtSearch.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
+        Me.txtSearch.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.txtSearch.Font = New System.Drawing.Font("Segoe UI", 11.25!)
+        Me.txtSearch.ForeColor = System.Drawing.Color.Black
+        Me.txtSearch.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.txtSearch.IconRight = Global.dashboard.My.Resources.Resources.search
+        Me.txtSearch.IconRightOffset = New System.Drawing.Point(8, 0)
+        Me.txtSearch.IconRightSize = New System.Drawing.Size(25, 25)
+        Me.txtSearch.Location = New System.Drawing.Point(12, 7)
+        Me.txtSearch.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
+        Me.txtSearch.Name = "txtSearch"
+        Me.txtSearch.PlaceholderForeColor = System.Drawing.Color.Gray
+        Me.txtSearch.PlaceholderText = "Search a name"
+        Me.txtSearch.SelectedText = ""
+        Me.txtSearch.Size = New System.Drawing.Size(292, 35)
+        Me.txtSearch.TabIndex = 2
+        '
+        'btnExport
+        '
+        Me.btnExport.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.btnExport.Animated = True
+        Me.btnExport.FillColor = System.Drawing.Color.DarkOrange
+        Me.btnExport.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnExport.ForeColor = System.Drawing.Color.White
+        Me.btnExport.Image = Global.dashboard.My.Resources.Resources.pdf
+        Me.btnExport.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left
+        Me.btnExport.ImageOffset = New System.Drawing.Point(-5, 0)
+        Me.btnExport.Location = New System.Drawing.Point(512, 45)
+        Me.btnExport.Name = "btnExport"
+        Me.btnExport.Size = New System.Drawing.Size(121, 25)
+        Me.btnExport.TabIndex = 7
+        Me.btnExport.Text = "Export to PDF"
+        Me.btnExport.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.btnExport.TextOffset = New System.Drawing.Point(2, 0)
+        '
         'frmPaymentReg
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -256,7 +255,7 @@ Partial Class frmPaymentReg
     Friend WithEvents Guna2Panel2 As Guna.UI2.WinForms.Guna2Panel
     Friend WithEvents btnShowAll As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents btnDelete As Guna.UI2.WinForms.Guna2Button
-    Friend WithEvents btnUpdate As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents btnView As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents Label2 As Label
     Friend WithEvents Label1 As Label
     Friend WithEvents Guna2Panel1 As Guna.UI2.WinForms.Guna2Panel
