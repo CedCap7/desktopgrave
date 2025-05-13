@@ -1,4 +1,4 @@
-﻿Imports MySql.Data.MySqlClient
+Imports MySql.Data.MySqlClient
 
 Public Class frmViewDeceased
 
@@ -10,7 +10,7 @@ Public Class frmViewDeceased
             ' SQL query to join deceased, client, location, and beneficiaries tables
             sql = "SELECT d.FirstName AS DeceasedFirstName, d.MiddleName AS DeceasedMiddleName, d.LastName AS DeceasedLastName, " &
               "d.DateOfBirth, d.DateOfDeath, " &
-              "c.FirstName AS ClientFirstName, c.LastName AS ClientLastName, c.Mobile, c.Email, c.Address, " &
+              "c.FirstName AS ClientFirstName, c.LastName AS ClientLastName, c.Mobile, c.Email, c.Address, c.Status, " &
               "l.Type, l.Block, l.Section, l.Row, l.Plot, " &
               "b1.FullName AS Beneficiary1, b1.Contact AS Contact1, " &
               "b2.FullName AS Beneficiary2, b2.Contact AS Contact2 " &
@@ -30,7 +30,8 @@ Public Class frmViewDeceased
 
                 ' Client Information
                 If hasClientData Then
-                    LblClient.Text = dr("ClientLastName") & ", " & dr("ClientFirstName")
+                    Dim clientStatus As String = If(dr("Status") IsNot DBNull.Value AndAlso Convert.ToInt32(dr("Status")) = 0, " (Inactive)", "")
+                    LblClient.Text = dr("ClientLastName") & ", " & dr("ClientFirstName") & clientStatus
                     LblContact.Text = If(dr("Mobile") IsNot DBNull.Value, dr("Mobile").ToString(), "N/A")
                     LblEmail.Text = If(dr("Email") IsNot DBNull.Value, dr("Email").ToString(), "N/A")
                     LblAddress.Text = If(dr("Address") IsNot DBNull.Value, dr("Address").ToString(), "N/A")
@@ -51,7 +52,9 @@ Public Class frmViewDeceased
 
                 ' Beneficiary Information
                 Lbl1stBeneficiary.Text = "1st Beneficiary: " & If(dr("Beneficiary1") IsNot DBNull.Value, dr("Beneficiary1").ToString(), "N/A")
+                lbl1stContact.Text = "Contact Number: " & If(dr("Contact1") IsNot DBNull.Value, dr("Contact1").ToString(), "N/A")
                 Lbl2ndBeneficiary.Text = "2nd Beneficiary: " & If(dr("Beneficiary2") IsNot DBNull.Value, dr("Beneficiary2").ToString(), "N/A")
+                lbl2ndContact.Text = "Contact Number: " & If(dr("Contact2") IsNot DBNull.Value, dr("Contact2").ToString(), "N/A")
 
                 ' Plot Location Information
                 Dim plotLocation As String = ""
@@ -96,13 +99,5 @@ Public Class frmViewDeceased
         LblDob.Text = birthdate
         LblDod.Text = deathdate
         LblPlot.Text = location
-    End Sub
-
-    Private Sub frmViewDeceased_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
-    End Sub
-
-    Private Sub Guna2ShadowPanel1_Paint(sender As Object, e As PaintEventArgs) Handles Guna2ShadowPanel1.Paint
-
     End Sub
 End Class

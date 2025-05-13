@@ -124,7 +124,7 @@ Partial Class frmApplication
         Me.chkMale.Cursor = System.Windows.Forms.Cursors.Hand
         Me.chkMale.Font = New System.Drawing.Font("Roboto Condensed", 12.0!, System.Drawing.FontStyle.Bold)
         Me.chkMale.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.chkMale.Location = New System.Drawing.Point(19, 206)
+        Me.chkMale.Location = New System.Drawing.Point(25, 204)
         Me.chkMale.Margin = New System.Windows.Forms.Padding(2)
         Me.chkMale.Name = "chkMale"
         Me.chkMale.Size = New System.Drawing.Size(116, 30)
@@ -173,7 +173,7 @@ Partial Class frmApplication
         Me.chkFemale.Cursor = System.Windows.Forms.Cursors.Hand
         Me.chkFemale.Font = New System.Drawing.Font("Roboto Condensed", 12.0!, System.Drawing.FontStyle.Bold)
         Me.chkFemale.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.chkFemale.Location = New System.Drawing.Point(139, 206)
+        Me.chkFemale.Location = New System.Drawing.Point(145, 204)
         Me.chkFemale.Margin = New System.Windows.Forms.Padding(2)
         Me.chkFemale.Name = "chkFemale"
         Me.chkFemale.Size = New System.Drawing.Size(116, 30)
@@ -230,9 +230,9 @@ Partial Class frmApplication
         Me.label2.Location = New System.Drawing.Point(20, 178)
         Me.label2.Margin = New System.Windows.Forms.Padding(2, 10, 2, 0)
         Me.label2.Name = "label2"
-        Me.label2.Size = New System.Drawing.Size(36, 20)
+        Me.label2.Size = New System.Drawing.Size(67, 20)
         Me.label2.TabIndex = 2
-        Me.label2.Text = "Sex"
+        Me.label2.Text = "Gender:"
         '
         'txtLastName
         '
@@ -362,7 +362,7 @@ Partial Class frmApplication
         Me.btnConfirm.BorderThickness = 1
         Me.btnConfirm.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.btnConfirm.FillColor = System.Drawing.Color.LimeGreen
-        Me.btnConfirm.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnConfirm.Font = New System.Drawing.Font("Roboto", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnConfirm.ForeColor = System.Drawing.Color.White
         Me.btnConfirm.Location = New System.Drawing.Point(480, 300)
         Me.btnConfirm.Margin = New System.Windows.Forms.Padding(2)
@@ -378,7 +378,7 @@ Partial Class frmApplication
         Me.btnCancel.BorderRadius = 17
         Me.btnCancel.BorderThickness = 1
         Me.btnCancel.FillColor = System.Drawing.Color.Brown
-        Me.btnCancel.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnCancel.Font = New System.Drawing.Font("Roboto", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnCancel.ForeColor = System.Drawing.Color.White
         Me.btnCancel.Location = New System.Drawing.Point(238, 300)
         Me.btnCancel.Margin = New System.Windows.Forms.Padding(2)

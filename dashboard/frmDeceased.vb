@@ -1,4 +1,4 @@
-﻿Imports MySql.Data.MySqlClient
+Imports MySql.Data.MySqlClient
 
 Public Class frmDeceased
     Private isLoading As Boolean = True
@@ -279,6 +279,15 @@ Public Class frmDeceased
 
     ' --- INSERT BENEFICIARY FUNCTION ---
     Private Sub InsertBeneficiary(deceasedID As Integer, clientId As Integer, fullName As String, contact As String, order As Integer, transaction As MySqlTransaction)
+        ' Validate contact number if provided
+        If Not String.IsNullOrWhiteSpace(contact) Then
+            Dim cleanedContact = contact.Replace(" ", "").Replace("-", "")
+            If cleanedContact.Length <> 11 OrElse Not cleanedContact.StartsWith("09") Then
+                MessageBox.Show($"Invalid contact number for {fullName}. Please enter a valid Philippine mobile number starting with '09' and exactly 11 digits.", "Invalid Contact Number", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Return
+            End If
+            contact = cleanedContact
+        End If
         sql = "INSERT INTO beneficiaries (Deceased_ID, Client_ID, FullName, Contact, Date_Created, `Order`) " &
           "VALUES (@DeceasedID, @ClientId, @FullName, @Contact, NOW(), @Order)"
 

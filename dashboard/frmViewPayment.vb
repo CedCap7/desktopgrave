@@ -134,9 +134,9 @@ Public Class frmViewPayment
                             ' Add to ListView
                             Dim newItem As ListViewItem = ReservAccount.Items.Add(reservationID)
                             newItem.SubItems.Add(reservedPlot)
-                            newItem.SubItems.Add(FormatCurrency(totalPaid))
-                            newItem.SubItems.Add(FormatCurrency(totalAmount))
-                            newItem.SubItems.Add(FormatCurrency(balance))
+                            newItem.SubItems.Add("₱" & totalPaid.ToString("N2"))
+                            newItem.SubItems.Add("₱" & totalAmount.ToString("N2"))
+                            newItem.SubItems.Add("₱" & balance.ToString("N2"))
                             newItem.SubItems.Add(paymentStatus)
                         End While
                     End Using
@@ -201,5 +201,31 @@ Public Class frmViewPayment
         Catch ex As Exception
             MessageBox.Show("Error loading payment history: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
+    End Sub
+
+    Private Sub btnPayment_Click(sender As Object, e As EventArgs) Handles btnPayment.Click
+        ' Check if an item is selected in the ListView
+        If ReservAccount.SelectedItems.Count > 0 Then
+            ' Get the selected item
+            Dim selectedItem As ListViewItem = ReservAccount.SelectedItems(0)
+            Dim selectedReservationID As String = selectedItem.SubItems(0).Text
+            Dim selectedRemainingBalanceStr As String = selectedItem.SubItems(4).Text.Replace("₱", "").Replace("$", "").Replace(",", "").Trim()
+
+            Dim selectedRemainingBalance As Decimal
+            If Decimal.TryParse(selectedRemainingBalanceStr, selectedRemainingBalance) Then
+                Dim updateForm As New frmUpdatePayment(selectedReservationID, selectedRemainingBalance, Me)
+                updateForm.ShowDialog()
+            Else
+                MessageBox.Show("Invalid Remaining Balance data.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
+        Else
+            MessageBox.Show("Please select a reservation from the list.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End If
+    End Sub
+
+    Private Sub btnShowAll_Click(sender As Object, e As EventArgs) Handles btnShowAll.Click
+        LoadPaymentHistory()
+        LoadClientPaymentData()
+        LoadClientDetails()
     End Sub
 End Class

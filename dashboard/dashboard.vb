@@ -81,4 +81,8 @@
     Private Sub btnUserManagement_Click(sender As Object, e As EventArgs) Handles btnUserManagement.Click
         subForm(frmUserManagement)
     End Sub
+
+    Private Sub btnPackages_Click(sender As Object, e As EventArgs) Handles btnPackages.Click
+        subForm(frmPackages)
+    End Sub
 End Class
