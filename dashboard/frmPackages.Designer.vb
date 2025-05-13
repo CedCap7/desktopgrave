@@ -50,6 +50,14 @@ Partial Class frmPackages
         Me.Label6 = New System.Windows.Forms.Label()
         Me.TableLayoutPanel6 = New System.Windows.Forms.TableLayoutPanel()
         Me.Label7 = New System.Windows.Forms.Label()
+        Me.lblPrice1 = New System.Windows.Forms.Label()
+        Me.lblDesc1 = New System.Windows.Forms.Label()
+        Me.lblPrice2 = New System.Windows.Forms.Label()
+        Me.lblDesc2 = New System.Windows.Forms.Label()
+        Me.lblPrice3 = New System.Windows.Forms.Label()
+        Me.lblDesc3 = New System.Windows.Forms.Label()
+        Me.lblPrice4 = New System.Windows.Forms.Label()
+        Me.lblDesc4 = New System.Windows.Forms.Label()
         Me.Guna2Panel2.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
         Me.Guna2Panel5.SuspendLayout()
@@ -142,6 +150,8 @@ Partial Class frmPackages
         Me.Guna2Panel5.BackColor = System.Drawing.Color.Transparent
         Me.Guna2Panel5.Controls.Add(Me.TableLayoutPanel6)
         Me.Guna2Panel5.Controls.Add(Me.Guna2PictureBox1)
+        Me.Guna2Panel5.Controls.Add(Me.lblPrice4)
+        Me.Guna2Panel5.Controls.Add(Me.lblDesc4)
         Me.Guna2Panel5.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Guna2Panel5.FillColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(171, Byte), Integer), CType(CType(189, Byte), Integer))
         Me.Guna2Panel5.Location = New System.Drawing.Point(773, 3)
@@ -158,6 +168,8 @@ Partial Class frmPackages
         Me.Guna2Panel1.BackColor = System.Drawing.Color.Transparent
         Me.Guna2Panel1.Controls.Add(Me.TableLayoutPanel3)
         Me.Guna2Panel1.Controls.Add(Me.Guna2PictureBox4)
+        Me.Guna2Panel1.Controls.Add(Me.lblPrice1)
+        Me.Guna2Panel1.Controls.Add(Me.lblDesc1)
         Me.Guna2Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Guna2Panel1.FillColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(171, Byte), Integer), CType(CType(189, Byte), Integer))
         Me.Guna2Panel1.Location = New System.Drawing.Point(38, 3)
@@ -174,6 +186,8 @@ Partial Class frmPackages
         Me.Guna2Panel3.BackColor = System.Drawing.Color.Transparent
         Me.Guna2Panel3.Controls.Add(Me.TableLayoutPanel4)
         Me.Guna2Panel3.Controls.Add(Me.Guna2PictureBox3)
+        Me.Guna2Panel3.Controls.Add(Me.lblPrice2)
+        Me.Guna2Panel3.Controls.Add(Me.lblDesc2)
         Me.Guna2Panel3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Guna2Panel3.FillColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(171, Byte), Integer), CType(CType(189, Byte), Integer))
         Me.Guna2Panel3.Location = New System.Drawing.Point(283, 3)
@@ -190,6 +204,8 @@ Partial Class frmPackages
         Me.Guna2Panel4.BackColor = System.Drawing.Color.Transparent
         Me.Guna2Panel4.Controls.Add(Me.TableLayoutPanel5)
         Me.Guna2Panel4.Controls.Add(Me.Guna2PictureBox2)
+        Me.Guna2Panel4.Controls.Add(Me.lblPrice3)
+        Me.Guna2Panel4.Controls.Add(Me.lblDesc3)
         Me.Guna2Panel4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Guna2Panel4.FillColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(171, Byte), Integer), CType(CType(189, Byte), Integer))
         Me.Guna2Panel4.Location = New System.Drawing.Point(528, 3)
@@ -436,6 +452,70 @@ Partial Class frmPackages
         Me.Label7.TabIndex = 0
         Me.Label7.Text = "Private"
         '
+        'lblPrice1
+        '
+        Me.lblPrice1.Font = New System.Drawing.Font("Roboto", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.lblPrice1.ForeColor = System.Drawing.Color.White
+        Me.lblPrice1.Location = New System.Drawing.Point(10, 170)
+        Me.lblPrice1.Size = New System.Drawing.Size(180, 25)
+        Me.lblPrice1.Text = "Price:"
+        '
+        'lblDesc1
+        '
+        Me.lblDesc1.Font = New System.Drawing.Font("Roboto", 10.0!)
+        Me.lblDesc1.ForeColor = System.Drawing.Color.White
+        Me.lblDesc1.Location = New System.Drawing.Point(10, 200)
+        Me.lblDesc1.Size = New System.Drawing.Size(180, 60)
+        Me.lblDesc1.Text = "Description:"
+        '
+        'lblPrice2
+        '
+        Me.lblPrice2.Font = New System.Drawing.Font("Roboto", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.lblPrice2.ForeColor = System.Drawing.Color.White
+        Me.lblPrice2.Location = New System.Drawing.Point(10, 170)
+        Me.lblPrice2.Size = New System.Drawing.Size(180, 25)
+        Me.lblPrice2.Text = "Price:"
+        '
+        'lblDesc2
+        '
+        Me.lblDesc2.Font = New System.Drawing.Font("Roboto", 10.0!)
+        Me.lblDesc2.ForeColor = System.Drawing.Color.White
+        Me.lblDesc2.Location = New System.Drawing.Point(10, 200)
+        Me.lblDesc2.Size = New System.Drawing.Size(180, 60)
+        Me.lblDesc2.Text = "Description:"
+        '
+        'lblPrice3
+        '
+        Me.lblPrice3.Font = New System.Drawing.Font("Roboto", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.lblPrice3.ForeColor = System.Drawing.Color.White
+        Me.lblPrice3.Location = New System.Drawing.Point(10, 170)
+        Me.lblPrice3.Size = New System.Drawing.Size(180, 25)
+        Me.lblPrice3.Text = "Price:"
+        '
+        'lblDesc3
+        '
+        Me.lblDesc3.Font = New System.Drawing.Font("Roboto", 10.0!)
+        Me.lblDesc3.ForeColor = System.Drawing.Color.White
+        Me.lblDesc3.Location = New System.Drawing.Point(10, 200)
+        Me.lblDesc3.Size = New System.Drawing.Size(180, 60)
+        Me.lblDesc3.Text = "Description:"
+        '
+        'lblPrice4
+        '
+        Me.lblPrice4.Font = New System.Drawing.Font("Roboto", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.lblPrice4.ForeColor = System.Drawing.Color.White
+        Me.lblPrice4.Location = New System.Drawing.Point(10, 170)
+        Me.lblPrice4.Size = New System.Drawing.Size(180, 25)
+        Me.lblPrice4.Text = "Price:"
+        '
+        'lblDesc4
+        '
+        Me.lblDesc4.Font = New System.Drawing.Font("Roboto", 10.0!)
+        Me.lblDesc4.ForeColor = System.Drawing.Color.White
+        Me.lblDesc4.Location = New System.Drawing.Point(10, 200)
+        Me.lblDesc4.Size = New System.Drawing.Size(180, 60)
+        Me.lblDesc4.Text = "Description:"
+        '
         'frmPackages
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -480,13 +560,9 @@ Partial Class frmPackages
     Friend WithEvents Label1 As Label
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
     Friend WithEvents Guna2Panel5 As Guna.UI2.WinForms.Guna2Panel
-    Friend WithEvents Guna2PictureBox1 As Guna.UI2.WinForms.Guna2PictureBox
     Friend WithEvents Guna2Panel1 As Guna.UI2.WinForms.Guna2Panel
-    Friend WithEvents Guna2PictureBox4 As Guna.UI2.WinForms.Guna2PictureBox
     Friend WithEvents Guna2Panel3 As Guna.UI2.WinForms.Guna2Panel
-    Friend WithEvents Guna2PictureBox3 As Guna.UI2.WinForms.Guna2PictureBox
     Friend WithEvents Guna2Panel4 As Guna.UI2.WinForms.Guna2Panel
-    Friend WithEvents Guna2PictureBox2 As Guna.UI2.WinForms.Guna2PictureBox
     Friend WithEvents Guna2Button1 As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents Guna2Button2 As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents Guna2Button3 As Guna.UI2.WinForms.Guna2Button
@@ -501,4 +577,16 @@ Partial Class frmPackages
     Friend WithEvents Label5 As Label
     Friend WithEvents TableLayoutPanel5 As TableLayoutPanel
     Friend WithEvents Label6 As Label
+    Friend WithEvents lblPrice1 As Label
+    Friend WithEvents lblDesc1 As Label
+    Friend WithEvents lblPrice2 As Label
+    Friend WithEvents lblDesc2 As Label
+    Friend WithEvents lblPrice3 As Label
+    Friend WithEvents lblDesc3 As Label
+    Friend WithEvents lblPrice4 As Label
+    Friend WithEvents lblDesc4 As Label
+    Friend WithEvents Guna2PictureBox1 As Guna.UI2.WinForms.Guna2PictureBox
+    Friend WithEvents Guna2PictureBox4 As Guna.UI2.WinForms.Guna2PictureBox
+    Friend WithEvents Guna2PictureBox3 As Guna.UI2.WinForms.Guna2PictureBox
+    Friend WithEvents Guna2PictureBox2 As Guna.UI2.WinForms.Guna2PictureBox
 End Class
