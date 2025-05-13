@@ -31,6 +31,7 @@ Partial Class dashboard
         Me.Guna2ControlBox2 = New Guna.UI2.WinForms.Guna2ControlBox()
         Me.Guna2ControlBox1 = New Guna.UI2.WinForms.Guna2ControlBox()
         Me.subPanel = New Guna.UI2.WinForms.Guna2Panel()
+        Me.btnPackages = New Guna.UI2.WinForms.Guna2Button()
         Me.btnUserManagement = New Guna.UI2.WinForms.Guna2Button()
         Me.paymentbtn = New Guna.UI2.WinForms.Guna2Button()
         Me.btnDashboard = New Guna.UI2.WinForms.Guna2Button()
@@ -49,6 +50,7 @@ Partial Class dashboard
         'Guna2Panel1
         '
         Me.Guna2Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(8, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(56, Byte), Integer))
+        Me.Guna2Panel1.Controls.Add(Me.btnPackages)
         Me.Guna2Panel1.Controls.Add(Me.btnUserManagement)
         Me.Guna2Panel1.Controls.Add(Me.paymentbtn)
         Me.Guna2Panel1.Controls.Add(Me.btnDashboard)
@@ -64,7 +66,7 @@ Partial Class dashboard
         Me.Guna2Panel1.ShadowDecoration.BorderRadius = 20
         Me.Guna2Panel1.ShadowDecoration.Enabled = True
         Me.Guna2Panel1.ShadowDecoration.Shadow = New System.Windows.Forms.Padding(10)
-        Me.Guna2Panel1.Size = New System.Drawing.Size(178, 581)
+        Me.Guna2Panel1.Size = New System.Drawing.Size(178, 730)
         Me.Guna2Panel1.TabIndex = 0
         '
         'Guna2Elipse1
@@ -128,13 +130,38 @@ Partial Class dashboard
         Me.subPanel.AutoRoundedCorners = True
         Me.subPanel.AutoSize = True
         Me.subPanel.BackColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(15, Byte), Integer), CType(CType(26, Byte), Integer))
-        Me.subPanel.BorderRadius = 289
+        Me.subPanel.BorderRadius = 345
         Me.subPanel.Dock = System.Windows.Forms.DockStyle.Fill
         Me.subPanel.Location = New System.Drawing.Point(178, 51)
         Me.subPanel.Name = "subPanel"
-        Me.subPanel.Padding = New System.Windows.Forms.Padding(5, 5, 5, 5)
-        Me.subPanel.Size = New System.Drawing.Size(692, 581)
+        Me.subPanel.Padding = New System.Windows.Forms.Padding(5)
+        Me.subPanel.Size = New System.Drawing.Size(692, 730)
         Me.subPanel.TabIndex = 6
+        '
+        'btnPackages
+        '
+        Me.btnPackages.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.btnPackages.Animated = True
+        Me.btnPackages.CheckedState.BorderColor = System.Drawing.Color.White
+        Me.btnPackages.CheckedState.CustomBorderColor = System.Drawing.Color.White
+        Me.btnPackages.CheckedState.FillColor = System.Drawing.Color.Black
+        Me.btnPackages.CustomBorderColor = System.Drawing.Color.FromArgb(CType(CType(8, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(56, Byte), Integer))
+        Me.btnPackages.CustomBorderThickness = New System.Windows.Forms.Padding(4, 0, 0, 0)
+        Me.btnPackages.FillColor = System.Drawing.Color.FromArgb(CType(CType(8, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(56, Byte), Integer))
+        Me.btnPackages.Font = New System.Drawing.Font("Roboto Condensed", 12.0!)
+        Me.btnPackages.ForeColor = System.Drawing.Color.White
+        Me.btnPackages.HoverState.CustomBorderColor = System.Drawing.Color.White
+        Me.btnPackages.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(15, Byte), Integer), CType(CType(26, Byte), Integer))
+        Me.btnPackages.Image = Global.dashboard.My.Resources.Resources.packages
+        Me.btnPackages.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left
+        Me.btnPackages.ImageSize = New System.Drawing.Size(28, 28)
+        Me.btnPackages.IndicateFocus = True
+        Me.btnPackages.Location = New System.Drawing.Point(0, 518)
+        Me.btnPackages.Name = "btnPackages"
+        Me.btnPackages.Size = New System.Drawing.Size(178, 60)
+        Me.btnPackages.TabIndex = 9
+        Me.btnPackages.Text = "Packages"
+        Me.btnPackages.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
         '
         'btnUserManagement
         '
@@ -154,7 +181,7 @@ Partial Class dashboard
         Me.btnUserManagement.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left
         Me.btnUserManagement.ImageSize = New System.Drawing.Size(28, 28)
         Me.btnUserManagement.IndicateFocus = True
-        Me.btnUserManagement.Location = New System.Drawing.Point(0, 449)
+        Me.btnUserManagement.Location = New System.Drawing.Point(0, 458)
         Me.btnUserManagement.Name = "btnUserManagement"
         Me.btnUserManagement.Size = New System.Drawing.Size(178, 60)
         Me.btnUserManagement.TabIndex = 8
@@ -176,7 +203,7 @@ Partial Class dashboard
         Me.paymentbtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left
         Me.paymentbtn.ImageSize = New System.Drawing.Size(28, 28)
         Me.paymentbtn.IndicateFocus = True
-        Me.paymentbtn.Location = New System.Drawing.Point(0, 221)
+        Me.paymentbtn.Location = New System.Drawing.Point(0, 230)
         Me.paymentbtn.Name = "paymentbtn"
         Me.paymentbtn.Size = New System.Drawing.Size(178, 54)
         Me.paymentbtn.TabIndex = 7
@@ -198,7 +225,7 @@ Partial Class dashboard
         Me.btnDashboard.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left
         Me.btnDashboard.ImageSize = New System.Drawing.Size(28, 28)
         Me.btnDashboard.IndicateFocus = True
-        Me.btnDashboard.Location = New System.Drawing.Point(0, 60)
+        Me.btnDashboard.Location = New System.Drawing.Point(0, 69)
         Me.btnDashboard.Name = "btnDashboard"
         Me.btnDashboard.Size = New System.Drawing.Size(178, 54)
         Me.btnDashboard.TabIndex = 0
@@ -223,7 +250,7 @@ Partial Class dashboard
         Me.clientregistrybtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left
         Me.clientregistrybtn.ImageSize = New System.Drawing.Size(28, 28)
         Me.clientregistrybtn.IndicateFocus = True
-        Me.clientregistrybtn.Location = New System.Drawing.Point(0, 389)
+        Me.clientregistrybtn.Location = New System.Drawing.Point(0, 398)
         Me.clientregistrybtn.Name = "clientregistrybtn"
         Me.clientregistrybtn.Size = New System.Drawing.Size(178, 60)
         Me.clientregistrybtn.TabIndex = 5
@@ -248,7 +275,7 @@ Partial Class dashboard
         Me.Guna2Button1.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left
         Me.Guna2Button1.ImageSize = New System.Drawing.Size(28, 28)
         Me.Guna2Button1.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.Guna2Button1.Location = New System.Drawing.Point(0, 541)
+        Me.Guna2Button1.Location = New System.Drawing.Point(0, 690)
         Me.Guna2Button1.Name = "Guna2Button1"
         Me.Guna2Button1.Size = New System.Drawing.Size(178, 40)
         Me.Guna2Button1.TabIndex = 6
@@ -269,7 +296,7 @@ Partial Class dashboard
         Me.payreservbtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left
         Me.payreservbtn.ImageSize = New System.Drawing.Size(28, 28)
         Me.payreservbtn.IndicateFocus = True
-        Me.payreservbtn.Location = New System.Drawing.Point(0, 168)
+        Me.payreservbtn.Location = New System.Drawing.Point(0, 177)
         Me.payreservbtn.Name = "payreservbtn"
         Me.payreservbtn.Size = New System.Drawing.Size(178, 53)
         Me.payreservbtn.TabIndex = 2
@@ -291,7 +318,7 @@ Partial Class dashboard
         Me.mapbtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left
         Me.mapbtn.ImageSize = New System.Drawing.Size(28, 28)
         Me.mapbtn.IndicateFocus = True
-        Me.mapbtn.Location = New System.Drawing.Point(0, 275)
+        Me.mapbtn.Location = New System.Drawing.Point(0, 284)
         Me.mapbtn.Name = "mapbtn"
         Me.mapbtn.Size = New System.Drawing.Size(178, 54)
         Me.mapbtn.TabIndex = 3
@@ -316,7 +343,7 @@ Partial Class dashboard
         Me.registrybtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left
         Me.registrybtn.ImageSize = New System.Drawing.Size(28, 28)
         Me.registrybtn.IndicateFocus = True
-        Me.registrybtn.Location = New System.Drawing.Point(0, 329)
+        Me.registrybtn.Location = New System.Drawing.Point(0, 338)
         Me.registrybtn.Name = "registrybtn"
         Me.registrybtn.Size = New System.Drawing.Size(178, 60)
         Me.registrybtn.TabIndex = 4
@@ -338,7 +365,7 @@ Partial Class dashboard
         Me.formsbtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left
         Me.formsbtn.ImageSize = New System.Drawing.Size(28, 28)
         Me.formsbtn.IndicateFocus = True
-        Me.formsbtn.Location = New System.Drawing.Point(0, 114)
+        Me.formsbtn.Location = New System.Drawing.Point(0, 123)
         Me.formsbtn.Name = "formsbtn"
         Me.formsbtn.Size = New System.Drawing.Size(178, 54)
         Me.formsbtn.TabIndex = 1
@@ -361,7 +388,7 @@ Partial Class dashboard
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ButtonHighlight
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.ClientSize = New System.Drawing.Size(870, 632)
+        Me.ClientSize = New System.Drawing.Size(870, 781)
         Me.Controls.Add(Me.subPanel)
         Me.Controls.Add(Me.Guna2Panel1)
         Me.Controls.Add(Me.Guna2Panel3)
@@ -396,4 +423,5 @@ Partial Class dashboard
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents paymentbtn As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents btnUserManagement As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents btnPackages As Guna.UI2.WinForms.Guna2Button
 End Class

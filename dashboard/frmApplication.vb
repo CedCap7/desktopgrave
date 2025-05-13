@@ -91,7 +91,7 @@ Public Class frmApplication
     End Sub
 
     ' Add search functionality
-    Private Sub btnSearch_Click(sender As Object, e As EventArgs) 
+    Private Sub btnSearch_Click(sender As Object, e As EventArgs)
         Try
             dbconn()
             cn.Open()
@@ -145,52 +145,84 @@ Public Class frmApplication
         Dim email As String = txtEmail.Text
         Dim gender As String = If(chkMale.Checked, "Male", If(chkFemale.Checked, "Female", "Not Specified"))
 
-        ' Validate email (if provided)
-        If Not String.IsNullOrWhiteSpace(email) Then
-            ' Check if email already exists in database
-            sql = "SELECT COUNT(*) FROM client WHERE Email = @email"
-            Using cmd As New MySqlCommand(sql, cn)
-                cmd.Parameters.AddWithValue("@email", email)
-                Dim emailCount As Integer = CInt(cmd.ExecuteScalar())
-                If emailCount > 0 Then
-                    MessageBox.Show("This email address is already registered.", "Duplicate Email", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                    Return
-                End If
-            End Using
-        End If
+        ' Open connection first
+        Try
+            ' Ensure we have a connection
+            If cn Is Nothing Then
+                dbconn()
+            End If
 
-        ' Validate mobile number (if provided)
-        If Not String.IsNullOrWhiteSpace(mobile) Then
-            ' Clean the mobile number
-            Dim cleanedMobile = mobile.Replace(" ", "").Replace("-", "")
+            If cn.State = ConnectionState.Closed Then
+                cn.Open()
+            End If
 
-            ' Check if mobile number is valid
-            If cleanedMobile.Length <> 11 OrElse Not cleanedMobile.StartsWith("09") Then
-                MessageBox.Show("Please enter a valid Philippine mobile number starting with '09' and exactly 11 digits.", "Invalid Mobile Number", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            ' Validate required fields
+            If String.IsNullOrWhiteSpace(address) Then
+                MessageBox.Show("Please enter a valid address.", "Missing Required Field", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 Return
             End If
 
-            ' Check if mobile number already exists in database
-            sql = "SELECT COUNT(*) FROM client WHERE Mobile = @mobile"
-            Using cmd As New MySqlCommand(sql, cn)
-                cmd.Parameters.AddWithValue("@mobile", cleanedMobile)
-                Dim mobileCount As Integer = CInt(cmd.ExecuteScalar())
-                If mobileCount > 0 Then
-                    MessageBox.Show("This mobile number is already registered.", "Duplicate Mobile Number", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            If String.IsNullOrWhiteSpace(mobile) Then
+                MessageBox.Show("Please enter a valid mobile number.", "Missing Required Field", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Return
+            End If
+
+            If Not chkMale.Checked AndAlso Not chkFemale.Checked Then
+                MessageBox.Show("Please select a gender.", "Missing Required Field", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Return
+            End If
+
+            ' Validate email (if provided)
+            If Not String.IsNullOrWhiteSpace(email) Then
+                ' Check if email already exists in database
+                sql = "SELECT COUNT(*) FROM client WHERE Email = @email"
+                Using cmd As New MySqlCommand(sql, cn)
+                    cmd.Parameters.AddWithValue("@email", email)
+                    Dim emailCount As Integer = CInt(cmd.ExecuteScalar())
+                    If emailCount > 0 Then
+                        MessageBox.Show("This email address is already registered.", "Duplicate Email", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                        Return
+                    End If
+                End Using
+            End If
+
+            ' Validate mobile number (if provided)
+            If Not String.IsNullOrWhiteSpace(mobile) Then
+                ' Clean the mobile number
+                Dim cleanedMobile = mobile.Replace(" ", "").Replace("-", "")
+
+                ' Check if mobile number is valid
+                If cleanedMobile.Length <> 11 OrElse Not cleanedMobile.StartsWith("09") Then
+                    MessageBox.Show("Please enter a valid Philippine mobile number starting with '09' and exactly 11 digits.", "Invalid Mobile Number", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                     Return
                 End If
-            End Using
 
-            ' Use the cleaned mobile number for insertion
-            mobile = cleanedMobile
-        End If
+                ' Use the cleaned mobile number for insertion
+                mobile = cleanedMobile
+            End If
 
-        Dim clientId As Integer = 0 ' Variable to store the inserted Client_ID
+        Catch ex As Exception
+            MessageBox.Show("Error validating input: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return
+        Finally
+            ' Close connection after validation
+            If cn IsNot Nothing AndAlso cn.State = ConnectionState.Open Then
+                cn.Close()
+            End If
+        End Try
 
-        ' Insert the client information into the database
+        ' If validation passed, proceed with insertion
         Try
-            dbconn()
-            If cn.State = ConnectionState.Closed Then cn.Open()
+            ' Reopen connection for insertion
+            If cn Is Nothing Then
+                dbconn()
+            End If
+
+            If cn.State = ConnectionState.Closed Then
+                cn.Open()
+            End If
+
+            Dim clientId As Integer = 0 ' Variable to store the inserted Client_ID
 
             sql = "INSERT INTO client (FirstName, MiddleName, LastName, Ext, Address, Mobile, Gender, Email) VALUES (@firstName, @middleName, @lastName, @ext, @address, @mobile, @gender, @Email)"
             Using cmd As New MySqlCommand(sql, cn)

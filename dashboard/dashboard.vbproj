@@ -186,6 +186,12 @@
     <Compile Include="frmDashboard.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmPackages.Designer.vb">
+      <DependentUpon>frmPackages.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmPackages.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmPaymentReg.Designer.vb">
       <DependentUpon>frmPaymentReg.vb</DependentUpon>
     </Compile>
@@ -336,6 +342,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmDashboard.resx">
       <DependentUpon>frmDashboard.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPackages.resx">
+      <DependentUpon>frmPackages.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPaymentReg.resx">
       <DependentUpon>frmPaymentReg.vb</DependentUpon>
@@ -517,6 +526,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="DCCMS-logo1.ico" />
+    <None Include="Resources\packages.png" />
+    <None Include="Resources\private.jpg" />
+    <None Include="Resources\familylawnlot.jpg" />
+    <None Include="Resources\boneniche.jpg" />
+    <None Include="Resources\apartmentnew.jpg" />
     <None Include="Resources\user.png" />
   </ItemGroup>
   <ItemGroup>
