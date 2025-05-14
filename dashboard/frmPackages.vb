@@ -15,8 +15,8 @@ Public Class frmPackages
             Dim cmd As New MySqlCommand(sql, cn)
             Dim dr As MySqlDataReader = cmd.ExecuteReader()
 
-            Dim priceLabels = New Label() {lblPrice1, lblPrice3, lblPrice2, lblPrice4}
-            Dim descLabels = New Label() {lblDesc1, lblDesc3, lblDesc2, lblDesc4}
+            Dim priceLabels = New Label() {lblPrice1, lblPrice2, lblPrice3, lblPrice4}
+            Dim descLabels = New Label() {lblDesc1, lblDesc2, lblDesc3, lblDesc4}
             packageIds.Clear()
             Dim i As Integer = 0
             While dr.Read() AndAlso i < 4
@@ -54,5 +54,9 @@ Public Class frmPackages
     ' Public method to refresh after update
     Public Sub RefreshPackages()
         LoadPackages()
+    End Sub
+
+    Private Sub Label5_Click(sender As Object, e As EventArgs) Handles Label5.Click
+
     End Sub
 End Class
