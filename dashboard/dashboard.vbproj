@@ -18,7 +18,9 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <IsWebBootstrapper>false</IsWebBootstrapper>
+
     <PublishUrl>C:\Users\Lenovo\Documents\Cedrick\CAPSTONE\INSTALLER\</PublishUrl>
+
     <Install>false</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -28,7 +30,9 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
+
     <ApplicationRevision>2</ApplicationRevision>
+
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -70,7 +74,9 @@
     <ApplicationIcon>DCCMS-logo1.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
+
     <ManifestCertificateThumbprint>2C119F17B4B964D9AA2EAE216EF2818967267C21</ManifestCertificateThumbprint>
+
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>dashboard_TemporaryKey.pfx</ManifestKeyFile>
@@ -79,6 +85,7 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
+
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <ItemGroup>
@@ -452,6 +459,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="dashboard_TemporaryKey.pfx" />
+
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>

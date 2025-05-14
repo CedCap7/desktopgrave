@@ -85,4 +85,16 @@
     Private Sub btnPackages_Click(sender As Object, e As EventArgs) Handles btnPackages.Click
         subForm(frmPackages)
     End Sub
+
+    Public Sub SignOut()
+        ' Show a new login form
+        Dim loginForm As New frmLogin()
+        loginForm.Show()
+        ' Hide the dashboard form to ensure a clean sign out
+        Me.Hide()
+    End Sub
+
+    Private Sub Guna2Button1_Click(sender As Object, e As EventArgs) Handles Guna2Button1.Click
+        SignOut()
+    End Sub
 End Class
