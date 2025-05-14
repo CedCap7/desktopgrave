@@ -32,7 +32,7 @@ Public Class frmUpdatePackage
         End Try
     End Sub
 
-    Private Sub btnConfirm_Click(sender As Object, e As EventArgs) Handles btnConfirm.Click
+    Private Sub btnConfirm_Click(sender As Object, e As EventArgs)
         Try
             Dim newPrice As Decimal
             If Not Decimal.TryParse(txtPrice.Text, newPrice) Then
@@ -55,7 +55,7 @@ Public Class frmUpdatePackage
         End Try
     End Sub
 
-    Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
+    Private Sub btnCancel_Click(sender As Object, e As EventArgs)
         Me.Close()
     End Sub
 End Class

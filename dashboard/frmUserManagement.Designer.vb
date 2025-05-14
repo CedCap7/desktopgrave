@@ -24,6 +24,7 @@ Partial Class frmUserManagement
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.Guna2Panel2 = New Guna.UI2.WinForms.Guna2Panel()
+        Me.btnShowAll = New Guna.UI2.WinForms.Guna2Button()
         Me.btnEdit = New Guna.UI2.WinForms.Guna2Button()
         Me.btnAddUser = New Guna.UI2.WinForms.Guna2Button()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -39,7 +40,6 @@ Partial Class frmUserManagement
         Me.emai = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.contact = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.usertype = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.btnShowAll = New Guna.UI2.WinForms.Guna2Button()
         Me.Guna2Panel2.SuspendLayout()
         Me.Guna2Panel1.SuspendLayout()
         Me.SuspendLayout()
@@ -57,6 +57,19 @@ Partial Class frmUserManagement
         Me.Guna2Panel2.Name = "Guna2Panel2"
         Me.Guna2Panel2.Size = New System.Drawing.Size(1028, 81)
         Me.Guna2Panel2.TabIndex = 6
+        '
+        'btnShowAll
+        '
+        Me.btnShowAll.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.btnShowAll.Animated = True
+        Me.btnShowAll.FillColor = System.Drawing.Color.DarkGoldenrod
+        Me.btnShowAll.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnShowAll.ForeColor = System.Drawing.Color.White
+        Me.btnShowAll.Location = New System.Drawing.Point(753, 44)
+        Me.btnShowAll.Name = "btnShowAll"
+        Me.btnShowAll.Size = New System.Drawing.Size(75, 25)
+        Me.btnShowAll.TabIndex = 9
+        Me.btnShowAll.Text = "Refresh"
         '
         'btnEdit
         '
@@ -89,22 +102,22 @@ Partial Class frmUserManagement
         Me.Label2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label2.AutoSize = True
         Me.Label2.BackColor = System.Drawing.Color.FromArgb(CType(CType(14, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(90, Byte), Integer))
-        Me.Label2.Font = New System.Drawing.Font("Roboto Condensed", 9.75!, System.Drawing.FontStyle.Italic)
+        Me.Label2.Font = New System.Drawing.Font("Roboto Condensed", 11.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label2.Location = New System.Drawing.Point(15, 44)
+        Me.Label2.Location = New System.Drawing.Point(15, 48)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(235, 17)
+        Me.Label2.Size = New System.Drawing.Size(264, 19)
         Me.Label2.TabIndex = 1
         Me.Label2.Text = "List of users that can manage the application"
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Roboto", 18.0!, System.Drawing.FontStyle.Bold)
+        Me.Label1.Font = New System.Drawing.Font("Roboto", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label1.Location = New System.Drawing.Point(13, 15)
+        Me.Label1.Location = New System.Drawing.Point(12, 9)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(211, 29)
+        Me.Label1.Size = New System.Drawing.Size(280, 39)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "User Management"
         '
@@ -212,19 +225,6 @@ Partial Class frmUserManagement
         '
         Me.usertype.Text = "User Type"
         Me.usertype.Width = 120
-        '
-        'btnShowAll
-        '
-        Me.btnShowAll.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.btnShowAll.Animated = True
-        Me.btnShowAll.FillColor = System.Drawing.Color.DarkGoldenrod
-        Me.btnShowAll.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnShowAll.ForeColor = System.Drawing.Color.White
-        Me.btnShowAll.Location = New System.Drawing.Point(753, 44)
-        Me.btnShowAll.Name = "btnShowAll"
-        Me.btnShowAll.Size = New System.Drawing.Size(75, 25)
-        Me.btnShowAll.TabIndex = 9
-        Me.btnShowAll.Text = "Refresh"
         '
         'frmUserManagement
         '

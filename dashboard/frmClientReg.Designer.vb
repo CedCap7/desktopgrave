@@ -106,22 +106,22 @@ Partial Class frmClientReg
         '
         Me.Label2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Gill Sans MT", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Font = New System.Drawing.Font("Roboto Condensed", 11.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label2.ForeColor = System.Drawing.SystemColors.Control
         Me.Label2.Location = New System.Drawing.Point(15, 52)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(188, 21)
+        Me.Label2.Size = New System.Drawing.Size(174, 19)
         Me.Label2.TabIndex = 1
         Me.Label2.Text = "Search for Registered Clients"
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Century Gothic", 21.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Font = New System.Drawing.Font("Roboto", 24.0!, System.Drawing.FontStyle.Bold)
         Me.Label1.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label1.Location = New System.Drawing.Point(12, 9)
+        Me.Label1.Location = New System.Drawing.Point(12, 13)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(215, 36)
+        Me.Label1.Size = New System.Drawing.Size(226, 39)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Client Registry"
         '
@@ -222,18 +222,18 @@ Partial Class frmClientReg
         Me.contextMenu.RenderStyle.SelectionForeColor = System.Drawing.Color.White
         Me.contextMenu.RenderStyle.SeparatorColor = System.Drawing.Color.Gainsboro
         Me.contextMenu.RenderStyle.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault
-        Me.contextMenu.Size = New System.Drawing.Size(181, 70)
+        Me.contextMenu.Size = New System.Drawing.Size(116, 48)
         '
         'InactiveToolStripMenuItem
         '
         Me.InactiveToolStripMenuItem.Name = "InactiveToolStripMenuItem"
-        Me.InactiveToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.InactiveToolStripMenuItem.Size = New System.Drawing.Size(115, 22)
         Me.InactiveToolStripMenuItem.Text = "Inactive"
         '
         'ActiveToolStripMenuItem
         '
         Me.ActiveToolStripMenuItem.Name = "ActiveToolStripMenuItem"
-        Me.ActiveToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.ActiveToolStripMenuItem.Size = New System.Drawing.Size(115, 22)
         Me.ActiveToolStripMenuItem.Text = "Active"
         '
         'frmClientReg

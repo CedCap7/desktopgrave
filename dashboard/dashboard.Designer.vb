@@ -61,13 +61,12 @@ Partial Class dashboard
         Me.Guna2Panel1.Controls.Add(Me.registrybtn)
         Me.Guna2Panel1.Controls.Add(Me.formsbtn)
         Me.Guna2Panel1.Dock = System.Windows.Forms.DockStyle.Left
-        Me.Guna2Panel1.Location = New System.Drawing.Point(0, 63)
-        Me.Guna2Panel1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Guna2Panel1.Location = New System.Drawing.Point(0, 51)
         Me.Guna2Panel1.Name = "Guna2Panel1"
         Me.Guna2Panel1.ShadowDecoration.BorderRadius = 20
         Me.Guna2Panel1.ShadowDecoration.Enabled = True
         Me.Guna2Panel1.ShadowDecoration.Shadow = New System.Windows.Forms.Padding(10)
-        Me.Guna2Panel1.Size = New System.Drawing.Size(237, 898)
+        Me.Guna2Panel1.Size = New System.Drawing.Size(178, 589)
         Me.Guna2Panel1.TabIndex = 0
         '
         'btnPackages
@@ -80,7 +79,7 @@ Partial Class dashboard
         Me.btnPackages.CustomBorderColor = System.Drawing.Color.FromArgb(CType(CType(8, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(56, Byte), Integer))
         Me.btnPackages.CustomBorderThickness = New System.Windows.Forms.Padding(4, 0, 0, 0)
         Me.btnPackages.FillColor = System.Drawing.Color.FromArgb(CType(CType(8, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(56, Byte), Integer))
-        Me.btnPackages.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.btnPackages.Font = New System.Drawing.Font("Roboto Condensed", 12.0!)
         Me.btnPackages.ForeColor = System.Drawing.Color.White
         Me.btnPackages.HoverState.CustomBorderColor = System.Drawing.Color.White
         Me.btnPackages.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(15, Byte), Integer), CType(CType(26, Byte), Integer))
@@ -88,10 +87,9 @@ Partial Class dashboard
         Me.btnPackages.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left
         Me.btnPackages.ImageSize = New System.Drawing.Size(28, 28)
         Me.btnPackages.IndicateFocus = True
-        Me.btnPackages.Location = New System.Drawing.Point(0, 678)
-        Me.btnPackages.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnPackages.Location = New System.Drawing.Point(0, 480)
         Me.btnPackages.Name = "btnPackages"
-        Me.btnPackages.Size = New System.Drawing.Size(237, 74)
+        Me.btnPackages.Size = New System.Drawing.Size(178, 60)
         Me.btnPackages.TabIndex = 9
         Me.btnPackages.Text = "Packages"
         Me.btnPackages.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
@@ -106,7 +104,7 @@ Partial Class dashboard
         Me.btnUserManagement.CustomBorderColor = System.Drawing.Color.FromArgb(CType(CType(8, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(56, Byte), Integer))
         Me.btnUserManagement.CustomBorderThickness = New System.Windows.Forms.Padding(4, 0, 0, 0)
         Me.btnUserManagement.FillColor = System.Drawing.Color.FromArgb(CType(CType(8, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(56, Byte), Integer))
-        Me.btnUserManagement.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.btnUserManagement.Font = New System.Drawing.Font("Roboto Condensed", 12.0!)
         Me.btnUserManagement.ForeColor = System.Drawing.Color.White
         Me.btnUserManagement.HoverState.CustomBorderColor = System.Drawing.Color.White
         Me.btnUserManagement.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(15, Byte), Integer), CType(CType(26, Byte), Integer))
@@ -114,10 +112,9 @@ Partial Class dashboard
         Me.btnUserManagement.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left
         Me.btnUserManagement.ImageSize = New System.Drawing.Size(28, 28)
         Me.btnUserManagement.IndicateFocus = True
-        Me.btnUserManagement.Location = New System.Drawing.Point(0, 604)
-        Me.btnUserManagement.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnUserManagement.Location = New System.Drawing.Point(0, 420)
         Me.btnUserManagement.Name = "btnUserManagement"
-        Me.btnUserManagement.Size = New System.Drawing.Size(237, 74)
+        Me.btnUserManagement.Size = New System.Drawing.Size(178, 60)
         Me.btnUserManagement.TabIndex = 8
         Me.btnUserManagement.Text = "User Management"
         Me.btnUserManagement.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
@@ -129,7 +126,7 @@ Partial Class dashboard
         Me.paymentbtn.CustomBorderColor = System.Drawing.Color.FromArgb(CType(CType(8, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(56, Byte), Integer))
         Me.paymentbtn.CustomBorderThickness = New System.Windows.Forms.Padding(4, 0, 0, 0)
         Me.paymentbtn.FillColor = System.Drawing.Color.FromArgb(CType(CType(8, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(56, Byte), Integer))
-        Me.paymentbtn.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.paymentbtn.Font = New System.Drawing.Font("Roboto Condensed", 12.0!)
         Me.paymentbtn.ForeColor = System.Drawing.Color.White
         Me.paymentbtn.HoverState.CustomBorderColor = System.Drawing.Color.White
         Me.paymentbtn.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(15, Byte), Integer), CType(CType(26, Byte), Integer))
@@ -137,10 +134,9 @@ Partial Class dashboard
         Me.paymentbtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left
         Me.paymentbtn.ImageSize = New System.Drawing.Size(28, 28)
         Me.paymentbtn.IndicateFocus = True
-        Me.paymentbtn.Location = New System.Drawing.Point(0, 324)
-        Me.paymentbtn.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.paymentbtn.Location = New System.Drawing.Point(0, 192)
         Me.paymentbtn.Name = "paymentbtn"
-        Me.paymentbtn.Size = New System.Drawing.Size(237, 66)
+        Me.paymentbtn.Size = New System.Drawing.Size(178, 54)
         Me.paymentbtn.TabIndex = 7
         Me.paymentbtn.Text = "Payment"
         Me.paymentbtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
@@ -152,7 +148,7 @@ Partial Class dashboard
         Me.btnDashboard.CustomBorderColor = System.Drawing.Color.FromArgb(CType(CType(8, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(56, Byte), Integer))
         Me.btnDashboard.CustomBorderThickness = New System.Windows.Forms.Padding(4, 0, 0, 0)
         Me.btnDashboard.FillColor = System.Drawing.Color.FromArgb(CType(CType(8, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(56, Byte), Integer))
-        Me.btnDashboard.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.btnDashboard.Font = New System.Drawing.Font("Roboto Condensed", 12.0!)
         Me.btnDashboard.ForeColor = System.Drawing.Color.White
         Me.btnDashboard.HoverState.CustomBorderColor = System.Drawing.Color.White
         Me.btnDashboard.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(15, Byte), Integer), CType(CType(26, Byte), Integer))
@@ -160,10 +156,9 @@ Partial Class dashboard
         Me.btnDashboard.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left
         Me.btnDashboard.ImageSize = New System.Drawing.Size(28, 28)
         Me.btnDashboard.IndicateFocus = True
-        Me.btnDashboard.Location = New System.Drawing.Point(0, 126)
-        Me.btnDashboard.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnDashboard.Location = New System.Drawing.Point(0, 31)
         Me.btnDashboard.Name = "btnDashboard"
-        Me.btnDashboard.Size = New System.Drawing.Size(237, 66)
+        Me.btnDashboard.Size = New System.Drawing.Size(178, 54)
         Me.btnDashboard.TabIndex = 0
         Me.btnDashboard.Text = "Dashboard"
         Me.btnDashboard.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
@@ -178,7 +173,7 @@ Partial Class dashboard
         Me.clientregistrybtn.CustomBorderColor = System.Drawing.Color.FromArgb(CType(CType(8, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(56, Byte), Integer))
         Me.clientregistrybtn.CustomBorderThickness = New System.Windows.Forms.Padding(4, 0, 0, 0)
         Me.clientregistrybtn.FillColor = System.Drawing.Color.FromArgb(CType(CType(8, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(56, Byte), Integer))
-        Me.clientregistrybtn.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.clientregistrybtn.Font = New System.Drawing.Font("Roboto Condensed", 12.0!)
         Me.clientregistrybtn.ForeColor = System.Drawing.Color.White
         Me.clientregistrybtn.HoverState.CustomBorderColor = System.Drawing.Color.White
         Me.clientregistrybtn.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(15, Byte), Integer), CType(CType(26, Byte), Integer))
@@ -186,10 +181,9 @@ Partial Class dashboard
         Me.clientregistrybtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left
         Me.clientregistrybtn.ImageSize = New System.Drawing.Size(28, 28)
         Me.clientregistrybtn.IndicateFocus = True
-        Me.clientregistrybtn.Location = New System.Drawing.Point(0, 530)
-        Me.clientregistrybtn.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.clientregistrybtn.Location = New System.Drawing.Point(0, 360)
         Me.clientregistrybtn.Name = "clientregistrybtn"
-        Me.clientregistrybtn.Size = New System.Drawing.Size(237, 74)
+        Me.clientregistrybtn.Size = New System.Drawing.Size(178, 60)
         Me.clientregistrybtn.TabIndex = 5
         Me.clientregistrybtn.Text = "Client Registry"
         Me.clientregistrybtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
@@ -204,7 +198,7 @@ Partial Class dashboard
         Me.Guna2Button1.CustomBorderThickness = New System.Windows.Forms.Padding(4, 0, 0, 0)
         Me.Guna2Button1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Guna2Button1.FillColor = System.Drawing.Color.FromArgb(CType(CType(8, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(56, Byte), Integer))
-        Me.Guna2Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Bold)
+        Me.Guna2Button1.Font = New System.Drawing.Font("Roboto Condensed", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Guna2Button1.ForeColor = System.Drawing.Color.White
         Me.Guna2Button1.HoverState.CustomBorderColor = System.Drawing.Color.White
         Me.Guna2Button1.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(15, Byte), Integer), CType(CType(26, Byte), Integer))
@@ -212,10 +206,9 @@ Partial Class dashboard
         Me.Guna2Button1.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left
         Me.Guna2Button1.ImageSize = New System.Drawing.Size(28, 28)
         Me.Guna2Button1.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.Guna2Button1.Location = New System.Drawing.Point(0, 849)
-        Me.Guna2Button1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Guna2Button1.Location = New System.Drawing.Point(0, 549)
         Me.Guna2Button1.Name = "Guna2Button1"
-        Me.Guna2Button1.Size = New System.Drawing.Size(237, 49)
+        Me.Guna2Button1.Size = New System.Drawing.Size(178, 40)
         Me.Guna2Button1.TabIndex = 6
         Me.Guna2Button1.Text = "Sign Out"
         '
@@ -226,7 +219,7 @@ Partial Class dashboard
         Me.payreservbtn.CustomBorderColor = System.Drawing.Color.FromArgb(CType(CType(8, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(56, Byte), Integer))
         Me.payreservbtn.CustomBorderThickness = New System.Windows.Forms.Padding(4, 0, 0, 0)
         Me.payreservbtn.FillColor = System.Drawing.Color.FromArgb(CType(CType(8, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(56, Byte), Integer))
-        Me.payreservbtn.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.payreservbtn.Font = New System.Drawing.Font("Roboto Condensed", 12.0!)
         Me.payreservbtn.ForeColor = System.Drawing.Color.White
         Me.payreservbtn.HoverState.CustomBorderColor = System.Drawing.Color.White
         Me.payreservbtn.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(15, Byte), Integer), CType(CType(26, Byte), Integer))
@@ -234,10 +227,9 @@ Partial Class dashboard
         Me.payreservbtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left
         Me.payreservbtn.ImageSize = New System.Drawing.Size(28, 28)
         Me.payreservbtn.IndicateFocus = True
-        Me.payreservbtn.Location = New System.Drawing.Point(0, 258)
-        Me.payreservbtn.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.payreservbtn.Location = New System.Drawing.Point(0, 139)
         Me.payreservbtn.Name = "payreservbtn"
-        Me.payreservbtn.Size = New System.Drawing.Size(237, 65)
+        Me.payreservbtn.Size = New System.Drawing.Size(178, 53)
         Me.payreservbtn.TabIndex = 2
         Me.payreservbtn.Text = "Grave Purchases"
         Me.payreservbtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
@@ -249,7 +241,7 @@ Partial Class dashboard
         Me.mapbtn.CustomBorderColor = System.Drawing.Color.FromArgb(CType(CType(8, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(56, Byte), Integer))
         Me.mapbtn.CustomBorderThickness = New System.Windows.Forms.Padding(4, 0, 0, 0)
         Me.mapbtn.FillColor = System.Drawing.Color.FromArgb(CType(CType(8, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(56, Byte), Integer))
-        Me.mapbtn.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.mapbtn.Font = New System.Drawing.Font("Roboto Condensed", 12.0!)
         Me.mapbtn.ForeColor = System.Drawing.Color.White
         Me.mapbtn.HoverState.CustomBorderColor = System.Drawing.Color.White
         Me.mapbtn.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(15, Byte), Integer), CType(CType(26, Byte), Integer))
@@ -257,10 +249,9 @@ Partial Class dashboard
         Me.mapbtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left
         Me.mapbtn.ImageSize = New System.Drawing.Size(28, 28)
         Me.mapbtn.IndicateFocus = True
-        Me.mapbtn.Location = New System.Drawing.Point(0, 390)
-        Me.mapbtn.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.mapbtn.Location = New System.Drawing.Point(0, 246)
         Me.mapbtn.Name = "mapbtn"
-        Me.mapbtn.Size = New System.Drawing.Size(237, 66)
+        Me.mapbtn.Size = New System.Drawing.Size(178, 54)
         Me.mapbtn.TabIndex = 3
         Me.mapbtn.Text = "Cemetery Map"
         Me.mapbtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
@@ -275,7 +266,7 @@ Partial Class dashboard
         Me.registrybtn.CustomBorderColor = System.Drawing.Color.FromArgb(CType(CType(8, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(56, Byte), Integer))
         Me.registrybtn.CustomBorderThickness = New System.Windows.Forms.Padding(4, 0, 0, 0)
         Me.registrybtn.FillColor = System.Drawing.Color.FromArgb(CType(CType(8, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(56, Byte), Integer))
-        Me.registrybtn.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.registrybtn.Font = New System.Drawing.Font("Roboto Condensed", 12.0!)
         Me.registrybtn.ForeColor = System.Drawing.Color.White
         Me.registrybtn.HoverState.CustomBorderColor = System.Drawing.Color.White
         Me.registrybtn.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(15, Byte), Integer), CType(CType(26, Byte), Integer))
@@ -283,10 +274,9 @@ Partial Class dashboard
         Me.registrybtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left
         Me.registrybtn.ImageSize = New System.Drawing.Size(28, 28)
         Me.registrybtn.IndicateFocus = True
-        Me.registrybtn.Location = New System.Drawing.Point(0, 457)
-        Me.registrybtn.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.registrybtn.Location = New System.Drawing.Point(0, 300)
         Me.registrybtn.Name = "registrybtn"
-        Me.registrybtn.Size = New System.Drawing.Size(237, 74)
+        Me.registrybtn.Size = New System.Drawing.Size(178, 60)
         Me.registrybtn.TabIndex = 4
         Me.registrybtn.Text = "Deceased Registry"
         Me.registrybtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
@@ -298,7 +288,7 @@ Partial Class dashboard
         Me.formsbtn.CustomBorderColor = System.Drawing.Color.FromArgb(CType(CType(8, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(56, Byte), Integer))
         Me.formsbtn.CustomBorderThickness = New System.Windows.Forms.Padding(4, 0, 0, 0)
         Me.formsbtn.FillColor = System.Drawing.Color.FromArgb(CType(CType(8, Byte), Integer), CType(CType(37, Byte), Integer), CType(CType(56, Byte), Integer))
-        Me.formsbtn.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!)
+        Me.formsbtn.Font = New System.Drawing.Font("Roboto Condensed", 12.0!)
         Me.formsbtn.ForeColor = System.Drawing.Color.White
         Me.formsbtn.HoverState.CustomBorderColor = System.Drawing.Color.White
         Me.formsbtn.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(15, Byte), Integer), CType(CType(26, Byte), Integer))
@@ -306,10 +296,9 @@ Partial Class dashboard
         Me.formsbtn.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left
         Me.formsbtn.ImageSize = New System.Drawing.Size(28, 28)
         Me.formsbtn.IndicateFocus = True
-        Me.formsbtn.Location = New System.Drawing.Point(0, 192)
-        Me.formsbtn.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.formsbtn.Location = New System.Drawing.Point(0, 85)
         Me.formsbtn.Name = "formsbtn"
-        Me.formsbtn.Size = New System.Drawing.Size(237, 66)
+        Me.formsbtn.Size = New System.Drawing.Size(178, 54)
         Me.formsbtn.TabIndex = 1
         Me.formsbtn.Text = "Forms"
         Me.formsbtn.TextAlign = System.Windows.Forms.HorizontalAlignment.Left
@@ -327,21 +316,19 @@ Partial Class dashboard
         Me.Guna2Panel3.Controls.Add(Me.Guna2ControlBox1)
         Me.Guna2Panel3.Dock = System.Windows.Forms.DockStyle.Top
         Me.Guna2Panel3.Location = New System.Drawing.Point(0, 0)
-        Me.Guna2Panel3.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Guna2Panel3.Name = "Guna2Panel3"
         Me.Guna2Panel3.ShadowDecoration.BorderRadius = 10
         Me.Guna2Panel3.ShadowDecoration.Enabled = True
         Me.Guna2Panel3.ShadowDecoration.Shadow = New System.Windows.Forms.Padding(0, 0, 0, 5)
-        Me.Guna2Panel3.Size = New System.Drawing.Size(1160, 63)
+        Me.Guna2Panel3.Size = New System.Drawing.Size(870, 51)
         Me.Guna2Panel3.TabIndex = 5
         '
         'PictureBox1
         '
         Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
-        Me.PictureBox1.Location = New System.Drawing.Point(16, 0)
-        Me.PictureBox1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.PictureBox1.Location = New System.Drawing.Point(12, 0)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(284, 63)
+        Me.PictureBox1.Size = New System.Drawing.Size(213, 51)
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBox1.TabIndex = 4
         Me.PictureBox1.TabStop = False
@@ -353,10 +340,9 @@ Partial Class dashboard
         Me.Guna2ControlBox3.ControlBoxType = Guna.UI2.WinForms.Enums.ControlBoxType.MinimizeBox
         Me.Guna2ControlBox3.FillColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(171, Byte), Integer), CType(CType(189, Byte), Integer))
         Me.Guna2ControlBox3.IconColor = System.Drawing.Color.White
-        Me.Guna2ControlBox3.Location = New System.Drawing.Point(1016, 0)
-        Me.Guna2ControlBox3.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Guna2ControlBox3.Location = New System.Drawing.Point(762, 0)
         Me.Guna2ControlBox3.Name = "Guna2ControlBox3"
-        Me.Guna2ControlBox3.Size = New System.Drawing.Size(48, 28)
+        Me.Guna2ControlBox3.Size = New System.Drawing.Size(36, 23)
         Me.Guna2ControlBox3.TabIndex = 3
         '
         'Guna2ControlBox2
@@ -366,10 +352,9 @@ Partial Class dashboard
         Me.Guna2ControlBox2.ControlBoxType = Guna.UI2.WinForms.Enums.ControlBoxType.MaximizeBox
         Me.Guna2ControlBox2.FillColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(171, Byte), Integer), CType(CType(189, Byte), Integer))
         Me.Guna2ControlBox2.IconColor = System.Drawing.Color.White
-        Me.Guna2ControlBox2.Location = New System.Drawing.Point(1064, 0)
-        Me.Guna2ControlBox2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Guna2ControlBox2.Location = New System.Drawing.Point(798, 0)
         Me.Guna2ControlBox2.Name = "Guna2ControlBox2"
-        Me.Guna2ControlBox2.Size = New System.Drawing.Size(48, 28)
+        Me.Guna2ControlBox2.Size = New System.Drawing.Size(36, 23)
         Me.Guna2ControlBox2.TabIndex = 2
         '
         'Guna2ControlBox1
@@ -379,10 +364,9 @@ Partial Class dashboard
         Me.Guna2ControlBox1.FillColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(171, Byte), Integer), CType(CType(189, Byte), Integer))
         Me.Guna2ControlBox1.HoverState.FillColor = System.Drawing.Color.Red
         Me.Guna2ControlBox1.IconColor = System.Drawing.Color.White
-        Me.Guna2ControlBox1.Location = New System.Drawing.Point(1112, 0)
-        Me.Guna2ControlBox1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Guna2ControlBox1.Location = New System.Drawing.Point(834, 0)
         Me.Guna2ControlBox1.Name = "Guna2ControlBox1"
-        Me.Guna2ControlBox1.Size = New System.Drawing.Size(48, 28)
+        Me.Guna2ControlBox1.Size = New System.Drawing.Size(36, 23)
         Me.Guna2ControlBox1.TabIndex = 1
         '
         'subPanel
@@ -390,28 +374,26 @@ Partial Class dashboard
         Me.subPanel.AutoRoundedCorners = True
         Me.subPanel.AutoSize = True
         Me.subPanel.BackColor = System.Drawing.Color.FromArgb(CType(CType(2, Byte), Integer), CType(CType(15, Byte), Integer), CType(CType(26, Byte), Integer))
-        Me.subPanel.BorderRadius = 448
+        Me.subPanel.BorderRadius = 293
         Me.subPanel.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.subPanel.Location = New System.Drawing.Point(237, 63)
-        Me.subPanel.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.subPanel.Location = New System.Drawing.Point(178, 51)
         Me.subPanel.Name = "subPanel"
-        Me.subPanel.Padding = New System.Windows.Forms.Padding(7, 6, 7, 6)
-        Me.subPanel.Size = New System.Drawing.Size(923, 898)
+        Me.subPanel.Padding = New System.Windows.Forms.Padding(5, 5, 5, 5)
+        Me.subPanel.Size = New System.Drawing.Size(692, 589)
         Me.subPanel.TabIndex = 6
         '
         'dashboard
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ButtonHighlight
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.ClientSize = New System.Drawing.Size(1160, 961)
+        Me.ClientSize = New System.Drawing.Size(870, 640)
         Me.Controls.Add(Me.subPanel)
         Me.Controls.Add(Me.Guna2Panel1)
         Me.Controls.Add(Me.Guna2Panel3)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "dashboard"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "DCCMS"

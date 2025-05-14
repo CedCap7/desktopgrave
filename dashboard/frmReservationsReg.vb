@@ -1,4 +1,4 @@
-﻿Imports MySql.Data.MySqlClient
+Imports MySql.Data.MySqlClient
 Imports iTextSharp.text
 Imports iTextSharp.text.pdf
 Imports System.IO
@@ -138,7 +138,7 @@ Public Class frmReservationsReg
         End If
     End Sub
 
-    Private Sub btnDelete_Click(sender As Object, e As EventArgs) 
+    Private Sub btnDelete_Click(sender As Object, e As EventArgs)
         If ReservationList.SelectedItems.Count > 0 Then
             Dim selectedID As Integer = Convert.ToInt32(ReservationList.SelectedItems(0).Tag)
 
@@ -217,13 +217,15 @@ Public Class frmReservationsReg
             saveDialog.FileName = "ReservationList_" & DateTime.Now.ToString("yyyyMMdd") & ".pdf"
 
             If saveDialog.ShowDialog() = DialogResult.OK Then
+                ' Initialize iTextSharp with proper encoding
+                Dim baseFont As BaseFont = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1252, BaseFont.NOT_EMBEDDED)
                 Dim doc As New Document(PageSize.A4.Rotate(), 40, 40, 40, 40)
                 Dim writer As PdfWriter = PdfWriter.GetInstance(doc, New FileStream(saveDialog.FileName, FileMode.Create))
 
                 doc.Open()
 
                 ' Add title
-                Dim titleFont As New Font(BaseFont.CreateFont(BaseFont.HELVETICA_BOLD, BaseFont.CP1252, BaseFont.EMBEDDED), 16)
+                Dim titleFont As New Font(baseFont, 16)
                 Dim title As New Paragraph("Reservation List", titleFont)
                 title.Alignment = Element.ALIGN_CENTER
                 title.SpacingAfter = 20
@@ -238,19 +240,19 @@ Public Class frmReservationsReg
                 table.SetWidths(widths)
 
                 ' Add headers
-                Dim headerFont As New Font(BaseFont.CreateFont(BaseFont.HELVETICA_BOLD, BaseFont.CP1252, BaseFont.EMBEDDED), 10)
+                Dim headerFont As New Font(baseFont, 10, Font.Bold)
                 Dim headers() As String = {"Client ID", "Client Name", "Plot Location", "Total Paid", "Total Amount", "Reservation Date", "Payment"}
 
                 For Each header In headers
                     Dim cell As New PdfPCell(New Phrase(header, headerFont))
                     cell.HorizontalAlignment = Element.ALIGN_CENTER
-                    cell.BackgroundColor = BaseColor.LIGHT_GRAY
+                    cell.BackgroundColor = New BaseColor(240, 240, 240)
                     cell.Padding = 5
                     table.AddCell(cell)
                 Next
 
                 ' Add data
-                Dim cellFont As New Font(BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1252, BaseFont.EMBEDDED), 9)
+                Dim cellFont As New Font(baseFont, 9)
                 For Each item As ListViewItem In ReservationList.Items
                     If item.SubItems.Count < 7 Then  ' Ensure there are enough subitems
                         MessageBox.Show("Error: Some rows in the list have missing data.", "Data Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
@@ -270,7 +272,7 @@ Public Class frmReservationsReg
                 doc.Add(table)
 
                 ' Add footer with date
-                Dim footer As New Paragraph("Generated on: " & DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
+                Dim footer As New Paragraph("Generated on: " & DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), cellFont)
                 footer.Alignment = Element.ALIGN_RIGHT
                 footer.SpacingBefore = 20
                 doc.Add(footer)
@@ -281,7 +283,7 @@ Public Class frmReservationsReg
                 Process.Start(saveDialog.FileName)
             End If
         Catch ex As Exception
-            MessageBox.Show("Error creating PDF: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Error creating PDF: " & ex.Message & vbCrLf & "Stack Trace: " & ex.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 

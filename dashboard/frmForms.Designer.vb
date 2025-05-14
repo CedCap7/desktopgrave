@@ -335,7 +335,7 @@ Partial Class frmForms
         Me.Guna2Panel2.Controls.Add(Me.Label4)
         Me.Guna2Panel2.Controls.Add(Me.Label3)
         Me.Guna2Panel2.Location = New System.Drawing.Point(10, 10)
-        Me.Guna2Panel2.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Guna2Panel2.Margin = New System.Windows.Forms.Padding(2)
         Me.Guna2Panel2.Name = "Guna2Panel2"
         Me.Guna2Panel2.Size = New System.Drawing.Size(646, 168)
         Me.Guna2Panel2.TabIndex = 6
@@ -347,7 +347,7 @@ Partial Class frmForms
         Me.Label17.BackColor = System.Drawing.Color.Transparent
         Me.Label17.Font = New System.Drawing.Font("Roboto", 11.25!)
         Me.Label17.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Label17.Location = New System.Drawing.Point(250, 132)
+        Me.Label17.Location = New System.Drawing.Point(250, 130)
         Me.Label17.Name = "Label17"
         Me.Label17.Size = New System.Drawing.Size(471, 19)
         Me.Label17.TabIndex = 10
@@ -373,7 +373,7 @@ Partial Class frmForms
         Me.Label15.BackColor = System.Drawing.Color.Transparent
         Me.Label15.Font = New System.Drawing.Font("Roboto", 11.25!)
         Me.Label15.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Label15.Location = New System.Drawing.Point(250, 110)
+        Me.Label15.Location = New System.Drawing.Point(250, 107)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(400, 19)
         Me.Label15.TabIndex = 8
@@ -399,7 +399,7 @@ Partial Class frmForms
         Me.Label13.BackColor = System.Drawing.Color.Transparent
         Me.Label13.Font = New System.Drawing.Font("Roboto", 11.25!)
         Me.Label13.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Label13.Location = New System.Drawing.Point(250, 87)
+        Me.Label13.Location = New System.Drawing.Point(250, 84)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(412, 19)
         Me.Label13.TabIndex = 6
@@ -425,7 +425,7 @@ Partial Class frmForms
         Me.Label9.BackColor = System.Drawing.Color.Transparent
         Me.Label9.Font = New System.Drawing.Font("Roboto", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label9.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Label9.Location = New System.Drawing.Point(250, 64)
+        Me.Label9.Location = New System.Drawing.Point(250, 61)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(301, 19)
         Me.Label9.TabIndex = 4
@@ -465,7 +465,7 @@ Partial Class frmForms
         Me.Guna2ProgressBar1.BorderRadius = 10
         Me.Guna2ProgressBar1.FillColor = System.Drawing.Color.FromArgb(CType(CType(20, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(137, Byte), Integer))
         Me.Guna2ProgressBar1.Location = New System.Drawing.Point(11, 30)
-        Me.Guna2ProgressBar1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Guna2ProgressBar1.Margin = New System.Windows.Forms.Padding(2)
         Me.Guna2ProgressBar1.Maximum = 4
         Me.Guna2ProgressBar1.Name = "Guna2ProgressBar1"
         Me.Guna2ProgressBar1.ProgressColor = System.Drawing.Color.FromArgb(CType(CType(52, Byte), Integer), CType(CType(189, Byte), Integer), CType(CType(40, Byte), Integer))

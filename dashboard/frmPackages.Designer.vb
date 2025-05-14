@@ -87,9 +87,8 @@ Partial Class frmPackages
         Me.Guna2Panel2.Controls.Add(Me.Label1)
         Me.Guna2Panel2.Dock = System.Windows.Forms.DockStyle.Top
         Me.Guna2Panel2.Location = New System.Drawing.Point(0, 0)
-        Me.Guna2Panel2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Guna2Panel2.Name = "Guna2Panel2"
-        Me.Guna2Panel2.Size = New System.Drawing.Size(1357, 100)
+        Me.Guna2Panel2.Size = New System.Drawing.Size(1018, 81)
         Me.Guna2Panel2.TabIndex = 7
         '
         'Label2
@@ -99,10 +98,9 @@ Partial Class frmPackages
         Me.Label2.BackColor = System.Drawing.Color.FromArgb(CType(CType(14, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(90, Byte), Integer))
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Italic)
         Me.Label2.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label2.Location = New System.Drawing.Point(20, 54)
-        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label2.Location = New System.Drawing.Point(15, 44)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(373, 20)
+        Me.Label2.Size = New System.Drawing.Size(302, 16)
         Me.Label2.TabIndex = 1
         Me.Label2.Text = "This page makes adjustments to package pricing"
         '
@@ -111,10 +109,9 @@ Partial Class frmPackages
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Bold)
         Me.Label1.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label1.Location = New System.Drawing.Point(17, 18)
-        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label1.Location = New System.Drawing.Point(13, 15)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(321, 36)
+        Me.Label1.Size = New System.Drawing.Size(263, 29)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Package Adjustments"
         '
@@ -139,14 +136,13 @@ Partial Class frmPackages
         Me.TableLayoutPanel1.Controls.Add(Me.Guna2Button3, 5, 1)
         Me.TableLayoutPanel1.Controls.Add(Me.Guna2Button4, 7, 1)
         Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 153)
-        Me.TableLayoutPanel1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 124)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 3
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 89.2!))
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10.8!))
-        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 47.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1357, 535)
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 126.0!))
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1018, 435)
         Me.TableLayoutPanel1.TabIndex = 11
         '
         'Guna2Panel5
@@ -158,14 +154,13 @@ Partial Class frmPackages
         Me.Guna2Panel5.Controls.Add(Me.lblDesc4)
         Me.Guna2Panel5.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Guna2Panel5.FillColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(171, Byte), Integer), CType(CType(189, Byte), Integer))
-        Me.Guna2Panel5.Location = New System.Drawing.Point(1028, 4)
-        Me.Guna2Panel5.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Guna2Panel5.Location = New System.Drawing.Point(773, 3)
         Me.Guna2Panel5.Name = "Guna2Panel5"
         Me.Guna2Panel5.ShadowDecoration.BorderRadius = 10
         Me.Guna2Panel5.ShadowDecoration.Depth = 5
         Me.Guna2Panel5.ShadowDecoration.Enabled = True
         Me.Guna2Panel5.ShadowDecoration.Shadow = New System.Windows.Forms.Padding(10, 10, 15, 15)
-        Me.Guna2Panel5.Size = New System.Drawing.Size(272, 427)
+        Me.Guna2Panel5.Size = New System.Drawing.Size(204, 269)
         Me.Guna2Panel5.TabIndex = 2
         '
         'TableLayoutPanel6
@@ -176,24 +171,22 @@ Partial Class frmPackages
         Me.TableLayoutPanel6.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.86196!))
         Me.TableLayoutPanel6.Controls.Add(Me.Label7, 1, 0)
         Me.TableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Top
-        Me.TableLayoutPanel6.Location = New System.Drawing.Point(0, 156)
-        Me.TableLayoutPanel6.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TableLayoutPanel6.Location = New System.Drawing.Point(0, 127)
         Me.TableLayoutPanel6.Name = "TableLayoutPanel6"
         Me.TableLayoutPanel6.RowCount = 1
         Me.TableLayoutPanel6.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel6.Size = New System.Drawing.Size(272, 53)
+        Me.TableLayoutPanel6.Size = New System.Drawing.Size(204, 43)
         Me.TableLayoutPanel6.TabIndex = 15
         '
         'Label7
         '
         Me.Label7.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.Label7.AutoSize = True
-        Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.Font = New System.Drawing.Font("Roboto", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label7.Location = New System.Drawing.Point(78, 0)
-        Me.Label7.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label7.Location = New System.Drawing.Point(63, 0)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(114, 36)
+        Me.Label7.Size = New System.Drawing.Size(76, 43)
         Me.Label7.TabIndex = 0
         Me.Label7.Text = "Private"
         '
@@ -203,32 +196,29 @@ Partial Class frmPackages
         Me.Guna2PictureBox1.Image = Global.dashboard.My.Resources.Resources._private
         Me.Guna2PictureBox1.ImageRotate = 0!
         Me.Guna2PictureBox1.Location = New System.Drawing.Point(0, 0)
-        Me.Guna2PictureBox1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Guna2PictureBox1.Name = "Guna2PictureBox1"
-        Me.Guna2PictureBox1.Size = New System.Drawing.Size(272, 156)
+        Me.Guna2PictureBox1.Size = New System.Drawing.Size(204, 127)
         Me.Guna2PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.Guna2PictureBox1.TabIndex = 0
         Me.Guna2PictureBox1.TabStop = False
         '
         'lblPrice4
         '
-        Me.lblPrice4.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.lblPrice4.Font = New System.Drawing.Font("Roboto", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblPrice4.ForeColor = System.Drawing.Color.White
-        Me.lblPrice4.Location = New System.Drawing.Point(13, 209)
-        Me.lblPrice4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblPrice4.Location = New System.Drawing.Point(10, 170)
         Me.lblPrice4.Name = "lblPrice4"
-        Me.lblPrice4.Size = New System.Drawing.Size(240, 31)
+        Me.lblPrice4.Size = New System.Drawing.Size(180, 25)
         Me.lblPrice4.TabIndex = 16
         Me.lblPrice4.Text = "Price:"
         '
         'lblDesc4
         '
-        Me.lblDesc4.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!)
+        Me.lblDesc4.Font = New System.Drawing.Font("Roboto", 9.75!)
         Me.lblDesc4.ForeColor = System.Drawing.Color.White
-        Me.lblDesc4.Location = New System.Drawing.Point(13, 246)
-        Me.lblDesc4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblDesc4.Location = New System.Drawing.Point(10, 200)
         Me.lblDesc4.Name = "lblDesc4"
-        Me.lblDesc4.Size = New System.Drawing.Size(240, 74)
+        Me.lblDesc4.Size = New System.Drawing.Size(180, 60)
         Me.lblDesc4.TabIndex = 17
         Me.lblDesc4.Text = "Description:"
         '
@@ -241,14 +231,13 @@ Partial Class frmPackages
         Me.Guna2Panel1.Controls.Add(Me.lblDesc1)
         Me.Guna2Panel1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Guna2Panel1.FillColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(171, Byte), Integer), CType(CType(189, Byte), Integer))
-        Me.Guna2Panel1.Location = New System.Drawing.Point(50, 4)
-        Me.Guna2Panel1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Guna2Panel1.Location = New System.Drawing.Point(38, 3)
         Me.Guna2Panel1.Name = "Guna2Panel1"
         Me.Guna2Panel1.ShadowDecoration.BorderRadius = 10
         Me.Guna2Panel1.ShadowDecoration.Depth = 5
         Me.Guna2Panel1.ShadowDecoration.Enabled = True
         Me.Guna2Panel1.ShadowDecoration.Shadow = New System.Windows.Forms.Padding(10, 10, 15, 15)
-        Me.Guna2Panel1.Size = New System.Drawing.Size(272, 427)
+        Me.Guna2Panel1.Size = New System.Drawing.Size(204, 269)
         Me.Guna2Panel1.TabIndex = 0
         '
         'TableLayoutPanel3
@@ -259,24 +248,22 @@ Partial Class frmPackages
         Me.TableLayoutPanel3.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.06662!))
         Me.TableLayoutPanel3.Controls.Add(Me.Label4, 1, 0)
         Me.TableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.TableLayoutPanel3.Location = New System.Drawing.Point(0, 156)
-        Me.TableLayoutPanel3.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TableLayoutPanel3.Location = New System.Drawing.Point(0, 127)
         Me.TableLayoutPanel3.Name = "TableLayoutPanel3"
         Me.TableLayoutPanel3.RowCount = 1
         Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel3.Size = New System.Drawing.Size(272, 53)
+        Me.TableLayoutPanel3.Size = New System.Drawing.Size(204, 43)
         Me.TableLayoutPanel3.TabIndex = 13
         '
         'Label4
         '
         Me.Label4.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Font = New System.Drawing.Font("Roboto", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label4.Location = New System.Drawing.Point(59, 0)
-        Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label4.Location = New System.Drawing.Point(47, 0)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(151, 53)
+        Me.Label4.Size = New System.Drawing.Size(107, 43)
         Me.Label4.TabIndex = 0
         Me.Label4.Text = "Apartment"
         '
@@ -286,32 +273,29 @@ Partial Class frmPackages
         Me.Guna2PictureBox4.Image = Global.dashboard.My.Resources.Resources.apartmentnew
         Me.Guna2PictureBox4.ImageRotate = 0!
         Me.Guna2PictureBox4.Location = New System.Drawing.Point(0, 0)
-        Me.Guna2PictureBox4.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Guna2PictureBox4.Name = "Guna2PictureBox4"
-        Me.Guna2PictureBox4.Size = New System.Drawing.Size(272, 156)
+        Me.Guna2PictureBox4.Size = New System.Drawing.Size(204, 127)
         Me.Guna2PictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.Guna2PictureBox4.TabIndex = 1
         Me.Guna2PictureBox4.TabStop = False
         '
         'lblPrice1
         '
-        Me.lblPrice1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.lblPrice1.Font = New System.Drawing.Font("Roboto", 12.0!, System.Drawing.FontStyle.Bold)
         Me.lblPrice1.ForeColor = System.Drawing.Color.White
-        Me.lblPrice1.Location = New System.Drawing.Point(13, 209)
-        Me.lblPrice1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblPrice1.Location = New System.Drawing.Point(10, 170)
         Me.lblPrice1.Name = "lblPrice1"
-        Me.lblPrice1.Size = New System.Drawing.Size(240, 31)
+        Me.lblPrice1.Size = New System.Drawing.Size(180, 25)
         Me.lblPrice1.TabIndex = 14
         Me.lblPrice1.Text = "Price:"
         '
         'lblDesc1
         '
-        Me.lblDesc1.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!)
+        Me.lblDesc1.Font = New System.Drawing.Font("Roboto", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblDesc1.ForeColor = System.Drawing.Color.White
-        Me.lblDesc1.Location = New System.Drawing.Point(13, 246)
-        Me.lblDesc1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblDesc1.Location = New System.Drawing.Point(10, 200)
         Me.lblDesc1.Name = "lblDesc1"
-        Me.lblDesc1.Size = New System.Drawing.Size(240, 74)
+        Me.lblDesc1.Size = New System.Drawing.Size(180, 60)
         Me.lblDesc1.TabIndex = 15
         Me.lblDesc1.Text = "Description:"
         '
@@ -324,14 +308,13 @@ Partial Class frmPackages
         Me.Guna2Panel3.Controls.Add(Me.lblDesc2)
         Me.Guna2Panel3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Guna2Panel3.FillColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(171, Byte), Integer), CType(CType(189, Byte), Integer))
-        Me.Guna2Panel3.Location = New System.Drawing.Point(376, 4)
-        Me.Guna2Panel3.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Guna2Panel3.Location = New System.Drawing.Point(283, 3)
         Me.Guna2Panel3.Name = "Guna2Panel3"
         Me.Guna2Panel3.ShadowDecoration.BorderRadius = 10
         Me.Guna2Panel3.ShadowDecoration.Depth = 5
         Me.Guna2Panel3.ShadowDecoration.Enabled = True
         Me.Guna2Panel3.ShadowDecoration.Shadow = New System.Windows.Forms.Padding(10, 10, 15, 15)
-        Me.Guna2Panel3.Size = New System.Drawing.Size(272, 427)
+        Me.Guna2Panel3.Size = New System.Drawing.Size(204, 269)
         Me.Guna2Panel3.TabIndex = 1
         '
         'TableLayoutPanel4
@@ -342,59 +325,54 @@ Partial Class frmPackages
         Me.TableLayoutPanel4.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 13.53538!))
         Me.TableLayoutPanel4.Controls.Add(Me.Label5, 1, 0)
         Me.TableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Top
-        Me.TableLayoutPanel4.Location = New System.Drawing.Point(0, 156)
-        Me.TableLayoutPanel4.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TableLayoutPanel4.Location = New System.Drawing.Point(0, 127)
         Me.TableLayoutPanel4.Name = "TableLayoutPanel4"
         Me.TableLayoutPanel4.RowCount = 1
         Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel4.Size = New System.Drawing.Size(272, 53)
+        Me.TableLayoutPanel4.Size = New System.Drawing.Size(204, 43)
         Me.TableLayoutPanel4.TabIndex = 14
         '
         'Label5
         '
         Me.Label5.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.Font = New System.Drawing.Font("Roboto", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label5.Location = New System.Drawing.Point(54, 0)
-        Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label5.Location = New System.Drawing.Point(39, 0)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(161, 53)
+        Me.Label5.Size = New System.Drawing.Size(123, 43)
         Me.Label5.TabIndex = 0
         Me.Label5.Text = "Family Lawn Lots"
         '
         'Guna2PictureBox3
         '
         Me.Guna2PictureBox3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Guna2PictureBox3.Image = Global.dashboard.My.Resources.Resources.boneniche
+        Me.Guna2PictureBox3.Image = Global.dashboard.My.Resources.Resources.familylawnlot
         Me.Guna2PictureBox3.ImageRotate = 0!
         Me.Guna2PictureBox3.Location = New System.Drawing.Point(0, 0)
-        Me.Guna2PictureBox3.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Guna2PictureBox3.Name = "Guna2PictureBox3"
-        Me.Guna2PictureBox3.Size = New System.Drawing.Size(272, 156)
+        Me.Guna2PictureBox3.Size = New System.Drawing.Size(204, 127)
         Me.Guna2PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.Guna2PictureBox3.TabIndex = 1
         Me.Guna2PictureBox3.TabStop = False
         '
         'lblPrice2
         '
-        Me.lblPrice2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.lblPrice2.Font = New System.Drawing.Font("Roboto", 12.0!, System.Drawing.FontStyle.Bold)
         Me.lblPrice2.ForeColor = System.Drawing.Color.White
-        Me.lblPrice2.Location = New System.Drawing.Point(13, 209)
-        Me.lblPrice2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblPrice2.Location = New System.Drawing.Point(10, 170)
         Me.lblPrice2.Name = "lblPrice2"
-        Me.lblPrice2.Size = New System.Drawing.Size(240, 31)
+        Me.lblPrice2.Size = New System.Drawing.Size(180, 25)
         Me.lblPrice2.TabIndex = 15
         Me.lblPrice2.Text = "Price:"
         '
         'lblDesc2
         '
-        Me.lblDesc2.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!)
+        Me.lblDesc2.Font = New System.Drawing.Font("Roboto", 9.75!)
         Me.lblDesc2.ForeColor = System.Drawing.Color.White
-        Me.lblDesc2.Location = New System.Drawing.Point(13, 246)
-        Me.lblDesc2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblDesc2.Location = New System.Drawing.Point(10, 200)
         Me.lblDesc2.Name = "lblDesc2"
-        Me.lblDesc2.Size = New System.Drawing.Size(240, 74)
+        Me.lblDesc2.Size = New System.Drawing.Size(180, 60)
         Me.lblDesc2.TabIndex = 16
         Me.lblDesc2.Text = "Description:"
         '
@@ -407,14 +385,13 @@ Partial Class frmPackages
         Me.Guna2Panel4.Controls.Add(Me.lblDesc3)
         Me.Guna2Panel4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Guna2Panel4.FillColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(171, Byte), Integer), CType(CType(189, Byte), Integer))
-        Me.Guna2Panel4.Location = New System.Drawing.Point(702, 4)
-        Me.Guna2Panel4.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Guna2Panel4.Location = New System.Drawing.Point(528, 3)
         Me.Guna2Panel4.Name = "Guna2Panel4"
         Me.Guna2Panel4.ShadowDecoration.BorderRadius = 10
         Me.Guna2Panel4.ShadowDecoration.Depth = 5
         Me.Guna2Panel4.ShadowDecoration.Enabled = True
         Me.Guna2Panel4.ShadowDecoration.Shadow = New System.Windows.Forms.Padding(10, 10, 15, 15)
-        Me.Guna2Panel4.Size = New System.Drawing.Size(272, 427)
+        Me.Guna2Panel4.Size = New System.Drawing.Size(204, 269)
         Me.Guna2Panel4.TabIndex = 2
         '
         'TableLayoutPanel5
@@ -425,59 +402,54 @@ Partial Class frmPackages
         Me.TableLayoutPanel5.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
         Me.TableLayoutPanel5.Controls.Add(Me.Label6, 1, 0)
         Me.TableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Top
-        Me.TableLayoutPanel5.Location = New System.Drawing.Point(0, 156)
-        Me.TableLayoutPanel5.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TableLayoutPanel5.Location = New System.Drawing.Point(0, 127)
         Me.TableLayoutPanel5.Name = "TableLayoutPanel5"
         Me.TableLayoutPanel5.RowCount = 1
         Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel5.Size = New System.Drawing.Size(272, 53)
+        Me.TableLayoutPanel5.Size = New System.Drawing.Size(204, 43)
         Me.TableLayoutPanel5.TabIndex = 15
         '
         'Label6
         '
         Me.Label6.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.Label6.AutoSize = True
-        Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.Font = New System.Drawing.Font("Roboto", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label6.Location = New System.Drawing.Point(45, 0)
-        Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label6.Location = New System.Drawing.Point(33, 0)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(180, 36)
+        Me.Label6.Size = New System.Drawing.Size(136, 29)
         Me.Label6.TabIndex = 0
         Me.Label6.Text = "Bone Niche"
         '
         'Guna2PictureBox2
         '
         Me.Guna2PictureBox2.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Guna2PictureBox2.Image = Global.dashboard.My.Resources.Resources.familylawnlot
+        Me.Guna2PictureBox2.Image = Global.dashboard.My.Resources.Resources.boneniche
         Me.Guna2PictureBox2.ImageRotate = 0!
         Me.Guna2PictureBox2.Location = New System.Drawing.Point(0, 0)
-        Me.Guna2PictureBox2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Guna2PictureBox2.Name = "Guna2PictureBox2"
-        Me.Guna2PictureBox2.Size = New System.Drawing.Size(272, 156)
+        Me.Guna2PictureBox2.Size = New System.Drawing.Size(204, 127)
         Me.Guna2PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.Guna2PictureBox2.TabIndex = 1
         Me.Guna2PictureBox2.TabStop = False
         '
         'lblPrice3
         '
-        Me.lblPrice3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.lblPrice3.Font = New System.Drawing.Font("Roboto", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblPrice3.ForeColor = System.Drawing.Color.White
-        Me.lblPrice3.Location = New System.Drawing.Point(13, 209)
-        Me.lblPrice3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblPrice3.Location = New System.Drawing.Point(10, 170)
         Me.lblPrice3.Name = "lblPrice3"
-        Me.lblPrice3.Size = New System.Drawing.Size(240, 31)
+        Me.lblPrice3.Size = New System.Drawing.Size(180, 25)
         Me.lblPrice3.TabIndex = 16
         Me.lblPrice3.Text = "Price:"
         '
         'lblDesc3
         '
-        Me.lblDesc3.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.0!)
+        Me.lblDesc3.Font = New System.Drawing.Font("Roboto", 9.75!)
         Me.lblDesc3.ForeColor = System.Drawing.Color.White
-        Me.lblDesc3.Location = New System.Drawing.Point(13, 246)
-        Me.lblDesc3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblDesc3.Location = New System.Drawing.Point(10, 200)
         Me.lblDesc3.Name = "lblDesc3"
-        Me.lblDesc3.Size = New System.Drawing.Size(240, 74)
+        Me.lblDesc3.Size = New System.Drawing.Size(180, 60)
         Me.lblDesc3.TabIndex = 17
         Me.lblDesc3.Text = "Description:"
         '
@@ -486,12 +458,11 @@ Partial Class frmPackages
         Me.Guna2Button1.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom), System.Windows.Forms.AnchorStyles)
         Me.Guna2Button1.Animated = True
         Me.Guna2Button1.FillColor = System.Drawing.Color.Blue
-        Me.Guna2Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Guna2Button1.Font = New System.Drawing.Font("Roboto", 12.0!, System.Drawing.FontStyle.Bold)
         Me.Guna2Button1.ForeColor = System.Drawing.Color.White
-        Me.Guna2Button1.Location = New System.Drawing.Point(127, 439)
-        Me.Guna2Button1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Guna2Button1.Location = New System.Drawing.Point(96, 278)
         Me.Guna2Button1.Name = "Guna2Button1"
-        Me.Guna2Button1.Size = New System.Drawing.Size(117, 44)
+        Me.Guna2Button1.Size = New System.Drawing.Size(88, 27)
         Me.Guna2Button1.TabIndex = 9
         Me.Guna2Button1.Text = "Update"
         '
@@ -500,12 +471,11 @@ Partial Class frmPackages
         Me.Guna2Button2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom), System.Windows.Forms.AnchorStyles)
         Me.Guna2Button2.Animated = True
         Me.Guna2Button2.FillColor = System.Drawing.Color.Blue
-        Me.Guna2Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.Guna2Button2.Font = New System.Drawing.Font("Roboto", 12.0!, System.Drawing.FontStyle.Bold)
         Me.Guna2Button2.ForeColor = System.Drawing.Color.White
-        Me.Guna2Button2.Location = New System.Drawing.Point(453, 439)
-        Me.Guna2Button2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Guna2Button2.Location = New System.Drawing.Point(341, 278)
         Me.Guna2Button2.Name = "Guna2Button2"
-        Me.Guna2Button2.Size = New System.Drawing.Size(117, 44)
+        Me.Guna2Button2.Size = New System.Drawing.Size(88, 27)
         Me.Guna2Button2.TabIndex = 10
         Me.Guna2Button2.Text = "Update"
         '
@@ -514,12 +484,11 @@ Partial Class frmPackages
         Me.Guna2Button3.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom), System.Windows.Forms.AnchorStyles)
         Me.Guna2Button3.Animated = True
         Me.Guna2Button3.FillColor = System.Drawing.Color.Blue
-        Me.Guna2Button3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.Guna2Button3.Font = New System.Drawing.Font("Roboto", 12.0!, System.Drawing.FontStyle.Bold)
         Me.Guna2Button3.ForeColor = System.Drawing.Color.White
-        Me.Guna2Button3.Location = New System.Drawing.Point(779, 439)
-        Me.Guna2Button3.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Guna2Button3.Location = New System.Drawing.Point(586, 278)
         Me.Guna2Button3.Name = "Guna2Button3"
-        Me.Guna2Button3.Size = New System.Drawing.Size(117, 44)
+        Me.Guna2Button3.Size = New System.Drawing.Size(88, 27)
         Me.Guna2Button3.TabIndex = 11
         Me.Guna2Button3.Text = "Update"
         '
@@ -528,12 +497,11 @@ Partial Class frmPackages
         Me.Guna2Button4.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom), System.Windows.Forms.AnchorStyles)
         Me.Guna2Button4.Animated = True
         Me.Guna2Button4.FillColor = System.Drawing.Color.Blue
-        Me.Guna2Button4.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.Guna2Button4.Font = New System.Drawing.Font("Roboto", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Guna2Button4.ForeColor = System.Drawing.Color.White
-        Me.Guna2Button4.Location = New System.Drawing.Point(1105, 439)
-        Me.Guna2Button4.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Guna2Button4.Location = New System.Drawing.Point(831, 278)
         Me.Guna2Button4.Name = "Guna2Button4"
-        Me.Guna2Button4.Size = New System.Drawing.Size(117, 44)
+        Me.Guna2Button4.Size = New System.Drawing.Size(88, 27)
         Me.Guna2Button4.TabIndex = 12
         Me.Guna2Button4.Text = "Update"
         '
@@ -545,12 +513,11 @@ Partial Class frmPackages
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 42.10526!))
         Me.TableLayoutPanel2.Controls.Add(Me.Label3, 1, 0)
         Me.TableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Top
-        Me.TableLayoutPanel2.Location = New System.Drawing.Point(0, 100)
-        Me.TableLayoutPanel2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TableLayoutPanel2.Location = New System.Drawing.Point(0, 81)
         Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
         Me.TableLayoutPanel2.RowCount = 1
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel2.Size = New System.Drawing.Size(1357, 53)
+        Me.TableLayoutPanel2.Size = New System.Drawing.Size(1018, 43)
         Me.TableLayoutPanel2.TabIndex = 12
         '
         'Label3
@@ -559,24 +526,22 @@ Partial Class frmPackages
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label3.Location = New System.Drawing.Point(576, 0)
-        Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label3.Location = New System.Drawing.Point(434, 0)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(204, 46)
+        Me.Label3.Size = New System.Drawing.Size(148, 43)
         Me.Label3.TabIndex = 0
         Me.Label3.Text = "Packages"
         '
         'frmPackages
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(14, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(90, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(1357, 688)
+        Me.ClientSize = New System.Drawing.Size(1018, 559)
         Me.Controls.Add(Me.TableLayoutPanel1)
         Me.Controls.Add(Me.TableLayoutPanel2)
         Me.Controls.Add(Me.Guna2Panel2)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "frmPackages"
         Me.Text = "frmPackages"
         Me.Guna2Panel2.ResumeLayout(False)

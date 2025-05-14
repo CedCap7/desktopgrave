@@ -62,22 +62,22 @@ Partial Class frmUpdateClient
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Gill Sans MT", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.Font = New System.Drawing.Font("Roboto Condensed", 11.25!, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label5.Location = New System.Drawing.Point(15, 41)
+        Me.Label5.Location = New System.Drawing.Point(14, 42)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(135, 18)
+        Me.Label5.Size = New System.Drawing.Size(151, 19)
         Me.Label5.TabIndex = 1
         Me.Label5.Text = "Update client information"
         '
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Font = New System.Drawing.Font("Century Gothic", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.Font = New System.Drawing.Font("Roboto", 20.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.ForeColor = System.Drawing.SystemColors.Control
         Me.Label6.Location = New System.Drawing.Point(12, 9)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(266, 32)
+        Me.Label6.Size = New System.Drawing.Size(249, 33)
         Me.Label6.TabIndex = 0
         Me.Label6.Text = "Update Client Form"
         '
@@ -154,7 +154,7 @@ Partial Class frmUpdateClient
         Me.chkMale.CheckedState.FillColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.chkMale.CheckMarkColor = System.Drawing.Color.Green
         Me.chkMale.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.chkMale.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkMale.Font = New System.Drawing.Font("Roboto", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.chkMale.ForeColor = System.Drawing.SystemColors.ControlText
         Me.chkMale.Location = New System.Drawing.Point(19, 206)
         Me.chkMale.Margin = New System.Windows.Forms.Padding(2)
@@ -203,7 +203,7 @@ Partial Class frmUpdateClient
         Me.chkFemale.CheckedState.FillColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.chkFemale.CheckMarkColor = System.Drawing.Color.Green
         Me.chkFemale.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.chkFemale.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkFemale.Font = New System.Drawing.Font("Roboto", 11.25!, System.Drawing.FontStyle.Bold)
         Me.chkFemale.ForeColor = System.Drawing.SystemColors.ControlText
         Me.chkFemale.Location = New System.Drawing.Point(139, 206)
         Me.chkFemale.Margin = New System.Windows.Forms.Padding(2)
@@ -262,9 +262,9 @@ Partial Class frmUpdateClient
         Me.label2.Location = New System.Drawing.Point(20, 178)
         Me.label2.Margin = New System.Windows.Forms.Padding(2, 10, 2, 0)
         Me.label2.Name = "label2"
-        Me.label2.Size = New System.Drawing.Size(36, 20)
+        Me.label2.Size = New System.Drawing.Size(62, 20)
         Me.label2.TabIndex = 2
-        Me.label2.Text = "Sex"
+        Me.label2.Text = "Gender"
         '
         'txtLastName
         '
@@ -329,12 +329,12 @@ Partial Class frmUpdateClient
         'label1
         '
         Me.label1.AutoSize = True
-        Me.label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.label1.Font = New System.Drawing.Font("Roboto", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.label1.ForeColor = System.Drawing.Color.White
         Me.label1.Location = New System.Drawing.Point(20, 22)
         Me.label1.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.label1.Name = "label1"
-        Me.label1.Size = New System.Drawing.Size(89, 20)
+        Me.label1.Size = New System.Drawing.Size(82, 20)
         Me.label1.TabIndex = 1
         Me.label1.Text = "Full Name"
         '
@@ -393,7 +393,7 @@ Partial Class frmUpdateClient
         Me.btnUpdateClient.BorderThickness = 1
         Me.btnUpdateClient.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.btnUpdateClient.FillColor = System.Drawing.Color.LimeGreen
-        Me.btnUpdateClient.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnUpdateClient.Font = New System.Drawing.Font("Roboto", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnUpdateClient.ForeColor = System.Drawing.Color.White
         Me.btnUpdateClient.Location = New System.Drawing.Point(480, 301)
         Me.btnUpdateClient.Margin = New System.Windows.Forms.Padding(2)
@@ -407,8 +407,8 @@ Partial Class frmUpdateClient
         Me.btnCancel.BackColor = System.Drawing.Color.Transparent
         Me.btnCancel.BorderRadius = 17
         Me.btnCancel.BorderThickness = 1
-        Me.btnCancel.FillColor = System.Drawing.Color.LimeGreen
-        Me.btnCancel.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnCancel.FillColor = System.Drawing.Color.Brown
+        Me.btnCancel.Font = New System.Drawing.Font("Roboto", 12.0!, System.Drawing.FontStyle.Bold)
         Me.btnCancel.ForeColor = System.Drawing.Color.White
         Me.btnCancel.Location = New System.Drawing.Point(238, 301)
         Me.btnCancel.Margin = New System.Windows.Forms.Padding(2)

@@ -136,11 +136,11 @@ Partial Class frmDashboard
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Roboto Condensed", 24.0!, System.Drawing.FontStyle.Bold)
+        Me.Label1.Font = New System.Drawing.Font("Roboto", 24.0!, System.Drawing.FontStyle.Bold)
         Me.Label1.ForeColor = System.Drawing.SystemColors.Control
         Me.Label1.Location = New System.Drawing.Point(12, 9)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(155, 39)
+        Me.Label1.Size = New System.Drawing.Size(172, 39)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Dashboard"
         '
