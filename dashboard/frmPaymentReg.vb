@@ -1,8 +1,8 @@
 Imports MySql.Data.MySqlClient
 Imports System.IO
 Imports System.Diagnostics
-Imports iTextSharp.text
-Imports iTextSharp.text.pdf
+Imports PdfSharp.Pdf
+Imports PdfSharp.Drawing
 Public Class frmPaymentReg
     Private Sub frmPaymentReg_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LoadPaymentData()
@@ -93,6 +93,14 @@ Public Class frmPaymentReg
         End Try
     End Sub
 
+    Public Enum XFontStyle
+        Regular = 0
+        Bold = 1
+        Italic = 2
+        BoldItalic = 3
+    End Enum
+
+
     Private Sub txtSearch_TextChanged(sender As Object, e As EventArgs) Handles txtSearch.TextChanged
         ' Call LoadPaymentData with the current value in the search box
         LoadPaymentData(txtSearch.Text)
@@ -164,28 +172,28 @@ Public Class frmPaymentReg
             tempConnection.Open()
 
             Dim sql As String = "
-                SELECT 
-                    c.Client_ID, 
-                    CONCAT(COALESCE(c.FirstName, ''), ' ', COALESCE(LEFT(c.MiddleName, 1), ''), '. ', COALESCE(c.LastName, '')) AS FullName,
-                    r.Reservation_ID,
-                    p.payment_date,
-                    p.payment_status AS payment_type,
-                    p.total_Paid,
-                    p.total_Amount,
-                    CASE 
-                        WHEN p.total_Paid < p.total_Amount THEN 'Partial' 
-                        ELSE 'Fully Paid' 
-                    END AS PaymentStatus
-                FROM 
-                    client c
-                INNER JOIN 
-                    reservation r ON c.Client_ID = r.Client_ID
-                INNER JOIN 
-                    payment p ON r.Reservation_ID = p.Reservation_ID
-                WHERE
-                    p.payment_date BETWEEN @FromDate AND @ToDate
-                ORDER BY 
-                    p.payment_date, c.Client_ID"
+            SELECT 
+                c.Client_ID, 
+                CONCAT(COALESCE(c.FirstName, ''), ' ', COALESCE(LEFT(c.MiddleName, 1), ''), '. ', COALESCE(c.LastName, '')) AS FullName,
+                r.Reservation_ID,
+                p.payment_date,
+                p.payment_status AS payment_type,
+                p.total_Paid,
+                p.total_Amount,
+                CASE 
+                    WHEN p.total_Paid < p.total_Amount THEN 'Partial' 
+                    ELSE 'Fully Paid' 
+                END AS PaymentStatus
+            FROM 
+                client c
+            INNER JOIN 
+                reservation r ON c.Client_ID = r.Client_ID
+            INNER JOIN 
+                payment p ON r.Reservation_ID = p.Reservation_ID
+            WHERE
+                p.payment_date BETWEEN @FromDate AND @ToDate
+            ORDER BY 
+                p.payment_date, c.Client_ID"
 
             Dim dataTable As New DataTable()
 
@@ -195,82 +203,44 @@ Public Class frmPaymentReg
                 adapter.Fill(dataTable)
             End Using
 
-            ' Generate PDF using iTextSharp (make sure to add the reference)
-            ' You need to add iTextSharp via NuGet or reference the DLL
-            Dim document As New iTextSharp.text.Document()
-            Dim writer As iTextSharp.text.pdf.PdfWriter = iTextSharp.text.pdf.PdfWriter.GetInstance(document, New System.IO.FileStream(saveDialog.FileName, System.IO.FileMode.Create))
+            ' Generate PDF using PDFSharp
+            Dim document As New PdfDocument()
+            document.Info.Title = "Payment Report"
 
-            ' Set document properties
-            document.Open()
-            document.AddTitle("Payment Report")
-            document.AddAuthor("DCCMS System")
-            document.AddCreationDate()
+            ' Create a new page
+            Dim page As PdfPage = document.AddPage()
+            Dim gfx As XGraphics = XGraphics.FromPdfPage(page)
+
+            ' Set font
+            Dim font As XFont = New XFont("Verdana", 12, XFontStyle.Regular)
 
             ' Add header
-            Dim headerFont As iTextSharp.text.Font = iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.HELVETICA_BOLD, 16)
-            Dim titleParagraph As New iTextSharp.text.Paragraph("Payment Report", headerFont)
-            titleParagraph.Alignment = iTextSharp.text.Element.ALIGN_CENTER
-            document.Add(titleParagraph)
+            gfx.DrawString("Payment Report", New XFont("Verdana", 16, XFontStyle.Bold), XBrushes.Black, New XRect(0, 0, page.Width, page.Height), XStringFormats.TopCenter)
 
             ' Add date range info
-            Dim infoFont As iTextSharp.text.Font = iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.HELVETICA, 12)
-            Dim dateParagraph As New iTextSharp.text.Paragraph($"Date Range: {fromDate:MM/dd/yyyy} to {toDate:MM/dd/yyyy}", infoFont)
-            dateParagraph.Alignment = iTextSharp.text.Element.ALIGN_CENTER
-            document.Add(dateParagraph)
-            document.Add(New iTextSharp.text.Paragraph(" ")) ' Blank line
+            gfx.DrawString($"Date Range: {fromDate:MM/dd/yyyy} to {toDate:MM/dd/yyyy}", font, XBrushes.Black, New XRect(0, 30, page.Width, page.Height), XStringFormats.TopCenter)
 
             ' Create table
-            Dim table As New iTextSharp.text.pdf.PdfPTable(6)
-            table.WidthPercentage = 100
-
-            ' Table headers
-            Dim cellFont As iTextSharp.text.Font = iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.HELVETICA_BOLD, 10)
-            Dim headers As String() = {"Client ID", "Name", "Reservation ID", "Payment Date", "Amount Paid", "Status"}
-
-            For Each header In headers
-                Dim cell As New iTextSharp.text.pdf.PdfPCell(New iTextSharp.text.Phrase(header, cellFont))
-                cell.HorizontalAlignment = iTextSharp.text.Element.ALIGN_CENTER
-                cell.BackgroundColor = New iTextSharp.text.BaseColor(220, 220, 220)
-                table.AddCell(cell)
-            Next
-
-            ' Add data rows
-            Dim normalFont As iTextSharp.text.Font = iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.HELVETICA, 10)
-
-            Dim totalPaid As Decimal = 0
-            Dim totalDue As Decimal = 0
-
+            Dim yPoint As Double = 60
             For Each row As DataRow In dataTable.Rows
-                table.AddCell(New iTextSharp.text.Phrase(row("Client_ID").ToString(), normalFont))
-                table.AddCell(New iTextSharp.text.Phrase(row("FullName").ToString(), normalFont))
-                table.AddCell(New iTextSharp.text.Phrase(row("Reservation_ID").ToString(), normalFont))
+                gfx.DrawString(row("Client_ID").ToString(), font, XBrushes.Black, New XRect(20, yPoint, page.Width, page.Height), XStringFormats.TopLeft)
+                gfx.DrawString(row("FullName").ToString(), font, XBrushes.Black, New XRect(150, yPoint, page.Width, page.Height), XStringFormats.TopLeft)
+                gfx.DrawString(row("Reservation_ID").ToString(), font, XBrushes.Black, New XRect(300, yPoint, page.Width, page.Height), XStringFormats.TopLeft)
 
                 ' Safely handle DBNull for payment_date, total_Paid, total_Amount, and PaymentStatus
                 Dim paymentDateStr As String = If(IsDBNull(row("payment_date")), "N/A", Convert.ToDateTime(row("payment_date")).ToString("MM/dd/yyyy"))
                 Dim totalPaidVal As Decimal = If(IsDBNull(row("total_Paid")), 0D, Convert.ToDecimal(row("total_Paid")))
-                Dim totalAmountVal As Decimal = If(IsDBNull(row("total_Amount")), 0D, Convert.ToDecimal(row("total_Amount")))
                 Dim paymentStatusStr As String = If(IsDBNull(row("PaymentStatus")), "N/A", row("PaymentStatus").ToString())
 
-                table.AddCell(New iTextSharp.text.Phrase(paymentDateStr, normalFont))
-                table.AddCell(New iTextSharp.text.Phrase(totalPaidVal.ToString("C"), normalFont))
-                table.AddCell(New iTextSharp.text.Phrase(paymentStatusStr, normalFont))
+                gfx.DrawString(paymentDateStr, font, XBrushes.Black, New XRect(450, yPoint, page.Width, page.Height), XStringFormats.TopLeft)
+                gfx.DrawString(totalPaidVal.ToString("C"), font, XBrushes.Black, New XRect(550, yPoint, page.Width, page.Height), XStringFormats.TopLeft)
+                gfx.DrawString(paymentStatusStr, font, XBrushes.Black, New XRect(650, yPoint, page.Width, page.Height), XStringFormats.TopLeft)
 
-                totalPaid += totalPaidVal
-                totalDue += totalAmountVal
+                yPoint += 20 ' Move down for the next row
             Next
 
-            document.Add(table)
-
-            ' Add summary information
-            document.Add(New iTextSharp.text.Paragraph(" ")) ' Blank line
-            Dim summaryFont As iTextSharp.text.Font = iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.HELVETICA_BOLD, 12)
-            document.Add(New iTextSharp.text.Paragraph($"Total Amount Paid: {totalPaid:C}", summaryFont))
-            document.Add(New iTextSharp.text.Paragraph($"Total Amount Due: {totalDue:C}", summaryFont))
-            document.Add(New iTextSharp.text.Paragraph($"Balance: {(totalDue - totalPaid):C}", summaryFont))
-
-            ' Close document
-            document.Close()
-            writer.Close()
+            ' Save the document
+            document.Save(saveDialog.FileName)
 
             MessageBox.Show($"Payment report has been saved to {saveDialog.FileName}", "Export Successful", MessageBoxButtons.OK, MessageBoxIcon.Information)
 

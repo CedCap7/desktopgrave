@@ -1,6 +1,6 @@
 Imports MySql.Data.MySqlClient
-Imports iTextSharp.text
-Imports iTextSharp.text.pdf
+Imports PdfSharp.Pdf
+Imports PdfSharp.Drawing
 Imports System.IO
 
 Public Class frmReservationsReg
@@ -9,6 +9,13 @@ Public Class frmReservationsReg
         KeyPreview = True
         LoadReservations()
     End Sub
+
+    Public Enum XFontStyle
+        Regular = 0
+        Bold = 1
+        Italic = 2
+        BoldItalic = 3
+    End Enum
 
     Private Sub txtSearch_TextChanged(sender As Object, e As EventArgs) Handles txtSearch.TextChanged
         ' Call the LoadReservations method with the current search text.
@@ -217,44 +224,25 @@ Public Class frmReservationsReg
             saveDialog.FileName = "ReservationList_" & DateTime.Now.ToString("yyyyMMdd") & ".pdf"
 
             If saveDialog.ShowDialog() = DialogResult.OK Then
-                ' Initialize iTextSharp with proper encoding
-                Dim baseFont As BaseFont = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1252, BaseFont.NOT_EMBEDDED)
-                Dim doc As New Document(PageSize.A4.Rotate(), 40, 40, 40, 40)
-                Dim writer As PdfWriter = PdfWriter.GetInstance(doc, New FileStream(saveDialog.FileName, FileMode.Create))
+                ' Initialize PDFSharp
+                Dim document As New PdfDocument()
+                document.Info.Title = "Reservation List"
 
-                doc.Open()
+                ' Create a new page
+                Dim page As PdfPage = document.AddPage()
+                Dim gfx As XGraphics = XGraphics.FromPdfPage(page)
+
+                ' Define fonts
+                Dim fontRegular As New XFont("Verdana", 12, XFontStyle.Regular) ' Regular font
+                Dim fontBold As New XFont("Verdana", 16, XFontStyle.Bold) ' Bold font
 
                 ' Add title
-                Dim titleFont As New Font(baseFont, 16)
-                Dim title As New Paragraph("Reservation List", titleFont)
-                title.Alignment = Element.ALIGN_CENTER
-                title.SpacingAfter = 20
-                doc.Add(title)
+                gfx.DrawString("Reservation List", fontBold, XBrushes.Black, New XRect(0, 0, page.Width, page.Height), XStringFormats.TopCenter)
 
                 ' Create table with 7 columns
-                Dim table As New PdfPTable(7)
-                table.WidthPercentage = 100
-
-                ' Set relative column widths
-                Dim widths As Single() = {0.8F, 1.8F, 2.5F, 1.5F, 1.5F, 1.5F, 1.2F}
-                table.SetWidths(widths)
-
-                ' Add headers
-                Dim headerFont As New Font(baseFont, 10, Font.Bold)
-                Dim headers() As String = {"Client ID", "Client Name", "Plot Location", "Total Paid", "Total Amount", "Reservation Date", "Payment"}
-
-                For Each header In headers
-                    Dim cell As New PdfPCell(New Phrase(header, headerFont))
-                    cell.HorizontalAlignment = Element.ALIGN_CENTER
-                    cell.BackgroundColor = New BaseColor(240, 240, 240)
-                    cell.Padding = 5
-                    table.AddCell(cell)
-                Next
-
-                ' Add data
-                Dim cellFont As New Font(baseFont, 9)
+                Dim yPoint As Double = 50
                 For Each item As ListViewItem In ReservationList.Items
-                    If item.SubItems.Count < 7 Then  ' Ensure there are enough subitems
+                    If item.SubItems.Count < 7 Then
                         MessageBox.Show("Error: Some rows in the list have missing data.", "Data Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                         Exit Sub
                     End If
@@ -262,22 +250,13 @@ Public Class frmReservationsReg
                     ' Only use first 7 columns
                     For i As Integer = 0 To 6
                         Dim cellText As String = If(i < item.SubItems.Count, item.SubItems(i).Text, "N/A")
-                        Dim cell As New PdfPCell(New Phrase(cellText, cellFont))
-                        cell.HorizontalAlignment = If(i = 1 OrElse i = 2, Element.ALIGN_LEFT, Element.ALIGN_CENTER)
-                        cell.Padding = 5
-                        table.AddCell(cell)
+                        gfx.DrawString(cellText, fontRegular, XBrushes.Black, New XRect(20 + (i * 100), yPoint, page.Width, page.Height), XStringFormats.TopLeft)
                     Next
+                    yPoint += 20 ' Move down for the next row
                 Next
 
-                doc.Add(table)
-
-                ' Add footer with date
-                Dim footer As New Paragraph("Generated on: " & DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), cellFont)
-                footer.Alignment = Element.ALIGN_RIGHT
-                footer.SpacingBefore = 20
-                doc.Add(footer)
-
-                doc.Close()
+                ' Save the document
+                document.Save(saveDialog.FileName)
 
                 MessageBox.Show("PDF file has been created successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Process.Start(saveDialog.FileName)
