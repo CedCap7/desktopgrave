@@ -170,7 +170,7 @@ Public Class frmPlotPurchAndAssign
                 cmbDeceased.DataSource = dt
                 cmbDeceased.DisplayMember = "FullName"
                 cmbDeceased.ValueMember = "Deceased_ID"
-                cmbDeceased.SelectedIndex = 0
+                cmbDeceased.SelectedIndex = 0 ' Set the default selected index to the first item
             End Using
         Catch ex As Exception
             MessageBox.Show("Error loading deceased list: " & ex.Message)
@@ -279,15 +279,16 @@ Public Class frmPlotPurchAndAssign
             Return
         End If
 
-        If _selectedPlots.Count < currentQuantity.Value Then
-            MessageBox.Show($"Please select {currentQuantity.Value} plots before proceeding", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            Return
-        End If
-
         Dim deceasedId As Integer? = Nothing
-        If cmbDeceased.SelectedItem IsNot Nothing Then
+        Dim status As Integer = 0 ' Default status to 0 (no deceased selected)
+
+        ' Check the selected index of cmbDeceased
+        If cmbDeceased.SelectedIndex = 0 Then
+            status = 0 ' No deceased selected
+        ElseIf cmbDeceased.SelectedItem IsNot Nothing Then
             Dim selectedRow As DataRowView = DirectCast(cmbDeceased.SelectedItem, DataRowView)
             deceasedId = Convert.ToInt32(selectedRow("Deceased_ID"))
+            status = 1 ' Set status to 1 if a deceased is selected
         End If
 
         Dim clientId As Integer = selectedClientId
@@ -312,7 +313,6 @@ Public Class frmPlotPurchAndAssign
                 Module1.cn.Open()
             End If
 
-
             Using transaction As MySqlTransaction = Module1.cn.BeginTransaction()
                 Try
                     ' Declare and initialize selectedRow here
@@ -322,13 +322,14 @@ Public Class frmPlotPurchAndAssign
 
                     ' Insert into reservation table
                     Dim reservationQuery As String = "INSERT INTO reservation (Client_ID, p_id, Reservation_Date, Status, Quantity) " &
-                 "VALUES (@Client_ID, @p_id, @Reservation_Date, '1', '1')"
+                     "VALUES (@Client_ID, @p_id, @Reservation_Date, @Status, '1')"
 
                     Dim reservationId As Integer
                     Using cmd As New MySqlCommand(reservationQuery & "; SELECT LAST_INSERT_ID();", Module1.cn, transaction)
                         cmd.Parameters.AddWithValue("@Client_ID", clientId)
                         cmd.Parameters.AddWithValue("@p_id", _selectedPlots(0).PlotId)
                         cmd.Parameters.AddWithValue("@Reservation_Date", DateTime.Now)
+                        cmd.Parameters.AddWithValue("@Status", status) ' Insert the status value
 
                         reservationId = Convert.ToInt32(cmd.ExecuteScalar())
                     End Using
@@ -351,20 +352,16 @@ Public Class frmPlotPurchAndAssign
                         cmd.ExecuteNonQuery()
                     End Using
 
-                    ' Insert into transaction table
-                    ' Generate a unique transaction ID
-                    Dim transactionId As String = GenerateUniqueTransactionId()
-                    Dim locationType As Integer = GetLocationTypeId(_selectedPlots(0).PlotId)
-                    Dim transactionQuery As String = "INSERT INTO transaction (Transaction_ID, Date, Amount, Client_ID, Type_ID, Deceased_ID) " &
-    "VALUES (@Transaction_ID, @Date, @Amount, @Client_ID, @Type_ID, @Deceased_ID)"
+                    ' Insert into transaction table without Deceased_ID
+                    Dim transactionQuery As String = "INSERT INTO transaction (Transaction_ID, Date, Amount, Client_ID, Type_ID) " &
+"VALUES (@Transaction_ID, @Date, @Amount, @Client_ID, @Type_ID)"
 
                     Using cmd As New MySqlCommand(transactionQuery, Module1.cn, transaction)
-                        cmd.Parameters.AddWithValue("@Transaction_ID", transactionId)
+                        cmd.Parameters.AddWithValue("@Transaction_ID", GenerateUniqueTransactionId())
                         cmd.Parameters.AddWithValue("@Date", DateTime.Now)
                         cmd.Parameters.AddWithValue("@Amount", paidAmount)
                         cmd.Parameters.AddWithValue("@Client_ID", clientId)
-                        cmd.Parameters.AddWithValue("@Type_ID", locationType)
-                        cmd.Parameters.AddWithValue("@Deceased_ID", If(deceasedId.HasValue, deceasedId.Value, DBNull.Value))
+                        cmd.Parameters.AddWithValue("@Type_ID", GetLocationTypeId(_selectedPlots(0).PlotId))
                         cmd.ExecuteNonQuery()
                     End Using
 
