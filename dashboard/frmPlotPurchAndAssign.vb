@@ -11,6 +11,7 @@ Public Class frmPlotPurchAndAssign
     Private _currentPlotCount As Integer = 0
     Private clientSuggestions As DataTable
     Private selectedClientId As Integer = -1
+    Private _parentForm As frmPlotPurchAndAssign = Nothing
 
     ' Add public property to access selected plots
     Public ReadOnly Property SelectedPlots As Dictionary(Of Integer, (Level As Integer, LocationString As String))
@@ -233,6 +234,47 @@ Public Class frmPlotPurchAndAssign
             ' Update the plot location display
             UpdatePlotLocationsDisplay()
 
+            ' If this is not the first plot selection, validate adjacency and block
+            If _parentForm IsNot Nothing AndAlso _parentForm.SelectedPlots.Count > 0 Then
+                ' Get the last selected plot instead of the first one
+                Dim lastPlot = _parentForm.SelectedPlots.Last()
+
+                ' Get the last selected plot's details
+                Using cmd3 As New MySqlCommand("SELECT block, section, row, plot FROM location WHERE id = @plotId", Module1.cn)
+                    cmd3.Parameters.AddWithValue("@plotId", lastPlot.Key)
+                    Using reader As MySqlDataReader = cmd3.ExecuteReader()
+                        If reader.Read() Then
+                            ' Check if plots are in the same block
+                            If reader("block").ToString() <> locationString.Split(", ")(0) Then
+                                MessageBox.Show("Selected plot must be in the same block as the previous selection.", "Invalid Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                                Return
+                            End If
+
+                            ' Check if plots are in the same section
+                            If reader("section").ToString() <> locationString.Split(", ")(1) Then
+                                MessageBox.Show("Selected plot must be in the same section as the previous selection.", "Invalid Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                                Return
+                            End If
+
+                            ' Check if plots are in the same row
+                            If reader("row").ToString() <> locationString.Split(", ")(2) Then
+                                MessageBox.Show("Selected plot must be in the same row as the previous selection.", "Invalid Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                                Return
+                            End If
+
+                            ' Check if plots are adjacent
+                            Dim lastPlotNumber As Integer = Convert.ToInt32(reader("plot"))
+                            Dim currentPlotNumber As Integer = Convert.ToInt32(locationString.Split(", ")(3))
+
+                            If Math.Abs(lastPlotNumber - currentPlotNumber) <> 1 Then
+                                MessageBox.Show("Selected plot must be adjacent to the previous selection.", "Invalid Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                                Return
+                            End If
+                        End If
+                    End Using
+                End Using
+            End If
+
             ' Only close the form when we've reached the desired quantity
             If _currentPlotCount >= currentQuantity.Value Then
                 If _plotSelectionForm IsNot Nothing Then
@@ -316,23 +358,7 @@ Public Class frmPlotPurchAndAssign
 
                     ' For Family Lawn Lots, create one reservation for all adjacent plots
                     If packageType = 2 Then ' Family Lawn Lot
-                        ' Insert into reservation table with the first plot's ID
-                        Dim reservationQuery As String = "INSERT INTO reservation (Client_ID, p_id, Reservation_Date, Status, Quantity) " &
-                         "VALUES (@Client_ID, @p_id, @Reservation_Date, @Status, @Quantity)"
-
-                        Dim reservationId As Integer
-                        Using cmd As New MySqlCommand(reservationQuery & "; SELECT LAST_INSERT_ID();", Module1.cn, transaction)
-                            cmd.Parameters.AddWithValue("@Client_ID", clientId)
-                            cmd.Parameters.AddWithValue("@p_id", _selectedPlots.First().Key)
-                            cmd.Parameters.AddWithValue("@Reservation_Date", DateTime.Now)
-                            cmd.Parameters.AddWithValue("@Status", status)
-                            cmd.Parameters.AddWithValue("@Quantity", _selectedPlots.Count)
-
-                            reservationId = Convert.ToInt32(cmd.ExecuteScalar())
-                        End Using
-
-                        ' Insert all plot reservations
-                        Dim plotReservationQuery As String = "INSERT INTO plot_reservation (reservation_id, plot_id, level) VALUES (@reservation_id, @plot_id, @level)"
+                        ' Create separate reservations for each plot
                         For Each plot In _selectedPlots
                             ' Check if this plot is already reserved
                             Dim checkQuery As String = "SELECT COUNT(*) FROM plot_reservation WHERE plot_id = @plot_id"
@@ -344,36 +370,53 @@ Public Class frmPlotPurchAndAssign
                                 End If
                             End Using
 
+                            ' Insert into reservation table for each plot
+                            Dim reservationQuery As String = "INSERT INTO reservation (Client_ID, p_id, Reservation_Date, Status, Quantity) " &
+                             "VALUES (@Client_ID, @p_id, @Reservation_Date, @Status, @Quantity)"
+
+                            Dim reservationId As Integer
+                            Using cmd As New MySqlCommand(reservationQuery & "; SELECT LAST_INSERT_ID();", Module1.cn, transaction)
+                                cmd.Parameters.AddWithValue("@Client_ID", clientId)
+                                cmd.Parameters.AddWithValue("@p_id", packageType)
+                                cmd.Parameters.AddWithValue("@Reservation_Date", DateTime.Now)
+                                cmd.Parameters.AddWithValue("@Status", status)
+                                cmd.Parameters.AddWithValue("@Quantity", 1) ' Each plot gets quantity 1
+
+                                reservationId = Convert.ToInt32(cmd.ExecuteScalar())
+                            End Using
+
+                            ' Insert plot reservation
+                            Dim plotReservationQuery As String = "INSERT INTO plot_reservation (reservation_id, plot_id, level) VALUES (@reservation_id, @plot_id, @level)"
                             Using cmd As New MySqlCommand(plotReservationQuery, Module1.cn, transaction)
                                 cmd.Parameters.AddWithValue("@reservation_id", reservationId)
                                 cmd.Parameters.AddWithValue("@plot_id", plot.Key)
                                 cmd.Parameters.AddWithValue("@level", 0) ' Level is always 0 for lawn lots
                                 cmd.ExecuteNonQuery()
                             End Using
-                        Next
 
-                        ' Update deceased record if selected
-                        If deceasedId.HasValue Then
-                            Dim updateDeceasedQuery As String = "UPDATE deceased SET Plot_ID = @PlotID, Level = @Level WHERE Deceased_ID = @DeceasedID"
-                            Using cmd As New MySqlCommand(updateDeceasedQuery, Module1.cn, transaction)
-                                cmd.Parameters.AddWithValue("@PlotID", _selectedPlots.First().Key)
-                                cmd.Parameters.AddWithValue("@Level", 0)
-                                cmd.Parameters.AddWithValue("@DeceasedID", deceasedId.Value)
+                            ' Update deceased record if selected (only for the first plot)
+                            If deceasedId.HasValue AndAlso plot.Key = _selectedPlots.First().Key Then
+                                Dim updateDeceasedQuery As String = "UPDATE deceased SET Plot_ID = @PlotID, Level = @Level WHERE Deceased_ID = @DeceasedID"
+                                Using cmd As New MySqlCommand(updateDeceasedQuery, Module1.cn, transaction)
+                                    cmd.Parameters.AddWithValue("@PlotID", plot.Key)
+                                    cmd.Parameters.AddWithValue("@Level", 0)
+                                    cmd.Parameters.AddWithValue("@DeceasedID", deceasedId.Value)
+                                    cmd.ExecuteNonQuery()
+                                End Using
+                            End If
+
+                            ' Record the payment for each plot
+                            Dim paymentQuery As String = "INSERT INTO payment (Reservation_ID, total_Amount, total_Paid, Payment_Date, Payment_Status) " &
+                                "VALUES (@ReservationID, @TotalAmount, @TotalPaid, @PaymentDate, @PaymentStatus)"
+                            Using cmd As New MySqlCommand(paymentQuery, Module1.cn, transaction)
+                                cmd.Parameters.AddWithValue("@ReservationID", reservationId)
+                                cmd.Parameters.AddWithValue("@TotalAmount", packagePrice)
+                                cmd.Parameters.AddWithValue("@TotalPaid", 0)
+                                cmd.Parameters.AddWithValue("@PaymentDate", DateTime.Now)
+                                cmd.Parameters.AddWithValue("@PaymentStatus", 0)
                                 cmd.ExecuteNonQuery()
                             End Using
-                        End If
-
-                        ' Record the payment
-                        Dim paymentQuery As String = "INSERT INTO payment (Reservation_ID, total_Amount, total_Paid, Payment_Date, Payment_Status) " &
-                            "VALUES (@ReservationID, @TotalAmount, @TotalPaid, @PaymentDate, @PaymentStatus)"
-                        Using cmd As New MySqlCommand(paymentQuery, Module1.cn, transaction)
-                            cmd.Parameters.AddWithValue("@ReservationID", reservationId)
-                            cmd.Parameters.AddWithValue("@TotalAmount", totalAmount)
-                            cmd.Parameters.AddWithValue("@TotalPaid", 0)
-                            cmd.Parameters.AddWithValue("@PaymentDate", DateTime.Now)
-                            cmd.Parameters.AddWithValue("@PaymentStatus", 0)
-                            cmd.ExecuteNonQuery()
-                        End Using
+                        Next
 
                     Else
                         ' For other plot types, create separate reservations
