@@ -88,6 +88,7 @@ Public Class frmViewPayment
                 Dim sql As String = "
                 SELECT 
                     r.Reservation_ID,
+                    r.Reservation_Date,
                     CONCAT(
                         CASE 
                             WHEN l.type = 1 THEN 'Apartment'
@@ -114,7 +115,9 @@ Public Class frmViewPayment
                 WHERE 
                     r.Client_ID = @ClientID
                 GROUP BY 
-                    r.Reservation_ID, ReservedPlot"
+                    r.Reservation_ID, r.Reservation_Date, ReservedPlot
+                ORDER BY 
+                    r.Reservation_Date DESC"
 
                 Using cmd As New MySqlCommand(sql, tempConnection)
                     cmd.Parameters.AddWithValue("@ClientID", clientID)
@@ -123,6 +126,7 @@ Public Class frmViewPayment
                         ReservAccount.Items.Clear()
                         While dr.Read()
                             Dim reservationID As String = dr("Reservation_ID").ToString()
+                            Dim reservationDate As DateTime = Convert.ToDateTime(dr("Reservation_Date"))
                             Dim reservedPlot As String = dr("ReservedPlot").ToString()
 
                             ' Handle NULL values using COALESCE in SQL, but also check in VB.NET
@@ -138,6 +142,7 @@ Public Class frmViewPayment
                             newItem.SubItems.Add("₱" & totalAmount.ToString("N2"))
                             newItem.SubItems.Add("₱" & balance.ToString("N2"))
                             newItem.SubItems.Add(paymentStatus)
+                            newItem.SubItems.Add(reservationDate.ToString("yyyy-MM-dd HH:mm:ss"))
                         End While
                     End Using
                 End Using
@@ -228,4 +233,5 @@ Public Class frmViewPayment
         LoadClientPaymentData()
         LoadClientDetails()
     End Sub
+
 End Class

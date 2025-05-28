@@ -49,6 +49,7 @@ Partial Class frmViewPayment
         Me.ColumnHeader2 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader3 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.Label5 = New System.Windows.Forms.Label()
+        Me.datepurchased = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.Guna2Panel2.SuspendLayout()
         Me.Guna2ShadowPanel1.SuspendLayout()
         Me.Guna2ShadowPanel2.SuspendLayout()
@@ -204,7 +205,7 @@ Partial Class frmViewPayment
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.ReservAccount.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.ReservAccount.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.ReservAccount.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.id, Me.plot, Me.total_Paid, Me.total_Amount, Me.balance, Me.payment_status})
+        Me.ReservAccount.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.id, Me.plot, Me.total_Paid, Me.total_Amount, Me.balance, Me.payment_status, Me.datepurchased})
         Me.ReservAccount.Font = New System.Drawing.Font("Roboto", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ReservAccount.ForeColor = System.Drawing.SystemColors.Window
         Me.ReservAccount.FullRowSelect = True
@@ -345,6 +346,12 @@ Partial Class frmViewPayment
         Me.Label5.TabIndex = 9
         Me.Label5.Text = "Payment History"
         '
+        'datepurchased
+        '
+        Me.datepurchased.Text = "Date Purchased"
+        Me.datepurchased.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.datepurchased.Width = 170
+        '
         'frmViewPayment
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -399,4 +406,5 @@ Partial Class frmViewPayment
     Friend WithEvents ColumnHeader3 As ColumnHeader
     Friend WithEvents Label5 As Label
     Friend WithEvents btnPayment As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents datepurchased As ColumnHeader
 End Class

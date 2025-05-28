@@ -145,6 +145,9 @@ Public Class frmApplication
         Dim email As String = txtEmail.Text
         Dim gender As String = If(chkMale.Checked, "Male", If(chkFemale.Checked, "Female", "Not Specified"))
 
+        ' List to store validation errors
+        Dim validationErrors As New List(Of String)
+
         ' Open connection first
         Try
             ' Ensure we have a connection
@@ -158,47 +161,69 @@ Public Class frmApplication
 
             ' Validate required fields
             If String.IsNullOrWhiteSpace(address) Then
-                MessageBox.Show("Please enter a valid address.", "Missing Required Field", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                Return
+                validationErrors.Add("• Address is required")
             End If
 
             If String.IsNullOrWhiteSpace(mobile) Then
-                MessageBox.Show("Please enter a valid mobile number.", "Missing Required Field", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                Return
+                validationErrors.Add("• Mobile number is required")
             End If
 
             If Not chkMale.Checked AndAlso Not chkFemale.Checked Then
-                MessageBox.Show("Please select a gender.", "Missing Required Field", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                Return
+                validationErrors.Add("• Please select a gender")
             End If
 
-            ' Validate email (if provided)
-            If Not String.IsNullOrWhiteSpace(email) Then
-                ' Check if email already exists in database
-                sql = "SELECT COUNT(*) FROM client WHERE Email = @email"
-                Using cmd As New MySqlCommand(sql, cn)
-                    cmd.Parameters.AddWithValue("@email", email)
-                    Dim emailCount As Integer = CInt(cmd.ExecuteScalar())
-                    If emailCount > 0 Then
-                        MessageBox.Show("This email address is already registered.", "Duplicate Email", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                        Return
-                    End If
-                End Using
-            End If
-
-            ' Validate mobile number (if provided)
+            ' Validate mobile number format if provided
             If Not String.IsNullOrWhiteSpace(mobile) Then
                 ' Clean the mobile number
                 Dim cleanedMobile = mobile.Replace(" ", "").Replace("-", "")
 
                 ' Check if mobile number is valid
                 If cleanedMobile.Length <> 11 OrElse Not cleanedMobile.StartsWith("09") Then
-                    MessageBox.Show("Please enter a valid Philippine mobile number starting with '09' and exactly 11 digits.", "Invalid Mobile Number", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                    Return
+                    validationErrors.Add("• Mobile number must start with '09' and be exactly 11 digits")
+                Else
+                    ' Check for duplicate mobile number
+                    sql = "SELECT COUNT(*) FROM client WHERE Mobile = @mobile"
+                    Using cmd As New MySqlCommand(sql, cn)
+                        cmd.Parameters.AddWithValue("@mobile", cleanedMobile)
+                        Dim mobileCount As Integer = CInt(cmd.ExecuteScalar())
+                        If mobileCount > 0 Then
+                            validationErrors.Add("• This mobile number is already registered")
+                        End If
+                    End Using
+                    ' Use the cleaned mobile number for insertion
+                    mobile = cleanedMobile
                 End If
+            End If
 
-                ' Use the cleaned mobile number for insertion
-                mobile = cleanedMobile
+            ' Check for duplicate email if provided
+            If Not String.IsNullOrWhiteSpace(email) Then
+                sql = "SELECT COUNT(*) FROM client WHERE Email = @email"
+                Using cmd As New MySqlCommand(sql, cn)
+                    cmd.Parameters.AddWithValue("@email", email)
+                    Dim emailCount As Integer = CInt(cmd.ExecuteScalar())
+                    If emailCount > 0 Then
+                        validationErrors.Add("• This email address is already registered")
+                    End If
+                End Using
+            End If
+
+            ' Check for duplicate names
+            sql = "SELECT COUNT(*) FROM client WHERE FirstName = @firstName AND LastName = @lastName AND (MiddleName = @middleName OR (MiddleName IS NULL AND @middleName IS NULL))"
+            Using cmd As New MySqlCommand(sql, cn)
+                cmd.Parameters.AddWithValue("@firstName", firstName)
+                cmd.Parameters.AddWithValue("@lastName", lastName)
+                cmd.Parameters.AddWithValue("@middleName", If(String.IsNullOrWhiteSpace(middleName), DBNull.Value, middleName))
+                Dim nameCount As Integer = CInt(cmd.ExecuteScalar())
+                If nameCount > 0 Then
+                    validationErrors.Add("• A client with this name already exists")
+                End If
+            End Using
+
+            ' If there are any validation errors, show them all at once
+            If validationErrors.Count > 0 Then
+                Dim errorMessage As String = "Please correct the following:" & vbCrLf & vbCrLf & String.Join(vbCrLf, validationErrors)
+                MessageBox.Show(errorMessage, "Validation Errors", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Return
             End If
 
         Catch ex As Exception

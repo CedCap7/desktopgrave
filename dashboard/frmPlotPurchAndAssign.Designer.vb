@@ -27,7 +27,6 @@ Partial Class frmPlotPurchAndAssign
         Me.subSidePanel = New Guna.UI2.WinForms.Guna2Panel()
         Me.Guna2Panel4 = New Guna.UI2.WinForms.Guna2Panel()
         Me.Guna2ShadowPanel2 = New Guna.UI2.WinForms.Guna2ShadowPanel()
-        Me.lblPaidAmount = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.txtPackage = New System.Windows.Forms.Label()
@@ -37,8 +36,6 @@ Partial Class frmPlotPurchAndAssign
         Me.currentQuantity = New System.Windows.Forms.NumericUpDown()
         Me.txtPrice = New System.Windows.Forms.Label()
         Me.Guna2ShadowPanel1 = New Guna.UI2.WinForms.Guna2ShadowPanel()
-        Me.txtPaidAmount = New Guna.UI2.WinForms.Guna2TextBox()
-        Me.Label11 = New System.Windows.Forms.Label()
         Me.lstClientSuggestions = New System.Windows.Forms.ListBox()
         Me.txtClientSearch = New Guna.UI2.WinForms.Guna2TextBox()
         Me.Label9 = New System.Windows.Forms.Label()
@@ -99,7 +96,6 @@ Partial Class frmPlotPurchAndAssign
         'Guna2ShadowPanel2
         '
         Me.Guna2ShadowPanel2.BackColor = System.Drawing.Color.Transparent
-        Me.Guna2ShadowPanel2.Controls.Add(Me.lblPaidAmount)
         Me.Guna2ShadowPanel2.Controls.Add(Me.Label10)
         Me.Guna2ShadowPanel2.Controls.Add(Me.Label4)
         Me.Guna2ShadowPanel2.Controls.Add(Me.txtPackage)
@@ -115,18 +111,6 @@ Partial Class frmPlotPurchAndAssign
         Me.Guna2ShadowPanel2.ShadowColor = System.Drawing.Color.Black
         Me.Guna2ShadowPanel2.Size = New System.Drawing.Size(365, 203)
         Me.Guna2ShadowPanel2.TabIndex = 0
-        '
-        'lblPaidAmount
-        '
-        Me.lblPaidAmount.AutoSize = True
-        Me.lblPaidAmount.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblPaidAmount.ForeColor = System.Drawing.Color.White
-        Me.lblPaidAmount.Location = New System.Drawing.Point(15, 89)
-        Me.lblPaidAmount.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.lblPaidAmount.Name = "lblPaidAmount"
-        Me.lblPaidAmount.Size = New System.Drawing.Size(92, 17)
-        Me.lblPaidAmount.TabIndex = 27
-        Me.lblPaidAmount.Text = "Paid Amount:"
         '
         'Label10
         '
@@ -194,7 +178,7 @@ Partial Class frmPlotPurchAndAssign
         Me.lblQuantity.AutoSize = True
         Me.lblQuantity.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblQuantity.ForeColor = System.Drawing.Color.White
-        Me.lblQuantity.Location = New System.Drawing.Point(15, 106)
+        Me.lblQuantity.Location = New System.Drawing.Point(15, 89)
         Me.lblQuantity.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblQuantity.Name = "lblQuantity"
         Me.lblQuantity.Size = New System.Drawing.Size(65, 17)
@@ -203,7 +187,7 @@ Partial Class frmPlotPurchAndAssign
         '
         'currentQuantity
         '
-        Me.currentQuantity.Location = New System.Drawing.Point(85, 107)
+        Me.currentQuantity.Location = New System.Drawing.Point(85, 90)
         Me.currentQuantity.Name = "currentQuantity"
         Me.currentQuantity.Size = New System.Drawing.Size(46, 20)
         Me.currentQuantity.TabIndex = 22
@@ -225,8 +209,6 @@ Partial Class frmPlotPurchAndAssign
         'Guna2ShadowPanel1
         '
         Me.Guna2ShadowPanel1.BackColor = System.Drawing.Color.Transparent
-        Me.Guna2ShadowPanel1.Controls.Add(Me.txtPaidAmount)
-        Me.Guna2ShadowPanel1.Controls.Add(Me.Label11)
         Me.Guna2ShadowPanel1.Controls.Add(Me.lstClientSuggestions)
         Me.Guna2ShadowPanel1.Controls.Add(Me.txtClientSearch)
         Me.Guna2ShadowPanel1.Controls.Add(Me.Label9)
@@ -246,44 +228,6 @@ Partial Class frmPlotPurchAndAssign
         Me.Guna2ShadowPanel1.ShadowColor = System.Drawing.Color.Black
         Me.Guna2ShadowPanel1.Size = New System.Drawing.Size(365, 433)
         Me.Guna2ShadowPanel1.TabIndex = 0
-        '
-        'txtPaidAmount
-        '
-        Me.txtPaidAmount.Animated = True
-        Me.txtPaidAmount.BorderColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(171, Byte), Integer), CType(CType(189, Byte), Integer))
-        Me.txtPaidAmount.BorderRadius = 5
-        Me.txtPaidAmount.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.txtPaidAmount.DefaultText = ""
-        Me.txtPaidAmount.DisabledState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer))
-        Me.txtPaidAmount.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer))
-        Me.txtPaidAmount.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
-        Me.txtPaidAmount.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
-        Me.txtPaidAmount.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtPaidAmount.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.txtPaidAmount.ForeColor = System.Drawing.Color.Black
-        Me.txtPaidAmount.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtPaidAmount.Location = New System.Drawing.Point(18, 257)
-        Me.txtPaidAmount.Margin = New System.Windows.Forms.Padding(4)
-        Me.txtPaidAmount.Name = "txtPaidAmount"
-        Me.txtPaidAmount.PlaceholderForeColor = System.Drawing.Color.Gray
-        Me.txtPaidAmount.PlaceholderText = "Input Amount"
-        Me.txtPaidAmount.SelectedText = ""
-        Me.txtPaidAmount.Size = New System.Drawing.Size(334, 36)
-        Me.txtPaidAmount.TabIndex = 65
-        Me.txtPaidAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
-        'Label11
-        '
-        Me.Label11.AutoSize = True
-        Me.Label11.BackColor = System.Drawing.Color.Transparent
-        Me.Label11.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label11.ForeColor = System.Drawing.Color.White
-        Me.Label11.Location = New System.Drawing.Point(15, 236)
-        Me.Label11.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(88, 17)
-        Me.Label11.TabIndex = 64
-        Me.Label11.Text = "Amount Paid"
         '
         'lstClientSuggestions
         '
@@ -384,7 +328,7 @@ Partial Class frmPlotPurchAndAssign
         Me.btnSelectPlot.HoverState.BorderColor = System.Drawing.SystemColors.Control
         Me.btnSelectPlot.HoverState.FillColor = System.Drawing.Color.Black
         Me.btnSelectPlot.Image = Global.dashboard.My.Resources.Resources.map
-        Me.btnSelectPlot.Location = New System.Drawing.Point(18, 299)
+        Me.btnSelectPlot.Location = New System.Drawing.Point(18, 248)
         Me.btnSelectPlot.Margin = New System.Windows.Forms.Padding(2)
         Me.btnSelectPlot.Name = "btnSelectPlot"
         Me.btnSelectPlot.Size = New System.Drawing.Size(334, 36)
@@ -408,7 +352,7 @@ Partial Class frmPlotPurchAndAssign
         Me.lblPlotLocation.AutoSize = True
         Me.lblPlotLocation.Font = New System.Drawing.Font("Roboto", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblPlotLocation.ForeColor = System.Drawing.Color.White
-        Me.lblPlotLocation.Location = New System.Drawing.Point(15, 355)
+        Me.lblPlotLocation.Location = New System.Drawing.Point(15, 307)
         Me.lblPlotLocation.Name = "lblPlotLocation"
         Me.lblPlotLocation.Size = New System.Drawing.Size(53, 19)
         Me.lblPlotLocation.TabIndex = 24
@@ -462,7 +406,7 @@ Partial Class frmPlotPurchAndAssign
         Me.Label7.AutoSize = True
         Me.Label7.Font = New System.Drawing.Font("Roboto", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.ForeColor = System.Drawing.Color.White
-        Me.Label7.Location = New System.Drawing.Point(15, 337)
+        Me.Label7.Location = New System.Drawing.Point(15, 289)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(109, 20)
         Me.Label7.TabIndex = 25
@@ -569,7 +513,5 @@ Partial Class frmPlotPurchAndAssign
     Private WithEvents Label10 As Label
     Friend WithEvents lstClientSuggestions As ListBox
     Private WithEvents txtClientSearch As Guna.UI2.WinForms.Guna2TextBox
-    Private WithEvents txtPaidAmount As Guna.UI2.WinForms.Guna2TextBox
-    Private WithEvents Label11 As Label
     Private WithEvents lblPaidAmount As Label
 End Class

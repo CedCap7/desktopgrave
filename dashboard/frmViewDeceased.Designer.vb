@@ -169,9 +169,9 @@ Partial Class frmViewDeceased
         Me.Lbl2ndBeneficiary.Location = New System.Drawing.Point(33, 341)
         Me.Lbl2ndBeneficiary.Margin = New System.Windows.Forms.Padding(30, 0, 3, 0)
         Me.Lbl2ndBeneficiary.Name = "Lbl2ndBeneficiary"
-        Me.Lbl2ndBeneficiary.Size = New System.Drawing.Size(119, 16)
+        Me.Lbl2ndBeneficiary.Size = New System.Drawing.Size(113, 16)
         Me.Lbl2ndBeneficiary.TabIndex = 7
-        Me.Lbl2ndBeneficiary.Text = "2nd Beneficiary:"
+        Me.Lbl2ndBeneficiary.Text = "Contact Person"
         '
         'Lbl1stBeneficiary
         '
@@ -181,9 +181,9 @@ Partial Class frmViewDeceased
         Me.Lbl1stBeneficiary.Location = New System.Drawing.Point(33, 290)
         Me.Lbl1stBeneficiary.Margin = New System.Windows.Forms.Padding(30, 0, 3, 0)
         Me.Lbl1stBeneficiary.Name = "Lbl1stBeneficiary"
-        Me.Lbl1stBeneficiary.Size = New System.Drawing.Size(114, 16)
+        Me.Lbl1stBeneficiary.Size = New System.Drawing.Size(117, 16)
         Me.Lbl1stBeneficiary.TabIndex = 6
-        Me.Lbl1stBeneficiary.Text = "1st Beneficiary:"
+        Me.Lbl1stBeneficiary.Text = "Contact Person:"
         '
         'LblAddress
         '

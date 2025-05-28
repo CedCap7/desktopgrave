@@ -1,7 +1,7 @@
 ﻿Imports MySql.Data.MySqlClient
 
 Module Module1
-    Public cn As New MySqlConnection
+    Public cn As New MySqlConnection("server=srv594.hstgr.io; database=u976878483_cemetery; username=u976878483_doncarlos; password=d0Nc4los; port=3306")
     Public dr As MySqlDataReader
     Public cmd As MySqlCommand
 
@@ -14,10 +14,13 @@ Module Module1
     Public imgpath As String
     Public arrImage() As Byte
 
-
     Public Sub dbconn()
-        'cn.ConnectionString = "server=172.16.11.195; database=razonado; username=razonado; password=123; port=3306"
-        cn.ConnectionString = "server=srv594.hstgr.io; database=u976878483_cemetery; username=u976878483_doncarlos; password=d0Nc4los; port=3306"
+        Try
+            If cn.State = ConnectionState.Closed Then
+                cn.Open()
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error connecting to database: " & ex.Message)
+        End Try
     End Sub
-
 End Module

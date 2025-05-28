@@ -78,14 +78,13 @@ Public Class frmUpdatePayment
 
                 ' Insert transaction
                 Dim sql As String = "
-                INSERT INTO `transaction` (Transaction_ID, Date, Amount, Client_ID, Type_ID, Deceased_ID)
+                INSERT INTO `transaction` (Transaction_ID, Date, Amount, Client_ID, Type_ID)
                 VALUES (
                     @TransactionID,
                     @Date,
                     @Amount,
                     (SELECT Client_ID FROM reservation WHERE Reservation_ID = @ReservationID),
-                    @TypeID,
-                    (SELECT Deceased_ID FROM reservation WHERE Reservation_ID = @ReservationID)
+                    @TypeID
                 )"
 
                 Using cmd As New MySqlCommand(sql, tempConnection)

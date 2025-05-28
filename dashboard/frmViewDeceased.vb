@@ -51,9 +51,9 @@ Public Class frmViewDeceased
                 LblDod.Text = If(dr("DateOfDeath") IsNot DBNull.Value, Convert.ToDateTime(dr("DateOfDeath")).ToString("MMMM dd, yyyy"), "N/A")
 
                 ' Beneficiary Information
-                Lbl1stBeneficiary.Text = "1st Beneficiary: " & If(dr("Beneficiary1") IsNot DBNull.Value, dr("Beneficiary1").ToString(), "N/A")
+                Lbl1stBeneficiary.Text = "Contact Person: " & If(dr("Beneficiary1") IsNot DBNull.Value, dr("Beneficiary1").ToString(), "N/A")
                 lbl1stContact.Text = "Contact Number: " & If(dr("Contact1") IsNot DBNull.Value, dr("Contact1").ToString(), "N/A")
-                Lbl2ndBeneficiary.Text = "2nd Beneficiary: " & If(dr("Beneficiary2") IsNot DBNull.Value, dr("Beneficiary2").ToString(), "N/A")
+                Lbl2ndBeneficiary.Text = "Contact Person: " & If(dr("Beneficiary2") IsNot DBNull.Value, dr("Beneficiary2").ToString(), "N/A")
                 lbl2ndContact.Text = "Contact Number: " & If(dr("Contact2") IsNot DBNull.Value, dr("Contact2").ToString(), "N/A")
 
                 ' Plot Location Information

@@ -181,7 +181,7 @@ Partial Class frmDeceased
         Me.txtBeneficiary1.Margin = New System.Windows.Forms.Padding(4)
         Me.txtBeneficiary1.Name = "txtBeneficiary1"
         Me.txtBeneficiary1.PlaceholderForeColor = System.Drawing.Color.Gray
-        Me.txtBeneficiary1.PlaceholderText = "1st Beneficiary"
+        Me.txtBeneficiary1.PlaceholderText = "Name of Contact Person"
         Me.txtBeneficiary1.SelectedText = ""
         Me.txtBeneficiary1.Size = New System.Drawing.Size(321, 37)
         Me.txtBeneficiary1.TabIndex = 97
@@ -205,7 +205,7 @@ Partial Class frmDeceased
         Me.txtBeneficiary2.Margin = New System.Windows.Forms.Padding(4)
         Me.txtBeneficiary2.Name = "txtBeneficiary2"
         Me.txtBeneficiary2.PlaceholderForeColor = System.Drawing.Color.Gray
-        Me.txtBeneficiary2.PlaceholderText = "2nd Beneficiary"
+        Me.txtBeneficiary2.PlaceholderText = "Name of Contact Person"
         Me.txtBeneficiary2.SelectedText = ""
         Me.txtBeneficiary2.Size = New System.Drawing.Size(321, 37)
         Me.txtBeneficiary2.TabIndex = 98
@@ -218,9 +218,9 @@ Partial Class frmDeceased
         Me.Guna2HtmlLabel2.Location = New System.Drawing.Point(31, 13)
         Me.Guna2HtmlLabel2.Margin = New System.Windows.Forms.Padding(2)
         Me.Guna2HtmlLabel2.Name = "Guna2HtmlLabel2"
-        Me.Guna2HtmlLabel2.Size = New System.Drawing.Size(98, 22)
+        Me.Guna2HtmlLabel2.Size = New System.Drawing.Size(157, 22)
         Me.Guna2HtmlLabel2.TabIndex = 96
-        Me.Guna2HtmlLabel2.Text = "Beneficiaries"
+        Me.Guna2HtmlLabel2.Text = "Other Contact Person"
         '
         'Guna2ShadowPanel1
         '

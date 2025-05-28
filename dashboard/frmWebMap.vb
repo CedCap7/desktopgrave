@@ -15,7 +15,7 @@ Public Class frmWebMap
         AddHandler WebView21.CoreWebView2.WebMessageReceived, AddressOf HandleWebMessage
 
         ' Navigate to the map page
-        WebView21.CoreWebView2.Navigate("https://doncarloscemetery.io/")
+        WebView21.CoreWebView2.Navigate("https://libingan.test/")
     End Function
 
     Private Sub HandleWebMessage(sender As Object, e As Microsoft.Web.WebView2.Core.CoreWebView2WebMessageReceivedEventArgs)

@@ -2,69 +2,134 @@
 Imports System.Runtime.InteropServices
 Imports Newtonsoft.Json
 Imports MySql.Data.MySqlClient
+Imports Guna.UI2.WinForms
+Imports System.Windows.Forms
+Imports System.Linq
+Imports System.Collections.Generic
 
 Public Class frmPlotSelection
     Public Event PlotSelected(plotId As Integer, locationString As String, level As Integer)
     Private conn As New MySqlConnection("server=srv594.hstgr.io; database=u976878483_cemetery; username=u976878483_doncarlos; password=d0Nc4los; port=3306")
     Private selectedPlotType As String
+    Private _selectedPlotId As Integer = -1
+    Private _selectedLevel As Integer = 0
+    Private _selectedLocation As String = ""
+    Private _clientId As Integer = -1
+    Private _remainingPlots As Integer = 0
+    Private _parentForm As frmPlotPurchAndAssign = Nothing
+    Private _selectedPlots As New Dictionary(Of Integer, Tuple(Of Integer, String))
+    Private _layerName As String
 
     Public Sub CloseForm()
-        Me.Hide()
-        If Parent IsNot Nothing Then
-            DirectCast(Parent, Panel).Controls.Clear()
-        End If
+        Try
+            Me.Hide()
+            If Parent IsNot Nothing Then
+                DirectCast(Parent, Panel).Controls.Clear()
+            End If
+
+            ' Clean up WebView2 resources
+            If webViewPlotSelection IsNot Nothing Then
+                RemoveHandler webViewPlotSelection.CoreWebView2.WebMessageReceived, AddressOf HandleWebMessage
+                webViewPlotSelection.Dispose()
+                webViewPlotSelection = Nothing
+            End If
+
+            ' Close database connection if open
+            If conn IsNot Nothing AndAlso conn.State = ConnectionState.Open Then
+                conn.Close()
+            End If
+        Catch ex As Exception
+            Debug.WriteLine("Error during form close: " & ex.Message)
+        End Try
     End Sub
 
-    Public Sub New(plotType As String)
+    Public Sub New(layerName As String, Optional clientId As Integer = -1)
         InitializeComponent()
-        selectedPlotType = plotType
+        _layerName = layerName
+        selectedPlotType = layerName ' Set the selectedPlotType field
+        _clientId = clientId
+        _parentForm = DirectCast(Application.OpenForms("frmPlotPurchAndAssign"), frmPlotPurchAndAssign)
+        Console.WriteLine($"frmPlotSelection initialized with layer: {layerName}, clientId: {clientId}") ' Debug log
     End Sub
 
     Private Async Sub frmPlotSelection_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
-            Await InitializeAsync()
+            ' Initialize WebView2
+            Await webViewPlotSelection.EnsureCoreWebView2Async()
+
+            ' Add message handler
+            AddHandler webViewPlotSelection.CoreWebView2.WebMessageReceived, AddressOf HandleWebMessage
+
+            ' Load the map after initialization
+            LoadMap()
         Catch ex As Exception
             MessageBox.Show("Error initializing WebView2: " & ex.Message)
         End Try
     End Sub
 
-    Private Async Function InitializeAsync() As Task
+    Private Sub LoadMap()
         Try
-            Await webViewPlotSelection.EnsureCoreWebView2Async()
-            AddHandler webViewPlotSelection.CoreWebView2.WebMessageReceived, AddressOf HandleWebMessage
-            webViewPlotSelection.CoreWebView2.Navigate($"https://doncarloscemetery.io/map?type={selectedPlotType}")
-        Catch ex As Exception
-            MessageBox.Show("Error initializing WebView2: " & ex.Message)
-        End Try
-    End Function
-
-    Private Sub HandleWebMessage(sender As Object, e As Microsoft.Web.WebView2.Core.CoreWebView2WebMessageReceivedEventArgs)
-        Try
-            Dim plotDataJson As String = e.WebMessageAsJson
-            plotDataJson = plotDataJson.Replace("\""", """").Trim(""""c)
-            Dim plotData = JsonConvert.DeserializeObject(Of PlotData)(plotDataJson)
-
-            If Not IsCorrectPlotType(plotData.type) Then
+            If webViewPlotSelection.CoreWebView2 Is Nothing Then
                 Return
             End If
 
-            Select Case plotData.type
-                Case 1 ' Apartment
-                    HandleApartmentSelection(plotData)
-                Case 2 ' Family Lawn Lot
-                    HandleLawnLotSelection(plotData)
-                Case 3 ' Bone Niche
-                    HandleBoneNicheSelection(plotData)
-                Case 4 ' Private
-                    HandlePrivateSelection(plotData)
-            End Select
+            ' Construct the URL with client ID for lawn lots
+            Dim url As String = $"https://libingan.test/map?type={_layerName}"
+            If _layerName = "lawnlots" AndAlso _clientId > 0 Then
+                url &= $"&clientId={_clientId}"
+            End If
+
+            Console.WriteLine($"Loading map with URL: {url}") ' Debug log
+            webViewPlotSelection.CoreWebView2.Navigate(url)
+        Catch ex As Exception
+            MessageBox.Show("Error loading map: " & ex.Message)
+        End Try
+    End Sub
+
+    Private Sub HandleWebMessage(sender As Object, e As Microsoft.Web.WebView2.Core.CoreWebView2WebMessageReceivedEventArgs)
+        Try
+            Dim message As String = e.WebMessageAsJson
+
+            ' Clean up the incoming JSON string (remove escaped quotes and outer quotes)
+            message = message.Replace("\""", """") ' Replace \" with "
+            If message.StartsWith("""") AndAlso message.EndsWith("""") Then
+                message = message.Substring(1, message.Length - 2)
+            End If
+
+            ' Deserialize the cleaned JSON message into a PlotData object
+            Dim plotData As PlotData = Newtonsoft.Json.JsonConvert.DeserializeObject(Of PlotData)(message)
+
+            ' Check if the deserialization was successful and the plot type is correct
+            If plotData IsNot Nothing AndAlso IsCorrectPlotType(plotData.type) Then
+
+                ' Now you can access the plot data properties directly
+                Select Case plotData.type
+                    Case 1 ' Apartment
+                        HandleApartmentSelection(plotData)
+                    Case 2 ' Family Lawn Lot
+                        HandleLawnLotSelection(plotData)
+                    Case 3 ' Bone Niche
+                        HandleBoneNicheSelection(plotData)
+                    Case 4 ' Private
+                        HandlePrivateSelection(plotData)
+                End Select
+
+            Else
+                ' Optional: Log or handle cases where deserialization fails or plot type is incorrect
+                System.Diagnostics.Debug.WriteLine($"Received invalid plot data or incorrect plot type: {message}")
+            End If
 
         Catch ex As Exception
-            MessageBox.Show("Error processing plot data: " & ex.Message)
+            MessageBox.Show("Error processing plot selection: " & ex.Message)
         End Try
     End Sub
 
     Private Function IsCorrectPlotType(plotType As Integer) As Boolean
+        If String.IsNullOrEmpty(selectedPlotType) Then
+            Console.WriteLine("selectedPlotType is null or empty") ' Debug log
+            Return False
+        End If
+
         Dim expectedType As Integer
 
         Select Case selectedPlotType.ToLower()
@@ -77,9 +142,11 @@ Public Class frmPlotSelection
             Case "private"
                 expectedType = 4
             Case Else
+                Console.WriteLine($"Unknown plot type: {selectedPlotType}") ' Debug log
                 expectedType = -1
         End Select
 
+        Console.WriteLine($"Comparing plot type {plotType} with expected type {expectedType}") ' Debug log
         Return plotType = expectedType
     End Function
 
@@ -119,19 +186,145 @@ Public Class frmPlotSelection
     End Sub
 
     Private Sub HandleLawnLotSelection(plotData As PlotData)
-        ' Family Lawn Lots have unlimited capacity
-        Dim locationString As String = $"{GetLocationType(plotData.type)}, Block {plotData.block}, Section {plotData.section}, Row {plotData.row}, Plot {plotData.plot}"
+        Try
+            ' First check if plot is reserved and determine ownership status
+            Using cmd As New MySqlCommand("
+                SELECT 
+                    pr.plot_id,
+                    r.Reservation_Date,
+                    p.Payment_Status,
+                    p.total_Amount,
+                    p.total_Paid
+                FROM plot_reservation pr 
+                INNER JOIN reservation r ON pr.reservation_id = r.Reservation_ID 
+                LEFT JOIN payment p ON r.Reservation_ID = p.Reservation_ID
+                WHERE pr.plot_id = @plotId", conn)
+                cmd.Parameters.AddWithValue("@plotId", plotData.id)
+                If conn.State <> ConnectionState.Open Then conn.Open()
 
-        Dim result = MessageBox.Show(
-            "Do you want to select this lawn lot?" & vbCrLf & locationString,
-            "Confirm Plot Selection",
-            MessageBoxButtons.YesNo,
-            MessageBoxIcon.Question)
+                Using reader As MySqlDataReader = cmd.ExecuteReader()
+                    If reader.Read() Then
+                        ' Plot is reserved
+                        Dim reservationDate As DateTime = Convert.ToDateTime(reader("Reservation_Date"))
+                        Dim paymentStatus As Integer = Convert.ToInt32(reader("Payment_Status"))
+                        Dim totalAmount As Decimal = Convert.ToDecimal(reader("total_Amount"))
+                        Dim totalPaid As Decimal = Convert.ToDecimal(reader("total_Paid"))
 
-        If result = DialogResult.Yes Then
-            RaiseEvent PlotSelected(plotData.id, locationString, 0) ' Level 0 for lawn lots
-            Me.Close()
-        End If
+                        ' Check if plot is owned based on payment status or reservation date
+                        Dim isOwned As Boolean = False
+
+                        ' If fully paid (Payment_Status = 1), it's owned
+                        If paymentStatus = 1 Then
+                            isOwned = True
+                            ' If not fully paid but 3 months have passed since reservation, it's owned
+                        ElseIf paymentStatus = 0 Then
+                            Dim threeMonthsLater As DateTime = reservationDate.AddMonths(3)
+                            isOwned = DateTime.Now >= threeMonthsLater
+                        End If
+
+                        If isOwned Then
+                            MessageBox.Show("This plot is already owned.", "Plot Unavailable", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                            Return
+                        Else
+                            MessageBox.Show("This plot is already reserved.", "Plot Unavailable", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                            Return
+                        End If
+                    End If
+                End Using
+            End Using
+
+            ' Then check if plot has deceased (permanent ownership)
+            Using cmd As New MySqlCommand("SELECT COUNT(*) FROM deceased WHERE Plot_ID = @plotId", conn)
+                cmd.Parameters.AddWithValue("@plotId", plotData.id)
+                If conn.State <> ConnectionState.Open Then conn.Open()
+                Dim hasDeceased As Boolean = Convert.ToInt32(cmd.ExecuteScalar()) > 0
+
+                If hasDeceased Then
+                    ' Check if it's owned by the selected client
+                    Using cmd2 As New MySqlCommand("SELECT COUNT(*) FROM deceased WHERE Plot_ID = @plotId AND Client_ID = @clientId", conn)
+                        cmd2.Parameters.AddWithValue("@plotId", plotData.id)
+                        cmd2.Parameters.AddWithValue("@clientId", _clientId)
+                        Dim isOwnedByClient As Boolean = Convert.ToInt32(cmd.ExecuteScalar()) > 0
+
+                        If isOwnedByClient Then
+                            MessageBox.Show("You already own this plot.", "Plot Already Owned", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        Else
+                            MessageBox.Show("This plot is already owned by another client.", "Plot Unavailable", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                        End If
+                        Return
+                    End Using
+                End If
+
+                ' If this is not the first plot selection, validate adjacency and block
+                If _parentForm IsNot Nothing AndAlso _parentForm.SelectedPlots.Count > 0 Then
+                    Dim lastPlot = _parentForm.SelectedPlots.First()
+
+                    ' Get the last selected plot's details
+                    Using cmd3 As New MySqlCommand("SELECT block, section, row, plot FROM location WHERE id = @plotId", conn)
+                        cmd3.Parameters.AddWithValue("@plotId", lastPlot.Key)
+                        Using reader As MySqlDataReader = cmd3.ExecuteReader()
+                            If reader.Read() Then
+                                ' Check if plots are in the same block
+                                If reader("block").ToString() <> plotData.block Then
+                                    MessageBox.Show("Selected plot must be in the same block as the previous selection.", "Invalid Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                                    Return
+                                End If
+
+                                ' Check if plots are in the same section
+                                If reader("section").ToString() <> plotData.section Then
+                                    MessageBox.Show("Selected plot must be in the same section as the previous selection.", "Invalid Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                                    Return
+                                End If
+
+                                ' Check if plots are in the same row
+                                If reader("row").ToString() <> plotData.row Then
+                                    MessageBox.Show("Selected plot must be in the same row as the previous selection.", "Invalid Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                                    Return
+                                End If
+
+                                ' Check if plots are adjacent
+                                Dim lastPlotNumber As Integer = Convert.ToInt32(reader("plot"))
+                                Dim currentPlotNumber As Integer = Convert.ToInt32(plotData.plot)
+
+                                If Math.Abs(lastPlotNumber - currentPlotNumber) <> 1 Then
+                                    MessageBox.Show("Selected plot must be adjacent to the previous selection.", "Invalid Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                                    Return
+                                End If
+                            End If
+                        End Using
+                    End Using
+                End If
+
+                ' If plot is not reserved, not owned, and has no deceased, proceed with selection
+                Dim locationString As String = $"{GetLocationType(plotData.type)}, Block {plotData.block}, Section {plotData.section}, Row {plotData.row}, Plot {plotData.plot}"
+                Dim result = MessageBox.Show(
+                    $"Do you want to select this lawn lot? ({_remainingPlots} plots remaining)" & vbCrLf & locationString,
+                    "Confirm Plot Selection",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question)
+
+                If result = DialogResult.Yes Then
+                    ValidateAndSelectPlot(plotData, locationString, 0) ' Level 0 for lawn lots
+
+                    ' Decrement remaining plots
+                    _remainingPlots -= 1
+
+                    ' If this was the last plot, close the form
+                    If _remainingPlots <= 0 Then
+                        Me.Close()
+                    Else
+                        ' Update the map to show remaining plots
+                        If webViewPlotSelection.CoreWebView2 IsNot Nothing Then
+                            webViewPlotSelection.CoreWebView2.ExecuteScriptAsync($"updateRemainingPlots({_remainingPlots});")
+                        End If
+                    End If
+                End If
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("Error checking plot status: " & ex.Message)
+        Finally
+            If conn.State = ConnectionState.Open Then conn.Close()
+        End Try
     End Sub
 
     Private Sub HandleBoneNicheSelection(plotData As PlotData)
@@ -186,7 +379,7 @@ Public Class frmPlotSelection
                 MessageBoxIcon.Question)
 
             If result = DialogResult.Yes Then
-                RaiseEvent PlotSelected(plotData.id, locationString, 0) ' Level 0 for private plots
+                ValidateAndSelectPlot(plotData, locationString, 0) ' Level 0 for private plots
                 Me.Close()
             End If
         Catch ex As Exception
@@ -205,8 +398,7 @@ Public Class frmPlotSelection
             Dim selectedLevel As Integer = Convert.ToInt32(cmbLevel.SelectedItem.ToString().Split(" "c)(1))
             Dim locationString As String = $"{GetLocationType(plotData.type)}, Block {plotData.block}, Section {plotData.section}, Row {plotData.row}, Plot {plotData.plot}, Level {selectedLevel}"
 
-            RaiseEvent PlotSelected(plotData.id, locationString, selectedLevel)
-            Me.Close()
+            ValidateAndSelectPlot(plotData, locationString, selectedLevel)
         End If
     End Sub
 
@@ -271,6 +463,62 @@ Public Class frmPlotSelection
                 Return $"Type {type}"
         End Select
     End Function
+
+    Private Sub ValidateAndSelectPlot(plotData As PlotData, locationString As String, selectedLevel As Integer)
+        Try
+            If _parentForm IsNot Nothing AndAlso _parentForm.SelectedPlots.Count > 0 Then
+                Dim lastPlot = _parentForm.SelectedPlots.First()
+
+                ' Get the last selected plot's details
+                Using cmd3 As New MySqlCommand("SELECT block, section, row, plot FROM location WHERE id = @plotId", conn)
+                    cmd3.Parameters.AddWithValue("@plotId", lastPlot.Key)
+                    Using reader As MySqlDataReader = cmd3.ExecuteReader()
+                        If reader.Read() Then
+                            ' Validate adjacency and block
+                            If Not ValidateAdjacency(plotData, reader) Then
+                                Return
+                            End If
+                        End If
+                    End Using
+                End Using
+            End If
+
+            ' Check if plot is already selected
+            If _parentForm IsNot Nothing AndAlso _parentForm.SelectedPlots.ContainsKey(plotData.id) Then
+                MessageBox.Show("This plot has already been selected.", "Duplicate Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Return
+            End If
+
+            ' Raise the event to notify parent form
+            RaiseEvent PlotSelected(plotData.id, locationString, selectedLevel)
+            Me.Close()
+        Catch ex As Exception
+            MessageBox.Show("Error in plot selection: " & ex.Message)
+        End Try
+    End Sub
+
+    Private Function ValidateAdjacency(plotData As PlotData, reader As MySqlDataReader) As Boolean
+        ' Implement adjacency validation logic here
+        Return True ' Placeholder return, actual implementation needed
+    End Function
+
+    Private Sub frmPlotSelection_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        Try
+            ' Clean up WebView2 resources
+            If webViewPlotSelection IsNot Nothing Then
+                RemoveHandler webViewPlotSelection.CoreWebView2.WebMessageReceived, AddressOf HandleWebMessage
+                webViewPlotSelection.Dispose()
+                webViewPlotSelection = Nothing
+            End If
+
+            ' Close database connection if open
+            If conn IsNot Nothing AndAlso conn.State = ConnectionState.Open Then
+                conn.Close()
+            End If
+        Catch ex As Exception
+            Debug.WriteLine("Error during form closing: " & ex.Message)
+        End Try
+    End Sub
 End Class
 
 Public Class PlotData
