@@ -185,13 +185,15 @@ Public Class frmPlotPurchAndAssign
 
         Console.WriteLine($"Selected package type: {selectedPackageType}") ' Debug log
 
-        ' Dispose any old instance
+        ' Clean up existing form if it exists
         If _plotSelectionForm IsNot Nothing Then
             RemoveHandler _plotSelectionForm.PlotSelected, AddressOf OnPlotSelected
+            _plotSelectionForm.Close()
             _plotSelectionForm.Dispose()
+            _plotSelectionForm = Nothing
         End If
 
-        ' Create new one with client ID for lawn lots
+        ' Create new form
         If selectedPackageType = "lawnlots" Then
             _plotSelectionForm = New frmPlotSelection(selectedPackageType, selectedClientId)
         Else
@@ -199,7 +201,7 @@ Public Class frmPlotPurchAndAssign
         End If
         AddHandler _plotSelectionForm.PlotSelected, AddressOf OnPlotSelected
 
-        ' **Embed it in your subSidePanel** (instead of ShowDialog)
+        ' Embed it in your subSidePanel
         With subSidePanel
             .Controls.Clear()
             _plotSelectionForm.TopLevel = False
@@ -231,11 +233,13 @@ Public Class frmPlotPurchAndAssign
             ' Update the plot location display
             UpdatePlotLocationsDisplay()
 
-            ' Close plot selection if we've reached the quantity
+            ' Only close the form when we've reached the desired quantity
             If _currentPlotCount >= currentQuantity.Value Then
-                MessageBox.Show("All plots have been selected.", "Plot Selection Complete", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 If _plotSelectionForm IsNot Nothing Then
+                    RemoveHandler _plotSelectionForm.PlotSelected, AddressOf OnPlotSelected
                     _plotSelectionForm.Close()
+                    _plotSelectionForm.Dispose()
+                    _plotSelectionForm = Nothing
                 End If
             End If
         Catch ex As Exception

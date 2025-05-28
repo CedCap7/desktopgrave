@@ -31,7 +31,6 @@ Public Class frmPlotSelection
             If webViewPlotSelection IsNot Nothing Then
                 RemoveHandler webViewPlotSelection.CoreWebView2.WebMessageReceived, AddressOf HandleWebMessage
                 webViewPlotSelection.Dispose()
-                webViewPlotSelection = Nothing
             End If
 
             ' Close database connection if open
@@ -55,13 +54,23 @@ Public Class frmPlotSelection
     Private Async Sub frmPlotSelection_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             ' Initialize WebView2
-            Await webViewPlotSelection.EnsureCoreWebView2Async()
+            If webViewPlotSelection IsNot Nothing Then
+                ' Remove any existing event handlers
+                If webViewPlotSelection.CoreWebView2 IsNot Nothing Then
+                    RemoveHandler webViewPlotSelection.CoreWebView2.WebMessageReceived, AddressOf HandleWebMessage
+                End If
 
-            ' Add message handler
-            AddHandler webViewPlotSelection.CoreWebView2.WebMessageReceived, AddressOf HandleWebMessage
+                ' Initialize WebView2
+                Await webViewPlotSelection.EnsureCoreWebView2Async()
 
-            ' Load the map after initialization
-            LoadMap()
+                ' Add message handler
+                AddHandler webViewPlotSelection.CoreWebView2.WebMessageReceived, AddressOf HandleWebMessage
+
+                ' Load the map after initialization
+                LoadMap()
+            Else
+                MessageBox.Show("WebView2 control is not properly initialized.", "Initialization Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
         Catch ex As Exception
             MessageBox.Show("Error initializing WebView2: " & ex.Message)
         End Try
@@ -69,18 +78,16 @@ Public Class frmPlotSelection
 
     Private Sub LoadMap()
         Try
-            If webViewPlotSelection.CoreWebView2 Is Nothing Then
-                Return
-            End If
+            If webViewPlotSelection IsNot Nothing AndAlso webViewPlotSelection.CoreWebView2 IsNot Nothing Then
+                ' Construct the URL with client ID for lawn lots
+                Dim url As String = $"https://libingan.test/map?type={_layerName}"
+                If _layerName = "lawnlots" AndAlso _clientId > 0 Then
+                    url &= $"&clientId={_clientId}"
+                End If
 
-            ' Construct the URL with client ID for lawn lots
-            Dim url As String = $"https://libingan.test/map?type={_layerName}"
-            If _layerName = "lawnlots" AndAlso _clientId > 0 Then
-                url &= $"&clientId={_clientId}"
+                Console.WriteLine($"Loading map with URL: {url}") ' Debug log
+                webViewPlotSelection.CoreWebView2.Navigate(url)
             End If
-
-            Console.WriteLine($"Loading map with URL: {url}") ' Debug log
-            webViewPlotSelection.CoreWebView2.Navigate(url)
         Catch ex As Exception
             MessageBox.Show("Error loading map: " & ex.Message)
         End Try
@@ -297,28 +304,8 @@ Public Class frmPlotSelection
 
                 ' If plot is not reserved, not owned, and has no deceased, proceed with selection
                 Dim locationString As String = $"{GetLocationType(plotData.type)}, Block {plotData.block}, Section {plotData.section}, Row {plotData.row}, Plot {plotData.plot}"
-                Dim result = MessageBox.Show(
-                    $"Do you want to select this lawn lot? ({_remainingPlots} plots remaining)" & vbCrLf & locationString,
-                    "Confirm Plot Selection",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question)
+                ValidateAndSelectPlot(plotData, locationString, 0) ' Level 0 for lawn lots
 
-                If result = DialogResult.Yes Then
-                    ValidateAndSelectPlot(plotData, locationString, 0) ' Level 0 for lawn lots
-
-                    ' Decrement remaining plots
-                    _remainingPlots -= 1
-
-                    ' If this was the last plot, close the form
-                    If _remainingPlots <= 0 Then
-                        Me.Close()
-                    Else
-                        ' Update the map to show remaining plots
-                        If webViewPlotSelection.CoreWebView2 IsNot Nothing Then
-                            webViewPlotSelection.CoreWebView2.ExecuteScriptAsync($"updateRemainingPlots({_remainingPlots});")
-                        End If
-                    End If
-                End If
             End Using
         Catch ex As Exception
             MessageBox.Show("Error checking plot status: " & ex.Message)
@@ -491,15 +478,48 @@ Public Class frmPlotSelection
 
             ' Raise the event to notify parent form
             RaiseEvent PlotSelected(plotData.id, locationString, selectedLevel)
-            Me.Close()
+
+            ' Don't close the form - let the parent form handle that when all plots are selected
+            ' The form will stay open for continuous selection
         Catch ex As Exception
             MessageBox.Show("Error in plot selection: " & ex.Message)
         End Try
     End Sub
 
     Private Function ValidateAdjacency(plotData As PlotData, reader As MySqlDataReader) As Boolean
-        ' Implement adjacency validation logic here
-        Return True ' Placeholder return, actual implementation needed
+        Try
+            ' Check if plots are in the same block
+            If reader("block").ToString() <> plotData.block Then
+                MessageBox.Show("Selected plot must be in the same block as the previous selection.", "Invalid Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Return False
+            End If
+
+            ' Check if plots are in the same section
+            If reader("section").ToString() <> plotData.section Then
+                MessageBox.Show("Selected plot must be in the same section as the previous selection.", "Invalid Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Return False
+            End If
+
+            ' Check if plots are in the same row
+            If reader("row").ToString() <> plotData.row Then
+                MessageBox.Show("Selected plot must be in the same row as the previous selection.", "Invalid Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Return False
+            End If
+
+            ' Check if plots are adjacent
+            Dim lastPlotNumber As Integer = Convert.ToInt32(reader("plot"))
+            Dim currentPlotNumber As Integer = Convert.ToInt32(plotData.plot)
+
+            If Math.Abs(lastPlotNumber - currentPlotNumber) <> 1 Then
+                MessageBox.Show("Selected plot must be adjacent to the previous selection.", "Invalid Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Return False
+            End If
+
+            Return True
+        Catch ex As Exception
+            MessageBox.Show("Error validating plot adjacency: " & ex.Message)
+            Return False
+        End Try
     End Function
 
     Private Sub frmPlotSelection_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
@@ -507,8 +527,6 @@ Public Class frmPlotSelection
             ' Clean up WebView2 resources
             If webViewPlotSelection IsNot Nothing Then
                 RemoveHandler webViewPlotSelection.CoreWebView2.WebMessageReceived, AddressOf HandleWebMessage
-                webViewPlotSelection.Dispose()
-                webViewPlotSelection = Nothing
             End If
 
             ' Close database connection if open
