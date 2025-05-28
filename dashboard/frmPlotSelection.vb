@@ -201,7 +201,8 @@ Public Class frmPlotSelection
                     r.Reservation_Date,
                     p.Payment_Status,
                     p.total_Amount,
-                    p.total_Paid
+                    p.total_Paid,
+                    r.Client_ID
                 FROM plot_reservation pr 
                 INNER JOIN reservation r ON pr.reservation_id = r.Reservation_ID 
                 LEFT JOIN payment p ON r.Reservation_ID = p.Reservation_ID
@@ -216,6 +217,7 @@ Public Class frmPlotSelection
                         Dim paymentStatus As Integer = Convert.ToInt32(reader("Payment_Status"))
                         Dim totalAmount As Decimal = Convert.ToDecimal(reader("total_Amount"))
                         Dim totalPaid As Decimal = Convert.ToDecimal(reader("total_Paid"))
+                        Dim reservedByClientId As Integer = Convert.ToInt32(reader("Client_ID"))
 
                         ' Check if plot is owned based on payment status or reservation date
                         Dim isOwned As Boolean = False
@@ -227,6 +229,12 @@ Public Class frmPlotSelection
                         ElseIf paymentStatus = 0 Then
                             Dim threeMonthsLater As DateTime = reservationDate.AddMonths(3)
                             isOwned = DateTime.Now >= threeMonthsLater
+                        End If
+
+                        ' Check if the plot is reserved by the current client
+                        If reservedByClientId = _clientId Then
+                            MessageBox.Show("You have already reserved this plot.", "Plot Already Reserved", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                            Return
                         End If
 
                         If isOwned Then
@@ -421,44 +429,48 @@ Public Class frmPlotSelection
 
             ' If this is not the first plot selection, validate adjacency
             If _parentForm IsNot Nothing AndAlso _parentForm.SelectedPlots.Count > 0 Then
-                ' Get the last selected plot
-                Dim lastPlot = _parentForm.SelectedPlots.Last()
+                ' Check if the new plot is adjacent to any of the previously selected plots
+                Dim isAdjacentToAny As Boolean = False
+                Dim isInSameBlockSectionRow As Boolean = False
 
-                ' Get the last selected plot's details
-                Using cmd3 As New MySqlCommand("SELECT block, section, row, plot FROM location WHERE id = @plotId", conn)
-                    cmd3.Parameters.AddWithValue("@plotId", lastPlot.Key)
-                    If conn.State <> ConnectionState.Open Then conn.Open()
-                    Using reader As MySqlDataReader = cmd3.ExecuteReader()
-                        If reader.Read() Then
-                            ' Check if plots are in the same block
-                            If reader("block").ToString() <> plotData.block Then
-                                MessageBox.Show("Selected plot must be in the same block as the previous selection.", "Invalid Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                                Return
+                For Each selectedPlot In _parentForm.SelectedPlots
+                    ' Get the selected plot's details
+                    Using cmd3 As New MySqlCommand("SELECT block, section, row, plot FROM location WHERE id = @plotId", conn)
+                        cmd3.Parameters.AddWithValue("@plotId", selectedPlot.Key)
+                        If conn.State <> ConnectionState.Open Then conn.Open()
+                        Using reader As MySqlDataReader = cmd3.ExecuteReader()
+                            If reader.Read() Then
+                                ' Check if plots are in the same block, section, and row
+                                If reader("block").ToString() = plotData.block AndAlso
+                                   reader("section").ToString() = plotData.section AndAlso
+                                   reader("row").ToString() = plotData.row Then
+                                    isInSameBlockSectionRow = True
+
+                                    ' Check if plots are adjacent
+                                    Dim selectedPlotNumber As Integer = Convert.ToInt32(reader("plot"))
+                                    Dim currentPlotNumber As Integer = Convert.ToInt32(plotData.plot)
+
+                                    If Math.Abs(selectedPlotNumber - currentPlotNumber) = 1 Then
+                                        isAdjacentToAny = True
+                                        Exit For ' Found an adjacent plot, no need to check others
+                                    End If
+                                End If
                             End If
-
-                            ' Check if plots are in the same section
-                            If reader("section").ToString() <> plotData.section Then
-                                MessageBox.Show("Selected plot must be in the same section as the previous selection.", "Invalid Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                                Return
-                            End If
-
-                            ' Check if plots are in the same row
-                            If reader("row").ToString() <> plotData.row Then
-                                MessageBox.Show("Selected plot must be in the same row as the previous selection.", "Invalid Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                                Return
-                            End If
-
-                            ' Check if plots are adjacent
-                            Dim lastPlotNumber As Integer = Convert.ToInt32(reader("plot"))
-                            Dim currentPlotNumber As Integer = Convert.ToInt32(plotData.plot)
-
-                            If Math.Abs(lastPlotNumber - currentPlotNumber) <> 1 Then
-                                MessageBox.Show("Selected plot must be adjacent to the previous selection.", "Invalid Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                                Return
-                            End If
-                        End If
+                        End Using
                     End Using
-                End Using
+                Next
+
+                ' If not in the same block/section/row, show error
+                If Not isInSameBlockSectionRow Then
+                    MessageBox.Show("Selected plot must be in the same block, section, and row as the previous selections.", "Invalid Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    Return
+                End If
+
+                ' If not adjacent to any selected plot, show error
+                If Not isAdjacentToAny Then
+                    MessageBox.Show("Selected plot must be adjacent to one of the previously selected plots.", "Invalid Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    Return
+                End If
             End If
 
             ' Raise the event to notify parent form
