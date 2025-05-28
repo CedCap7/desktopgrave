@@ -176,14 +176,15 @@ Public Class frmViewPayment
 
                 Dim sql As String = "
                 SELECT 
-                    Transaction_ID,
-                    Amount,
-                    Date
+                    t.Transaction_ID,
+                    t.Amount,
+                    t.Date,
+                    t.official_receipt
                 FROM 
-                    `transaction`
+                    `transaction` t
                 WHERE 
-                    Client_ID = @ClientID
-                ORDER BY Date DESC;"
+                    t.Client_ID = @ClientID
+                ORDER BY t.Date DESC;"
 
                 Using cmd As New MySqlCommand(sql, tempConnection)
                     cmd.Parameters.AddWithValue("@ClientID", clientID)
@@ -192,11 +193,11 @@ Public Class frmViewPayment
                         lstPaymentHistory.Items.Clear()
 
                         While dr.Read()
-                            Dim transactionID As String = dr("Transaction_ID").ToString()
+                            Dim officialReceipt As String = If(IsDBNull(dr("official_receipt")), "N/A", dr("official_receipt").ToString())
                             Dim amount As Decimal = If(IsDBNull(dr("Amount")), 0, Convert.ToDecimal(dr("Amount")))
                             Dim dateValue As Date = If(IsDBNull(dr("Date")), Nothing, Convert.ToDateTime(dr("Date")))
 
-                            Dim item As ListViewItem = lstPaymentHistory.Items.Add(transactionID)
+                            Dim item As ListViewItem = lstPaymentHistory.Items.Add(officialReceipt)
                             item.SubItems.Add("₱" & amount.ToString("N2"))
                             item.SubItems.Add(dateValue.ToString("yyyy-MM-dd HH:mm:ss"))
                         End While
@@ -233,5 +234,4 @@ Public Class frmViewPayment
         LoadClientPaymentData()
         LoadClientDetails()
     End Sub
-
 End Class
