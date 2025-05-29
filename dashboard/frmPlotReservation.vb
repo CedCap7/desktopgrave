@@ -442,6 +442,7 @@ Public Class frmPlotReservation
                         cmd.Parameters.AddWithValue("@Reservation_Date", DateTime.Now)
                         cmd.Parameters.AddWithValue("@currentQuantity", currentQuantity.Value)
                         reservationId = Convert.ToInt32(cmd.ExecuteScalar())
+                        LogUserAction("Add Reservation", "Added reservation for client: " & ClientID & ", reservation ID: " & reservationId)
                     End Using
 
                     ' Now insert into the payment table with the Reservation_ID and Client_ID
@@ -455,6 +456,7 @@ Public Class frmPlotReservation
                         cmdPayment.Parameters.AddWithValue("@total_Paid", paidAmount)
                         cmdPayment.Parameters.AddWithValue("@Payment_Status", paymentStatus)
                         cmdPayment.ExecuteNonQuery()
+                        LogUserAction("Add Payment", "Added payment for reservation: " & reservationId & ", amount: " & paidAmount)
                     End Using
 
                     ' Insert plot reservations

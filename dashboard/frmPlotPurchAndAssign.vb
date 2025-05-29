@@ -25,7 +25,9 @@ Public Class frmPlotPurchAndAssign
         Module1.dbconn() ' Initialize the database connection
         LoadPackages()
         SetupClientSearchBox()
+
         
+
         ' Initialize quantity controls
         lblQuantity.Text = "Quantity:"
         lblQuantity.Visible = False
@@ -177,7 +179,8 @@ Public Class frmPlotPurchAndAssign
             Return
         End If
 
-        ' Figure out which layer name to pass in...
+
+
         Dim selectedPackageType As String = ""
         Select Case DirectCast(GraveType.SelectedItem, DataRowView)("description").ToString().Trim().ToLower()
             Case "private" : selectedPackageType = "private"
@@ -255,7 +258,7 @@ Public Class frmPlotPurchAndAssign
                                 Return
                             End If
 
-                            ' Check if plots are in the same section
+
                             If reader("section").ToString() <> locationString.Split(", ")(1) Then
                                 MessageBox.Show("Selected plot must be in the same section as the previous selection.", "Invalid Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                                 Return
@@ -330,6 +333,7 @@ Public Class frmPlotPurchAndAssign
             deceasedId = Convert.ToInt32(selectedRow("Deceased_ID"))
             status = 1 ' Set status to 1 if a deceased is selected
         End If
+
 
         Dim clientId As Integer = selectedClientId
         If clientId <= 0 Then
@@ -455,9 +459,9 @@ Public Class frmPlotPurchAndAssign
                             reservationId = Convert.ToInt32(cmd.ExecuteScalar())
                         End Using
 
-                        ' Insert plot reservation
+
                         Dim plotReservationQuery As String = "INSERT INTO plot_reservation (reservation_id, plot_id, level) VALUES (@reservation_id, @plot_id, @level)"
-                        Using cmd As New MySqlCommand(plotReservationQuery, Module1.cn, transaction)
+                        Using cmd As New MySqlCommand(plotReservationQuery, cn, transaction)
                             cmd.Parameters.AddWithValue("@reservation_id", reservationId)
                             cmd.Parameters.AddWithValue("@plot_id", plot.Key)
                             cmd.Parameters.AddWithValue("@level", plot.Value.Level)
@@ -527,6 +531,7 @@ Public Class frmPlotPurchAndAssign
 
             While exists
                 transactionId = random.Next(100000, 999999).ToString() ' 6-digit random number
+
 
                 Using cmd As New MySqlCommand(query, cn)
                     cmd.Parameters.AddWithValue("@TransactionId", transactionId)
@@ -623,6 +628,7 @@ Public Class frmPlotPurchAndAssign
         End Try
     End Sub
 
+
     Private Sub ClearPlotSelections()
         ' Clears the selected plots dictionary and the list display
         _selectedPlotsDict.Clear()
@@ -631,7 +637,9 @@ Public Class frmPlotPurchAndAssign
             SelectedPlotsList.Items.Clear()
             ' Keep the list visible, even when empty
         End If
+
         
+
         ' Don't reset quantity controls visibility here
         ' Let GraveType_SelectedIndexChanged handle visibility
     End Sub
@@ -645,7 +653,9 @@ Public Class frmPlotPurchAndAssign
             txtTotal.Text = "₱0.00"
             txtTotal.Visible = False
         End If
+
         
+
         ' Don't reset quantity controls visibility here
         ' Let GraveType_SelectedIndexChanged handle visibility
     End Sub
@@ -713,7 +723,7 @@ Public Class frmPlotPurchAndAssign
                 Debug.WriteLine($"Selected Package ID: {selectedPackageId}, Description: {description}")
                 ' ******************************************
 
-                ' Show quantity only for family lawn lot (p_id = 2)
+
                 If selectedPackageId = 2 Then
                     Debug.WriteLine("Setting controls visible for family lawn lot")
                     lblQuantity.Visible = True
@@ -797,6 +807,7 @@ Public Class frmPlotPurchAndAssign
             If GraveType.SelectedValue IsNot Nothing AndAlso
            TypeOf GraveType.SelectedValue Is Integer AndAlso
            Convert.ToInt32(GraveType.SelectedValue) <> 0 Then
+
 
                 Dim selectedRow As DataRowView = DirectCast(GraveType.SelectedItem, DataRowView)
                 Dim packagePrice As Decimal = Convert.ToDecimal(selectedRow("price"))

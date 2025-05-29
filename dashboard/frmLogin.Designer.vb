@@ -48,13 +48,13 @@ Partial Class frmLogin
         Me.txtUser.Font = New System.Drawing.Font("Cambria", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtUser.ForeColor = System.Drawing.Color.Black
         Me.txtUser.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtUser.Location = New System.Drawing.Point(17, 166)
-        Me.txtUser.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
+        Me.txtUser.Location = New System.Drawing.Point(23, 204)
+        Me.txtUser.Margin = New System.Windows.Forms.Padding(5, 7, 5, 7)
         Me.txtUser.Name = "txtUser"
         Me.txtUser.PlaceholderForeColor = System.Drawing.Color.Gray
         Me.txtUser.PlaceholderText = "Username"
         Me.txtUser.SelectedText = ""
-        Me.txtUser.Size = New System.Drawing.Size(243, 40)
+        Me.txtUser.Size = New System.Drawing.Size(324, 49)
         Me.txtUser.TabIndex = 0
         '
         'txtPass
@@ -71,14 +71,14 @@ Partial Class frmLogin
         Me.txtPass.Font = New System.Drawing.Font("Cambria", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtPass.ForeColor = System.Drawing.Color.Black
         Me.txtPass.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtPass.Location = New System.Drawing.Point(17, 218)
-        Me.txtPass.Margin = New System.Windows.Forms.Padding(4, 6, 4, 6)
+        Me.txtPass.Location = New System.Drawing.Point(23, 268)
+        Me.txtPass.Margin = New System.Windows.Forms.Padding(5, 7, 5, 7)
         Me.txtPass.Name = "txtPass"
         Me.txtPass.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.txtPass.PlaceholderForeColor = System.Drawing.Color.Gray
         Me.txtPass.PlaceholderText = "Password"
         Me.txtPass.SelectedText = ""
-        Me.txtPass.Size = New System.Drawing.Size(243, 40)
+        Me.txtPass.Size = New System.Drawing.Size(324, 49)
         Me.txtPass.TabIndex = 1
         '
         'Guna2Panel1
@@ -89,10 +89,11 @@ Partial Class frmLogin
         Me.Guna2Panel1.Controls.Add(Me.txtUser)
         Me.Guna2Panel1.Controls.Add(Me.txtPass)
         Me.Guna2Panel1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Guna2Panel1.Location = New System.Drawing.Point(527, 0)
+        Me.Guna2Panel1.Location = New System.Drawing.Point(703, 0)
+        Me.Guna2Panel1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Guna2Panel1.Name = "Guna2Panel1"
         Me.Guna2Panel1.ShadowDecoration.Enabled = True
-        Me.Guna2Panel1.Size = New System.Drawing.Size(273, 450)
+        Me.Guna2Panel1.Size = New System.Drawing.Size(364, 554)
         Me.Guna2Panel1.TabIndex = 2
         '
         'btnLogin
@@ -102,9 +103,10 @@ Partial Class frmLogin
         Me.btnLogin.Font = New System.Drawing.Font("Cambria", 11.25!)
         Me.btnLogin.ForeColor = System.Drawing.Color.White
         Me.btnLogin.HoverState.FillColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(171, Byte), Integer), CType(CType(189, Byte), Integer))
-        Me.btnLogin.Location = New System.Drawing.Point(17, 267)
+        Me.btnLogin.Location = New System.Drawing.Point(23, 329)
+        Me.btnLogin.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.btnLogin.Name = "btnLogin"
-        Me.btnLogin.Size = New System.Drawing.Size(243, 45)
+        Me.btnLogin.Size = New System.Drawing.Size(324, 55)
         Me.btnLogin.TabIndex = 2
         Me.btnLogin.Text = "LOGIN"
         '
@@ -117,31 +119,34 @@ Partial Class frmLogin
         Me.Guna2CustomGradientPanel1.FillColor3 = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(1, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(106, Byte), Integer))
         Me.Guna2CustomGradientPanel1.FillColor4 = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(1, Byte), Integer), CType(CType(66, Byte), Integer), CType(CType(106, Byte), Integer))
         Me.Guna2CustomGradientPanel1.Location = New System.Drawing.Point(0, 0)
+        Me.Guna2CustomGradientPanel1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Guna2CustomGradientPanel1.Name = "Guna2CustomGradientPanel1"
-        Me.Guna2CustomGradientPanel1.Size = New System.Drawing.Size(800, 450)
+        Me.Guna2CustomGradientPanel1.Size = New System.Drawing.Size(1067, 554)
         Me.Guna2CustomGradientPanel1.TabIndex = 3
         '
         'PictureBox1
         '
         Me.PictureBox1.BackColor = System.Drawing.Color.Transparent
         Me.PictureBox1.Image = Global.dashboard.My.Resources.Resources.LOGO
-        Me.PictureBox1.Location = New System.Drawing.Point(22, 147)
+        Me.PictureBox1.Location = New System.Drawing.Point(29, 181)
+        Me.PictureBox1.Margin = New System.Windows.Forms.Padding(4)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(482, 137)
+        Me.PictureBox1.Size = New System.Drawing.Size(643, 169)
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PictureBox1.TabIndex = 0
         Me.PictureBox1.TabStop = False
         '
         'frmLogin
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(14, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(90, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.ClientSize = New System.Drawing.Size(1067, 554)
         Me.Controls.Add(Me.Guna2Panel1)
         Me.Controls.Add(Me.Guna2CustomGradientPanel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "frmLogin"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "frmLogin"

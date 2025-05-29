@@ -112,6 +112,7 @@ Public Class frmUpdatePayment
                 updatePaymentCmd.Parameters.AddWithValue("@Date", DateTime.Now)
                 updatePaymentCmd.Parameters.AddWithValue("@ReservationID", reservationID)
                 updatePaymentCmd.ExecuteNonQuery()
+                LogUserAction("Update Payment", "Updated payment for reservation: " & reservationID & ", new amount: " & paidAmount)
 
                 ' Insert transaction
                 Dim sql As String = "

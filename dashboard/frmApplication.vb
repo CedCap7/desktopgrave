@@ -263,6 +263,7 @@ Public Class frmApplication
 
                 ' Execute the query
                 cmd.ExecuteNonQuery()
+                LogUserAction("Add Client", "Added client: " & firstName & " " & lastName)
 
                 ' Retrieve the last inserted Client_ID
                 clientId = CInt(cmd.LastInsertedId)

@@ -103,8 +103,9 @@ Partial Class frmDashboard
         Me.Guna2Panel2.Controls.Add(Me.Label1)
         Me.Guna2Panel2.Dock = System.Windows.Forms.DockStyle.Top
         Me.Guna2Panel2.Location = New System.Drawing.Point(0, 0)
+        Me.Guna2Panel2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Guna2Panel2.Name = "Guna2Panel2"
-        Me.Guna2Panel2.Size = New System.Drawing.Size(1040, 80)
+        Me.Guna2Panel2.Size = New System.Drawing.Size(1387, 98)
         Me.Guna2Panel2.TabIndex = 5
         '
         'btnRefresh
@@ -114,9 +115,10 @@ Partial Class frmDashboard
         Me.btnRefresh.FillColor = System.Drawing.Color.Blue
         Me.btnRefresh.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.btnRefresh.ForeColor = System.Drawing.Color.White
-        Me.btnRefresh.Location = New System.Drawing.Point(953, 48)
+        Me.btnRefresh.Location = New System.Drawing.Point(1271, 59)
+        Me.btnRefresh.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.btnRefresh.Name = "btnRefresh"
-        Me.btnRefresh.Size = New System.Drawing.Size(75, 25)
+        Me.btnRefresh.Size = New System.Drawing.Size(100, 31)
         Me.btnRefresh.TabIndex = 4
         Me.btnRefresh.Text = "Refresh"
         '
@@ -124,11 +126,12 @@ Partial Class frmDashboard
         '
         Me.Label2.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Roboto Condensed", 11.25!, System.Drawing.FontStyle.Italic)
+        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 11.25!, System.Drawing.FontStyle.Italic)
         Me.Label2.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label2.Location = New System.Drawing.Point(15, 48)
+        Me.Label2.Location = New System.Drawing.Point(20, 59)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(520, 19)
+        Me.Label2.Size = New System.Drawing.Size(762, 24)
         Me.Label2.TabIndex = 1
         Me.Label2.Text = "Displays key cemetery data, including burials, client records, and burial expiry " &
     "notifications."
@@ -138,9 +141,10 @@ Partial Class frmDashboard
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Roboto", 24.0!, System.Drawing.FontStyle.Bold)
         Me.Label1.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label1.Location = New System.Drawing.Point(12, 9)
+        Me.Label1.Location = New System.Drawing.Point(16, 11)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(172, 39)
+        Me.Label1.Size = New System.Drawing.Size(218, 53)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Dashboard"
         '
@@ -149,11 +153,12 @@ Partial Class frmDashboard
         Me.Label3.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Roboto Condensed", 18.0!)
+        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 18.0!)
         Me.Label3.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label3.Location = New System.Drawing.Point(14, 94)
+        Me.Label3.Location = New System.Drawing.Point(19, 116)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(189, 29)
+        Me.Label3.Size = New System.Drawing.Size(265, 36)
         Me.Label3.TabIndex = 5
         Me.Label3.Text = "Statistics Overview"
         '
@@ -176,11 +181,12 @@ Partial Class frmDashboard
         Me.TableLayoutPanel1.Controls.Add(Me.Guna2Panel4, 3, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.Guna2Panel5, 5, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.Guna2Panel6, 7, 0)
-        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 252)
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 310)
+        Me.TableLayoutPanel1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1040, 211)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1387, 260)
         Me.TableLayoutPanel1.TabIndex = 6
         '
         'Guna2Panel3
@@ -190,12 +196,13 @@ Partial Class frmDashboard
         Me.Guna2Panel3.Controls.Add(Me.lblApartment)
         Me.Guna2Panel3.Controls.Add(Me.Label5)
         Me.Guna2Panel3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Guna2Panel3.Location = New System.Drawing.Point(12, 3)
+        Me.Guna2Panel3.Location = New System.Drawing.Point(17, 4)
+        Me.Guna2Panel3.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Guna2Panel3.Name = "Guna2Panel3"
         Me.Guna2Panel3.ShadowDecoration.Depth = 5
         Me.Guna2Panel3.ShadowDecoration.Enabled = True
         Me.Guna2Panel3.ShadowDecoration.Shadow = New System.Windows.Forms.Padding(10)
-        Me.Guna2Panel3.Size = New System.Drawing.Size(241, 205)
+        Me.Guna2Panel3.Size = New System.Drawing.Size(322, 252)
         Me.Guna2Panel3.TabIndex = 1
         '
         'TableLayoutPanel3
@@ -207,10 +214,11 @@ Partial Class frmDashboard
         Me.TableLayoutPanel3.Controls.Add(Me.pbApartment, 1, 0)
         Me.TableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Top
         Me.TableLayoutPanel3.Location = New System.Drawing.Point(0, 0)
+        Me.TableLayoutPanel3.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TableLayoutPanel3.Name = "TableLayoutPanel3"
         Me.TableLayoutPanel3.RowCount = 1
         Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel3.Size = New System.Drawing.Size(241, 143)
+        Me.TableLayoutPanel3.Size = New System.Drawing.Size(322, 176)
         Me.TableLayoutPanel3.TabIndex = 9
         '
         'pbApartment
@@ -222,12 +230,13 @@ Partial Class frmDashboard
         Me.pbApartment.FillColor = System.Drawing.Color.FromArgb(CType(CType(200, Byte), Integer), CType(CType(213, Byte), Integer), CType(CType(218, Byte), Integer), CType(CType(223, Byte), Integer))
         Me.pbApartment.Font = New System.Drawing.Font("Segoe UI", 12.0!)
         Me.pbApartment.ForeColor = System.Drawing.Color.White
-        Me.pbApartment.Location = New System.Drawing.Point(63, 3)
+        Me.pbApartment.Location = New System.Drawing.Point(84, 4)
+        Me.pbApartment.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.pbApartment.Minimum = 0
         Me.pbApartment.Name = "pbApartment"
         Me.pbApartment.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle
         Me.pbApartment.ShowText = True
-        Me.pbApartment.Size = New System.Drawing.Size(137, 137)
+        Me.pbApartment.Size = New System.Drawing.Size(168, 168)
         Me.pbApartment.TabIndex = 8
         Me.pbApartment.Text = "Guna"
         '
@@ -236,10 +245,10 @@ Partial Class frmDashboard
         Me.lblApartment.AutoSize = True
         Me.lblApartment.Font = New System.Drawing.Font("Roboto", 11.25!)
         Me.lblApartment.ForeColor = System.Drawing.SystemColors.Control
-        Me.lblApartment.Location = New System.Drawing.Point(20, 171)
-        Me.lblApartment.Margin = New System.Windows.Forms.Padding(20, 0, 3, 15)
+        Me.lblApartment.Location = New System.Drawing.Point(27, 210)
+        Me.lblApartment.Margin = New System.Windows.Forms.Padding(27, 0, 4, 18)
         Me.lblApartment.Name = "lblApartment"
-        Me.lblApartment.Size = New System.Drawing.Size(61, 19)
+        Me.lblApartment.Size = New System.Drawing.Size(80, 25)
         Me.lblApartment.TabIndex = 2
         Me.lblApartment.Text = "Label10"
         '
@@ -248,10 +257,10 @@ Partial Class frmDashboard
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Roboto", 14.25!)
         Me.Label5.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label5.Location = New System.Drawing.Point(20, 138)
-        Me.Label5.Margin = New System.Windows.Forms.Padding(20, 0, 3, 40)
+        Me.Label5.Location = New System.Drawing.Point(27, 170)
+        Me.Label5.Margin = New System.Windows.Forms.Padding(27, 0, 4, 49)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(103, 24)
+        Me.Label5.Size = New System.Drawing.Size(136, 32)
         Me.Label5.TabIndex = 1
         Me.Label5.Text = "Apartment:"
         '
@@ -262,12 +271,13 @@ Partial Class frmDashboard
         Me.Guna2Panel4.Controls.Add(Me.lblLawnlots)
         Me.Guna2Panel4.Controls.Add(Me.Label6)
         Me.Guna2Panel4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Guna2Panel4.Location = New System.Drawing.Point(268, 3)
+        Me.Guna2Panel4.Location = New System.Drawing.Point(360, 4)
+        Me.Guna2Panel4.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Guna2Panel4.Name = "Guna2Panel4"
         Me.Guna2Panel4.ShadowDecoration.Depth = 5
         Me.Guna2Panel4.ShadowDecoration.Enabled = True
         Me.Guna2Panel4.ShadowDecoration.Shadow = New System.Windows.Forms.Padding(10)
-        Me.Guna2Panel4.Size = New System.Drawing.Size(241, 205)
+        Me.Guna2Panel4.Size = New System.Drawing.Size(322, 252)
         Me.Guna2Panel4.TabIndex = 2
         '
         'TableLayoutPanel4
@@ -279,10 +289,11 @@ Partial Class frmDashboard
         Me.TableLayoutPanel4.Controls.Add(Me.pblawnlots, 1, 0)
         Me.TableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Top
         Me.TableLayoutPanel4.Location = New System.Drawing.Point(0, 0)
+        Me.TableLayoutPanel4.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TableLayoutPanel4.Name = "TableLayoutPanel4"
         Me.TableLayoutPanel4.RowCount = 1
         Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel4.Size = New System.Drawing.Size(241, 143)
+        Me.TableLayoutPanel4.Size = New System.Drawing.Size(322, 176)
         Me.TableLayoutPanel4.TabIndex = 10
         '
         'pblawnlots
@@ -294,12 +305,13 @@ Partial Class frmDashboard
         Me.pblawnlots.FillColor = System.Drawing.Color.FromArgb(CType(CType(200, Byte), Integer), CType(CType(213, Byte), Integer), CType(CType(218, Byte), Integer), CType(CType(223, Byte), Integer))
         Me.pblawnlots.Font = New System.Drawing.Font("Segoe UI", 12.0!)
         Me.pblawnlots.ForeColor = System.Drawing.Color.White
-        Me.pblawnlots.Location = New System.Drawing.Point(63, 3)
+        Me.pblawnlots.Location = New System.Drawing.Point(84, 4)
+        Me.pblawnlots.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.pblawnlots.Minimum = 0
         Me.pblawnlots.Name = "pblawnlots"
         Me.pblawnlots.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle
         Me.pblawnlots.ShowText = True
-        Me.pblawnlots.Size = New System.Drawing.Size(137, 137)
+        Me.pblawnlots.Size = New System.Drawing.Size(168, 168)
         Me.pblawnlots.TabIndex = 8
         Me.pblawnlots.Text = "Guna2CircleProgressBar3"
         '
@@ -308,10 +320,10 @@ Partial Class frmDashboard
         Me.lblLawnlots.AutoSize = True
         Me.lblLawnlots.Font = New System.Drawing.Font("Roboto", 11.25!)
         Me.lblLawnlots.ForeColor = System.Drawing.SystemColors.Control
-        Me.lblLawnlots.Location = New System.Drawing.Point(20, 171)
-        Me.lblLawnlots.Margin = New System.Windows.Forms.Padding(20, 0, 3, 15)
+        Me.lblLawnlots.Location = New System.Drawing.Point(27, 210)
+        Me.lblLawnlots.Margin = New System.Windows.Forms.Padding(27, 0, 4, 18)
         Me.lblLawnlots.Name = "lblLawnlots"
-        Me.lblLawnlots.Size = New System.Drawing.Size(61, 19)
+        Me.lblLawnlots.Size = New System.Drawing.Size(80, 25)
         Me.lblLawnlots.TabIndex = 3
         Me.lblLawnlots.Text = "Label11"
         '
@@ -320,10 +332,10 @@ Partial Class frmDashboard
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Roboto", 14.25!)
         Me.Label6.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label6.Location = New System.Drawing.Point(20, 138)
-        Me.Label6.Margin = New System.Windows.Forms.Padding(20, 0, 3, 40)
+        Me.Label6.Location = New System.Drawing.Point(27, 170)
+        Me.Label6.Margin = New System.Windows.Forms.Padding(27, 0, 4, 49)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(163, 24)
+        Me.Label6.Size = New System.Drawing.Size(211, 32)
         Me.Label6.TabIndex = 2
         Me.Label6.Text = "Family Lawn Lots:"
         '
@@ -334,12 +346,13 @@ Partial Class frmDashboard
         Me.Guna2Panel5.Controls.Add(Me.lblBoneNiche)
         Me.Guna2Panel5.Controls.Add(Me.Label7)
         Me.Guna2Panel5.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Guna2Panel5.Location = New System.Drawing.Point(524, 3)
+        Me.Guna2Panel5.Location = New System.Drawing.Point(703, 4)
+        Me.Guna2Panel5.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Guna2Panel5.Name = "Guna2Panel5"
         Me.Guna2Panel5.ShadowDecoration.Depth = 5
         Me.Guna2Panel5.ShadowDecoration.Enabled = True
         Me.Guna2Panel5.ShadowDecoration.Shadow = New System.Windows.Forms.Padding(10)
-        Me.Guna2Panel5.Size = New System.Drawing.Size(241, 205)
+        Me.Guna2Panel5.Size = New System.Drawing.Size(322, 252)
         Me.Guna2Panel5.TabIndex = 3
         '
         'TableLayoutPanel5
@@ -351,10 +364,11 @@ Partial Class frmDashboard
         Me.TableLayoutPanel5.Controls.Add(Me.pbboneniche, 1, 0)
         Me.TableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Top
         Me.TableLayoutPanel5.Location = New System.Drawing.Point(0, 0)
+        Me.TableLayoutPanel5.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TableLayoutPanel5.Name = "TableLayoutPanel5"
         Me.TableLayoutPanel5.RowCount = 1
         Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel5.Size = New System.Drawing.Size(241, 143)
+        Me.TableLayoutPanel5.Size = New System.Drawing.Size(322, 176)
         Me.TableLayoutPanel5.TabIndex = 10
         '
         'pbboneniche
@@ -366,12 +380,13 @@ Partial Class frmDashboard
         Me.pbboneniche.FillColor = System.Drawing.Color.FromArgb(CType(CType(200, Byte), Integer), CType(CType(213, Byte), Integer), CType(CType(218, Byte), Integer), CType(CType(223, Byte), Integer))
         Me.pbboneniche.Font = New System.Drawing.Font("Segoe UI", 12.0!)
         Me.pbboneniche.ForeColor = System.Drawing.Color.White
-        Me.pbboneniche.Location = New System.Drawing.Point(63, 3)
+        Me.pbboneniche.Location = New System.Drawing.Point(84, 4)
+        Me.pbboneniche.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.pbboneniche.Minimum = 0
         Me.pbboneniche.Name = "pbboneniche"
         Me.pbboneniche.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle
         Me.pbboneniche.ShowText = True
-        Me.pbboneniche.Size = New System.Drawing.Size(137, 137)
+        Me.pbboneniche.Size = New System.Drawing.Size(168, 168)
         Me.pbboneniche.TabIndex = 8
         Me.pbboneniche.Text = "Guna2CircleProgressBar4"
         '
@@ -380,10 +395,10 @@ Partial Class frmDashboard
         Me.lblBoneNiche.AutoSize = True
         Me.lblBoneNiche.Font = New System.Drawing.Font("Roboto", 11.25!)
         Me.lblBoneNiche.ForeColor = System.Drawing.SystemColors.Control
-        Me.lblBoneNiche.Location = New System.Drawing.Point(20, 171)
-        Me.lblBoneNiche.Margin = New System.Windows.Forms.Padding(20, 0, 3, 15)
+        Me.lblBoneNiche.Location = New System.Drawing.Point(27, 210)
+        Me.lblBoneNiche.Margin = New System.Windows.Forms.Padding(27, 0, 4, 18)
         Me.lblBoneNiche.Name = "lblBoneNiche"
-        Me.lblBoneNiche.Size = New System.Drawing.Size(61, 19)
+        Me.lblBoneNiche.Size = New System.Drawing.Size(80, 25)
         Me.lblBoneNiche.TabIndex = 4
         Me.lblBoneNiche.Text = "Label12"
         '
@@ -392,10 +407,10 @@ Partial Class frmDashboard
         Me.Label7.AutoSize = True
         Me.Label7.Font = New System.Drawing.Font("Roboto", 14.25!)
         Me.Label7.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label7.Location = New System.Drawing.Point(20, 138)
-        Me.Label7.Margin = New System.Windows.Forms.Padding(20, 0, 3, 40)
+        Me.Label7.Location = New System.Drawing.Point(27, 170)
+        Me.Label7.Margin = New System.Windows.Forms.Padding(27, 0, 4, 49)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(112, 24)
+        Me.Label7.Size = New System.Drawing.Size(146, 32)
         Me.Label7.TabIndex = 3
         Me.Label7.Text = "Bone Niche:"
         '
@@ -406,12 +421,13 @@ Partial Class frmDashboard
         Me.Guna2Panel6.Controls.Add(Me.lblPrivate)
         Me.Guna2Panel6.Controls.Add(Me.Label8)
         Me.Guna2Panel6.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Guna2Panel6.Location = New System.Drawing.Point(780, 3)
+        Me.Guna2Panel6.Location = New System.Drawing.Point(1046, 4)
+        Me.Guna2Panel6.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Guna2Panel6.Name = "Guna2Panel6"
         Me.Guna2Panel6.ShadowDecoration.Depth = 5
         Me.Guna2Panel6.ShadowDecoration.Enabled = True
         Me.Guna2Panel6.ShadowDecoration.Shadow = New System.Windows.Forms.Padding(10)
-        Me.Guna2Panel6.Size = New System.Drawing.Size(241, 205)
+        Me.Guna2Panel6.Size = New System.Drawing.Size(322, 252)
         Me.Guna2Panel6.TabIndex = 4
         '
         'TableLayoutPanel6
@@ -423,10 +439,11 @@ Partial Class frmDashboard
         Me.TableLayoutPanel6.Controls.Add(Me.pbprivate, 1, 0)
         Me.TableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Top
         Me.TableLayoutPanel6.Location = New System.Drawing.Point(0, 0)
+        Me.TableLayoutPanel6.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TableLayoutPanel6.Name = "TableLayoutPanel6"
         Me.TableLayoutPanel6.RowCount = 1
         Me.TableLayoutPanel6.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel6.Size = New System.Drawing.Size(241, 143)
+        Me.TableLayoutPanel6.Size = New System.Drawing.Size(322, 176)
         Me.TableLayoutPanel6.TabIndex = 10
         '
         'pbprivate
@@ -438,12 +455,13 @@ Partial Class frmDashboard
         Me.pbprivate.FillColor = System.Drawing.Color.FromArgb(CType(CType(200, Byte), Integer), CType(CType(213, Byte), Integer), CType(CType(218, Byte), Integer), CType(CType(223, Byte), Integer))
         Me.pbprivate.Font = New System.Drawing.Font("Segoe UI", 12.0!)
         Me.pbprivate.ForeColor = System.Drawing.Color.White
-        Me.pbprivate.Location = New System.Drawing.Point(63, 3)
+        Me.pbprivate.Location = New System.Drawing.Point(84, 4)
+        Me.pbprivate.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.pbprivate.Minimum = 0
         Me.pbprivate.Name = "pbprivate"
         Me.pbprivate.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle
         Me.pbprivate.ShowText = True
-        Me.pbprivate.Size = New System.Drawing.Size(137, 137)
+        Me.pbprivate.Size = New System.Drawing.Size(168, 168)
         Me.pbprivate.TabIndex = 8
         Me.pbprivate.Text = "Guna2CircleProgressBar5"
         '
@@ -452,10 +470,10 @@ Partial Class frmDashboard
         Me.lblPrivate.AutoSize = True
         Me.lblPrivate.Font = New System.Drawing.Font("Roboto", 11.25!)
         Me.lblPrivate.ForeColor = System.Drawing.SystemColors.Control
-        Me.lblPrivate.Location = New System.Drawing.Point(20, 171)
-        Me.lblPrivate.Margin = New System.Windows.Forms.Padding(20, 0, 3, 15)
+        Me.lblPrivate.Location = New System.Drawing.Point(27, 210)
+        Me.lblPrivate.Margin = New System.Windows.Forms.Padding(27, 0, 4, 18)
         Me.lblPrivate.Name = "lblPrivate"
-        Me.lblPrivate.Size = New System.Drawing.Size(61, 19)
+        Me.lblPrivate.Size = New System.Drawing.Size(80, 25)
         Me.lblPrivate.TabIndex = 5
         Me.lblPrivate.Text = "Label13"
         '
@@ -464,10 +482,10 @@ Partial Class frmDashboard
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("Roboto", 14.25!)
         Me.Label8.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label8.Location = New System.Drawing.Point(20, 138)
-        Me.Label8.Margin = New System.Windows.Forms.Padding(20, 0, 3, 40)
+        Me.Label8.Location = New System.Drawing.Point(27, 170)
+        Me.Label8.Margin = New System.Windows.Forms.Padding(27, 0, 4, 49)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(73, 24)
+        Me.Label8.Size = New System.Drawing.Size(96, 32)
         Me.Label8.TabIndex = 4
         Me.Label8.Text = "Private:"
         '
@@ -497,13 +515,14 @@ Partial Class frmDashboard
         DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.dgvNotification.DefaultCellStyle = DataGridViewCellStyle3
         Me.dgvNotification.GridColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.dgvNotification.Location = New System.Drawing.Point(14, 608)
+        Me.dgvNotification.Location = New System.Drawing.Point(19, 748)
+        Me.dgvNotification.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.dgvNotification.Name = "dgvNotification"
         Me.dgvNotification.ReadOnly = True
         Me.dgvNotification.RowHeadersVisible = False
         Me.dgvNotification.RowHeadersWidth = 51
         Me.dgvNotification.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.dgvNotification.Size = New System.Drawing.Size(620, 148)
+        Me.dgvNotification.Size = New System.Drawing.Size(827, 182)
         Me.dgvNotification.TabIndex = 7
         Me.dgvNotification.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White
         Me.dgvNotification.ThemeStyle.AlternatingRowsStyle.Font = Nothing
@@ -599,11 +618,12 @@ Partial Class frmDashboard
         Me.TableLayoutPanel2.Controls.Add(Me.Guna2Panel9, 5, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.Guna2Panel8, 3, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.Guna2Panel7, 1, 0)
-        Me.TableLayoutPanel2.Location = New System.Drawing.Point(0, 126)
+        Me.TableLayoutPanel2.Location = New System.Drawing.Point(0, 155)
+        Me.TableLayoutPanel2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
         Me.TableLayoutPanel2.RowCount = 1
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel2.Size = New System.Drawing.Size(1040, 120)
+        Me.TableLayoutPanel2.Size = New System.Drawing.Size(1387, 148)
         Me.TableLayoutPanel2.TabIndex = 8
         '
         'Guna2Panel9
@@ -613,9 +633,10 @@ Partial Class frmDashboard
         Me.Guna2Panel9.BackColor = System.Drawing.Color.FromArgb(CType(CType(44, Byte), Integer), CType(CType(95, Byte), Integer), CType(CType(120, Byte), Integer))
         Me.Guna2Panel9.Controls.Add(Me.lblAvailable)
         Me.Guna2Panel9.Controls.Add(Me.Label11)
-        Me.Guna2Panel9.Location = New System.Drawing.Point(697, 3)
+        Me.Guna2Panel9.Location = New System.Drawing.Point(931, 4)
+        Me.Guna2Panel9.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Guna2Panel9.Name = "Guna2Panel9"
-        Me.Guna2Panel9.Size = New System.Drawing.Size(329, 114)
+        Me.Guna2Panel9.Size = New System.Drawing.Size(439, 140)
         Me.Guna2Panel9.TabIndex = 2
         '
         'lblAvailable
@@ -624,10 +645,10 @@ Partial Class frmDashboard
         Me.lblAvailable.AutoSize = True
         Me.lblAvailable.Font = New System.Drawing.Font("Microsoft Sans Serif", 36.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblAvailable.ForeColor = System.Drawing.SystemColors.Control
-        Me.lblAvailable.Location = New System.Drawing.Point(20, 20)
-        Me.lblAvailable.Margin = New System.Windows.Forms.Padding(20, 20, 30, 15)
+        Me.lblAvailable.Location = New System.Drawing.Point(27, 25)
+        Me.lblAvailable.Margin = New System.Windows.Forms.Padding(27, 25, 40, 18)
         Me.lblAvailable.Name = "lblAvailable"
-        Me.lblAvailable.Size = New System.Drawing.Size(51, 55)
+        Me.lblAvailable.Size = New System.Drawing.Size(63, 69)
         Me.lblAvailable.TabIndex = 11
         Me.lblAvailable.Text = "0"
         Me.lblAvailable.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
@@ -639,10 +660,10 @@ Partial Class frmDashboard
         Me.Label11.BackColor = System.Drawing.Color.Transparent
         Me.Label11.Font = New System.Drawing.Font("Roboto", 14.25!, System.Drawing.FontStyle.Bold)
         Me.Label11.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label11.Location = New System.Drawing.Point(20, 75)
-        Me.Label11.Margin = New System.Windows.Forms.Padding(20, 0, 20, 15)
+        Me.Label11.Location = New System.Drawing.Point(27, 92)
+        Me.Label11.Margin = New System.Windows.Forms.Padding(27, 0, 27, 18)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(138, 24)
+        Me.Label11.Size = New System.Drawing.Size(175, 32)
         Me.Label11.TabIndex = 1
         Me.Label11.Text = "Available Plots"
         '
@@ -652,9 +673,10 @@ Partial Class frmDashboard
         Me.Guna2Panel8.Controls.Add(Me.lblTotalDeceased)
         Me.Guna2Panel8.Controls.Add(Me.Label10)
         Me.Guna2Panel8.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Guna2Panel8.Location = New System.Drawing.Point(354, 3)
+        Me.Guna2Panel8.Location = New System.Drawing.Point(473, 4)
+        Me.Guna2Panel8.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Guna2Panel8.Name = "Guna2Panel8"
-        Me.Guna2Panel8.Size = New System.Drawing.Size(329, 114)
+        Me.Guna2Panel8.Size = New System.Drawing.Size(439, 140)
         Me.Guna2Panel8.TabIndex = 2
         '
         'lblTotalDeceased
@@ -663,10 +685,10 @@ Partial Class frmDashboard
         Me.lblTotalDeceased.AutoSize = True
         Me.lblTotalDeceased.Font = New System.Drawing.Font("Microsoft Sans Serif", 36.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblTotalDeceased.ForeColor = System.Drawing.SystemColors.Control
-        Me.lblTotalDeceased.Location = New System.Drawing.Point(20, 20)
-        Me.lblTotalDeceased.Margin = New System.Windows.Forms.Padding(20, 20, 30, 15)
+        Me.lblTotalDeceased.Location = New System.Drawing.Point(27, 25)
+        Me.lblTotalDeceased.Margin = New System.Windows.Forms.Padding(27, 25, 40, 18)
         Me.lblTotalDeceased.Name = "lblTotalDeceased"
-        Me.lblTotalDeceased.Size = New System.Drawing.Size(51, 55)
+        Me.lblTotalDeceased.Size = New System.Drawing.Size(63, 69)
         Me.lblTotalDeceased.TabIndex = 11
         Me.lblTotalDeceased.Text = "0"
         Me.lblTotalDeceased.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -678,10 +700,10 @@ Partial Class frmDashboard
         Me.Label10.BackColor = System.Drawing.Color.Transparent
         Me.Label10.Font = New System.Drawing.Font("Roboto", 14.25!, System.Drawing.FontStyle.Bold)
         Me.Label10.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label10.Location = New System.Drawing.Point(20, 75)
-        Me.Label10.Margin = New System.Windows.Forms.Padding(20, 0, 20, 15)
+        Me.Label10.Location = New System.Drawing.Point(27, 92)
+        Me.Label10.Margin = New System.Windows.Forms.Padding(27, 0, 27, 18)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(142, 24)
+        Me.Label10.Size = New System.Drawing.Size(181, 32)
         Me.Label10.TabIndex = 1
         Me.Label10.Text = "Total Deceased"
         '
@@ -691,9 +713,10 @@ Partial Class frmDashboard
         Me.Guna2Panel7.Controls.Add(Me.lblTotalClients)
         Me.Guna2Panel7.Controls.Add(Me.Label9)
         Me.Guna2Panel7.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.Guna2Panel7.Location = New System.Drawing.Point(11, 3)
+        Me.Guna2Panel7.Location = New System.Drawing.Point(15, 4)
+        Me.Guna2Panel7.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Guna2Panel7.Name = "Guna2Panel7"
-        Me.Guna2Panel7.Size = New System.Drawing.Size(329, 114)
+        Me.Guna2Panel7.Size = New System.Drawing.Size(439, 140)
         Me.Guna2Panel7.TabIndex = 0
         '
         'lblTotalClients
@@ -701,10 +724,10 @@ Partial Class frmDashboard
         Me.lblTotalClients.AutoSize = True
         Me.lblTotalClients.Font = New System.Drawing.Font("Microsoft Sans Serif", 36.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblTotalClients.ForeColor = System.Drawing.SystemColors.Control
-        Me.lblTotalClients.Location = New System.Drawing.Point(20, 20)
-        Me.lblTotalClients.Margin = New System.Windows.Forms.Padding(20, 20, 30, 15)
+        Me.lblTotalClients.Location = New System.Drawing.Point(27, 25)
+        Me.lblTotalClients.Margin = New System.Windows.Forms.Padding(27, 25, 40, 18)
         Me.lblTotalClients.Name = "lblTotalClients"
-        Me.lblTotalClients.Size = New System.Drawing.Size(51, 55)
+        Me.lblTotalClients.Size = New System.Drawing.Size(63, 69)
         Me.lblTotalClients.TabIndex = 10
         Me.lblTotalClients.Text = "0"
         Me.lblTotalClients.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -716,10 +739,10 @@ Partial Class frmDashboard
         Me.Label9.BackColor = System.Drawing.Color.Transparent
         Me.Label9.Font = New System.Drawing.Font("Roboto", 14.25!, System.Drawing.FontStyle.Bold)
         Me.Label9.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label9.Location = New System.Drawing.Point(18, 75)
-        Me.Label9.Margin = New System.Windows.Forms.Padding(20, 0, 20, 15)
+        Me.Label9.Location = New System.Drawing.Point(24, 92)
+        Me.Label9.Margin = New System.Windows.Forms.Padding(27, 0, 27, 18)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(118, 24)
+        Me.Label9.Size = New System.Drawing.Size(149, 32)
         Me.Label9.TabIndex = 1
         Me.Label9.Text = "Total Clients"
         '
@@ -730,29 +753,30 @@ Partial Class frmDashboard
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("Roboto Condensed", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label4.ForeColor = System.Drawing.Color.Red
-        Me.Label4.Location = New System.Drawing.Point(13, 477)
+        Me.Label4.Location = New System.Drawing.Point(17, 587)
+        Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(392, 39)
+        Me.Label4.Size = New System.Drawing.Size(609, 46)
         Me.Label4.TabIndex = 5
         Me.Label4.Text = "GRAVE EXPIRATION NOTICE!"
         '
         'pnlNotifications
         '
         Me.pnlNotifications.ImeMode = System.Windows.Forms.ImeMode.NoControl
-        Me.pnlNotifications.Location = New System.Drawing.Point(14, 517)
-        Me.pnlNotifications.Margin = New System.Windows.Forms.Padding(2)
+        Me.pnlNotifications.Location = New System.Drawing.Point(19, 636)
+        Me.pnlNotifications.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.pnlNotifications.Name = "pnlNotifications"
-        Me.pnlNotifications.Size = New System.Drawing.Size(620, 86)
+        Me.pnlNotifications.Size = New System.Drawing.Size(827, 106)
         Me.pnlNotifications.TabIndex = 9
         '
         'frmDashboard
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(14, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(90, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(1040, 640)
+        Me.ClientSize = New System.Drawing.Size(1387, 788)
         Me.Controls.Add(Me.pnlNotifications)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.TableLayoutPanel2)
@@ -761,6 +785,7 @@ Partial Class frmDashboard
         Me.Controls.Add(Me.Guna2Panel2)
         Me.Controls.Add(Me.dgvNotification)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "frmDashboard"
         Me.Text = "frmHome"
         Me.Guna2Panel2.ResumeLayout(False)

@@ -74,6 +74,7 @@ Public Class frmUpdateClient
             cmd.Parameters.AddWithValue("@ClientID", client_ID) ' 
 
             cmd.ExecuteNonQuery()
+            LogUserAction("Update Client", "Updated client: " & txtFirstName.Text & " " & txtLastName.Text)
             MessageBox.Show("Client information updated successfully.")
             cn.Close()
             Me.Close()
