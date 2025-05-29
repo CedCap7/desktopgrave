@@ -25,6 +25,9 @@ Public Class frmPlotPurchAndAssign
         Module1.dbconn() ' Initialize the database connection
         LoadPackages()
         SetupClientSearchBox()
+
+        ' Initialize quantity controls
+        lblQuantity.Text = "Quantity:"
         lblQuantity.Visible = False
         currentQuantity.Visible = False
         currentQuantity.Value = 1
@@ -174,7 +177,8 @@ Public Class frmPlotPurchAndAssign
             Return
         End If
 
-        ' Figure out which layer name to pass in...
+
+
         Dim selectedPackageType As String = ""
         Select Case DirectCast(GraveType.SelectedItem, DataRowView)("description").ToString().Trim().ToLower()
             Case "private" : selectedPackageType = "private"
@@ -252,7 +256,7 @@ Public Class frmPlotPurchAndAssign
                                 Return
                             End If
 
-                            ' Check if plots are in the same section
+
                             If reader("section").ToString() <> locationString.Split(", ")(1) Then
                                 MessageBox.Show("Selected plot must be in the same section as the previous selection.", "Invalid Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                                 Return
@@ -327,6 +331,7 @@ Public Class frmPlotPurchAndAssign
             deceasedId = Convert.ToInt32(selectedRow("Deceased_ID"))
             status = 1 ' Set status to 1 if a deceased is selected
         End If
+
 
         Dim clientId As Integer = selectedClientId
         If clientId <= 0 Then
@@ -405,7 +410,6 @@ Public Class frmPlotPurchAndAssign
                                 cmd.Parameters.AddWithValue("@Level", 0)
                                 cmd.Parameters.AddWithValue("@DeceasedID", deceasedId.Value)
                                 cmd.ExecuteNonQuery()
-                                LogUserAction("Update Deceased", "Assigned plot to deceased ID: " & deceasedId.Value)
                             End Using
                         End If
 
@@ -453,28 +457,14 @@ Public Class frmPlotPurchAndAssign
                             reservationId = Convert.ToInt32(cmd.ExecuteScalar())
                         End Using
 
- branchforfinallogs
-                            ' Update deceased record with Plot_ID and Level if a deceased person is selected
-                            ' Only update for the first plot if multiple plots are selected
-                            If deceasedId.HasValue AndAlso plot.Key = _selectedPlots.First().Key Then
-                                Dim updateDeceasedQuery As String = "UPDATE deceased SET Plot_ID = @PlotID, Level = @Level WHERE Deceased_ID = @DeceasedID"
-                                Using cmd As New MySqlCommand(updateDeceasedQuery, Module1.cn, transaction)
-                                    cmd.Parameters.AddWithValue("@PlotID", plot.Key)
-                                    cmd.Parameters.AddWithValue("@Level", If(packageType = 4, 0, plot.Value.Level))
-                                    cmd.Parameters.AddWithValue("@DeceasedID", deceasedId.Value)
-                                    cmd.ExecuteNonQuery()
-                                    LogUserAction("Update Deceased", "Assigned plot to deceased ID: " & deceasedId.Value)
-                                End Using
-                            End If
-                        ' Insert plot reservation
+
                         Dim plotReservationQuery As String = "INSERT INTO plot_reservation (reservation_id, plot_id, level) VALUES (@reservation_id, @plot_id, @level)"
-                        Using cmd As New MySqlCommand(plotReservationQuery, Module1.cn, transaction)
+                        Using cmd As New MySqlCommand(plotReservationQuery, cn, transaction)
                             cmd.Parameters.AddWithValue("@reservation_id", reservationId)
                             cmd.Parameters.AddWithValue("@plot_id", plot.Key)
                             cmd.Parameters.AddWithValue("@level", plot.Value.Level)
                             cmd.ExecuteNonQuery()
                         End Using
- main
 
                         ' Update deceased record with Plot_ID and Level if a deceased person is selected
                         ' Only update for the first plot if multiple plots are selected
@@ -539,6 +529,7 @@ Public Class frmPlotPurchAndAssign
 
             While exists
                 transactionId = random.Next(100000, 999999).ToString() ' 6-digit random number
+
 
                 Using cmd As New MySqlCommand(query, cn)
                     cmd.Parameters.AddWithValue("@TransactionId", transactionId)
@@ -635,6 +626,7 @@ Public Class frmPlotPurchAndAssign
         End Try
     End Sub
 
+
     Private Sub ClearPlotSelections()
         ' Clears the selected plots dictionary and the list display
         _selectedPlotsDict.Clear()
@@ -643,6 +635,9 @@ Public Class frmPlotPurchAndAssign
             SelectedPlotsList.Items.Clear()
             ' Keep the list visible, even when empty
         End If
+
+        ' Don't reset quantity controls visibility here
+        ' Let GraveType_SelectedIndexChanged handle visibility
     End Sub
 
     Private Sub ClearPackageDetails()
@@ -651,9 +646,12 @@ Public Class frmPlotPurchAndAssign
         If txtPackage IsNot Nothing Then txtPackage.Text = "Package Type:"
         If txtPrice IsNot Nothing Then txtPrice.Text = "Price:"
         If txtTotal IsNot Nothing Then
-            txtTotal.Text = "Total: ₱0.00"
+            txtTotal.Text = "₱0.00"
             txtTotal.Visible = False
         End If
+
+        ' Don't reset quantity controls visibility here
+        ' Let GraveType_SelectedIndexChanged handle visibility
     End Sub
 
     Private Sub PopulateDeceasedComboBox()
@@ -664,10 +662,8 @@ Public Class frmPlotPurchAndAssign
     Private Sub ResetPlotSelections()
         ' Resets the plot selections and clears the display
         ClearPlotSelections()
-        ' Optionally, reset quantity to 1 if applicable
+        ' Don't reset quantity controls visibility here
         If currentQuantity IsNot Nothing Then currentQuantity.Value = 1
-        If lblQuantity IsNot Nothing Then lblQuantity.Visible = False
-        If currentQuantity IsNot Nothing Then currentQuantity.Visible = False
     End Sub
 
     Private Function GetDeceasedCount(plotId As Integer) As Integer
@@ -721,20 +717,23 @@ Public Class frmPlotPurchAndAssign
                 Debug.WriteLine($"Selected Package ID: {selectedPackageId}, Description: {description}")
                 ' ******************************************
 
-                ' Show quantity only for family lawn lot (p_id = 2)
+
                 If selectedPackageId = 2 Then
+                    Debug.WriteLine("Setting controls visible for family lawn lot")
                     lblQuantity.Visible = True
                     currentQuantity.Visible = True
                     currentQuantity.Value = 1
                     cmbDeceased.Visible = False
                     Label8.Visible = False
                 ElseIf description = "apartment" OrElse description = "bone niche" Then
+                    Debug.WriteLine("Hiding quantity controls for apartment/bone niche")
                     lblQuantity.Visible = False
                     currentQuantity.Visible = False
                     currentQuantity.Value = 1
                     cmbDeceased.Visible = True
                     Label8.Visible = True
                 Else
+                    Debug.WriteLine("Hiding quantity controls for other types")
                     lblQuantity.Visible = False
                     currentQuantity.Visible = False
                     currentQuantity.Value = 1
@@ -743,9 +742,10 @@ Public Class frmPlotPurchAndAssign
                 End If
 
                 LoadPackageDetails(selectedPackageId)
-                ResetPlotSelections()
+                ClearPlotSelections()
                 UpdateTotalAmount()
             Else
+                Debug.WriteLine("No package selected, hiding controls")
                 txtGraveType.Text = "Grave Type:"
                 txtPackage.Text = "Package:"
                 txtPrice.Text = "Price:"
@@ -756,7 +756,7 @@ Public Class frmPlotPurchAndAssign
                 currentQuantity.Value = 1
                 cmbDeceased.Visible = False
                 Label8.Visible = False
-                ResetPlotSelections()
+                ClearPlotSelections()
             End If
         Catch ex As Exception
             MessageBox.Show("Error loading package details: " & ex.Message)
@@ -802,6 +802,7 @@ Public Class frmPlotPurchAndAssign
            TypeOf GraveType.SelectedValue Is Integer AndAlso
            Convert.ToInt32(GraveType.SelectedValue) <> 0 Then
 
+
                 Dim selectedRow As DataRowView = DirectCast(GraveType.SelectedItem, DataRowView)
                 Dim packagePrice As Decimal = Convert.ToDecimal(selectedRow("price"))
                 Dim quantity As Integer = Convert.ToInt32(currentQuantity.Value)
@@ -809,6 +810,12 @@ Public Class frmPlotPurchAndAssign
 
                 txtTotal.Text = $"Total: ₱{totalAmount:N2}"
                 txtTotal.Visible = True
+
+                ' Maintain quantity controls visibility for family lawn lot
+                If Convert.ToInt32(selectedRow("p_id")) = 2 Then
+                    lblQuantity.Visible = True
+                    currentQuantity.Visible = True
+                End If
             Else
                 txtTotal.Text = "Total: ₱0.00"
                 txtTotal.Visible = False
@@ -845,11 +852,6 @@ Public Class frmPlotPurchAndAssign
 
     Private Sub currentQuantity_ValueChanged(sender As Object, e As EventArgs) Handles currentQuantity.ValueChanged
         UpdateTotalAmount()
-
-        ' Optional: Notify user when quantity > 1
-        If currentQuantity.Value > 1 Then
-            MessageBox.Show($"Please select {currentQuantity.Value} plots", "Plot Selection Required", MessageBoxButtons.OK, MessageBoxIcon.Information)
-        End If
     End Sub
 
 End Class

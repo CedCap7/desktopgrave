@@ -15,7 +15,7 @@ Module Module1
     Public arrImage() As Byte
 
     Public Sub dbconn()
- branchforfinallogs
+
         If cn.State = ConnectionState.Open Then
             cn.Close()
         End If
@@ -46,6 +46,6 @@ Module Module1
 
         'cn.ConnectionString = "server=172.16.11.195; database=razonado; username=razonado; password=123; port=3306"
         cn.ConnectionString = "server=srv594.hstgr.io; database=u976878483_cemetery; username=u976878483_doncarlos; password=d0Nc4los; port=3306"
-main
+
     End Sub
 End Module
