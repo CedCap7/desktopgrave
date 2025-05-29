@@ -37,8 +37,9 @@ Public Class frmClientReg
                 Dim dateReg As String = If(IsDBNull(dr("Date_Registered")), "", CDate(dr("Date_Registered")).ToString("yyyy-MM-dd"))
                 newLine.SubItems.Add(dateReg)
 
-                ' Status based on Status column
-                Dim statusText As String = If(Convert.ToInt32(dr("Status")) = 1, "Active", "Inactive")
+                ' Status based on Status column, handling potential DBNull
+                Dim statusValue As Object = dr("Status")
+                Dim statusText As String = If(IsDBNull(statusValue) OrElse Convert.ToInt32(statusValue) = 0, "Inactive", "Active")
                 newLine.SubItems.Add(statusText)
             End While
 
