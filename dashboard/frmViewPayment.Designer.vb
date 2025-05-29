@@ -50,6 +50,7 @@ Partial Class frmViewPayment
         Me.ColumnHeader2 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.ColumnHeader3 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.Label5 = New System.Windows.Forms.Label()
+        Me.btnExport = New Guna.UI2.WinForms.Guna2Button()
         Me.Guna2Panel2.SuspendLayout()
         Me.Guna2ShadowPanel1.SuspendLayout()
         Me.Guna2ShadowPanel2.SuspendLayout()
@@ -59,6 +60,7 @@ Partial Class frmViewPayment
         'Guna2Panel2
         '
         Me.Guna2Panel2.AutoSize = True
+        Me.Guna2Panel2.Controls.Add(Me.btnExport)
         Me.Guna2Panel2.Controls.Add(Me.btnPayment)
         Me.Guna2Panel2.Controls.Add(Me.btnShowAll)
         Me.Guna2Panel2.Controls.Add(Me.Label2)
@@ -352,6 +354,24 @@ Partial Class frmViewPayment
         Me.Label5.TabIndex = 9
         Me.Label5.Text = "Payment History"
         '
+        'btnExport
+        '
+        Me.btnExport.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.btnExport.Animated = True
+        Me.btnExport.FillColor = System.Drawing.Color.DarkOrange
+        Me.btnExport.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnExport.ForeColor = System.Drawing.Color.White
+        Me.btnExport.Image = Global.dashboard.My.Resources.Resources.pdf
+        Me.btnExport.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left
+        Me.btnExport.ImageOffset = New System.Drawing.Point(-5, 0)
+        Me.btnExport.Location = New System.Drawing.Point(1070, 44)
+        Me.btnExport.Name = "btnExport"
+        Me.btnExport.Size = New System.Drawing.Size(122, 25)
+        Me.btnExport.TabIndex = 8
+        Me.btnExport.Text = "Export to PDF"
+        Me.btnExport.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.btnExport.TextOffset = New System.Drawing.Point(2, 0)
+        '
         'frmViewPayment
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -407,4 +427,5 @@ Partial Class frmViewPayment
     Friend WithEvents Label5 As Label
     Friend WithEvents btnPayment As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents datepurchased As ColumnHeader
+    Friend WithEvents btnExport As Guna.UI2.WinForms.Guna2Button
 End Class

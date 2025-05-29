@@ -34,14 +34,22 @@ Partial Class frmViewClient
         Me.LblMobile = New System.Windows.Forms.Label()
         Me.LblClient = New System.Windows.Forms.Label()
         Me.Guna2ShadowPanel2 = New Guna.UI2.WinForms.Guna2ShadowPanel()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.btnTransfer = New Guna.UI2.WinForms.Guna2Button()
         Me.ListView1 = New System.Windows.Forms.ListView()
         Me.associatedDeceased = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.plotLocation = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
+        Me.Guna2ShadowPanel3 = New Guna.UI2.WinForms.Guna2ShadowPanel()
+        Me.btnAddDeceased = New Guna.UI2.WinForms.Guna2Button()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.PlotsList = New System.Windows.Forms.ListView()
+        Me.ColumnHeader2 = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.Guna2ShadowPanel1.SuspendLayout()
         CType(Me.pbClient, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Guna2ShadowPanel2.SuspendLayout()
+        Me.Guna2ShadowPanel3.SuspendLayout()
         Me.SuspendLayout()
         '
         'Guna2ShadowPanel1
@@ -171,16 +179,42 @@ Partial Class frmViewClient
         'Guna2ShadowPanel2
         '
         Me.Guna2ShadowPanel2.BackColor = System.Drawing.Color.Transparent
+        Me.Guna2ShadowPanel2.Controls.Add(Me.Label7)
+        Me.Guna2ShadowPanel2.Controls.Add(Me.btnTransfer)
         Me.Guna2ShadowPanel2.Controls.Add(Me.ListView1)
         Me.Guna2ShadowPanel2.FillColor = System.Drawing.Color.FromArgb(CType(CType(14, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(90, Byte), Integer))
-        Me.Guna2ShadowPanel2.Location = New System.Drawing.Point(12, 60)
+        Me.Guna2ShadowPanel2.Location = New System.Drawing.Point(12, 492)
         Me.Guna2ShadowPanel2.Name = "Guna2ShadowPanel2"
         Me.Guna2ShadowPanel2.Radius = 10
         Me.Guna2ShadowPanel2.ShadowColor = System.Drawing.Color.Black
         Me.Guna2ShadowPanel2.ShadowDepth = 150
         Me.Guna2ShadowPanel2.ShadowShift = 7
-        Me.Guna2ShadowPanel2.Size = New System.Drawing.Size(481, 426)
+        Me.Guna2ShadowPanel2.Size = New System.Drawing.Size(886, 245)
         Me.Guna2ShadowPanel2.TabIndex = 8
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Font = New System.Drawing.Font("Roboto", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.ForeColor = System.Drawing.SystemColors.Control
+        Me.Label7.Location = New System.Drawing.Point(22, 18)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(247, 29)
+        Me.Label7.TabIndex = 15
+        Me.Label7.Text = "Associated Deceased"
+        '
+        'btnTransfer
+        '
+        Me.btnTransfer.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.btnTransfer.Animated = True
+        Me.btnTransfer.FillColor = System.Drawing.Color.DarkGoldenrod
+        Me.btnTransfer.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnTransfer.ForeColor = System.Drawing.Color.White
+        Me.btnTransfer.Location = New System.Drawing.Point(778, 22)
+        Me.btnTransfer.Name = "btnTransfer"
+        Me.btnTransfer.Size = New System.Drawing.Size(75, 25)
+        Me.btnTransfer.TabIndex = 14
+        Me.btnTransfer.Text = "Transfer"
         '
         'ListView1
         '
@@ -194,22 +228,22 @@ Partial Class frmViewClient
         Me.ListView1.FullRowSelect = True
         Me.ListView1.GridLines = True
         Me.ListView1.HideSelection = False
-        Me.ListView1.Location = New System.Drawing.Point(16, 22)
+        Me.ListView1.Location = New System.Drawing.Point(16, 63)
         Me.ListView1.Name = "ListView1"
-        Me.ListView1.Size = New System.Drawing.Size(449, 387)
+        Me.ListView1.Size = New System.Drawing.Size(854, 165)
         Me.ListView1.TabIndex = 0
         Me.ListView1.UseCompatibleStateImageBehavior = False
         Me.ListView1.View = System.Windows.Forms.View.Details
         '
         'associatedDeceased
         '
-        Me.associatedDeceased.Text = "Associated Deceased"
-        Me.associatedDeceased.Width = 165
+        Me.associatedDeceased.Text = "Name"
+        Me.associatedDeceased.Width = 300
         '
         'plotLocation
         '
         Me.plotLocation.Text = "Plot Location"
-        Me.plotLocation.Width = 280
+        Me.plotLocation.Width = 500
         '
         'Label11
         '
@@ -233,12 +267,77 @@ Partial Class frmViewClient
         Me.Label5.TabIndex = 12
         Me.Label5.Text = "Information of the Client and its Associated Deceased"
         '
+        'Guna2ShadowPanel3
+        '
+        Me.Guna2ShadowPanel3.BackColor = System.Drawing.Color.Transparent
+        Me.Guna2ShadowPanel3.Controls.Add(Me.btnAddDeceased)
+        Me.Guna2ShadowPanel3.Controls.Add(Me.Label6)
+        Me.Guna2ShadowPanel3.Controls.Add(Me.PlotsList)
+        Me.Guna2ShadowPanel3.FillColor = System.Drawing.Color.FromArgb(CType(CType(14, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(90, Byte), Integer))
+        Me.Guna2ShadowPanel3.Location = New System.Drawing.Point(12, 60)
+        Me.Guna2ShadowPanel3.Name = "Guna2ShadowPanel3"
+        Me.Guna2ShadowPanel3.Radius = 10
+        Me.Guna2ShadowPanel3.ShadowColor = System.Drawing.Color.Black
+        Me.Guna2ShadowPanel3.ShadowDepth = 150
+        Me.Guna2ShadowPanel3.ShadowShift = 7
+        Me.Guna2ShadowPanel3.Size = New System.Drawing.Size(475, 426)
+        Me.Guna2ShadowPanel3.TabIndex = 9
+        '
+        'btnAddDeceased
+        '
+        Me.btnAddDeceased.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.btnAddDeceased.Animated = True
+        Me.btnAddDeceased.FillColor = System.Drawing.Color.DarkGoldenrod
+        Me.btnAddDeceased.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnAddDeceased.ForeColor = System.Drawing.Color.White
+        Me.btnAddDeceased.Location = New System.Drawing.Point(372, 16)
+        Me.btnAddDeceased.Name = "btnAddDeceased"
+        Me.btnAddDeceased.Size = New System.Drawing.Size(75, 25)
+        Me.btnAddDeceased.TabIndex = 12
+        Me.btnAddDeceased.Text = "Assign"
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Font = New System.Drawing.Font("Roboto", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.ForeColor = System.Drawing.SystemColors.Control
+        Me.Label6.Location = New System.Drawing.Point(22, 16)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(149, 29)
+        Me.Label6.TabIndex = 11
+        Me.Label6.Text = "Owned Plots"
+        '
+        'PlotsList
+        '
+        Me.PlotsList.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PlotsList.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.PlotsList.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader2})
+        Me.PlotsList.Font = New System.Drawing.Font("Roboto", 11.25!)
+        Me.PlotsList.ForeColor = System.Drawing.SystemColors.Control
+        Me.PlotsList.FullRowSelect = True
+        Me.PlotsList.GridLines = True
+        Me.PlotsList.HideSelection = False
+        Me.PlotsList.Location = New System.Drawing.Point(16, 57)
+        Me.PlotsList.Name = "PlotsList"
+        Me.PlotsList.Size = New System.Drawing.Size(443, 352)
+        Me.PlotsList.TabIndex = 0
+        Me.PlotsList.UseCompatibleStateImageBehavior = False
+        Me.PlotsList.View = System.Windows.Forms.View.Details
+        '
+        'ColumnHeader2
+        '
+        Me.ColumnHeader2.Text = "Plot Location"
+        Me.ColumnHeader2.Width = 800
+        '
         'frmViewClient
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(14, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(90, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(910, 498)
+        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(23, Byte), Integer), CType(CType(107, Byte), Integer), CType(CType(135, Byte), Integer))
+        Me.ClientSize = New System.Drawing.Size(910, 749)
+        Me.Controls.Add(Me.Guna2ShadowPanel3)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.Label11)
         Me.Controls.Add(Me.Guna2ShadowPanel2)
@@ -252,6 +351,9 @@ Partial Class frmViewClient
         Me.Guna2ShadowPanel1.PerformLayout()
         CType(Me.pbClient, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Guna2ShadowPanel2.ResumeLayout(False)
+        Me.Guna2ShadowPanel2.PerformLayout()
+        Me.Guna2ShadowPanel3.ResumeLayout(False)
+        Me.Guna2ShadowPanel3.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -272,4 +374,11 @@ Partial Class frmViewClient
     Friend WithEvents Label2 As Label
     Friend WithEvents Label1 As Label
     Friend WithEvents LblEmail As Label
+    Friend WithEvents Guna2ShadowPanel3 As Guna.UI2.WinForms.Guna2ShadowPanel
+    Friend WithEvents Label6 As Label
+    Friend WithEvents PlotsList As ListView
+    Friend WithEvents ColumnHeader2 As ColumnHeader
+    Friend WithEvents Label7 As Label
+    Friend WithEvents btnTransfer As Guna.UI2.WinForms.Guna2Button
+    Friend WithEvents btnAddDeceased As Guna.UI2.WinForms.Guna2Button
 End Class

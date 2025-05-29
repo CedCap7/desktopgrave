@@ -294,6 +294,13 @@ Public Class frmReservationsReg
                     Return
                 End If
 
+                ' Check payment status
+                Dim paymentStatus As String = ReservationList.SelectedItems(0).SubItems(6).Text ' Payment Status is in the 7th column (index 6)
+                If paymentStatus = "Partial" Then
+                    MessageBox.Show("Cannot assign this reservation as it has partial payment. Please ensure full payment is made first.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    Return
+                End If
+
                 Dim reservationID As Integer = Convert.ToInt32(ReservationList.SelectedItems(0).Tag)
                 Dim clientID As Integer = GetClientIDFromReservation(reservationID)
 
