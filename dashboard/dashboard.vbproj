@@ -242,18 +242,6 @@
     <Compile Include="frmDashboard.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmDeceasedAssign.Designer.vb">
-      <DependentUpon>frmDeceasedAssign.vb</DependentUpon>
-    </Compile>
-    <Compile Include="frmDeceasedAssign.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmDeceasedTransfer.Designer.vb">
-      <DependentUpon>frmDeceasedTransfer.vb</DependentUpon>
-    </Compile>
-    <Compile Include="frmDeceasedTransfer.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="frmEditUser.Designer.vb">
       <DependentUpon>frmEditUser.vb</DependentUpon>
     </Compile>
@@ -431,12 +419,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmDashboard.resx">
       <DependentUpon>frmDashboard.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmDeceasedAssign.resx">
-      <DependentUpon>frmDeceasedAssign.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmDeceasedTransfer.resx">
-      <DependentUpon>frmDeceasedTransfer.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmEditUser.resx">
       <DependentUpon>frmEditUser.vb</DependentUpon>

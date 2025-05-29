@@ -1,6 +1,4 @@
 ﻿Imports MySql.Data.MySqlClient
-Imports PdfSharp.Drawing
-Imports PdfSharp.Pdf
 
 Public Class frmViewPayment
     Private clientID As String
@@ -171,13 +169,6 @@ Public Class frmViewPayment
         End If
     End Sub
 
-    Public Enum XFontStyle
-        Regular = 0
-        Bold = 1
-        Italic = 2
-        BoldItalic = 3
-    End Enum
-
     Public Sub LoadPaymentHistory()
         Try
             Using tempConnection As New MySqlConnection("server=srv594.hstgr.io; database=u976878483_cemetery; username=u976878483_doncarlos; password=d0Nc4los; port=3306")
@@ -242,112 +233,5 @@ Public Class frmViewPayment
         LoadPaymentHistory()
         LoadClientPaymentData()
         LoadClientDetails()
-    End Sub
-
-    Private Sub btnExport_Click(sender As Object, e As EventArgs) Handles btnExport.Click
-        Try
-            Dim saveDialog As New SaveFileDialog()
-            saveDialog.Filter = "PDF files (*.pdf)|*.pdf"
-            saveDialog.Title = "Export Client Payment Details"
-            saveDialog.FileName = $"ClientPayment_{clientID}_{DateTime.Now:yyyyMMdd}.pdf"
-
-            If saveDialog.ShowDialog() = DialogResult.OK Then
-                ExportToPDF(saveDialog.FileName)
-                MessageBox.Show("Payment details exported successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                Process.Start(saveDialog.FileName)
-            End If
-        Catch ex As Exception
-            MessageBox.Show("Error exporting payment details: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-    End Sub
-
-    Private Sub ExportToPDF(filePath As String)
-        ' Initialize PDFSharp
-        Dim document As New PdfDocument()
-        document.Info.Title = "Client Payment Details"
-
-        ' Create a new page
-        Dim page As PdfPage = document.AddPage()
-        Dim gfx As XGraphics = XGraphics.FromPdfPage(page)
-
-        ' Define fonts
-        Dim titleFont As New XFont("Arial", 16, XFontStyle.Bold)
-        Dim headerFont As New XFont("Arial", 12, XFontStyle.Bold)
-        Dim normalFont As New XFont("Arial", 10, XFontStyle.Regular)
-
-        ' Starting position
-        Dim yPosition As Double = 50
-        Dim leftMargin As Double = 50
-        Dim rightMargin As Double = page.Width - 50
-
-        ' Add title
-        gfx.DrawString("Client Payment Details", titleFont, XBrushes.Black, New XRect(leftMargin, yPosition, rightMargin - leftMargin, 20), XStringFormats.TopLeft)
-        yPosition += 30
-
-        ' Add client details
-        gfx.DrawString("Client Information", headerFont, XBrushes.Black, New XRect(leftMargin, yPosition, rightMargin - leftMargin, 20), XStringFormats.TopLeft)
-        yPosition += 20
-        gfx.DrawString(lblName.Text, normalFont, XBrushes.Black, New XRect(leftMargin, yPosition, rightMargin - leftMargin, 15), XStringFormats.TopLeft)
-        yPosition += 15
-        gfx.DrawString(lblTotalReserved.Text, normalFont, XBrushes.Black, New XRect(leftMargin, yPosition, rightMargin - leftMargin, 15), XStringFormats.TopLeft)
-        yPosition += 15
-        gfx.DrawString(lblOverallAmount.Text, normalFont, XBrushes.Black, New XRect(leftMargin, yPosition, rightMargin - leftMargin, 15), XStringFormats.TopLeft)
-        yPosition += 15
-        gfx.DrawString(lblOverallBal.Text, normalFont, XBrushes.Black, New XRect(leftMargin, yPosition, rightMargin - leftMargin, 15), XStringFormats.TopLeft)
-        yPosition += 30
-
-        ' Add payment account details
-        gfx.DrawString("Payment Account Details", headerFont, XBrushes.Black, New XRect(leftMargin, yPosition, rightMargin - leftMargin, 20), XStringFormats.TopLeft)
-        yPosition += 20
-
-        ' Add column headers
-        Dim columnWidths As Double() = {50, 200, 80, 80, 80, 80, 100}
-        Dim currentX As Double = leftMargin
-        Dim headers As String() = {"ID", "Plot", "Paid", "Amount", "Balance", "Status", "Date"}
-        
-        For i As Integer = 0 To headers.Length - 1
-            gfx.DrawString(headers(i), headerFont, XBrushes.Black, New XRect(currentX, yPosition, columnWidths(i), 20), XStringFormats.TopLeft)
-            currentX += columnWidths(i)
-        Next
-        yPosition += 20
-
-        ' Add payment account items
-        For Each item As ListViewItem In ReservAccount.Items
-            currentX = leftMargin
-            For i As Integer = 0 To item.SubItems.Count - 1
-                gfx.DrawString(item.SubItems(i).Text, normalFont, XBrushes.Black, New XRect(currentX, yPosition, columnWidths(i), 15), XStringFormats.TopLeft)
-                currentX += columnWidths(i)
-            Next
-            yPosition += 15
-        Next
-        yPosition += 20
-
-        ' Add payment history
-        gfx.DrawString("Payment History", headerFont, XBrushes.Black, New XRect(leftMargin, yPosition, rightMargin - leftMargin, 20), XStringFormats.TopLeft)
-        yPosition += 20
-
-        ' Add payment history column headers
-        columnWidths = {100, 80, 100}
-        currentX = leftMargin
-        headers = {"Receipt #", "Amount", "Date"}
-        
-        For i As Integer = 0 To headers.Length - 1
-            gfx.DrawString(headers(i), headerFont, XBrushes.Black, New XRect(currentX, yPosition, columnWidths(i), 20), XStringFormats.TopLeft)
-            currentX += columnWidths(i)
-        Next
-        yPosition += 20
-
-        ' Add payment history items
-        For Each item As ListViewItem In lstPaymentHistory.Items
-            currentX = leftMargin
-            For i As Integer = 0 To item.SubItems.Count - 1
-                gfx.DrawString(item.SubItems(i).Text, normalFont, XBrushes.Black, New XRect(currentX, yPosition, columnWidths(i), 15), XStringFormats.TopLeft)
-                currentX += columnWidths(i)
-            Next
-            yPosition += 15
-        Next
-
-        ' Save the document
-        document.Save(filePath)
     End Sub
 End Class

@@ -47,7 +47,6 @@ Partial Class frmDeceasedReg
         Me.RelocationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RenewalToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PendingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.btnTransfer = New Guna.UI2.WinForms.Guna2Button()
         Me.Guna2Panel2.SuspendLayout()
         Me.Guna2Panel1.SuspendLayout()
         Me.contextMenu.SuspendLayout()
@@ -72,7 +71,6 @@ Partial Class frmDeceasedReg
         'Guna2Panel2
         '
         Me.Guna2Panel2.AutoSize = True
-        Me.Guna2Panel2.Controls.Add(Me.btnTransfer)
         Me.Guna2Panel2.Controls.Add(Me.btnImportExcel)
         Me.Guna2Panel2.Controls.Add(Me.btnRefresh)
         Me.Guna2Panel2.Controls.Add(Me.btnDelete)
@@ -95,7 +93,7 @@ Partial Class frmDeceasedReg
         Me.btnImportExcel.Image = Global.dashboard.My.Resources.Resources.Excel_Icon
         Me.btnImportExcel.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left
         Me.btnImportExcel.ImageOffset = New System.Drawing.Point(-7, 0)
-        Me.btnImportExcel.Location = New System.Drawing.Point(668, 48)
+        Me.btnImportExcel.Location = New System.Drawing.Point(749, 48)
         Me.btnImportExcel.Name = "btnImportExcel"
         Me.btnImportExcel.Size = New System.Drawing.Size(105, 25)
         Me.btnImportExcel.TabIndex = 8
@@ -360,19 +358,6 @@ Partial Class frmDeceasedReg
         Me.PendingToolStripMenuItem.Size = New System.Drawing.Size(131, 22)
         Me.PendingToolStripMenuItem.Text = "Pending"
         '
-        'btnTransfer
-        '
-        Me.btnTransfer.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnTransfer.Animated = True
-        Me.btnTransfer.FillColor = System.Drawing.Color.DarkGoldenrod
-        Me.btnTransfer.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.btnTransfer.ForeColor = System.Drawing.Color.White
-        Me.btnTransfer.Location = New System.Drawing.Point(779, 48)
-        Me.btnTransfer.Name = "btnTransfer"
-        Me.btnTransfer.Size = New System.Drawing.Size(75, 25)
-        Me.btnTransfer.TabIndex = 9
-        Me.btnTransfer.Text = "Transfer"
-        '
         'frmDeceasedReg
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
@@ -420,5 +405,4 @@ Partial Class frmDeceasedReg
     Friend WithEvents PendingToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents number As ColumnHeader
     Friend WithEvents loc As ColumnHeader
-    Friend WithEvents btnTransfer As Guna.UI2.WinForms.Guna2Button
 End Class

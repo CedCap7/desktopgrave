@@ -36,13 +36,12 @@ Partial Class frmPlotPurchAndAssign
         Me.currentQuantity = New System.Windows.Forms.NumericUpDown()
         Me.txtPrice = New System.Windows.Forms.Label()
         Me.Guna2ShadowPanel1 = New Guna.UI2.WinForms.Guna2ShadowPanel()
-        Me.SelectedPlotsList = New System.Windows.Forms.ListView()
-        Me.selectedplot = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.lstClientSuggestions = New System.Windows.Forms.ListBox()
         Me.txtClientSearch = New Guna.UI2.WinForms.Guna2TextBox()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.GraveType = New Guna.UI2.WinForms.Guna2ComboBox()
         Me.btnConfirm = New Guna.UI2.WinForms.Guna2Button()
+        Me.btnSelectPlot = New Guna.UI2.WinForms.Guna2Button()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -51,7 +50,8 @@ Partial Class frmPlotPurchAndAssign
         Me.Guna2Panel2 = New Guna.UI2.WinForms.Guna2Panel()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.btnSelectPlot = New Guna.UI2.WinForms.Guna2Button()
+        Me.SelectedPlotsList = New System.Windows.Forms.ListView()
+        Me.selectedplot = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.panel1.SuspendLayout()
         Me.Guna2Panel4.SuspendLayout()
         Me.Guna2ShadowPanel2.SuspendLayout()
@@ -70,7 +70,7 @@ Partial Class frmPlotPurchAndAssign
         Me.panel1.Location = New System.Drawing.Point(0, 71)
         Me.panel1.Margin = New System.Windows.Forms.Padding(2)
         Me.panel1.Name = "panel1"
-        Me.panel1.Size = New System.Drawing.Size(1284, 669)
+        Me.panel1.Size = New System.Drawing.Size(1284, 678)
         Me.panel1.TabIndex = 5
         '
         'subSidePanel
@@ -80,7 +80,7 @@ Partial Class frmPlotPurchAndAssign
         Me.subSidePanel.Dock = System.Windows.Forms.DockStyle.Fill
         Me.subSidePanel.Location = New System.Drawing.Point(427, 0)
         Me.subSidePanel.Name = "subSidePanel"
-        Me.subSidePanel.Size = New System.Drawing.Size(857, 669)
+        Me.subSidePanel.Size = New System.Drawing.Size(857, 678)
         Me.subSidePanel.TabIndex = 61
         '
         'Guna2Panel4
@@ -90,7 +90,7 @@ Partial Class frmPlotPurchAndAssign
         Me.Guna2Panel4.Dock = System.Windows.Forms.DockStyle.Left
         Me.Guna2Panel4.Location = New System.Drawing.Point(0, 0)
         Me.Guna2Panel4.Name = "Guna2Panel4"
-        Me.Guna2Panel4.Size = New System.Drawing.Size(427, 669)
+        Me.Guna2Panel4.Size = New System.Drawing.Size(427, 678)
         Me.Guna2Panel4.TabIndex = 30
         '
         'Guna2ShadowPanel2
@@ -192,6 +192,7 @@ Partial Class frmPlotPurchAndAssign
         Me.currentQuantity.Size = New System.Drawing.Size(53, 20)
         Me.currentQuantity.TabIndex = 22
         Me.currentQuantity.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        Me.currentQuantity.Visible = False
         '
         'txtPrice
         '
@@ -226,35 +227,6 @@ Partial Class frmPlotPurchAndAssign
         Me.Guna2ShadowPanel1.ShadowColor = System.Drawing.Color.Black
         Me.Guna2ShadowPanel1.Size = New System.Drawing.Size(418, 433)
         Me.Guna2ShadowPanel1.TabIndex = 0
-        '
-        'SelectedPlotsList
-        '
-        Me.SelectedPlotsList.AllowColumnReorder = True
-        Me.SelectedPlotsList.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.SelectedPlotsList.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.SelectedPlotsList.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.SelectedPlotsList.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.selectedplot})
-        Me.SelectedPlotsList.Font = New System.Drawing.Font("Roboto", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SelectedPlotsList.ForeColor = System.Drawing.SystemColors.Window
-        Me.SelectedPlotsList.FullRowSelect = True
-        Me.SelectedPlotsList.GridLines = True
-        Me.SelectedPlotsList.HideSelection = False
-        Me.SelectedPlotsList.Location = New System.Drawing.Point(16, 289)
-        Me.SelectedPlotsList.Name = "SelectedPlotsList"
-        Me.SelectedPlotsList.ShowItemToolTips = True
-        Me.SelectedPlotsList.Size = New System.Drawing.Size(389, 85)
-        Me.SelectedPlotsList.TabIndex = 64
-        Me.SelectedPlotsList.TileSize = New System.Drawing.Size(10, 10)
-        Me.SelectedPlotsList.UseCompatibleStateImageBehavior = False
-        Me.SelectedPlotsList.View = System.Windows.Forms.View.Details
-        '
-        'selectedplot
-        '
-        Me.selectedplot.Text = "Selected Plots"
-        Me.selectedplot.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.selectedplot.Width = 400
         '
         'lstClientSuggestions
         '
@@ -342,6 +314,25 @@ Partial Class frmPlotPurchAndAssign
         Me.btnConfirm.Size = New System.Drawing.Size(238, 37)
         Me.btnConfirm.TabIndex = 2
         Me.btnConfirm.Text = "Confirm"
+        '
+        'btnSelectPlot
+        '
+        Me.btnSelectPlot.Animated = True
+        Me.btnSelectPlot.BackColor = System.Drawing.Color.FromArgb(CType(CType(14, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(90, Byte), Integer))
+        Me.btnSelectPlot.BorderRadius = 5
+        Me.btnSelectPlot.BorderThickness = 1
+        Me.btnSelectPlot.FillColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(171, Byte), Integer), CType(CType(189, Byte), Integer))
+        Me.btnSelectPlot.Font = New System.Drawing.Font("Roboto", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSelectPlot.ForeColor = System.Drawing.SystemColors.Window
+        Me.btnSelectPlot.HoverState.BorderColor = System.Drawing.SystemColors.Control
+        Me.btnSelectPlot.HoverState.FillColor = System.Drawing.Color.Black
+        Me.btnSelectPlot.Image = Global.dashboard.My.Resources.Resources.map
+        Me.btnSelectPlot.Location = New System.Drawing.Point(16, 248)
+        Me.btnSelectPlot.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnSelectPlot.Name = "btnSelectPlot"
+        Me.btnSelectPlot.Size = New System.Drawing.Size(389, 36)
+        Me.btnSelectPlot.TabIndex = 23
+        Me.btnSelectPlot.Text = "Select Plot"
         '
         'Label8
         '
@@ -437,28 +428,38 @@ Partial Class frmPlotPurchAndAssign
         Me.Label6.ForeColor = System.Drawing.SystemColors.Control
         Me.Label6.Location = New System.Drawing.Point(12, 4)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(303, 39)
+        Me.Label6.Size = New System.Drawing.Size(635, 39)
         Me.Label6.TabIndex = 0
-        Me.Label6.Text = "Plot Purchase Form"
+        Me.Label6.Text = "Plot Purchase and Burial Assignment Form"
         '
-        'btnSelectPlot
+        'SelectedPlotsList
         '
-        Me.btnSelectPlot.Animated = True
-        Me.btnSelectPlot.BackColor = System.Drawing.Color.FromArgb(CType(CType(14, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(90, Byte), Integer))
-        Me.btnSelectPlot.BorderRadius = 5
-        Me.btnSelectPlot.BorderThickness = 1
-        Me.btnSelectPlot.FillColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(171, Byte), Integer), CType(CType(189, Byte), Integer))
-        Me.btnSelectPlot.Font = New System.Drawing.Font("Roboto", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSelectPlot.ForeColor = System.Drawing.SystemColors.Window
-        Me.btnSelectPlot.HoverState.BorderColor = System.Drawing.SystemColors.Control
-        Me.btnSelectPlot.HoverState.FillColor = System.Drawing.Color.Black
-        Me.btnSelectPlot.Image = Global.dashboard.My.Resources.Resources.map
-        Me.btnSelectPlot.Location = New System.Drawing.Point(16, 248)
-        Me.btnSelectPlot.Margin = New System.Windows.Forms.Padding(2)
-        Me.btnSelectPlot.Name = "btnSelectPlot"
-        Me.btnSelectPlot.Size = New System.Drawing.Size(389, 36)
-        Me.btnSelectPlot.TabIndex = 23
-        Me.btnSelectPlot.Text = "Select Plot"
+        Me.SelectedPlotsList.AllowColumnReorder = True
+        Me.SelectedPlotsList.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.SelectedPlotsList.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.SelectedPlotsList.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.SelectedPlotsList.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.selectedplot})
+        Me.SelectedPlotsList.Font = New System.Drawing.Font("Roboto", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SelectedPlotsList.ForeColor = System.Drawing.SystemColors.Window
+        Me.SelectedPlotsList.FullRowSelect = True
+        Me.SelectedPlotsList.GridLines = True
+        Me.SelectedPlotsList.HideSelection = False
+        Me.SelectedPlotsList.Location = New System.Drawing.Point(16, 289)
+        Me.SelectedPlotsList.Name = "SelectedPlotsList"
+        Me.SelectedPlotsList.ShowItemToolTips = True
+        Me.SelectedPlotsList.Size = New System.Drawing.Size(389, 85)
+        Me.SelectedPlotsList.TabIndex = 64
+        Me.SelectedPlotsList.TileSize = New System.Drawing.Size(10, 10)
+        Me.SelectedPlotsList.UseCompatibleStateImageBehavior = False
+        Me.SelectedPlotsList.View = System.Windows.Forms.View.Details
+        '
+        'selectedplot
+        '
+        Me.selectedplot.Text = "Selected Plots"
+        Me.selectedplot.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.selectedplot.Width = 400
         '
         'frmPlotPurchAndAssign
         '
@@ -466,7 +467,7 @@ Partial Class frmPlotPurchAndAssign
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSize = True
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(23, Byte), Integer), CType(CType(107, Byte), Integer), CType(CType(135, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(1284, 740)
+        Me.ClientSize = New System.Drawing.Size(1284, 749)
         Me.Controls.Add(Me.panel1)
         Me.Controls.Add(Me.Guna2Panel2)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle

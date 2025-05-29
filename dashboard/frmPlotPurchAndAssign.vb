@@ -4,7 +4,6 @@ Imports Newtonsoft.Json
 Imports System.Globalization
 Imports System.Linq
 Imports System.Collections.Generic
-Imports System.Diagnostics
 
 Public Class frmPlotPurchAndAssign
     Private _plotSelectionForm As frmPlotSelection = Nothing
@@ -197,7 +196,7 @@ Public Class frmPlotPurchAndAssign
         End If
 
         ' Create new form
-        If selectedPackageType = "lawnlots" OrElse selectedPackageType = "boneniche" Then
+        If selectedPackageType = "lawnlots" Then
             _plotSelectionForm = New frmPlotSelection(selectedPackageType, selectedClientId)
         Else
             _plotSelectionForm = New frmPlotSelection(selectedPackageType)
@@ -423,13 +422,12 @@ Public Class frmPlotPurchAndAssign
                     Next
 
                 Else
-                    ' For other plot types (Apartment and Bone Niche), create separate reservations
+                    ' For other plot types, create separate reservations
                     For Each plot In _selectedPlotsDict
-                        ' Check if this plot at this level is already reserved
+                        ' Check if this plot is already reserved at the specific level
                         Dim checkQuery As String = "SELECT COUNT(*) FROM plot_reservation pr " &
                                                  "INNER JOIN reservation r ON pr.reservation_id = r.Reservation_ID " &
                                                  "WHERE pr.plot_id = @plot_id AND pr.level = @level"
-                        Debug.WriteLine($"Checking reservation for PlotID: {plot.Key}, Level: {plot.Value.Level}") ' Debug log
                         Using checkCmd As New MySqlCommand(checkQuery, Module1.cn, transaction)
                             checkCmd.Parameters.AddWithValue("@plot_id", plot.Key)
                             checkCmd.Parameters.AddWithValue("@level", plot.Value.Level)
@@ -439,9 +437,9 @@ Public Class frmPlotPurchAndAssign
                             End If
                         End Using
 
-                        ' Insert into reservation table (one reservation per selected plot/level)
+                        ' Insert into reservation table
                         Dim reservationQuery As String = "INSERT INTO reservation (Client_ID, p_id, Reservation_Date, Status, Quantity) " &
-                         "VALUES (@Client_ID, @p_id, @Reservation_Date, @Status, '1')" ' Quantity is 1 for each individual reservation
+                         "VALUES (@Client_ID, @p_id, @Reservation_Date, @Status, '1')"
 
                         Dim reservationId As Integer
                         Using cmd As New MySqlCommand(reservationQuery & "; SELECT LAST_INSERT_ID();", Module1.cn, transaction)
@@ -471,7 +469,7 @@ Public Class frmPlotPurchAndAssign
                         Using cmd As New MySqlCommand(plotReservationQuery, Module1.cn, transaction)
                             cmd.Parameters.AddWithValue("@reservation_id", reservationId)
                             cmd.Parameters.AddWithValue("@plot_id", plot.Key)
-                            cmd.Parameters.AddWithValue("@level", plot.Value.Level)
+                            cmd.Parameters.AddWithValue("@level", If(packageType = 4, 0, plot.Value.Level))
                             cmd.ExecuteNonQuery()
                         End Using
  main
@@ -482,7 +480,7 @@ Public Class frmPlotPurchAndAssign
                             Dim updateDeceasedQuery As String = "UPDATE deceased SET Plot_ID = @PlotID, Level = @Level WHERE Deceased_ID = @DeceasedID"
                             Using cmd As New MySqlCommand(updateDeceasedQuery, Module1.cn, transaction)
                                 cmd.Parameters.AddWithValue("@PlotID", plot.Key)
-                                cmd.Parameters.AddWithValue("@Level", plot.Value.Level)
+                                cmd.Parameters.AddWithValue("@Level", If(packageType = 4, 0, plot.Value.Level))
                                 cmd.Parameters.AddWithValue("@DeceasedID", deceasedId.Value)
                                 cmd.ExecuteNonQuery()
                             End Using
@@ -522,6 +520,7 @@ Public Class frmPlotPurchAndAssign
                 If Module1.cn.State = ConnectionState.Open Then
                     Module1.cn.Close()
                 End If
+                Module1.cn.Dispose()
             End If
         End Try
     End Sub
@@ -625,7 +624,7 @@ Public Class frmPlotPurchAndAssign
                 clientSuggestions.Clear()
             End If
 
-            ' Close database connection if open - DO NOT DISPOSE SHARED CONNECTION HERE
+            ' Close database connection if open
             If Module1.cn IsNot Nothing AndAlso Module1.cn.State = ConnectionState.Open Then
                 Module1.cn.Close()
             End If
@@ -635,39 +634,27 @@ Public Class frmPlotPurchAndAssign
         End Try
     End Sub
 
-    Private Sub ClearPlotSelections()
-        ' Clears the selected plots dictionary and the list display
-        _selectedPlotsDict.Clear()
-        _currentPlotCount = 0
-        If SelectedPlotsList IsNot Nothing Then
-            SelectedPlotsList.Items.Clear()
-            ' Keep the list visible, even when empty
-        End If
-    End Sub
-
-    Private Sub ClearPackageDetails()
-        ' Clears the package detail text boxes
-        If txtGraveType IsNot Nothing Then txtGraveType.Text = "Grave Type:"
-        If txtPackage IsNot Nothing Then txtPackage.Text = "Package Type:"
-        If txtPrice IsNot Nothing Then txtPrice.Text = "Price:"
-        If txtTotal IsNot Nothing Then
-            txtTotal.Text = "Total: ₱0.00"
-            txtTotal.Visible = False
-        End If
-    End Sub
-
-    Private Sub PopulateDeceasedComboBox()
-        ' Populates the deceased combo box based on the selected client
-        LoadDeceasedList()
-    End Sub
-
     Private Sub ResetPlotSelections()
-        ' Resets the plot selections and clears the display
-        ClearPlotSelections()
-        ' Optionally, reset quantity to 1 if applicable
-        If currentQuantity IsNot Nothing Then currentQuantity.Value = 1
-        If lblQuantity IsNot Nothing Then lblQuantity.Visible = False
-        If currentQuantity IsNot Nothing Then currentQuantity.Visible = False
+        Try
+            _selectedPlotsDict.Clear()
+            _currentPlotCount = 0
+            SelectedPlotsList.Items.Clear()
+
+            ' Clean up plot selection form
+            If _plotSelectionForm IsNot Nothing Then
+                RemoveHandler _plotSelectionForm.PlotSelected, AddressOf OnPlotSelected
+                _plotSelectionForm.Close()
+                _plotSelectionForm.Dispose()
+                _plotSelectionForm = Nothing
+            End If
+
+            ' Clear subSidePanel
+            If subSidePanel IsNot Nothing Then
+                subSidePanel.Controls.Clear()
+            End If
+        Catch ex As Exception
+            Debug.WriteLine("Error during plot selection reset: " & ex.Message)
+        End Try
     End Sub
 
     Private Function GetDeceasedCount(plotId As Integer) As Integer
@@ -717,12 +704,8 @@ Public Class frmPlotPurchAndAssign
                 Dim selectedPackageId As Integer = Convert.ToInt32(DirectCast(GraveType.SelectedItem, DataRowView)("p_id"))
                 Dim description As String = DirectCast(GraveType.SelectedItem, DataRowView)("description").ToString().Trim().ToLower()
 
-                ' *** DEBUG: Output selected package info ***
-                Debug.WriteLine($"Selected Package ID: {selectedPackageId}, Description: {description}")
-                ' ******************************************
-
-                ' Show quantity only for family lawn lot (p_id = 2)
-                If selectedPackageId = 2 Then
+                ' Show quantity only for family lawn lot
+                If description = "family lawn lot" Then
                     lblQuantity.Visible = True
                     currentQuantity.Visible = True
                     currentQuantity.Value = 1
