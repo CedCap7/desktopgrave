@@ -8,8 +8,10 @@
             conn.Open()
 
             Dim cmd As New MySql.Data.MySqlClient.MySqlCommand(sql, conn)
+            
             cmd.Parameters.AddWithValue("@username", txtUser.Text)
             cmd.Parameters.AddWithValue("@password", txtPass.Text)
+            cmd.Parameters.AddWithValue("@user_id", uid)
 
             Dim dr As MySql.Data.MySqlClient.MySqlDataReader = cmd.ExecuteReader()
 
@@ -43,6 +45,10 @@
     End Sub
 
     Private Sub Guna2CustomGradientPanel1_Paint(sender As Object, e As PaintEventArgs) Handles Guna2CustomGradientPanel1.Paint
+
+    End Sub
+
+    Private Sub txtUser_TextChanged(sender As Object, e As EventArgs) Handles txtUser.TextChanged
 
     End Sub
 End Class

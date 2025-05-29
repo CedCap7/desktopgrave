@@ -244,6 +244,7 @@ Public Class frmDeceased
                     cmd.Parameters.AddWithValue("@DeceasedStatus", If(hasIntermentDate, "Remaining", "Pending"))
 
                     cmd.ExecuteNonQuery()
+                    LogUserAction("Add Deceased", "Added deceased: " & FirstName & " " & LastName)
                 End Using
 
                 ' Get the last inserted ID for the Deceased record (if AUTO_INCREMENT is used)

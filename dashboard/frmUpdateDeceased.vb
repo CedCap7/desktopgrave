@@ -400,6 +400,7 @@ Public Class frmUpdateDeceased
                 cmd.Parameters.AddWithValue("@ClientID", If(selectedClientId = -1, DBNull.Value, selectedClientId))
 
                 cmd.ExecuteNonQuery()
+                LogUserAction("Update Deceased", "Updated deceased ID: " & deceasedID)
             End Using
 
             ' Update Beneficiaries if any changes

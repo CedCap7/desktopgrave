@@ -404,6 +404,7 @@ Public Class frmPlotPurchAndAssign
                                 cmd.Parameters.AddWithValue("@Level", 0)
                                 cmd.Parameters.AddWithValue("@DeceasedID", deceasedId.Value)
                                 cmd.ExecuteNonQuery()
+                                LogUserAction("Update Deceased", "Assigned plot to deceased ID: " & deceasedId.Value)
                             End Using
                         End If
 
@@ -450,6 +451,19 @@ Public Class frmPlotPurchAndAssign
                             reservationId = Convert.ToInt32(cmd.ExecuteScalar())
                         End Using
 
+ branchforfinallogs
+                            ' Update deceased record with Plot_ID and Level if a deceased person is selected
+                            ' Only update for the first plot if multiple plots are selected
+                            If deceasedId.HasValue AndAlso plot.Key = _selectedPlots.First().Key Then
+                                Dim updateDeceasedQuery As String = "UPDATE deceased SET Plot_ID = @PlotID, Level = @Level WHERE Deceased_ID = @DeceasedID"
+                                Using cmd As New MySqlCommand(updateDeceasedQuery, Module1.cn, transaction)
+                                    cmd.Parameters.AddWithValue("@PlotID", plot.Key)
+                                    cmd.Parameters.AddWithValue("@Level", If(packageType = 4, 0, plot.Value.Level))
+                                    cmd.Parameters.AddWithValue("@DeceasedID", deceasedId.Value)
+                                    cmd.ExecuteNonQuery()
+                                    LogUserAction("Update Deceased", "Assigned plot to deceased ID: " & deceasedId.Value)
+                                End Using
+                            End If
                         ' Insert plot reservation
                         Dim plotReservationQuery As String = "INSERT INTO plot_reservation (reservation_id, plot_id, level) VALUES (@reservation_id, @plot_id, @level)"
                         Using cmd As New MySqlCommand(plotReservationQuery, Module1.cn, transaction)
@@ -458,6 +472,7 @@ Public Class frmPlotPurchAndAssign
                             cmd.Parameters.AddWithValue("@level", If(packageType = 4, 0, plot.Value.Level))
                             cmd.ExecuteNonQuery()
                         End Using
+ main
 
                         ' Update deceased record with Plot_ID and Level if a deceased person is selected
                         ' Only update for the first plot if multiple plots are selected

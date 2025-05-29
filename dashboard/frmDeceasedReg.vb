@@ -404,8 +404,7 @@ Public Class frmDeceasedReg
                         Dim clientExt As String = GetCellValue(worksheet.Cells(rowIndex, 4))
                         Dim clientGender As String = GetCellValue(worksheet.Cells(rowIndex, 5))
                         Dim clientMobile As String = GetCellValue(worksheet.Cells(rowIndex, 6))
-                        Dim clientRelationship As String = GetCellValue(worksheet.Cells(rowIndex, 7))
-                        Dim clientAddress As String = GetCellValue(worksheet.Cells(rowIndex, 8))
+                        Dim clientAddress As String = GetCellValue(worksheet.Cells(rowIndex, 7))
 
                         ' Skip row if essential client information is missing
                         If String.IsNullOrWhiteSpace(clientFirstName) OrElse String.IsNullOrWhiteSpace(clientLastName) Then
@@ -434,7 +433,7 @@ Public Class frmDeceasedReg
                                 clientId = Convert.ToInt32(result)
                             Else
                                 ' Insert client
-                                Dim sqlInsertClient As String = "INSERT INTO client (FirstName, MiddleName, LastName, Ext, Gender, Mobile, Relationship_to_Deceased, Address, status, date_registered) VALUES (@FirstName, @MiddleName, @LastName, @Ext, @Gender, @Mobile, @Relationship, @Address, @Status, @DateRegistered)"
+                                Dim sqlInsertClient As String = "INSERT INTO client (FirstName, MiddleName, LastName, Ext, Gender, Mobile, Address, status, date_registered) VALUES (@FirstName, @MiddleName, @LastName, @Ext, @Gender, @Mobile, @Address, @Status, @DateRegistered)"
                                 Using cmdInsert As New MySqlCommand(sqlInsertClient, cn, transaction)
                                     cmdInsert.Parameters.AddWithValue("@FirstName", clientFirstName)
                                     cmdInsert.Parameters.AddWithValue("@MiddleName", If(String.IsNullOrWhiteSpace(clientMiddleName), DBNull.Value, clientMiddleName))
@@ -442,9 +441,8 @@ Public Class frmDeceasedReg
                                     cmdInsert.Parameters.AddWithValue("@Ext", If(String.IsNullOrWhiteSpace(clientExt), DBNull.Value, clientExt))
                                     cmdInsert.Parameters.AddWithValue("@Gender", clientGender)
                                     cmdInsert.Parameters.AddWithValue("@Mobile", If(String.IsNullOrWhiteSpace(clientMobile), DBNull.Value, clientMobile))
-                                    cmdInsert.Parameters.AddWithValue("@Relationship", If(String.IsNullOrWhiteSpace(clientRelationship), DBNull.Value, clientRelationship))
                                     cmdInsert.Parameters.AddWithValue("@Address", If(String.IsNullOrWhiteSpace(clientAddress), DBNull.Value, clientAddress))
-                                    cmdInsert.Parameters.AddWithValue("@Status", "Active")
+                                    cmdInsert.Parameters.AddWithValue("@Status", 1)
                                     cmdInsert.Parameters.AddWithValue("@DateRegistered", Date.Now)
                                     cmdInsert.ExecuteNonQuery()
                                     clientId = Convert.ToInt32(cmdInsert.LastInsertedId)
@@ -453,16 +451,17 @@ Public Class frmDeceasedReg
                         End Using
 
                         ' 3. Read deceased info
-                        Dim deceasedFirstName As String = GetCellValue(worksheet.Cells(rowIndex, 9))
-                        Dim deceasedMiddleName As String = GetCellValue(worksheet.Cells(rowIndex, 10))
-                        Dim deceasedLastName As String = GetCellValue(worksheet.Cells(rowIndex, 11))
-                        Dim deceasedExt As String = GetCellValue(worksheet.Cells(rowIndex, 12))
-                        Dim dateOfBirthStr As String = GetCellValue(worksheet.Cells(rowIndex, 13))
-                        Dim dateOfDeathStr As String = GetCellValue(worksheet.Cells(rowIndex, 14))
-                        Dim intermentStr As String = GetCellValue(worksheet.Cells(rowIndex, 20))
-                        Dim deceasedGender As String = GetCellValue(worksheet.Cells(rowIndex, 21))
-                        Dim deceasedNationality As String = GetCellValue(worksheet.Cells(rowIndex, 22))
-                        Dim deceasedReligion As String = GetCellValue(worksheet.Cells(rowIndex, 23))
+                        Dim deceasedFirstName As String = GetCellValue(worksheet.Cells(rowIndex, 8))
+                        Dim deceasedMiddleName As String = GetCellValue(worksheet.Cells(rowIndex, 9))
+                        Dim deceasedLastName As String = GetCellValue(worksheet.Cells(rowIndex, 10))
+                        Dim deceasedExt As String = GetCellValue(worksheet.Cells(rowIndex, 11))
+                        Dim dateOfBirthStr As String = GetCellValue(worksheet.Cells(rowIndex, 12))
+                        Dim dateOfDeathStr As String = GetCellValue(worksheet.Cells(rowIndex, 13))
+                        Dim intermentStr As String = GetCellValue(worksheet.Cells(rowIndex, 19))
+                        Dim deceasedGender As String = GetCellValue(worksheet.Cells(rowIndex, 20))
+                        Dim deceasedNationality As String = GetCellValue(worksheet.Cells(rowIndex, 21))
+                        Dim deceasedReligion As String = GetCellValue(worksheet.Cells(rowIndex, 22))
+                        Dim relationship As String = GetCellValue(worksheet.Cells(rowIndex, 23))
 
                         ' Skip row if essential deceased information is missing
                         If String.IsNullOrWhiteSpace(deceasedFirstName) OrElse String.IsNullOrWhiteSpace(deceasedLastName) Then
@@ -545,11 +544,11 @@ Public Class frmDeceasedReg
                         End If
 
                         ' Read location info from Excel
-                        Dim block As String = GetCellValue(worksheet.Cells(rowIndex, 15))
-                        Dim section As String = GetCellValue(worksheet.Cells(rowIndex, 16))
-                        Dim row As String = GetCellValue(worksheet.Cells(rowIndex, 17))
-                        Dim plot As String = GetCellValue(worksheet.Cells(rowIndex, 18))
-                        Dim type As String = GetCellValue(worksheet.Cells(rowIndex, 19))
+                        Dim block As String = GetCellValue(worksheet.Cells(rowIndex, 14))
+                        Dim section As String = GetCellValue(worksheet.Cells(rowIndex, 15))
+                        Dim row As String = GetCellValue(worksheet.Cells(rowIndex, 16))
+                        Dim plot As String = GetCellValue(worksheet.Cells(rowIndex, 17))
+                        Dim type As String = GetCellValue(worksheet.Cells(rowIndex, 18))
 
                         ' Convert type to integer if needed (if stored as string in Excel)
                         Dim typeNumber As Integer
@@ -566,8 +565,9 @@ Public Class frmDeceasedReg
                                     typeNumber = 4
                                 Case Else
                                     ' Default type or error
-                                    errorMessages.Add($"Row {rowIndex}: Unknown location type: {type}, using default")
-                                    typeNumber = 1 ' Default to apartment or whatever makes sense as default
+                                    errorMessages.Add($"Row {rowIndex}: Unknown location type: {type}")
+                                    errorCount += 1
+                                    Continue For
                             End Select
                         End If
 
@@ -589,7 +589,7 @@ Public Class frmDeceasedReg
                             Continue For
                         End If
 
-                        ' 1. Check if location exists
+                        ' Check if location exists
                         Dim plotId As Integer = -1
                         Dim sqlCheckLocation As String = "SELECT id FROM location WHERE block=@block AND section=@section AND row=@row AND plot=@plot AND type=@type LIMIT 1"
                         Using cmdCheckLoc As New MySqlCommand(sqlCheckLocation, cn, transaction)
@@ -608,24 +608,9 @@ Public Class frmDeceasedReg
                                     Continue For
                                 End If
                             Else
-                                ' 2. Insert location if not exists
-                                Dim sqlInsertLoc As String = "INSERT INTO location (block, section, row, plot, type) VALUES (@block, @section, @row, @plot, @type)"
-                                Using cmdInsertLoc As New MySqlCommand(sqlInsertLoc, cn, transaction)
-                                    cmdInsertLoc.Parameters.AddWithValue("@block", blockInt)
-                                    cmdInsertLoc.Parameters.AddWithValue("@section", sectionInt)
-                                    cmdInsertLoc.Parameters.AddWithValue("@row", rowInt)
-                                    cmdInsertLoc.Parameters.AddWithValue("@plot", plotInt)
-                                    cmdInsertLoc.Parameters.AddWithValue("@type", typeNumber)
-                                    cmdInsertLoc.ExecuteNonQuery()
-                                    plotId = Convert.ToInt32(cmdInsertLoc.LastInsertedId)
-
-                                    ' Additional validation after insert
-                                    If plotId <= 0 Then
-                                        errorMessages.Add($"Row {rowIndex}: Failed to create valid location ID (ID: {plotId})")
-                                        errorCount += 1
-                                        Continue For
-                                    End If
-                                End Using
+                                errorMessages.Add($"Row {rowIndex}: Location not found (Block {blockInt}, Section {sectionInt}, Row {rowInt}, Plot {plotInt}, Type {typeNumber})")
+                                errorCount += 1
+                                Continue For
                             End If
                         End Using
 
@@ -670,8 +655,8 @@ Public Class frmDeceasedReg
                                                       "DateOfBirth=@DateOfBirth, Plot_ID=@PlotID, " &
                                                       "Interment=@Interment, Gender=@Gender, " &
                                                       "Nationality=@Nationality, Religion=@Religion, " &
-                                                      "Client_ID=@ClientID, deceased_status=@DeceasedStatus, " &
-                                                      "date_registered=@DateRegistered " &
+                                                      "Relationship=@Relationship, " &
+                                                      "Client_ID=@ClientID, deceased_status=@DeceasedStatus " &
                                                       "WHERE Deceased_ID=@DeceasedID"
                             Using cmdUpdateDeceased As New MySqlCommand(sqlUpdateDeceased, cn, transaction)
                                 cmdUpdateDeceased.Parameters.AddWithValue("@MiddleName", If(String.IsNullOrWhiteSpace(deceasedMiddleName), DBNull.Value, deceasedMiddleName))
@@ -682,16 +667,16 @@ Public Class frmDeceasedReg
                                 cmdUpdateDeceased.Parameters.AddWithValue("@Gender", deceasedGender)
                                 cmdUpdateDeceased.Parameters.AddWithValue("@Nationality", If(String.IsNullOrWhiteSpace(deceasedNationality), DBNull.Value, deceasedNationality))
                                 cmdUpdateDeceased.Parameters.AddWithValue("@Religion", If(String.IsNullOrWhiteSpace(deceasedReligion), DBNull.Value, deceasedReligion))
+                                cmdUpdateDeceased.Parameters.AddWithValue("@Relationship", If(String.IsNullOrWhiteSpace(relationship), DBNull.Value, relationship))
                                 cmdUpdateDeceased.Parameters.AddWithValue("@ClientID", clientId)
                                 cmdUpdateDeceased.Parameters.AddWithValue("@DeceasedStatus", deceasedStatus)
-                                cmdUpdateDeceased.Parameters.AddWithValue("@DateRegistered", registrationDate)
                                 cmdUpdateDeceased.Parameters.AddWithValue("@DeceasedID", deceasedId)
                                 cmdUpdateDeceased.ExecuteNonQuery()
                             End Using
                         Else
                             ' Insert new deceased record
-                            Dim sqlInsertDeceased As String = "INSERT INTO deceased (FirstName, MiddleName, LastName, Ext, DateOfBirth, DateOfDeath, Plot_ID, Interment, Gender, Nationality, Religion, Client_ID, deceased_status, date_registered) " &
-                                                      "VALUES (@FirstName, @MiddleName, @LastName, @Ext, @DateOfBirth, @DateOfDeath, @PlotID, @Interment, @Gender, @Nationality, @Religion, @ClientID, @DeceasedStatus, @DateRegistered)"
+                            Dim sqlInsertDeceased As String = "INSERT INTO deceased (FirstName, MiddleName, LastName, Ext, DateOfBirth, DateOfDeath, Plot_ID, Interment, Gender, Nationality, Religion, Relationship, Client_ID, deceased_status) " &
+                                                      "VALUES (@FirstName, @MiddleName, @LastName, @Ext, @DateOfBirth, @DateOfDeath, @PlotID, @Interment, @Gender, @Nationality, @Religion, @Relationship, @ClientID, @DeceasedStatus)"
                             Using cmdInsertDeceased As New MySqlCommand(sqlInsertDeceased, cn, transaction)
                                 cmdInsertDeceased.Parameters.AddWithValue("@FirstName", deceasedFirstName)
                                 cmdInsertDeceased.Parameters.AddWithValue("@MiddleName", If(String.IsNullOrWhiteSpace(deceasedMiddleName), DBNull.Value, deceasedMiddleName))
@@ -704,9 +689,9 @@ Public Class frmDeceasedReg
                                 cmdInsertDeceased.Parameters.AddWithValue("@Gender", deceasedGender)
                                 cmdInsertDeceased.Parameters.AddWithValue("@Nationality", If(String.IsNullOrWhiteSpace(deceasedNationality), DBNull.Value, deceasedNationality))
                                 cmdInsertDeceased.Parameters.AddWithValue("@Religion", If(String.IsNullOrWhiteSpace(deceasedReligion), DBNull.Value, deceasedReligion))
+                                cmdInsertDeceased.Parameters.AddWithValue("@Relationship", If(String.IsNullOrWhiteSpace(relationship), DBNull.Value, relationship))
                                 cmdInsertDeceased.Parameters.AddWithValue("@ClientID", clientId)
                                 cmdInsertDeceased.Parameters.AddWithValue("@DeceasedStatus", deceasedStatus)
-                                cmdInsertDeceased.Parameters.AddWithValue("@DateRegistered", registrationDate)
                                 cmdInsertDeceased.ExecuteNonQuery()
                                 deceasedId = Convert.ToInt32(cmdInsertDeceased.LastInsertedId)
                             End Using
@@ -717,22 +702,22 @@ Public Class frmDeceasedReg
                         Dim beneficiary1Contact As String = GetCellValue(worksheet.Cells(rowIndex, 25))
                         Dim beneficiary2Name As String = GetCellValue(worksheet.Cells(rowIndex, 26))
                         Dim beneficiary2Contact As String = GetCellValue(worksheet.Cells(rowIndex, 27))
-                        Dim relationship As String = GetCellValue(worksheet.Cells(rowIndex, 28))
 
                         If Not String.IsNullOrWhiteSpace(beneficiary1Name) Then
-                            ' Check if beneficiary already exists
-                            Dim sqlCheckBenef As String = "SELECT id FROM beneficiaries WHERE Client_ID = @ClientID AND FullName = @FullName AND `Order` = @Order LIMIT 1"
+                            ' Check if beneficiary already exists for this deceased
+                            Dim sqlCheckBenef As String = "SELECT id FROM beneficiaries WHERE Deceased_ID = @DeceasedID AND FullName = @FullName AND `Order` = @Order LIMIT 1"
                             Dim benefExists As Boolean = False
                             Using cmdCheckBenef As New MySqlCommand(sqlCheckBenef, cn, transaction)
-                                cmdCheckBenef.Parameters.AddWithValue("@ClientID", clientId)
+                                cmdCheckBenef.Parameters.AddWithValue("@DeceasedID", deceasedId)
                                 cmdCheckBenef.Parameters.AddWithValue("@FullName", beneficiary1Name)
                                 cmdCheckBenef.Parameters.AddWithValue("@Order", 1)
                                 benefExists = cmdCheckBenef.ExecuteScalar() IsNot Nothing
                             End Using
 
                             If Not benefExists Then
-                                Dim sqlInsertBeneficiary As String = "INSERT INTO beneficiaries (Client_ID, FullName, `Order`, Contact, status) VALUES (@ClientID, @FullName, @Order, @Contact, @Status)"
+                                Dim sqlInsertBeneficiary As String = "INSERT INTO beneficiaries (Deceased_ID, Client_ID, FullName, `Order`, Contact, status) VALUES (@DeceasedID, @ClientID, @FullName, @Order, @Contact, @Status)"
                                 Using cmdB As New MySqlCommand(sqlInsertBeneficiary, cn, transaction)
+                                    cmdB.Parameters.AddWithValue("@DeceasedID", deceasedId)
                                     cmdB.Parameters.AddWithValue("@ClientID", clientId)
                                     cmdB.Parameters.AddWithValue("@FullName", beneficiary1Name)
                                     cmdB.Parameters.AddWithValue("@Order", 1)
@@ -744,19 +729,20 @@ Public Class frmDeceasedReg
                         End If
 
                         If Not String.IsNullOrWhiteSpace(beneficiary2Name) Then
-                            ' Check if beneficiary already exists
-                            Dim sqlCheckBenef As String = "SELECT id FROM beneficiaries WHERE Client_ID = @ClientID AND FullName = @FullName AND `Order` = @Order LIMIT 1"
+                            ' Check if beneficiary already exists for this deceased
+                            Dim sqlCheckBenef As String = "SELECT id FROM beneficiaries WHERE Deceased_ID = @DeceasedID AND FullName = @FullName AND `Order` = @Order LIMIT 1"
                             Dim benefExists As Boolean = False
                             Using cmdCheckBenef As New MySqlCommand(sqlCheckBenef, cn, transaction)
-                                cmdCheckBenef.Parameters.AddWithValue("@ClientID", clientId)
+                                cmdCheckBenef.Parameters.AddWithValue("@DeceasedID", deceasedId)
                                 cmdCheckBenef.Parameters.AddWithValue("@FullName", beneficiary2Name)
                                 cmdCheckBenef.Parameters.AddWithValue("@Order", 2)
                                 benefExists = cmdCheckBenef.ExecuteScalar() IsNot Nothing
                             End Using
 
                             If Not benefExists Then
-                                Dim sqlInsertBeneficiary As String = "INSERT INTO beneficiaries (Client_ID, FullName, `Order`, Contact, status) VALUES (@ClientID, @FullName, @Order, @Contact, @Status)"
+                                Dim sqlInsertBeneficiary As String = "INSERT INTO beneficiaries (Deceased_ID, Client_ID, FullName, `Order`, Contact, status) VALUES (@DeceasedID, @ClientID, @FullName, @Order, @Contact, @Status)"
                                 Using cmdB As New MySqlCommand(sqlInsertBeneficiary, cn, transaction)
+                                    cmdB.Parameters.AddWithValue("@DeceasedID", deceasedId)
                                     cmdB.Parameters.AddWithValue("@ClientID", clientId)
                                     cmdB.Parameters.AddWithValue("@FullName", beneficiary2Name)
                                     cmdB.Parameters.AddWithValue("@Order", 2)
