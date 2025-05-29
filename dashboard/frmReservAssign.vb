@@ -191,11 +191,17 @@ Public Class frmReservAssign
 
             Using transaction As MySqlTransaction = Module1.cn.BeginTransaction()
                 Try
-                    ' Get Plot_ID and Level from plot_reservation
+                    ' Get Plot_ID, Level, and plot type from plot_reservation and location
                     Dim plotId As Integer
                     Dim level As Integer
-                    Dim sql As String = "SELECT pr.Plot_ID, pr.Level " &
+                    Dim plotType As Integer
+                    Dim block As String = ""
+                    Dim section As String = ""
+                    Dim row As String = ""
+                    Dim plot As String = ""
+                    Dim sql As String = "SELECT pr.Plot_ID, pr.Level, l.type, l.block, l.section, l.row, l.plot " &
                                     "FROM plot_reservation pr " &
+                                    "JOIN location l ON pr.Plot_ID = l.id " &
                                     "WHERE pr.Reservation_ID = @ReservationID"
 
                     Using cmd As New MySqlCommand(sql, Module1.cn, transaction)
@@ -204,12 +210,66 @@ Public Class frmReservAssign
                             If dr.Read() Then
                                 plotId = Convert.ToInt32(dr("Plot_ID"))
                                 level = If(dr("Level") Is DBNull.Value, 0, Convert.ToInt32(dr("Level")))
+                                plotType = Convert.ToInt32(dr("type"))
+                                block = dr("block").ToString()
+                                section = dr("section").ToString()
+                                row = dr("row").ToString()
+                                plot = dr("plot").ToString()
                             Else
                                 MessageBox.Show("No plot reservation found for this reservation ID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                                 Return
                             End If
                         End Using
                     End Using
+
+                    ' For Family Lawn Lots (type 2), check if all adjacent plots are fully paid
+                    If plotType = 2 Then
+                        ' Get all adjacent plots in the same block, section, and row that belong to the same client
+                        sql = "SELECT l.id, l.plot, " &
+                              "(SELECT COUNT(*) FROM payment p " &
+                              "JOIN plot_reservation pr ON p.Reservation_ID = pr.Reservation_ID " &
+                              "WHERE pr.Plot_ID = l.id AND p.payment_status = 1) as fully_paid_count, " &
+                              "(SELECT COUNT(*) FROM payment p " &
+                              "JOIN plot_reservation pr ON p.Reservation_ID = pr.Reservation_ID " &
+                              "WHERE pr.Plot_ID = l.id) as total_payments " &
+                              "FROM location l " &
+                              "JOIN plot_reservation pr ON l.id = pr.Plot_ID " &
+                              "JOIN reservation r ON pr.Reservation_ID = r.Reservation_ID " &
+                              "WHERE l.type = 2 " &
+                              "AND l.block = @Block " &
+                              "AND l.section = @Section " &
+                              "AND l.row = @Row " &
+                              "AND r.Client_ID = @ClientID " &
+                              "ORDER BY CAST(l.plot AS UNSIGNED)"
+
+                        Using cmd As New MySqlCommand(sql, Module1.cn, transaction)
+                            cmd.Parameters.AddWithValue("@Block", block)
+                            cmd.Parameters.AddWithValue("@Section", section)
+                            cmd.Parameters.AddWithValue("@Row", row)
+                            cmd.Parameters.AddWithValue("@ClientID", ClientID)
+                            Using dr As MySqlDataReader = cmd.ExecuteReader()
+                                Dim adjacentPlots As New List(Of String)
+                                While dr.Read()
+                                    Dim plotNumber As String = dr("plot").ToString()
+                                    Dim fullyPaidCount As Integer = Convert.ToInt32(dr("fully_paid_count"))
+                                    Dim totalPayments As Integer = Convert.ToInt32(dr("total_payments"))
+                                    
+                                    ' If any plot is not fully paid, add it to the list
+                                    If fullyPaidCount < totalPayments Then
+                                        adjacentPlots.Add(plotNumber)
+                                    End If
+                                End While
+
+                                ' If there are any unpaid adjacent plots, show error and return
+                                If adjacentPlots.Count > 0 Then
+                                    MessageBox.Show("Cannot assign deceased. The following adjacent plots are not fully paid: " & 
+                                                  String.Join(", ", adjacentPlots), 
+                                                  "Payment Required", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                                    Return
+                                End If
+                            End Using
+                        End Using
+                    End If
 
                     ' Update deceased record with Plot_ID and Level
                     sql = "UPDATE deceased SET Plot_ID = @PlotID, Level = @Level WHERE Deceased_ID = @DeceasedID"
@@ -221,12 +281,14 @@ Public Class frmReservAssign
                         cmd.ExecuteNonQuery()
                     End Using
 
-                    ' Update the status of the specific reservation to 1
-                    sql = "UPDATE reservation SET Status = 1 WHERE Reservation_ID = @ReservationID"
-                    Using cmd As New MySqlCommand(sql, Module1.cn, transaction)
-                        cmd.Parameters.AddWithValue("@ReservationID", ReservationID) ' Ensure this is the correct Reservation_ID
-                        cmd.ExecuteNonQuery()
-                    End Using
+                    ' Only update reservation status if it's not a Family Lawn Lot (type 2)
+                    If plotType <> 2 Then
+                        sql = "UPDATE reservation SET Status = 1 WHERE Reservation_ID = @ReservationID"
+                        Using cmd As New MySqlCommand(sql, Module1.cn, transaction)
+                            cmd.Parameters.AddWithValue("@ReservationID", ReservationID)
+                            cmd.ExecuteNonQuery()
+                        End Using
+                    End If
 
                     transaction.Commit()
                     MessageBox.Show("Deceased successfully assigned to plot!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)

@@ -122,6 +122,105 @@ Public Class frmReservationsReg
         End Try
     End Sub
 
+    Private Function CheckFamilyLawnLotsPayment(reservationID As Integer, clientID As Integer) As Boolean
+        Try
+            dbconn()
+            If cn.State = ConnectionState.Open Then
+                cn.Close()
+            End If
+            cn.Open()
+
+            ' Get plot details for the selected reservation
+            Dim block As String = ""
+            Dim section As String = ""
+            Dim row As String = ""
+            Dim plotType As Integer = -1
+            Dim currentPlot As String = ""
+
+            Dim sql As String = "SELECT l.block, l.section, l.row, l.type, l.plot " &
+                              "FROM plot_reservation pr " &
+                              "JOIN location l ON pr.Plot_ID = l.id " &
+                              "WHERE pr.Reservation_ID = @ReservationID"
+
+            Using cmd As New MySqlCommand(sql, cn)
+                cmd.Parameters.AddWithValue("@ReservationID", reservationID)
+                Using dr As MySqlDataReader = cmd.ExecuteReader()
+                    If dr.Read() Then
+                        ' Read necessary data from the first reader
+                        block = dr("block").ToString()
+                        section = dr("section").ToString()
+                        row = dr("row").ToString()
+                        plotType = Convert.ToInt32(dr("type"))
+                        currentPlot = dr("plot").ToString()
+                    Else
+                        ' No plot reservation found, return true as this validation doesn't apply
+                        Return True
+                    End If
+                End Using ' Close and dispose of the first data reader
+            End Using ' Dispose of the first command
+
+            ' Only proceed with validation if it's a Family Lawn Lot (type 2)
+            If plotType = 2 Then
+                ' Get all adjacent plots in the same block, section, and row that belong to the same client
+                sql = "SELECT l.id, l.plot, " &
+                      "(SELECT COUNT(*) FROM payment p " &
+                      "JOIN plot_reservation pr ON p.Reservation_ID = pr.Reservation_ID " &
+                      "WHERE pr.Plot_ID = l.id AND p.payment_status = 1) as fully_paid_count, " &
+                      "(SELECT COUNT(*) FROM payment p " &
+                      "JOIN plot_reservation pr ON p.Reservation_ID = pr.Reservation_ID " &
+                      "WHERE pr.Plot_ID = l.id) as total_payments " &
+                      "FROM location l " &
+                      "JOIN plot_reservation pr ON l.id = pr.Plot_ID " &
+                      "JOIN reservation r ON pr.Reservation_ID = r.Reservation_ID " &
+                      "WHERE l.type = 2 " &
+                      "AND l.block = @Block " &
+                      "AND l.section = @Section " &
+                      "AND l.row = @Row " &
+                      "AND r.Client_ID = @ClientID " &
+                      "ORDER BY CAST(l.plot AS UNSIGNED)"
+
+                Using cmd2 As New MySqlCommand(sql, cn)
+                    cmd2.Parameters.AddWithValue("@Block", block)
+                    cmd2.Parameters.AddWithValue("@Section", section)
+                    cmd2.Parameters.AddWithValue("@Row", row)
+                    cmd2.Parameters.AddWithValue("@ClientID", clientID)
+                    Using dr2 As MySqlDataReader = cmd2.ExecuteReader()
+                        Dim adjacentPlots As New List(Of String)
+                        While dr2.Read()
+                            Dim plotNumber As String = dr2("plot").ToString()
+                            Dim fullyPaidCount As Integer = Convert.ToInt32(dr2("fully_paid_count"))
+                            Dim totalPayments As Integer = Convert.ToInt32(dr2("total_payments"))
+                            
+                            ' If any plot is not fully paid, add it to the list
+                            If fullyPaidCount < totalPayments Then
+                                adjacentPlots.Add(plotNumber)
+                            End If
+                        End While
+
+                        ' If there are any unpaid adjacent plots, show error and return false
+                        If adjacentPlots.Count > 0 Then
+                            MessageBox.Show("Cannot open assignment form. This is a Family Lawn Lot (Plot " & currentPlot & ") " & _
+                                          "and the following adjacent plots belonging to the same client are not fully paid: " & _
+                                          String.Join(", ", adjacentPlots) & vbCrLf & vbCrLf & _
+                                          "All adjacent plots must be fully paid before assigning any deceased.", 
+                                          "Payment Required", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                            Return False
+                        End If
+                    End Using ' Close and dispose of the second data reader
+                End Using ' Dispose of the second command
+            End If
+
+            Return True
+        Catch ex As Exception
+            MessageBox.Show("Error checking Family Lawn Lots payment: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        Finally
+            If cn.State = ConnectionState.Open Then
+                cn.Close()
+            End If
+        End Try
+    End Function
+
     Private Sub btnAssign_Click(sender As Object, e As EventArgs) Handles btnAssign.Click
         If ReservationList.SelectedItems.Count > 0 Then
             Try
@@ -134,6 +233,12 @@ Public Class frmReservationsReg
 
                 Dim reservationID As Integer = Convert.ToInt32(ReservationList.SelectedItems(0).Tag)
                 Dim clientID As Integer = GetClientIDFromReservation(reservationID)
+
+                ' Check Family Lawn Lots payment status before opening the form
+                If Not CheckFamilyLawnLotsPayment(reservationID, clientID) Then
+                    Return
+                End If
+
                 Dim assignForm As New frmReservAssign(reservationID, clientID)
                 assignForm.ShowDialog()
                 LoadReservations() ' Refresh after assignment
@@ -306,6 +411,11 @@ Public Class frmReservationsReg
 
                 If clientID = -1 Then
                     MessageBox.Show("Client ID not found for the selected reservation.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Return
+                End If
+
+                ' Check Family Lawn Lots payment status before opening the form
+                If Not CheckFamilyLawnLotsPayment(reservationID, clientID) Then
                     Return
                 End If
 

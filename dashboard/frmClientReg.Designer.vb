@@ -26,7 +26,6 @@ Partial Class frmClientReg
         Me.Guna2Elipse1 = New Guna.UI2.WinForms.Guna2Elipse(Me.components)
         Me.Guna2Panel2 = New Guna.UI2.WinForms.Guna2Panel()
         Me.btnRefresh = New Guna.UI2.WinForms.Guna2Button()
-        Me.btnDelete = New Guna.UI2.WinForms.Guna2Button()
         Me.btnEdit = New Guna.UI2.WinForms.Guna2Button()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -53,7 +52,6 @@ Partial Class frmClientReg
         'Guna2Panel2
         '
         Me.Guna2Panel2.Controls.Add(Me.btnRefresh)
-        Me.Guna2Panel2.Controls.Add(Me.btnDelete)
         Me.Guna2Panel2.Controls.Add(Me.btnEdit)
         Me.Guna2Panel2.Controls.Add(Me.Label2)
         Me.Guna2Panel2.Controls.Add(Me.Label1)
@@ -70,24 +68,11 @@ Partial Class frmClientReg
         Me.btnRefresh.FillColor = System.Drawing.Color.DarkGoldenrod
         Me.btnRefresh.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.btnRefresh.ForeColor = System.Drawing.Color.White
-        Me.btnRefresh.Location = New System.Drawing.Point(659, 48)
+        Me.btnRefresh.Location = New System.Drawing.Point(740, 49)
         Me.btnRefresh.Name = "btnRefresh"
         Me.btnRefresh.Size = New System.Drawing.Size(75, 25)
         Me.btnRefresh.TabIndex = 6
         Me.btnRefresh.Text = "Refresh"
-        '
-        'btnDelete
-        '
-        Me.btnDelete.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnDelete.Animated = True
-        Me.btnDelete.FillColor = System.Drawing.Color.Red
-        Me.btnDelete.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.btnDelete.ForeColor = System.Drawing.Color.White
-        Me.btnDelete.Location = New System.Drawing.Point(821, 48)
-        Me.btnDelete.Name = "btnDelete"
-        Me.btnDelete.Size = New System.Drawing.Size(75, 25)
-        Me.btnDelete.TabIndex = 5
-        Me.btnDelete.Text = "Delete"
         '
         'btnEdit
         '
@@ -96,7 +81,7 @@ Partial Class frmClientReg
         Me.btnEdit.FillColor = System.Drawing.Color.Blue
         Me.btnEdit.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.btnEdit.ForeColor = System.Drawing.Color.White
-        Me.btnEdit.Location = New System.Drawing.Point(740, 48)
+        Me.btnEdit.Location = New System.Drawing.Point(821, 49)
         Me.btnEdit.Name = "btnEdit"
         Me.btnEdit.Size = New System.Drawing.Size(75, 25)
         Me.btnEdit.TabIndex = 4
@@ -265,7 +250,6 @@ Partial Class frmClientReg
     Friend WithEvents ColumnHeader1 As ColumnHeader
     Friend WithEvents fullname As ColumnHeader
     Friend WithEvents created_at As ColumnHeader
-    Friend WithEvents btnDelete As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents btnEdit As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents btnRefresh As Guna.UI2.WinForms.Guna2Button
     Friend WithEvents txtSearch As Guna.UI2.WinForms.Guna2TextBox

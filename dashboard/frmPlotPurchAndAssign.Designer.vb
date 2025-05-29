@@ -143,7 +143,10 @@ Partial Class frmPlotPurchAndAssign
         Me.txtPackage.AutoSize = True
         Me.txtPackage.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtPackage.ForeColor = System.Drawing.Color.White
-        Me.txtPackage.Location = New System.Drawing.Point(20, 68)
+
+        Me.txtPackage.Location = New System.Drawing.Point(15, 66)
+        Me.txtPackage.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+
         Me.txtPackage.Name = "txtPackage"
         Me.txtPackage.Size = New System.Drawing.Size(78, 20)
         Me.txtPackage.TabIndex = 18
@@ -154,7 +157,10 @@ Partial Class frmPlotPurchAndAssign
         Me.txtGraveType.AutoSize = True
         Me.txtGraveType.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtGraveType.ForeColor = System.Drawing.Color.White
-        Me.txtGraveType.Location = New System.Drawing.Point(20, 47)
+
+        Me.txtGraveType.Location = New System.Drawing.Point(15, 49)
+        Me.txtGraveType.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+
         Me.txtGraveType.Name = "txtGraveType"
         Me.txtGraveType.Size = New System.Drawing.Size(105, 20)
         Me.txtGraveType.TabIndex = 17
@@ -176,7 +182,10 @@ Partial Class frmPlotPurchAndAssign
         Me.lblQuantity.AutoSize = True
         Me.lblQuantity.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblQuantity.ForeColor = System.Drawing.Color.White
-        Me.lblQuantity.Location = New System.Drawing.Point(20, 110)
+
+        Me.lblQuantity.Location = New System.Drawing.Point(15, 100)
+        Me.lblQuantity.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+
         Me.lblQuantity.Name = "lblQuantity"
         Me.lblQuantity.Size = New System.Drawing.Size(76, 20)
         Me.lblQuantity.TabIndex = 21
@@ -184,8 +193,9 @@ Partial Class frmPlotPurchAndAssign
         '
         'currentQuantity
         '
-        Me.currentQuantity.Location = New System.Drawing.Point(113, 111)
-        Me.currentQuantity.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+
+        Me.currentQuantity.Location = New System.Drawing.Point(85, 101)
+
         Me.currentQuantity.Name = "currentQuantity"
         Me.currentQuantity.Size = New System.Drawing.Size(71, 22)
         Me.currentQuantity.TabIndex = 22
@@ -196,7 +206,10 @@ Partial Class frmPlotPurchAndAssign
         Me.txtPrice.AutoSize = True
         Me.txtPrice.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtPrice.ForeColor = System.Drawing.Color.White
-        Me.txtPrice.Location = New System.Drawing.Point(20, 89)
+
+        Me.txtPrice.Location = New System.Drawing.Point(15, 83)
+        Me.txtPrice.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+
         Me.txtPrice.Name = "txtPrice"
         Me.txtPrice.Size = New System.Drawing.Size(53, 20)
         Me.txtPrice.TabIndex = 19
@@ -354,10 +367,12 @@ Partial Class frmPlotPurchAndAssign
         Me.btnSelectPlot.HoverState.BorderColor = System.Drawing.SystemColors.Control
         Me.btnSelectPlot.HoverState.FillColor = System.Drawing.Color.Black
         Me.btnSelectPlot.Image = Global.dashboard.My.Resources.Resources.map
-        Me.btnSelectPlot.Location = New System.Drawing.Point(21, 305)
-        Me.btnSelectPlot.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+
+        Me.btnSelectPlot.Location = New System.Drawing.Point(16, 248)
+        Me.btnSelectPlot.Margin = New System.Windows.Forms.Padding(2)
         Me.btnSelectPlot.Name = "btnSelectPlot"
-        Me.btnSelectPlot.Size = New System.Drawing.Size(519, 44)
+        Me.btnSelectPlot.Size = New System.Drawing.Size(389, 36)
+
         Me.btnSelectPlot.TabIndex = 23
         Me.btnSelectPlot.Text = "Select Plot"
         '

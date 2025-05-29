@@ -71,46 +71,6 @@ Public Class frmClientReg
         LoadClients()
     End Sub
 
-    Private Sub btnDelete_Click(sender As Object, e As EventArgs) Handles btnDelete.Click
-        If ClientList.SelectedItems.Count = 0 Then
-            MessageBox.Show("Please select a client to delete.", "Delete Client", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-            Return
-        End If
-
-        Dim selectedID As Integer = CInt(ClientList.SelectedItems(0).SubItems(0).Text)
-        Dim clientName As String = ClientList.SelectedItems(0).SubItems(1).Text
-
-        Dim confirmDelete As DialogResult = MessageBox.Show("Are you sure you want to delete client: " & clientName & "?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-
-        If confirmDelete = DialogResult.Yes Then
-            Try
-                dbconn()
-                cn.Open()
-
-                sql = "DELETE FROM client WHERE Client_ID = @ID"
-                cmd = New MySqlCommand(sql, cn)
-                cmd.Parameters.AddWithValue("@ID", selectedID)
-
-                cmd.ExecuteNonQuery()
-                cn.Close()
-
-                MessageBox.Show("Client deleted successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
-
-                ' Refresh client list
-                LoadClients()
-
-            Catch ex As MySqlException
-                MessageBox.Show("Database error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Catch ex As Exception
-                MessageBox.Show("An unexpected error occurred: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Finally
-                If cn IsNot Nothing AndAlso cn.State = ConnectionState.Open Then
-                    cn.Close()
-                End If
-            End Try
-        End If
-    End Sub
-
     Private Sub ClientList_DoubleClick(sender As Object, e As EventArgs) Handles ClientList.DoubleClick
         If ClientList.SelectedItems.Count = 0 Then
             MessageBox.Show("Please select a client.", "View Client", MessageBoxButtons.OK, MessageBoxIcon.Warning)

@@ -26,6 +26,8 @@ Public Class frmPlotPurchAndAssign
         LoadPackages()
         SetupClientSearchBox()
 
+        
+
         ' Initialize quantity controls
         lblQuantity.Text = "Quantity:"
         lblQuantity.Visible = False
@@ -636,6 +638,8 @@ Public Class frmPlotPurchAndAssign
             ' Keep the list visible, even when empty
         End If
 
+        
+
         ' Don't reset quantity controls visibility here
         ' Let GraveType_SelectedIndexChanged handle visibility
     End Sub
@@ -649,6 +653,8 @@ Public Class frmPlotPurchAndAssign
             txtTotal.Text = "₱0.00"
             txtTotal.Visible = False
         End If
+
+        
 
         ' Don't reset quantity controls visibility here
         ' Let GraveType_SelectedIndexChanged handle visibility

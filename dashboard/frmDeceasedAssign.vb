@@ -54,7 +54,7 @@ Public Class frmDeceasedAssign
             ' Add default "Select Deceased" row
             dt.Rows.Add(-1, "-- Select Deceased --")
 
-            ' Get all deceased associated with the client
+            ' Get all deceased associated with the client who do not have a Plot_ID
             Dim sql As String = "SELECT Deceased_ID, " &
                           "CONCAT(COALESCE(FirstName, ''), " &
                           "IF(MiddleName IS NULL, '', CONCAT(' ', LEFT(MiddleName, 1), '.')), " &
@@ -64,6 +64,7 @@ Public Class frmDeceasedAssign
                           "AND TRIM(CONCAT(COALESCE(FirstName, ''), " &
                           "COALESCE(MiddleName, ''), " &
                           "COALESCE(LastName, ''))) != '' " &
+                          "AND Plot_ID IS NULL " &
                           "ORDER BY LastName, FirstName"
 
             Using cmd As New MySqlCommand(sql, Module1.cn)

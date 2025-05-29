@@ -103,54 +103,110 @@ Public Class frmViewClient
 
             ' SQL query to get all plots associated with client payments from plot_reservation table
             ' Select individual fields for passing to frmDeceasedAssign
-            sql = "SELECT l.id, pr.level, l.type, l.block, l.section, l.row, l.plot, " & ' Select individual fields' &
-                  "CONCAT(" &
-                  "    CASE l.type " &
-                  "        WHEN 1 THEN 'Apartment' " &
-                  "        WHEN 2 THEN 'Family Lawn Lots' " &
-                  "        WHEN 3 THEN 'Bone Niche' " &
-                  "        WHEN 4 THEN 'Private' " &
-                  "        ELSE 'Unknown' " &
-                  "    END, " &
-                  "    ' - Block ', IFNULL(l.block, 'N/A'), " &
-                  "    ', Section ', IFNULL(l.section, 'N/A'), " &
-                  "    ', Row ', IFNULL(l.row, 'N/A'), " &
-                  "    ', Plot ', IFNULL(l.plot, 'N/A'), " &
-                  "    CASE " &
-                  "        WHEN l.type IN (1, 3) THEN CONCAT(' - Level ', IFNULL(pr.level, 'N/A')) " &
-                  "        ELSE '' " &
-                  "    END" &
-                  ") AS PlotInfo " &
-                  "FROM location l " &
-                  "JOIN plot_reservation pr ON l.id = pr.plot_id " & ' Join location to plot_reservation' &
-                  "JOIN reservation r ON pr.reservation_id = r.Reservation_ID " & ' Join plot_reservation to reservation' &
-                  "JOIN payment p ON r.Reservation_ID = p.Reservation_ID " & ' Join reservation to payment' &
-                  "WHERE r.Client_ID = @ClientID AND p.Payment_Status = 1 " & ' Filter by client and payment status' &
-                  "GROUP BY l.id, pr.level " & ' Include pr.level in GROUP BY' &
-                  "ORDER BY l.type, l.block, l.section, l.row, l.plot"
+            ' Fetch all plots for the client, including payment status
+            Dim sql As String = "SELECT l.id, pr.level, l.type, l.block, l.section, l.row, l.plot, " &
+                                "CASE WHEN p.total_Paid >= p.total_Amount THEN 'Fully Paid' ELSE 'Partial' END AS Payment_Status, " &
+                                "CONCAT(" &
+                                "    CASE l.type " &
+                                "        WHEN 1 THEN 'Apartment' " &
+                                "        WHEN 2 THEN 'Family Lawn Lots' " &
+                                "        WHEN 3 THEN 'Bone Niche' " &
+                                "        WHEN 4 THEN 'Private' " &
+                                "        ELSE 'Unknown' " &
+                                "    END, " &
+                                "    ' - Block ', IFNULL(l.block, 'N/A'), " &
+                                "    ', Section ', IFNULL(l.section, 'N/A'), " &
+                                "    ', Row ', IFNULL(l.row, 'N/A'), " &
+                                "    ', Plot ', IFNULL(l.plot, 'N/A'), " &
+                                "    CASE " &
+                                "        WHEN l.type IN (1, 3) THEN CONCAT(' - Level ', IFNULL(pr.level, 'N/A')) " &
+                                "        ELSE '' " &
+                                "    END" &
+                                ") AS PlotInfo " &
+                                "FROM location l " &
+                                "JOIN plot_reservation pr ON l.id = pr.plot_id " & ' Join location to plot_reservation' &
+                                "JOIN reservation r ON pr.reservation_id = r.Reservation_ID " & ' Join plot_reservation to reservation' &
+                                "JOIN payment p ON r.Reservation_ID = p.Reservation_ID " & ' Join reservation to payment' &
+                                "WHERE r.Client_ID = @ClientID " & ' Filter by client' &
+                                "ORDER BY l.type, l.block, l.section, l.row, CAST(l.plot AS UNSIGNED)"
 
-            cmd = New MySqlCommand(sql, cn)
-            cmd.Parameters.AddWithValue("@ClientID", clientID)
-            dr = cmd.ExecuteReader()
+            Dim plotData As New List(Of Dictionary(Of String, Object))
+
+            Using cmd As New MySqlCommand(sql, cn)
+                cmd.Parameters.AddWithValue("@ClientID", clientID)
+                Using dr As MySqlDataReader = cmd.ExecuteReader()
+                    While dr.Read()
+                        Dim row As New Dictionary(Of String, Object)
+                        For i As Integer = 0 To dr.FieldCount - 1
+                            row.Add(dr.GetName(i), dr.GetValue(i))
+                        Next
+                        plotData.Add(row)
+                    End While
+                End Using
+            End Using
+
+            cn.Close()
 
             ' Clear the list before populating
             PlotsList.Items.Clear()
 
-            While dr.Read()
-                Dim plotInfoItem As New ListViewItem(dr("PlotInfo").ToString())
-                plotInfoItem.Tag = If(dr("id") Is DBNull.Value, -1, Convert.ToInt32(dr("id"))) ' Store Plot ID in Tag
-                plotInfoItem.SubItems.Add(If(dr("level") Is DBNull.Value, 0, Convert.ToInt32(dr("level"))).ToString()) ' Store Level
-                plotInfoItem.SubItems.Add(If(dr("type") Is DBNull.Value, 0, Convert.ToInt32(dr("type"))).ToString()) ' Store Plot Type
-                plotInfoItem.SubItems.Add(If(dr("block") Is DBNull.Value, "", dr("block").ToString())) ' Store Block
-                plotInfoItem.SubItems.Add(If(dr("section") Is DBNull.Value, "", dr("section").ToString())) ' Store Section
-                plotInfoItem.SubItems.Add(If(dr("row") Is DBNull.Value, "", dr("row").ToString())) ' Store Row
-                plotInfoItem.SubItems.Add(If(dr("plot") Is DBNull.Value, "", dr("plot").ToString())) ' Store Plot
+            ' Process fetched data to apply Family Lawn Lots payment validation
+            Dim familyLawnLotsGroups As New Dictionary(Of String, List(Of Dictionary(Of String, Object)))
 
-                PlotsList.Items.Add(plotInfoItem)
-            End While
+            For Each plot In plotData
+                Dim plotType As Integer = Convert.ToInt32(plot("type"))
 
-            dr.Close()
-            cn.Close()
+                ' If it's a Family Lawn Lot, group it by block, section, and row
+                If plotType = 2 Then
+                    Dim block As String = plot("block").ToString()
+                    Dim section As String = plot("section").ToString()
+                    Dim row As String = plot("row").ToString()
+                    Dim key As String = $"{block}-{section}-{row}"
+
+                    If Not familyLawnLotsGroups.ContainsKey(key) Then
+                        familyLawnLotsGroups.Add(key, New List(Of Dictionary(Of String, Object)))
+                    End If
+                    familyLawnLotsGroups(key).Add(plot)
+                Else
+                    ' If not a Family Lawn Lot, add it directly to the list
+                    Dim plotInfoItem As New ListViewItem(plot("PlotInfo").ToString())
+                    plotInfoItem.Tag = If(plot("id") Is DBNull.Value, -1, Convert.ToInt32(plot("id"))) ' Store Plot ID in Tag
+                    plotInfoItem.SubItems.Add(If(plot("level") Is DBNull.Value, 0, Convert.ToInt32(plot("level"))).ToString()) ' Store Level
+                    plotInfoItem.SubItems.Add(If(plot("type") Is DBNull.Value, 0, Convert.ToInt32(plot("type"))).ToString()) ' Store Plot Type
+                    plotInfoItem.SubItems.Add(If(plot("block") Is DBNull.Value, "", plot("block").ToString())) ' Store Block
+                    plotInfoItem.SubItems.Add(If(plot("section") Is DBNull.Value, "", plot("section").ToString())) ' Store Section
+                    plotInfoItem.SubItems.Add(If(plot("row") Is DBNull.Value, "", plot("row").ToString())) ' Store Row
+                    plotInfoItem.SubItems.Add(If(plot("plot") Is DBNull.Value, "", plot("plot").ToString())) ' Store Plot
+                    PlotsList.Items.Add(plotInfoItem)
+                End If
+            Next
+
+            ' Now process the Family Lawn Lots groups
+            For Each group In familyLawnLotsGroups.Values
+                Dim allFullyPaid As Boolean = True
+                For Each plot In group
+                    If plot("Payment_Status").ToString() <> "Fully Paid" Then
+                        allFullyPaid = False
+                        Exit For
+                    End If
+                Next
+
+                ' If all plots in the group are fully paid, add them to the list
+                If allFullyPaid Then
+                    For Each plot In group
+                        Dim plotInfoItem As New ListViewItem(plot("PlotInfo").ToString())
+                        plotInfoItem.Tag = If(plot("id") Is DBNull.Value, -1, Convert.ToInt32(plot("id"))) ' Store Plot ID in Tag
+                        plotInfoItem.SubItems.Add(If(plot("level") Is DBNull.Value, 0, Convert.ToInt32(plot("level"))).ToString()) ' Store Level
+                        plotInfoItem.SubItems.Add(If(plot("type") Is DBNull.Value, 0, Convert.ToInt32(plot("type"))).ToString()) ' Store Plot Type
+                        plotInfoItem.SubItems.Add(If(plot("block") Is DBNull.Value, "", plot("block").ToString())) ' Store Block
+                        plotInfoItem.SubItems.Add(If(plot("section") Is DBNull.Value, "", plot("section").ToString())) ' Store Section
+                        plotInfoItem.SubItems.Add(If(plot("row") Is DBNull.Value, "", plot("row").ToString())) ' Store Row
+                        plotInfoItem.SubItems.Add(If(plot("plot") Is DBNull.Value, "", plot("plot").ToString())) ' Store Plot
+                        PlotsList.Items.Add(plotInfoItem)
+                    Next
+                End If
+            Next
+
         Catch ex As MySqlException
             MessageBox.Show("Database error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         Catch ex As Exception
