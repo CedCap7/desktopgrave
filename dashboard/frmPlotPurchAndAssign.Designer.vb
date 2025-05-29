@@ -43,6 +43,7 @@ Partial Class frmPlotPurchAndAssign
         Me.Label9 = New System.Windows.Forms.Label()
         Me.GraveType = New Guna.UI2.WinForms.Guna2ComboBox()
         Me.btnConfirm = New Guna.UI2.WinForms.Guna2Button()
+        Me.btnSelectPlot = New Guna.UI2.WinForms.Guna2Button()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -51,7 +52,6 @@ Partial Class frmPlotPurchAndAssign
         Me.Guna2Panel2 = New Guna.UI2.WinForms.Guna2Panel()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.btnSelectPlot = New Guna.UI2.WinForms.Guna2Button()
         Me.panel1.SuspendLayout()
         Me.Guna2Panel4.SuspendLayout()
         Me.Guna2ShadowPanel2.SuspendLayout()
@@ -142,7 +142,7 @@ Partial Class frmPlotPurchAndAssign
         Me.txtPackage.AutoSize = True
         Me.txtPackage.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtPackage.ForeColor = System.Drawing.Color.White
-        Me.txtPackage.Location = New System.Drawing.Point(15, 55)
+        Me.txtPackage.Location = New System.Drawing.Point(15, 66)
         Me.txtPackage.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.txtPackage.Name = "txtPackage"
         Me.txtPackage.Size = New System.Drawing.Size(67, 17)
@@ -154,7 +154,7 @@ Partial Class frmPlotPurchAndAssign
         Me.txtGraveType.AutoSize = True
         Me.txtGraveType.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtGraveType.ForeColor = System.Drawing.Color.White
-        Me.txtGraveType.Location = New System.Drawing.Point(15, 38)
+        Me.txtGraveType.Location = New System.Drawing.Point(15, 49)
         Me.txtGraveType.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.txtGraveType.Name = "txtGraveType"
         Me.txtGraveType.Size = New System.Drawing.Size(91, 17)
@@ -178,7 +178,7 @@ Partial Class frmPlotPurchAndAssign
         Me.lblQuantity.AutoSize = True
         Me.lblQuantity.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblQuantity.ForeColor = System.Drawing.Color.White
-        Me.lblQuantity.Location = New System.Drawing.Point(15, 89)
+        Me.lblQuantity.Location = New System.Drawing.Point(15, 100)
         Me.lblQuantity.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblQuantity.Name = "lblQuantity"
         Me.lblQuantity.Size = New System.Drawing.Size(65, 17)
@@ -187,7 +187,7 @@ Partial Class frmPlotPurchAndAssign
         '
         'currentQuantity
         '
-        Me.currentQuantity.Location = New System.Drawing.Point(85, 90)
+        Me.currentQuantity.Location = New System.Drawing.Point(85, 101)
         Me.currentQuantity.Name = "currentQuantity"
         Me.currentQuantity.Size = New System.Drawing.Size(53, 20)
         Me.currentQuantity.TabIndex = 22
@@ -198,7 +198,7 @@ Partial Class frmPlotPurchAndAssign
         Me.txtPrice.AutoSize = True
         Me.txtPrice.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.2!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtPrice.ForeColor = System.Drawing.Color.White
-        Me.txtPrice.Location = New System.Drawing.Point(15, 72)
+        Me.txtPrice.Location = New System.Drawing.Point(15, 83)
         Me.txtPrice.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.txtPrice.Name = "txtPrice"
         Me.txtPrice.Size = New System.Drawing.Size(44, 17)
@@ -343,6 +343,25 @@ Partial Class frmPlotPurchAndAssign
         Me.btnConfirm.TabIndex = 2
         Me.btnConfirm.Text = "Confirm"
         '
+        'btnSelectPlot
+        '
+        Me.btnSelectPlot.Animated = True
+        Me.btnSelectPlot.BackColor = System.Drawing.Color.FromArgb(CType(CType(14, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(90, Byte), Integer))
+        Me.btnSelectPlot.BorderRadius = 5
+        Me.btnSelectPlot.BorderThickness = 1
+        Me.btnSelectPlot.FillColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(171, Byte), Integer), CType(CType(189, Byte), Integer))
+        Me.btnSelectPlot.Font = New System.Drawing.Font("Roboto", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnSelectPlot.ForeColor = System.Drawing.SystemColors.Window
+        Me.btnSelectPlot.HoverState.BorderColor = System.Drawing.SystemColors.Control
+        Me.btnSelectPlot.HoverState.FillColor = System.Drawing.Color.Black
+        Me.btnSelectPlot.Image = Global.dashboard.My.Resources.Resources.map
+        Me.btnSelectPlot.Location = New System.Drawing.Point(16, 248)
+        Me.btnSelectPlot.Margin = New System.Windows.Forms.Padding(2)
+        Me.btnSelectPlot.Name = "btnSelectPlot"
+        Me.btnSelectPlot.Size = New System.Drawing.Size(389, 36)
+        Me.btnSelectPlot.TabIndex = 23
+        Me.btnSelectPlot.Text = "Select Plot"
+        '
         'Label8
         '
         Me.Label8.AutoSize = True
@@ -440,25 +459,6 @@ Partial Class frmPlotPurchAndAssign
         Me.Label6.Size = New System.Drawing.Size(303, 39)
         Me.Label6.TabIndex = 0
         Me.Label6.Text = "Plot Purchase Form"
-        '
-        'btnSelectPlot
-        '
-        Me.btnSelectPlot.Animated = True
-        Me.btnSelectPlot.BackColor = System.Drawing.Color.FromArgb(CType(CType(14, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(90, Byte), Integer))
-        Me.btnSelectPlot.BorderRadius = 5
-        Me.btnSelectPlot.BorderThickness = 1
-        Me.btnSelectPlot.FillColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(171, Byte), Integer), CType(CType(189, Byte), Integer))
-        Me.btnSelectPlot.Font = New System.Drawing.Font("Roboto", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSelectPlot.ForeColor = System.Drawing.SystemColors.Window
-        Me.btnSelectPlot.HoverState.BorderColor = System.Drawing.SystemColors.Control
-        Me.btnSelectPlot.HoverState.FillColor = System.Drawing.Color.Black
-        Me.btnSelectPlot.Image = Global.dashboard.My.Resources.Resources.map
-        Me.btnSelectPlot.Location = New System.Drawing.Point(16, 248)
-        Me.btnSelectPlot.Margin = New System.Windows.Forms.Padding(2)
-        Me.btnSelectPlot.Name = "btnSelectPlot"
-        Me.btnSelectPlot.Size = New System.Drawing.Size(389, 36)
-        Me.btnSelectPlot.TabIndex = 23
-        Me.btnSelectPlot.Text = "Select Plot"
         '
         'frmPlotPurchAndAssign
         '

@@ -25,6 +25,9 @@ Public Class frmPlotPurchAndAssign
         Module1.dbconn() ' Initialize the database connection
         LoadPackages()
         SetupClientSearchBox()
+        
+        ' Initialize quantity controls
+        lblQuantity.Text = "Quantity:"
         lblQuantity.Visible = False
         currentQuantity.Visible = False
         currentQuantity.Value = 1
@@ -628,6 +631,9 @@ Public Class frmPlotPurchAndAssign
             SelectedPlotsList.Items.Clear()
             ' Keep the list visible, even when empty
         End If
+        
+        ' Don't reset quantity controls visibility here
+        ' Let GraveType_SelectedIndexChanged handle visibility
     End Sub
 
     Private Sub ClearPackageDetails()
@@ -636,9 +642,12 @@ Public Class frmPlotPurchAndAssign
         If txtPackage IsNot Nothing Then txtPackage.Text = "Package Type:"
         If txtPrice IsNot Nothing Then txtPrice.Text = "Price:"
         If txtTotal IsNot Nothing Then
-            txtTotal.Text = "Total: ₱0.00"
+            txtTotal.Text = "₱0.00"
             txtTotal.Visible = False
         End If
+        
+        ' Don't reset quantity controls visibility here
+        ' Let GraveType_SelectedIndexChanged handle visibility
     End Sub
 
     Private Sub PopulateDeceasedComboBox()
@@ -649,10 +658,8 @@ Public Class frmPlotPurchAndAssign
     Private Sub ResetPlotSelections()
         ' Resets the plot selections and clears the display
         ClearPlotSelections()
-        ' Optionally, reset quantity to 1 if applicable
+        ' Don't reset quantity controls visibility here
         If currentQuantity IsNot Nothing Then currentQuantity.Value = 1
-        If lblQuantity IsNot Nothing Then lblQuantity.Visible = False
-        If currentQuantity IsNot Nothing Then currentQuantity.Visible = False
     End Sub
 
     Private Function GetDeceasedCount(plotId As Integer) As Integer
@@ -708,18 +715,21 @@ Public Class frmPlotPurchAndAssign
 
                 ' Show quantity only for family lawn lot (p_id = 2)
                 If selectedPackageId = 2 Then
+                    Debug.WriteLine("Setting controls visible for family lawn lot")
                     lblQuantity.Visible = True
                     currentQuantity.Visible = True
                     currentQuantity.Value = 1
                     cmbDeceased.Visible = False
                     Label8.Visible = False
                 ElseIf description = "apartment" OrElse description = "bone niche" Then
+                    Debug.WriteLine("Hiding quantity controls for apartment/bone niche")
                     lblQuantity.Visible = False
                     currentQuantity.Visible = False
                     currentQuantity.Value = 1
                     cmbDeceased.Visible = True
                     Label8.Visible = True
                 Else
+                    Debug.WriteLine("Hiding quantity controls for other types")
                     lblQuantity.Visible = False
                     currentQuantity.Visible = False
                     currentQuantity.Value = 1
@@ -728,9 +738,10 @@ Public Class frmPlotPurchAndAssign
                 End If
 
                 LoadPackageDetails(selectedPackageId)
-                ResetPlotSelections()
+                ClearPlotSelections()
                 UpdateTotalAmount()
             Else
+                Debug.WriteLine("No package selected, hiding controls")
                 txtGraveType.Text = "Grave Type:"
                 txtPackage.Text = "Package:"
                 txtPrice.Text = "Price:"
@@ -741,7 +752,7 @@ Public Class frmPlotPurchAndAssign
                 currentQuantity.Value = 1
                 cmbDeceased.Visible = False
                 Label8.Visible = False
-                ResetPlotSelections()
+                ClearPlotSelections()
             End If
         Catch ex As Exception
             MessageBox.Show("Error loading package details: " & ex.Message)
@@ -794,6 +805,12 @@ Public Class frmPlotPurchAndAssign
 
                 txtTotal.Text = $"Total: ₱{totalAmount:N2}"
                 txtTotal.Visible = True
+
+                ' Maintain quantity controls visibility for family lawn lot
+                If Convert.ToInt32(selectedRow("p_id")) = 2 Then
+                    lblQuantity.Visible = True
+                    currentQuantity.Visible = True
+                End If
             Else
                 txtTotal.Text = "Total: ₱0.00"
                 txtTotal.Visible = False
@@ -830,11 +847,6 @@ Public Class frmPlotPurchAndAssign
 
     Private Sub currentQuantity_ValueChanged(sender As Object, e As EventArgs) Handles currentQuantity.ValueChanged
         UpdateTotalAmount()
-
-        ' Optional: Notify user when quantity > 1
-        If currentQuantity.Value > 1 Then
-            MessageBox.Show($"Please select {currentQuantity.Value} plots", "Plot Selection Required", MessageBoxButtons.OK, MessageBoxIcon.Information)
-        End If
     End Sub
 
 End Class
