@@ -360,6 +360,7 @@ Public Class frmPlotPurchAndAssign
                                 cmd.Parameters.AddWithValue("@Level", 0)
                                 cmd.Parameters.AddWithValue("@DeceasedID", deceasedId.Value)
                                 cmd.ExecuteNonQuery()
+                                LogUserAction("Update Deceased", "Assigned plot to deceased ID: " & deceasedId.Value)
                             End Using
                         End If
 
@@ -420,6 +421,7 @@ Public Class frmPlotPurchAndAssign
                                     cmd.Parameters.AddWithValue("@Level", If(packageType = 4, 0, plot.Value.Level))
                                     cmd.Parameters.AddWithValue("@DeceasedID", deceasedId.Value)
                                     cmd.ExecuteNonQuery()
+                                    LogUserAction("Update Deceased", "Assigned plot to deceased ID: " & deceasedId.Value)
                                 End Using
                             End If
 

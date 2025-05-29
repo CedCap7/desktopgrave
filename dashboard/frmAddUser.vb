@@ -66,6 +66,7 @@ Public Class frmAddUser
 
                 ' Execute the query
                 cmd.ExecuteNonQuery()
+                LogUserAction("Add User", "Added user: " & username)
 
                 ' Display success message
                 MessageBox.Show("User added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)

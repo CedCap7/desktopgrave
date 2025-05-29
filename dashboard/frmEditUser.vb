@@ -110,6 +110,7 @@ Public Class frmEditUser
 
                 ' Execute the update
                 cmd.ExecuteNonQuery()
+                LogUserAction("Edit User", "Edited user: " & username)
 
                 ' Display success message
                 MessageBox.Show("User information updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)

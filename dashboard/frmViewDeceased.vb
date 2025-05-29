@@ -30,7 +30,10 @@ Public Class frmViewDeceased
 
                 ' Client Information
                 If hasClientData Then
-                    Dim clientStatus As String = If(dr("Status") IsNot DBNull.Value AndAlso Convert.ToInt32(dr("Status")) = 0, " (Inactive)", "")
+                    Dim clientStatus As String = ""
+                    If dr("Status") IsNot DBNull.Value AndAlso dr("Status").ToString().Trim().ToLower() = "inactive" Then
+                        clientStatus = " (Inactive)"
+                    End If
                     LblClient.Text = dr("ClientLastName") & ", " & dr("ClientFirstName") & clientStatus
                     LblContact.Text = If(dr("Mobile") IsNot DBNull.Value, dr("Mobile").ToString(), "N/A")
                     LblEmail.Text = If(dr("Email") IsNot DBNull.Value, dr("Email").ToString(), "N/A")
@@ -99,5 +102,9 @@ Public Class frmViewDeceased
         LblDob.Text = birthdate
         LblDod.Text = deathdate
         LblPlot.Text = location
+    End Sub
+
+    Private Sub Guna2ShadowPanel1_Paint(sender As Object, e As PaintEventArgs) Handles Guna2ShadowPanel1.Paint
+
     End Sub
 End Class
