@@ -15,11 +15,43 @@ Public Class frmUpdatePayment
     Private Sub frmUpdatePayment_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         lblReservationID.Text = reservationID
         lblRemainingBalance.Text = "₱" & remainingBalance.ToString("N2")
+        
+        ' Set up the txtPaidAmount to only accept numbers
+        AddHandler txtPaidAmount.KeyPress, AddressOf TxtPaidAmount_KeyPress
+    End Sub
+
+    Private Sub TxtPaidAmount_KeyPress(sender As Object, e As KeyPressEventArgs)
+        ' Only allow numbers and backspace
+        If Not Char.IsDigit(e.KeyChar) AndAlso e.KeyChar <> ChrW(Keys.Back) Then
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub txtPaidAmount_TextChanged(sender As Object, e As EventArgs) Handles txtPaidAmount.TextChanged
+        ' Remove any non-digit characters
+        Dim digitsOnly As String = New String(txtPaidAmount.Text.Where(Function(c) Char.IsDigit(c)).ToArray())
+        
+        ' Format the number with commas
+        If Not String.IsNullOrEmpty(digitsOnly) Then
+            Dim number As Long
+            If Long.TryParse(digitsOnly, number) Then
+                txtPaidAmount.Text = number.ToString("N0")
+                txtPaidAmount.SelectionStart = txtPaidAmount.Text.Length
+            End If
+        End If
     End Sub
 
     Private Sub btnConfirm_Click(sender As Object, e As EventArgs) Handles btnConfirm.Click
+        ' Validate official receipt number
+        If String.IsNullOrWhiteSpace(txtOR.Text) Then
+            MessageBox.Show("Please enter the Official Receipt number.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Return
+        End If
+
+        ' Get the numeric value without commas
+        Dim paidAmountStr As String = New String(txtPaidAmount.Text.Where(Function(c) Char.IsDigit(c)).ToArray())
         Dim paidAmount As Decimal
-        If Not Decimal.TryParse(txtPaidAmount.Text, paidAmount) Then
+        If Not Decimal.TryParse(paidAmountStr, paidAmount) Then
             MessageBox.Show("Please enter a valid number for the paid amount.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return
         End If
@@ -66,10 +98,15 @@ Public Class frmUpdatePayment
                 getTypeCmd.Parameters.AddWithValue("@ResID", reservationID)
                 Dim typeID As Integer = Convert.ToInt32(getTypeCmd.ExecuteScalar())
 
-                ' Update the total_Paid and Payment_Date in the payment table
+                ' Update the total_Paid, Payment_Date, and Payment_Status in the payment table
                 Dim updatePaymentCmd As New MySqlCommand("
                 UPDATE payment 
-                SET total_Paid = total_Paid + @Amount, Payment_Date = @Date 
+                SET total_Paid = total_Paid + @Amount, 
+                    Payment_Date = @Date,
+                    Payment_Status = CASE 
+                        WHEN (total_Paid + @Amount) >= total_Amount THEN 1 
+                        ELSE Payment_Status 
+                    END
                 WHERE Reservation_ID = @ReservationID", tempConnection)
                 updatePaymentCmd.Parameters.AddWithValue("@Amount", paidAmount)
                 updatePaymentCmd.Parameters.AddWithValue("@Date", DateTime.Now)
@@ -79,13 +116,14 @@ Public Class frmUpdatePayment
 
                 ' Insert transaction
                 Dim sql As String = "
-                INSERT INTO `transaction` (Transaction_ID, Date, Amount, Client_ID, Type_ID)
+                INSERT INTO `transaction` (Transaction_ID, Date, Amount, Client_ID, Type_ID, official_receipt)
                 VALUES (
                     @TransactionID,
                     @Date,
                     @Amount,
                     (SELECT Client_ID FROM reservation WHERE Reservation_ID = @ReservationID),
-                    @TypeID
+                    @TypeID,
+                    @OfficialReceipt
                 )"
 
                 Using cmd As New MySqlCommand(sql, tempConnection)
@@ -94,6 +132,7 @@ Public Class frmUpdatePayment
                     cmd.Parameters.AddWithValue("@Amount", paidAmount)
                     cmd.Parameters.AddWithValue("@ReservationID", reservationID)
                     cmd.Parameters.AddWithValue("@TypeID", typeID)
+                    cmd.Parameters.AddWithValue("@OfficialReceipt", txtOR.Text.Trim())
                     cmd.ExecuteNonQuery()
                 End Using
             End Using

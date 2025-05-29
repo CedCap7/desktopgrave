@@ -32,6 +32,7 @@ Partial Class frmUpdatePayment
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.lblRemainingBalance = New System.Windows.Forms.Label()
+        Me.txtOR = New Guna.UI2.WinForms.Guna2TextBox()
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -50,7 +51,7 @@ Partial Class frmUpdatePayment
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Roboto", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.SystemColors.Control
-        Me.Label1.Location = New System.Drawing.Point(81, 9)
+        Me.Label1.Location = New System.Drawing.Point(82, 21)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(192, 29)
         Me.Label1.TabIndex = 0
@@ -72,7 +73,7 @@ Partial Class frmUpdatePayment
         Me.txtPaidAmount.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtPaidAmount.ForeColor = System.Drawing.Color.Black
         Me.txtPaidAmount.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
-        Me.txtPaidAmount.Location = New System.Drawing.Point(13, 216)
+        Me.txtPaidAmount.Location = New System.Drawing.Point(13, 268)
         Me.txtPaidAmount.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.txtPaidAmount.Name = "txtPaidAmount"
         Me.txtPaidAmount.PlaceholderForeColor = System.Drawing.Color.Gray
@@ -93,7 +94,7 @@ Partial Class frmUpdatePayment
         Me.btnConfirm.FillColor = System.Drawing.Color.LimeGreen
         Me.btnConfirm.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold)
         Me.btnConfirm.ForeColor = System.Drawing.Color.White
-        Me.btnConfirm.Location = New System.Drawing.Point(34, 264)
+        Me.btnConfirm.Location = New System.Drawing.Point(34, 321)
         Me.btnConfirm.Margin = New System.Windows.Forms.Padding(2, 2, 2, 10)
         Me.btnConfirm.Name = "btnConfirm"
         Me.btnConfirm.Size = New System.Drawing.Size(146, 37)
@@ -111,7 +112,7 @@ Partial Class frmUpdatePayment
         Me.btnCancel.FillColor = System.Drawing.Color.LimeGreen
         Me.btnCancel.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold)
         Me.btnCancel.ForeColor = System.Drawing.Color.White
-        Me.btnCancel.Location = New System.Drawing.Point(184, 264)
+        Me.btnCancel.Location = New System.Drawing.Point(184, 321)
         Me.btnCancel.Margin = New System.Windows.Forms.Padding(2, 2, 2, 10)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(146, 37)
@@ -170,12 +171,38 @@ Partial Class frmUpdatePayment
         Me.lblRemainingBalance.Text = "Remaining Balance:"
         Me.lblRemainingBalance.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
+        'txtOR
+        '
+        Me.txtOR.Animated = True
+        Me.txtOR.BorderColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(171, Byte), Integer), CType(CType(189, Byte), Integer))
+        Me.txtOR.BorderRadius = 5
+        Me.txtOR.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.txtOR.DefaultText = ""
+        Me.txtOR.DisabledState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer), CType(CType(208, Byte), Integer))
+        Me.txtOR.DisabledState.FillColor = System.Drawing.Color.FromArgb(CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer), CType(CType(226, Byte), Integer))
+        Me.txtOR.DisabledState.ForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
+        Me.txtOR.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer), CType(CType(138, Byte), Integer))
+        Me.txtOR.FocusedState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.txtOR.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtOR.ForeColor = System.Drawing.Color.Black
+        Me.txtOR.HoverState.BorderColor = System.Drawing.Color.FromArgb(CType(CType(94, Byte), Integer), CType(CType(148, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.txtOR.Location = New System.Drawing.Point(13, 216)
+        Me.txtOR.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+        Me.txtOR.Name = "txtOR"
+        Me.txtOR.PlaceholderForeColor = System.Drawing.Color.Gray
+        Me.txtOR.PlaceholderText = "Official Receipt No."
+        Me.txtOR.SelectedText = ""
+        Me.txtOR.Size = New System.Drawing.Size(341, 41)
+        Me.txtOR.TabIndex = 35
+        Me.txtOR.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
         'frmUpdatePayment
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(23, Byte), Integer), CType(CType(107, Byte), Integer), CType(CType(135, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(367, 311)
+        Me.ClientSize = New System.Drawing.Size(367, 368)
+        Me.Controls.Add(Me.txtOR)
         Me.Controls.Add(Me.lblRemainingBalance)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
@@ -204,4 +231,5 @@ Partial Class frmUpdatePayment
     Friend WithEvents Label2 As Label
     Friend WithEvents Label3 As Label
     Friend WithEvents lblRemainingBalance As Label
+    Private WithEvents txtOR As Guna.UI2.WinForms.Guna2TextBox
 End Class
