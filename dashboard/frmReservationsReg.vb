@@ -1,7 +1,7 @@
 Imports MySql.Data.MySqlClient
-Imports PdfSharp.Pdf
-Imports PdfSharp.Drawing
 Imports System.IO
+Imports iTextSharp.text
+Imports iTextSharp.text.pdf
 
 Public Class frmReservationsReg
     Private Sub frmReservationList_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -322,54 +322,36 @@ Public Class frmReservationsReg
     End Sub
 
     Private Sub btnExportPDF_Click(sender As Object, e As EventArgs) Handles btnExportPDF.Click
+        ExportToCSV() ' Much more reliable than PDF libraries
+    End Sub
+
+    Private Sub ExportToCSV()
         Try
             Dim saveDialog As New SaveFileDialog()
-            saveDialog.Filter = "PDF files (*.pdf)|*.pdf"
-            saveDialog.Title = "Save Reservation List"
-            saveDialog.FileName = "ReservationList_" & DateTime.Now.ToString("yyyyMMdd") & ".pdf"
+            saveDialog.Filter = "CSV files (*.csv)|*.csv"
+            saveDialog.FileName = "ReservationList_" & DateTime.Now.ToString("yyyyMMdd") & ".csv"
 
             If saveDialog.ShowDialog() = DialogResult.OK Then
-                ' Initialize PDFSharp
-                Dim document As New PdfDocument()
-                document.Info.Title = "Reservation List"
+                Using writer As New StreamWriter(saveDialog.FileName)
+                    writer.WriteLine("Reservation ID,Client Name,Plot Location,Reservation Date,Quantity,Status,Payment Status")
 
-                ' Create a new page
-                Dim page As PdfPage = document.AddPage()
-                Dim gfx As XGraphics = XGraphics.FromPdfPage(page)
-
-                ' Define fonts
-                Dim fontRegular As New XFont("Verdana", 12, XFontStyle.Regular) ' Regular font
-                Dim fontBold As New XFont("Verdana", 16, XFontStyle.Bold) ' Bold font
-
-                ' Add title
-                gfx.DrawString("Reservation List", fontBold, XBrushes.Black, New XRect(0, 0, page.Width, page.Height), XStringFormats.TopCenter)
-
-                ' Create table with 7 columns
-                Dim yPoint As Double = 50
-                For Each item As ListViewItem In ReservationList.Items
-                    If item.SubItems.Count < 7 Then
-                        MessageBox.Show("Error: Some rows in the list have missing data.", "Data Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                        Exit Sub
-                    End If
-
-                    ' Only use first 7 columns
-                    For i As Integer = 0 To 6
-                        Dim cellText As String = If(i < item.SubItems.Count, item.SubItems(i).Text, "N/A")
-                        gfx.DrawString(cellText, fontRegular, XBrushes.Black, New XRect(20 + (i * 100), yPoint, page.Width, page.Height), XStringFormats.TopLeft)
+                    For Each item As ListViewItem In ReservationList.Items
+                        Dim values As New List(Of String)
+                        For i As Integer = 0 To Math.Min(6, item.SubItems.Count - 1)
+                            values.Add(item.SubItems(i).Text)
+                        Next
+                        writer.WriteLine(String.Join(",", values))
                     Next
-                    yPoint += 20 ' Move down for the next row
-                Next
+                End Using
 
-                ' Save the document
-                document.Save(saveDialog.FileName)
-
-                MessageBox.Show("PDF file has been created successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                MessageBox.Show("Export completed successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Process.Start(saveDialog.FileName)
             End If
         Catch ex As Exception
-            MessageBox.Show("Error creating PDF: " & ex.Message & vbCrLf & "Stack Trace: " & ex.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            MessageBox.Show("Export failed: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+
 
     Private Function GetClientIDFromReservation(reservationID As Integer) As Integer
         Dim clientID As Integer = -1 ' Default value if not found
@@ -427,5 +409,9 @@ Public Class frmReservationsReg
                               "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
         End If
+    End Sub
+
+    Private Sub Guna2Panel2_Paint(sender As Object, e As PaintEventArgs) Handles Guna2Panel2.Paint
+
     End Sub
 End Class

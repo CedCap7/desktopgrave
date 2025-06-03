@@ -135,6 +135,9 @@ Public Class frmAccApproval
                         cmd.Parameters.AddWithValue("@ClientID", clientID)
                         cmd.ExecuteNonQuery()
 
+                        ' Log the application approval action
+                        LogUserAction("Approve Application", $"Approved application for client ID: {clientID}")
+
                         If cn.State = ConnectionState.Open Then
                             cn.Close() ' Close connection after usage
                         End If

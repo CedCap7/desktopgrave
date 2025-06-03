@@ -139,6 +139,9 @@ Public Class frmClientReg
 
                 MessageBox.Show("Client status updated to active.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
+                ' Log the client status update action
+                LogUserAction("Update Client Status", $"Set client ID: {selectedID} to Active")
+
                 ' Refresh client list to show updated status
                 LoadClients()
 
@@ -180,6 +183,9 @@ Public Class frmClientReg
                 cn.Close()
 
                 MessageBox.Show("Client status updated to inactive.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+                ' Log the client status update action
+                LogUserAction("Update Client Status", $"Set client ID: {selectedID} to Inactive")
 
                 ' Refresh client list to show updated status
                 LoadClients()

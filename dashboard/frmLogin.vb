@@ -24,8 +24,13 @@
                 dr.Close()
                 conn.Close()
 
+                ' Log the successful login action
+                LogUserAction("Login", "User logged in: " & txtUser.Text)
+
                 Me.Hide()
-                dashboard.ShowDialog()
+                Dim dashboardForm As New dashboard()
+                dashboardForm.LoggedInUserId = uid
+                dashboardForm.ShowDialog()
 
             Else
                 MsgBox("Invalid login!")

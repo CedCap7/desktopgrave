@@ -103,7 +103,7 @@ Partial Class frmDashboard
         Me.Guna2Panel2.Controls.Add(Me.Label1)
         Me.Guna2Panel2.Dock = System.Windows.Forms.DockStyle.Top
         Me.Guna2Panel2.Location = New System.Drawing.Point(0, 0)
-        Me.Guna2Panel2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Guna2Panel2.Margin = New System.Windows.Forms.Padding(4)
         Me.Guna2Panel2.Name = "Guna2Panel2"
         Me.Guna2Panel2.Size = New System.Drawing.Size(1387, 98)
         Me.Guna2Panel2.TabIndex = 5
@@ -116,7 +116,7 @@ Partial Class frmDashboard
         Me.btnRefresh.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.btnRefresh.ForeColor = System.Drawing.Color.White
         Me.btnRefresh.Location = New System.Drawing.Point(1271, 59)
-        Me.btnRefresh.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.btnRefresh.Margin = New System.Windows.Forms.Padding(4)
         Me.btnRefresh.Name = "btnRefresh"
         Me.btnRefresh.Size = New System.Drawing.Size(100, 31)
         Me.btnRefresh.TabIndex = 4
@@ -182,7 +182,7 @@ Partial Class frmDashboard
         Me.TableLayoutPanel1.Controls.Add(Me.Guna2Panel5, 5, 0)
         Me.TableLayoutPanel1.Controls.Add(Me.Guna2Panel6, 7, 0)
         Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 310)
-        Me.TableLayoutPanel1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TableLayoutPanel1.Margin = New System.Windows.Forms.Padding(4)
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
@@ -197,7 +197,7 @@ Partial Class frmDashboard
         Me.Guna2Panel3.Controls.Add(Me.Label5)
         Me.Guna2Panel3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Guna2Panel3.Location = New System.Drawing.Point(17, 4)
-        Me.Guna2Panel3.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Guna2Panel3.Margin = New System.Windows.Forms.Padding(4)
         Me.Guna2Panel3.Name = "Guna2Panel3"
         Me.Guna2Panel3.ShadowDecoration.Depth = 5
         Me.Guna2Panel3.ShadowDecoration.Enabled = True
@@ -214,7 +214,7 @@ Partial Class frmDashboard
         Me.TableLayoutPanel3.Controls.Add(Me.pbApartment, 1, 0)
         Me.TableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Top
         Me.TableLayoutPanel3.Location = New System.Drawing.Point(0, 0)
-        Me.TableLayoutPanel3.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TableLayoutPanel3.Margin = New System.Windows.Forms.Padding(4)
         Me.TableLayoutPanel3.Name = "TableLayoutPanel3"
         Me.TableLayoutPanel3.RowCount = 1
         Me.TableLayoutPanel3.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
@@ -231,7 +231,7 @@ Partial Class frmDashboard
         Me.pbApartment.Font = New System.Drawing.Font("Segoe UI", 12.0!)
         Me.pbApartment.ForeColor = System.Drawing.Color.White
         Me.pbApartment.Location = New System.Drawing.Point(84, 4)
-        Me.pbApartment.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pbApartment.Margin = New System.Windows.Forms.Padding(4)
         Me.pbApartment.Minimum = 0
         Me.pbApartment.Name = "pbApartment"
         Me.pbApartment.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle
@@ -272,7 +272,7 @@ Partial Class frmDashboard
         Me.Guna2Panel4.Controls.Add(Me.Label6)
         Me.Guna2Panel4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Guna2Panel4.Location = New System.Drawing.Point(360, 4)
-        Me.Guna2Panel4.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Guna2Panel4.Margin = New System.Windows.Forms.Padding(4)
         Me.Guna2Panel4.Name = "Guna2Panel4"
         Me.Guna2Panel4.ShadowDecoration.Depth = 5
         Me.Guna2Panel4.ShadowDecoration.Enabled = True
@@ -289,7 +289,7 @@ Partial Class frmDashboard
         Me.TableLayoutPanel4.Controls.Add(Me.pblawnlots, 1, 0)
         Me.TableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Top
         Me.TableLayoutPanel4.Location = New System.Drawing.Point(0, 0)
-        Me.TableLayoutPanel4.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TableLayoutPanel4.Margin = New System.Windows.Forms.Padding(4)
         Me.TableLayoutPanel4.Name = "TableLayoutPanel4"
         Me.TableLayoutPanel4.RowCount = 1
         Me.TableLayoutPanel4.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
@@ -306,7 +306,7 @@ Partial Class frmDashboard
         Me.pblawnlots.Font = New System.Drawing.Font("Segoe UI", 12.0!)
         Me.pblawnlots.ForeColor = System.Drawing.Color.White
         Me.pblawnlots.Location = New System.Drawing.Point(84, 4)
-        Me.pblawnlots.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pblawnlots.Margin = New System.Windows.Forms.Padding(4)
         Me.pblawnlots.Minimum = 0
         Me.pblawnlots.Name = "pblawnlots"
         Me.pblawnlots.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle
@@ -347,7 +347,7 @@ Partial Class frmDashboard
         Me.Guna2Panel5.Controls.Add(Me.Label7)
         Me.Guna2Panel5.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Guna2Panel5.Location = New System.Drawing.Point(703, 4)
-        Me.Guna2Panel5.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Guna2Panel5.Margin = New System.Windows.Forms.Padding(4)
         Me.Guna2Panel5.Name = "Guna2Panel5"
         Me.Guna2Panel5.ShadowDecoration.Depth = 5
         Me.Guna2Panel5.ShadowDecoration.Enabled = True
@@ -364,7 +364,7 @@ Partial Class frmDashboard
         Me.TableLayoutPanel5.Controls.Add(Me.pbboneniche, 1, 0)
         Me.TableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Top
         Me.TableLayoutPanel5.Location = New System.Drawing.Point(0, 0)
-        Me.TableLayoutPanel5.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TableLayoutPanel5.Margin = New System.Windows.Forms.Padding(4)
         Me.TableLayoutPanel5.Name = "TableLayoutPanel5"
         Me.TableLayoutPanel5.RowCount = 1
         Me.TableLayoutPanel5.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
@@ -381,7 +381,7 @@ Partial Class frmDashboard
         Me.pbboneniche.Font = New System.Drawing.Font("Segoe UI", 12.0!)
         Me.pbboneniche.ForeColor = System.Drawing.Color.White
         Me.pbboneniche.Location = New System.Drawing.Point(84, 4)
-        Me.pbboneniche.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pbboneniche.Margin = New System.Windows.Forms.Padding(4)
         Me.pbboneniche.Minimum = 0
         Me.pbboneniche.Name = "pbboneniche"
         Me.pbboneniche.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle
@@ -422,7 +422,7 @@ Partial Class frmDashboard
         Me.Guna2Panel6.Controls.Add(Me.Label8)
         Me.Guna2Panel6.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Guna2Panel6.Location = New System.Drawing.Point(1046, 4)
-        Me.Guna2Panel6.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Guna2Panel6.Margin = New System.Windows.Forms.Padding(4)
         Me.Guna2Panel6.Name = "Guna2Panel6"
         Me.Guna2Panel6.ShadowDecoration.Depth = 5
         Me.Guna2Panel6.ShadowDecoration.Enabled = True
@@ -439,7 +439,7 @@ Partial Class frmDashboard
         Me.TableLayoutPanel6.Controls.Add(Me.pbprivate, 1, 0)
         Me.TableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Top
         Me.TableLayoutPanel6.Location = New System.Drawing.Point(0, 0)
-        Me.TableLayoutPanel6.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TableLayoutPanel6.Margin = New System.Windows.Forms.Padding(4)
         Me.TableLayoutPanel6.Name = "TableLayoutPanel6"
         Me.TableLayoutPanel6.RowCount = 1
         Me.TableLayoutPanel6.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
@@ -456,7 +456,7 @@ Partial Class frmDashboard
         Me.pbprivate.Font = New System.Drawing.Font("Segoe UI", 12.0!)
         Me.pbprivate.ForeColor = System.Drawing.Color.White
         Me.pbprivate.Location = New System.Drawing.Point(84, 4)
-        Me.pbprivate.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.pbprivate.Margin = New System.Windows.Forms.Padding(4)
         Me.pbprivate.Minimum = 0
         Me.pbprivate.Name = "pbprivate"
         Me.pbprivate.ShadowDecoration.Mode = Guna.UI2.WinForms.Enums.ShadowMode.Circle
@@ -516,7 +516,7 @@ Partial Class frmDashboard
         Me.dgvNotification.DefaultCellStyle = DataGridViewCellStyle3
         Me.dgvNotification.GridColor = System.Drawing.Color.FromArgb(CType(CType(231, Byte), Integer), CType(CType(229, Byte), Integer), CType(CType(255, Byte), Integer))
         Me.dgvNotification.Location = New System.Drawing.Point(19, 748)
-        Me.dgvNotification.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.dgvNotification.Margin = New System.Windows.Forms.Padding(4)
         Me.dgvNotification.Name = "dgvNotification"
         Me.dgvNotification.ReadOnly = True
         Me.dgvNotification.RowHeadersVisible = False
@@ -619,7 +619,7 @@ Partial Class frmDashboard
         Me.TableLayoutPanel2.Controls.Add(Me.Guna2Panel8, 3, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.Guna2Panel7, 1, 0)
         Me.TableLayoutPanel2.Location = New System.Drawing.Point(0, 155)
-        Me.TableLayoutPanel2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TableLayoutPanel2.Margin = New System.Windows.Forms.Padding(4)
         Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
         Me.TableLayoutPanel2.RowCount = 1
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
@@ -634,7 +634,7 @@ Partial Class frmDashboard
         Me.Guna2Panel9.Controls.Add(Me.lblAvailable)
         Me.Guna2Panel9.Controls.Add(Me.Label11)
         Me.Guna2Panel9.Location = New System.Drawing.Point(931, 4)
-        Me.Guna2Panel9.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Guna2Panel9.Margin = New System.Windows.Forms.Padding(4)
         Me.Guna2Panel9.Name = "Guna2Panel9"
         Me.Guna2Panel9.Size = New System.Drawing.Size(439, 140)
         Me.Guna2Panel9.TabIndex = 2
@@ -674,7 +674,7 @@ Partial Class frmDashboard
         Me.Guna2Panel8.Controls.Add(Me.Label10)
         Me.Guna2Panel8.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Guna2Panel8.Location = New System.Drawing.Point(473, 4)
-        Me.Guna2Panel8.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Guna2Panel8.Margin = New System.Windows.Forms.Padding(4)
         Me.Guna2Panel8.Name = "Guna2Panel8"
         Me.Guna2Panel8.Size = New System.Drawing.Size(439, 140)
         Me.Guna2Panel8.TabIndex = 2
@@ -714,7 +714,7 @@ Partial Class frmDashboard
         Me.Guna2Panel7.Controls.Add(Me.Label9)
         Me.Guna2Panel7.Dock = System.Windows.Forms.DockStyle.Fill
         Me.Guna2Panel7.Location = New System.Drawing.Point(15, 4)
-        Me.Guna2Panel7.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Guna2Panel7.Margin = New System.Windows.Forms.Padding(4)
         Me.Guna2Panel7.Name = "Guna2Panel7"
         Me.Guna2Panel7.Size = New System.Drawing.Size(439, 140)
         Me.Guna2Panel7.TabIndex = 0
@@ -785,7 +785,7 @@ Partial Class frmDashboard
         Me.Controls.Add(Me.Guna2Panel2)
         Me.Controls.Add(Me.dgvNotification)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "frmDashboard"
         Me.Text = "frmHome"
         Me.Guna2Panel2.ResumeLayout(False)

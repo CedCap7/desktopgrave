@@ -415,6 +415,9 @@ Public Class frmUpdateDeceased
             transaction.Commit()
             MessageBox.Show("Deceased record updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
+            ' Log the update action
+            LogUserAction("Update Deceased", "Updated deceased ID: " & deceasedID)
+
             ' Close the form
             Me.Close()
 

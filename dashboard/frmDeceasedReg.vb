@@ -763,6 +763,9 @@ Public Class frmDeceasedReg
                 transaction.Commit()
                 LoadUsers() ' Refresh the list to show new imported records
 
+                ' Log the import action
+                LogUserAction("Import Deceased", $"Imported {successCount} deceased records from {filePath}")
+
                 If errorMessages.Count > 0 Then
                     Dim errorDetails As String = String.Join(Environment.NewLine, errorMessages.Take(5))
                     If errorMessages.Count > 5 Then
@@ -861,6 +864,10 @@ Public Class frmDeceasedReg
 
                 cn.Close()
                 MessageBox.Show("Record deleted successfully.")
+
+                ' Log the delete deceased action
+                LogUserAction("Delete Deceased", "Deleted deceased ID: " & selectedID)
+
                 LoadUsers()
             End If
         Else
